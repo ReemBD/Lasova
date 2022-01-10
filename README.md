@@ -1,1 +1,0 @@
-# Lasova-app
