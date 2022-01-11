@@ -3,11 +3,12 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "fs": "^0.0.1-security",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-scripts": "^5.0.0"
   },
   "name": "lasova-back",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "server": "node server.js",
     "client": "npm start --prefix client",
