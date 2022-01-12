@@ -4,7 +4,11 @@
 
 const express = require('express');
 const app = express();
+const cors = require('cors')
 
+app.use(cors({
+    origin: 'http://localhost:3000',
+}))
 // NOTE: on your local machine, create a '.env' file with PORT=8000
 require('dotenv').config();
 
