@@ -22,6 +22,7 @@ function App() {
 
   return (
     <div>
+      <Login />
     <h1>All existing users</h1>
 
     {/* display volunteers from localhost:8000 */}
