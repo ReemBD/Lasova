@@ -15,20 +15,20 @@ function App() {
       const response = await fetch("http://localhost:8000/users");
       const data = await response.json();
 
-      // store the data into our books variable
+      // store the data into our volunteers variable
       setVolunteers(data) ;
     }
-  }, []); // <- you may need to put the setBooks function in this array
+  }, []); // <- you may need to put the setVolunteers function in this array
 
   return (
     <div>
-    <h1>Game of Thrones Books</h1>
+    <h1>All existing users</h1>
 
-    {/* display books from the API */}
+    {/* display volunteers from localhost:8000 */}
     {volunteers && (
       <div className="volunteers">
 
-        {/* loop over the books */}
+        {/* loop over list of volunteers */}
         {volunteers.map((volunteer) => (
           <div className="single-volunteer">
             <h2>{volunteer.first_name} <br /> {volunteer.taz}</h2>
