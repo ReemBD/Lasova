@@ -83,33 +83,56 @@ const VolunteersTable = ({ volunteers = [] }) => {
   }
 
   return (
-    <div
-      style={{
-        height: 500,
-        width: "80%",
-        cursor: "pointer",
-        margin: "auto",
-        direction: "rtl",
-      }}
-    >
-      <DataGrid
-        sx={{
-          "& .header": {
-            fontSize: "2rem",
-          },
-        }}
+    <>
+      <div
         style={{
-          fontSize: "1.5rem",
+          width: "100%",
+          height: "8rem",
+          marginBottom: "5rem",
+          backgroundColor: "#c4c4c4",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
-        rows={rows}
-        columns={columns}
-        pageSize={7}
-        hideFooterSelectedRowCount
-        components={{
-          Pagination: CustomPagination,
+      >
+        <h1
+          style={{
+            color: "#000",
+            fontSize: "3rem",
+            fontWeight: "400",
+          }}
+        >
+          רשימת מתנדבים
+        </h1>
+      </div>
+      <div
+        style={{
+          height: 500,
+          width: "80%",
+          cursor: "pointer",
+          margin: "auto",
+          direction: "rtl",
         }}
-      />
-    </div>
+      >
+        <DataGrid
+          sx={{
+            "& .header": {
+              fontSize: "2rem",
+            },
+          }}
+          style={{
+            fontSize: "1.5rem",
+          }}
+          rows={rows}
+          columns={columns}
+          pageSize={7}
+          hideFooterSelectedRowCount
+          components={{
+            Pagination: CustomPagination,
+          }}
+        />
+      </div>
+    </>
   );
 };
 

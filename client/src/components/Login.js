@@ -16,8 +16,6 @@ const Login = () => {
   );
 };
 
-export default Login;
-
 const Wrapper = styled.section`
   display: flex;
   align-items: center;
@@ -71,3 +69,5 @@ const Wrapper = styled.section`
     font-family: inherit;
   }
 `;
+
+export default Login;
