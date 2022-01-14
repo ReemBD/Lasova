@@ -9,3 +9,8 @@
 .left_content {
   flex: 1 1 80%;
 }
+
+.single-volunteer{
+  background-color: azure;
+  margin: 1rem;
+}

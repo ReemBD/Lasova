@@ -4,12 +4,17 @@
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
-// NOTE: on your local machine, create a '.env' file with PORT=8000
 require('dotenv').config();
+
+// requests can only come from this domains
+app.use(cors({
+    origin: process.env.CLIENTS_DOMAIN,
+}))
 
 // Settings up routes, can be found at './routes/'
 app.use('/users', require('./routes/users/get.js'));
 
-// Starting the server on http://localhost:8000
-app.listen(process.env.PORT || 8000, () => console.log('Server Is Up!\nhttp://localhost:8000'));
+// Starting the server on http://localhost:PORT
+app.listen(process.env.PORT, () => console.log(`Server Is Up!\nhttp://localhost:${process.env.PORT}`));
