@@ -1,14 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-const HeaderVT = () => {
+const HeaderVT = ({ dispatch }) => {
   return (
     <Wrapper>
       <div className="header">
         <div className="nav">
           <div className="search">
-            {/* <label className="search_label">חיפוש</label> */}
-            <input type="text" className="serach_input" placeholder="חיפוש" />
+            <input
+              type="text"
+              className="serach_input"
+              placeholder="חיפוש"
+              onChange={(e) => {
+                console.log(e.target.value);
+                dispatch({ type: "SEARCH", payload: e.target.value });
+              }}
+            />
           </div>
           <div className="filter">
             <label className="filter_label">סינון לפי:</label>
@@ -44,14 +52,6 @@ const Wrapper = styled.section`
   .search {
     margin-left: 3rem;
   }
-  /* .search_label {
-    width: 4.8rem;
-    height: 1.8rem;
-    margin: 1rem;
-    font-size: 1.8rem;
-    letter-spacing: 1.26px;
-    color: #000;
-  } */
   .serach_input {
     width: 15.7rem;
     height: 3.6rem;
@@ -93,4 +93,9 @@ const Wrapper = styled.section`
   }
 `;
 
-export default HeaderVT;
+const mapState = (state) => {
+  const { volunteers } = state;
+  return { volunteers };
+};
+
+export default connect(mapState)(HeaderVT);
