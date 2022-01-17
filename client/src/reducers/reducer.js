@@ -1,10 +1,14 @@
 import offline_data from "../mock-data.json";
 
 const initialStore = {
-  volunteers: offline_data,
+  volunteers: [],
 };
 
 const reducer = (state = initialStore, action) => {
+  if (action.type === "RESET") {
+    console.log("isthisworking???", action.payload);
+    return { ...state, volunteers: action.payload };
+  }
   if (action.type === "SEARCH") {
     let newVolunteers = [...offline_data];
     newVolunteers = newVolunteers.filter((volunteer) => {
