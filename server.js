@@ -11,7 +11,7 @@ require("dotenv").config();
 // requests can only come from this domains
 app.use(
   cors({
-    origin: process.env.CLIENTS_DOMAIN,
+    origin: '*',
   })
 );
 

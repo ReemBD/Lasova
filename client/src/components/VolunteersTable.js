@@ -1,4 +1,5 @@
-import * as React from "react";
+import React from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -10,7 +11,7 @@ import {
   useGridSelector,
 } from "@mui/x-data-grid";
 
-const VolunteersTable = ({ volunteers = [] }) => {
+const VolunteersTable = ({ volunteers = [], dispatch }) => {
   const columns = [
     {
       field: "id",
@@ -81,6 +82,12 @@ const VolunteersTable = ({ volunteers = [] }) => {
       />
     );
   }
+
+  useEffect(() => {
+    fetch("http://localhost:8000/users")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: "RESET", payload: data }));
+  }, []);
 
   return (
     <>
