@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Login from "../components/Login";
 import VolunteersTable from "../components/VolunteersTable";
 import HeaderVT from "../components/HeaderVT";
 import SidebarVT from "../components/SidebarVT";
