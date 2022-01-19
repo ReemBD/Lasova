@@ -1,15 +1,10 @@
 import React from "react";
 import "./App.css";
-import Login from "./components/Login";
-import VolunteersTable from "./components/VolunteersTable";
 import { createStore } from "redux";
 import reducer from "./reducers/reducer";
 import { Provider } from "react-redux";
-import HeaderVT from "./components/HeaderVT";
-import SidebarVT from "./components/SidebarVT";
-import LogoLine from "./components/LogoLine";
-
-/* <Login /> */
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 const store = createStore(
   reducer,
@@ -18,20 +13,11 @@ const store = createStore(
 
 const App = () => {
   return (
-    <>
-      <Provider store={store}>
-        <LogoLine />
-        <div className="content">
-          <div className="right_content">
-            <SidebarVT />
-          </div>
-          <div className="left_content">
-            <HeaderVT />
-            <VolunteersTable />
-          </div>
-        </div>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Provider>
   );
 };
 
