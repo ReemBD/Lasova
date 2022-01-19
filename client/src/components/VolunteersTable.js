@@ -84,9 +84,13 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:8000/users")
-      .then((response) => response.json())
-      .then((data) => dispatch({ type: "RESET", payload: data }));
+    try {
+      fetch("http://localhost:8000/users")
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: "RESET", payload: data }));
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (
