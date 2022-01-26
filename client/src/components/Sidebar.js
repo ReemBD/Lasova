@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const SidebarVT = () => {
+const Sidebar = () => {
   return (
     <Wrapper>
       <div className="sidebar">
@@ -11,19 +11,19 @@ const SidebarVT = () => {
         </div>
         <p className="hello_text">מנהלת הארגון, שלום לך</p>
         <ul className="list">
-          <a className="list-link" href="#">
+          <a className="list-link" href="/#">
             <li className="list-item">מתנדבים</li>
           </a>
-          <a className="list-link" href="#">
+          <a className="list-link" href="/#">
             <li className="list-item">לידים</li>{" "}
           </a>
-          <a className="list-link" href="#">
+          <a className="list-link" href="/#">
             <li className="list-item">מסגרות התנדבות</li>{" "}
           </a>
-          <a className="list-link" href="#">
+          <a className="list-link" href="/#">
             <li className="list-item">מנהלי מסגרות</li>{" "}
           </a>
-          <a className="list-link" href="#">
+          <a className="list-link" href="/#">
             <li className="list-item">קבוצות ואירגונים</li>{" "}
           </a>
         </ul>
@@ -47,10 +47,9 @@ const Wrapper = styled.section`
   .user {
   }
   .user_img {
-    width: 9.7rem;
-    height: 9.7rem;
+    padding: 3.5rem 1.9rem;
     background-color: #c4c4c4;
-    border-radius: 100%;
+    border-radius: 50%;
     margin-right: 3rem;
     overflow: hidden;
   }
@@ -82,4 +81,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default SidebarVT;
+export default Sidebar;

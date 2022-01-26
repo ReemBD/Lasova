@@ -9,6 +9,8 @@ import {
   gridPageSelector,
   useGridApiContext,
   useGridSelector,
+  GridToolbarContainer,
+  GridToolbarExport,
 } from "@mui/x-data-grid";
 
 const VolunteersTable = ({ volunteers = [], dispatch }) => {
@@ -63,11 +65,18 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
     return obj;
   });
 
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport />
+      </GridToolbarContainer>
+    );
+  }
+
   function CustomPagination() {
     const apiRef = useGridApiContext();
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
     return (
       <Pagination
         style={{ margin: "auto", direction: "ltr" }}
@@ -87,11 +96,11 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
     try {
       fetch("http://localhost:8000/users")
         .then((response) => response.json())
-        .then((data) => dispatch({ type: "RESET", payload: data }));
+        .then((data) => dispatch({ type: "INITIAL", payload: data }));
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -136,10 +145,11 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
           }}
           rows={rows}
           columns={columns}
-          pageSize={7}
+          pageSize={6}
           hideFooterSelectedRowCount
           components={{
             Pagination: CustomPagination,
+            Toolbar: CustomToolbar,
           }}
         />
       </div>
