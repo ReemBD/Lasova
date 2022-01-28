@@ -1,26 +1,18 @@
-import React from "react";
-import "./App.css";
-import { createStore } from "redux";
-import reducer from "./reducers/reducer";
-import { Provider } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
 
 const App = () => {
   return (
-    <Provider store={store}>
+    <Router>
+      {/* headerCmp.. */}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
       </Routes>
-    </Provider>
-  );
-};
+      {/* footerCmp.. */}
+    </Router>
+  )
+}
 
-export default App;
+export default App
