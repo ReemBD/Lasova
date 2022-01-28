@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
-import VolunteersTable from "../components/VolunteersTable";
+import LogoLine from "../components/LogoLine";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import LogoLine from "../components/LogoLine";
+import { VolunteersTable } from "../components/VolunteersTable";
 
 const Home = () => {
   return (
