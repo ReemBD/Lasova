@@ -1,35 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import VolunteersTable from "../components/VolunteersTable";
-import HeaderVT from "../components/HeaderVT";
-import SidebarVT from "../components/SidebarVT";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 import LogoLine from "../components/LogoLine";
 
 const Home = () => {
   return (
     <Wrapper>
       <LogoLine />
-      <div className="content">
-        <div className="right_content">
-          <SidebarVT />
-        </div>
-        <div className="left_content">
-          <HeaderVT />
+      <main className="main">
+        <aside className="sidebar">
+          <Sidebar />
+        </aside>
+        <section className="content">
+          <Header />
           <VolunteersTable />
-        </div>
-      </div>
+        </section>
+      </main>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  .content {
+  main {
     display: flex;
   }
-  .right_content {
+  aside {
     flex: 1;
   }
-  .left_content {
+  section {
     flex: 1 1 80%;
   }
 `;

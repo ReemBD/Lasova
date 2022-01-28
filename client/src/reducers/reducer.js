@@ -1,20 +1,25 @@
-import offline_data from "../mock-data.json";
-
 const initialStore = {
+  initialVolunteers: [],
   volunteers: [],
 };
 
 const reducer = (state = initialStore, action) => {
-  if (action.type === "RESET") {
-    console.log("isthisworking???", action.payload);
-    return { ...state, volunteers: action.payload };
+  if (action.type === "INITIAL") {
+    return {
+      ...state,
+      initialVolunteers: action.payload,
+      volunteers: action.payload,
+    };
   }
   if (action.type === "SEARCH") {
-    let newVolunteers = [...offline_data];
+    let newVolunteers = [...state.initialVolunteers];
     newVolunteers = newVolunteers.filter((volunteer) => {
-      return volunteer.first_name
-        .toLowerCase()
-        .includes(action.payload.toLowerCase());
+      return (
+        volunteer.first_name
+          .toLowerCase()
+          .includes(action.payload.toLowerCase()) ||
+        volunteer.last_name.toLowerCase().includes(action.payload.toLowerCase())
+      );
     });
     return { ...state, volunteers: newVolunteers };
   }

@@ -20,6 +20,8 @@ const Wrapper = styled.section`
   display: flex;
   align-items: center;
   flex-direction: column;
+  direction: ltr;
+  padding: 3rem;
   .logo {
     width: 16rem;
     height: 16rem;

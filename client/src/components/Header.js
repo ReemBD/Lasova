@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import NewVolunteerModal from "./NewVolunteerModal";
 
-const HeaderVT = ({ dispatch }) => {
+const Header = () => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <div className="header">
@@ -28,7 +30,7 @@ const HeaderVT = ({ dispatch }) => {
           </div>
         </div>
         <div className="newVolunteer">
-          <button className="addVolunteer">מתנדב חדש +</button>
+          <NewVolunteerModal />
         </div>
       </div>
     </Wrapper>
@@ -93,9 +95,4 @@ const Wrapper = styled.section`
   }
 `;
 
-const mapState = (state) => {
-  const { volunteers } = state;
-  return { volunteers };
-};
-
-export default connect(mapState)(HeaderVT);
+export default Header;
