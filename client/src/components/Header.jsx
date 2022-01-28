@@ -1,28 +1,51 @@
-import React from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { DebounceInput } from "react-debounce-input";
+import styled from "styled-components";
+
+import { filterVolunteers } from "../store/actions/volunteerActions"
+
 import NewVolunteerModal from "./NewVolunteerModal";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const [filters, setfilters] = useState({
+    filterBy: {},
+    search: ''
+  });
+  
+  useEffect(() => {
+    dispatch(filterVolunteers(filters));
+  }, [filters, dispatch]);
+  
+  const handleSearch = e => {
+    setfilters(prevFilters => ({...prevFilters, search: e.target.value}))
+  }
+
+  const handleFilter = e => {
+    if (e.target.value) {
+      setfilters(prev => (
+        { ...prev, filterBy: { tempFilter: e.target.value } }
+      ));
+    }
+  }
+
   return (
     <Wrapper>
       <div className="header">
         <div className="nav">
           <div className="search">
-            <input
+            <DebounceInput
               type="text"
               className="serach_input"
               placeholder="חיפוש"
-              onChange={(e) => {
-                console.log(e.target.value);
-                dispatch({ type: "SEARCH", payload: e.target.value });
-              }}
-            />
+              debounceTimeout={300}
+              onChange={handleSearch} />
           </div>
           <div className="filter">
             <label className="filter_label">סינון לפי:</label>
-            <select className="filter_select">
+            <select className="filter_select" onChange={handleFilter}>
+              <option value="">-</option>
               <option value="option1">אפשרות 1</option>
               <option value="option2">אפשרות 2</option>
               <option value="option3">אפשרות 3</option>

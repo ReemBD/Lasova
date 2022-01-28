@@ -1,6 +1,5 @@
-import React from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import {
@@ -13,11 +12,23 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 
-const VolunteersTable = ({ volunteers = [], dispatch }) => {
+import { loadVolunteers } from "../store/actions/volunteerActions";
+
+import { Loader } from "./Loader";
+
+export const VolunteersTable = () => {
+  const dispatch = useDispatch();
+  const { volunteers, filteredVolunteers } = useSelector(state => state.volunteerModule);
+
+  // runs only on component mount
+  useEffect(() => {
+    if (!volunteers.length) dispatch(loadVolunteers());
+  }, []);
+
   const columns = [
     {
       field: "id",
-      headerName: "מזהה",
+      headerName: "ת.ז",
       width: 150,
       headerClassName: "header",
     },
@@ -53,7 +64,8 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
     },
   ];
 
-  const rows = volunteers.map((volunteer) => {
+  const volunteersToShow = filteredVolunteers || volunteers;
+  const rows = volunteersToShow.map((volunteer) => {
     const obj = {
       id: volunteer.taz,
       firstName: volunteer.first_name,
@@ -92,16 +104,6 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
     );
   }
 
-  useEffect(() => {
-    try {
-      fetch("http://localhost:8000/users")
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: "INITIAL", payload: data }));
-    } catch (error) {
-      console.log(error);
-    }
-  }, [dispatch]);
-
   return (
     <>
       <div
@@ -134,7 +136,7 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
           direction: "rtl",
         }}
       >
-        <DataGrid
+        {volunteers.length ? <DataGrid
           sx={{
             "& .header": {
               fontSize: "2rem",
@@ -151,15 +153,10 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
             Pagination: CustomPagination,
             Toolbar: CustomToolbar,
           }}
-        />
+        /> :
+        <Loader />
+      }
       </div>
     </>
   );
 };
-
-const mapState = (state) => {
-  const { volunteers } = state;
-  return { volunteers };
-};
-
-export default connect(mapState)(VolunteersTable);
