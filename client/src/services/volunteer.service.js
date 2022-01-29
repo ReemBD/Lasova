@@ -11,6 +11,7 @@ export const volunteerService = {
   filter,
 };
 
+// IIFE to load from mock_data.json to localStorage
 (function loadMockToStorage() {
   if (!JSON.parse(localStorage.getItem(STORAGE_KEY))) {
     const mockData = require("./mock-data.json")
