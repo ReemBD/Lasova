@@ -1,5 +1,5 @@
 // temporarily works with localStorage service,
-// later replaced with axios requests to server
+// later replaced with service that sends axios requests to server
 import { storageService } from "./async-storage.service"
 const STORAGE_KEY = "volunteers"
 
