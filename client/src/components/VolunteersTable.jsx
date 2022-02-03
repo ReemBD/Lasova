@@ -18,7 +18,7 @@ import { Loader } from "./Loader";
 
 export const VolunteersTable = () => {
   const dispatch = useDispatch();
-  const { volunteers, filteredVolunteers } = useSelector(state => state.volunteerModule);
+  const { volunteers, filteredVolunteers } = useSelector(state => state.volunteerReducer);
 
   // runs only on component mount
   useEffect(() => {

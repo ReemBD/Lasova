@@ -21,6 +21,7 @@ async function get(dbName, entityId) {
     return entities.find(entity => entity.id === entityId);
 }
 
+// create
 async function post(dbName, newEntity) {
     newEntity.id = makeId();
     const entities = await query(dbName);
@@ -29,12 +30,12 @@ async function post(dbName, newEntity) {
     return newEntity;
 }
 
+// update
 async function put(dbName, updatedEntity) {
     const entities = await query(dbName);
     const idx = entities.findIndex(entity => entity.id === updatedEntity.id);
     entities.splice(idx, 1, updatedEntity);
     _save(dbName, entities);
-    return updatedEntity;
 }
 
 async function remove(dbName, entityId) {

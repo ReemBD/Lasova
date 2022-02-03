@@ -12,9 +12,11 @@ export function volunteerReducer(state = initialState, action) {
         volunteers: action.volunteers,
       }
     case "SET_CURR_VOLUNTEER":
+      const volunteer = !action.volunteerId ? null :
+        state.volunteers.find(volunteer => volunteer.id === action.volunteerId);
       return {
         ...state,
-        currVolunteer: action.volunteer,
+        currVolunteer: volunteer,
       }
     case "ADD_VOLUNTEER":
       return {
@@ -24,7 +26,6 @@ export function volunteerReducer(state = initialState, action) {
     case "REMOVE_VOLUNTEER":
       return {
         ...state,
-        currVolunteer: null,
         volunteers: state.volunteers.filter(
           (volunteer) => volunteer.id !== action.volunteerId
         ),
@@ -32,7 +33,6 @@ export function volunteerReducer(state = initialState, action) {
     case "UPDATE_VOLUNTEER":
       return {
         ...state,
-        currVolunteer: action.volunteer,
         volunteers: state.volunteers.map((volunteer) =>
           volunteer.id === action.volunteer.id ? action.volunteer : volunteer
         ),
