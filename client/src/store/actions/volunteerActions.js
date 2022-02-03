@@ -2,6 +2,14 @@
 // uses localStorage as DB, final app will not use localStorage..
 import { storageService } from '../../services/async-storage.service';
 const STORAGE_KEY = 'volunteers';
+// TEMPORARY IIFE to load volunteers from mock_data.json to localStorage
+// remove this when working with server+DB...
+(function loadMockToStorage() {
+  if (!JSON.parse(localStorage.getItem(STORAGE_KEY))) {
+    const mockData = require("../../services/mock-data.json")
+    localStorage[STORAGE_KEY] = JSON.stringify(mockData);
+  }
+})();
 
 // serverService will be used to make requests to server:
 // import { serverService } from "../../services/client-server.service"
