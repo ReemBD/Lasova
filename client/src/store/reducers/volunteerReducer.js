@@ -1,7 +1,12 @@
 const initialState = {
-  volunteers: [], // all volunteers
-  filteredVolunteers: null, // if filtering or searching
-  currVolunteer: null, // in volunteer profile page
+  allVolunteers: [],
+  filteredVolunteers: [],
+  filters: {/*
+      search: '',
+      status: [''], 
+      volunteerMisgeret: [''],
+      referringMisgeret: ['']
+  */},
 };
 
 export function volunteerReducer(state = initialState, action) {
@@ -9,14 +14,7 @@ export function volunteerReducer(state = initialState, action) {
     case "SET_VOLUNTEERS":
       return {
         ...state,
-        volunteers: action.volunteers,
-      }
-    case "SET_CURR_VOLUNTEER":
-      const volunteer = !action.volunteerId ? null :
-        state.volunteers.find(volunteer => volunteer.id === action.volunteerId);
-      return {
-        ...state,
-        currVolunteer: volunteer,
+        volunteers: action.payload,
       }
     case "ADD_VOLUNTEER":
       return {
@@ -37,10 +35,11 @@ export function volunteerReducer(state = initialState, action) {
           volunteer.id === action.volunteer.id ? action.volunteer : volunteer
         ),
       }
-    case "SET_FILTERED_VOLUNTEERS":
+    case "FILTER_VOLUNTEERS":
       return {
         ...state,
-        filteredVolunteers: action.filteredVolunteers,
+        filters: action.newFilters,
+        filteredVolunteers: action.filteredVolunteers
       }
     default:
       return state

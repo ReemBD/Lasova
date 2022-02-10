@@ -14,26 +14,23 @@ const STORAGE_KEY = 'volunteers';
 // serverService will be used to make requests to server:
 // import { serverService } from "../../services/client-server.service"
 
+
+/*******************************************************************************************/
+
+// BEGINS HERE
+
 export function loadVolunteers() {
   return async (dispatch) => {
     try {
       // ask "server" for all volunteers data:
       const volunteers = await storageService.query(STORAGE_KEY);
       // const volunteers = await serverService.get('volunteers')
-      dispatch({ type: 'SET_VOLUNTEERS', volunteers });
+      dispatch({ type: 'SET_VOLUNTEERS', payload: volunteers });
     } catch (err) {
       console.log("Error loading volunteers:");
       console.dir(err);
     }
   }
-}
-
-export function getVolunteer(volunteerId) {
-  return { type: "SET_CURR_VOLUNTEER", volunteerId }
-}
-
-export function clearVolunteer() {
-  return { type: "SET_CURR_VOLUNTEER", volunteerId: null }
 }
 
 export function saveVolunteer(volunteerToSave) {
@@ -45,9 +42,10 @@ export function saveVolunteer(volunteerToSave) {
       const type = volunteerToSave.id ? "UPDATE_VOLUNTEER" : "ADD_VOLUNTEER";
       
       if (volunteerToSave.id) {
-        volunteerToSave = await storageService.put(STORAGE_KEY, volunteerToSave);
-      } else await storageService.post(STORAGE_KEY, volunteerToSave);
-      
+        await storageService.put(STORAGE_KEY, volunteerToSave);
+      } else {
+        volunteerToSave = await storageService.post(STORAGE_KEY, volunteerToSave);
+      }
       dispatch({ type, volunteer: volunteerToSave });
     } catch (err) {
       console.log("error saving volunteer", volunteerToSave);
@@ -68,30 +66,14 @@ export function removeVolunteer(volunteerId) {
   }
 }
 
+
+
 // queryParams from VT header: {search string, filter input}
-export function filterVolunteers(queryParams) {
+export function filterVolunteers(newFilters) {
   return (dispatch, getState) => {
-    if (_isQueryEmpty(queryParams)) {
-      // no search string or filter=> 
-      // state.filteredVolunteers will be set to null in reducer =>
-      // VT component will render the volunteers array
-      dispatch({ type: "SET_FILTERED_VOLUNTEERS", filteredVolunteers: null });
-    } else {
-      // extract volunteers from state
-      const { volunteers } = getState().volunteerReducer;
-      const filteredVolunteers = []; // do some filtering actions here.....
-      dispatch({ type: "SET_FILTERED_VOLUNTEERS", filteredVolunteers });
-    }
+    const { allVolunteers } = getState().volunteerReducer;
+    const filteredVolunteers = [];
+    //TODO: filter allVolunteers based on newFilters
+    dispatch({ type: "FILTER_VOLUNTEERS", newFilters, filteredVolunteers });
   }
 }
-
-// internal module function - name starts with _ by convention
-// checks if VT header input is empty (no search string or filter)
-function _isQueryEmpty(query) {
-  return !Object.keys(query.filterBy).length && !query.search;
-}
-
-// queryParams= {
-// search: 'volunteer name',
-// filterBy: {group: 'group_name', groupManager: 'manager name', etc...}
-// }

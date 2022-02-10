@@ -1,0 +1,16 @@
+// Setup
+@import "./setup/variables";
+@import "./setup/functions-mixins";
+@import "./setup/typography";
+@import "./setup/base";
+@import "./setup/helpers";
+@import "./setup/layout";
+
+// Components
+@import "./components/Header";
+@import "./components/Footer";
+@import "./components/Loader";
+@import "./components/Sidebar";
+
+// Pages
+@import "./pages/Home";

@@ -12,18 +12,26 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 
-import { loadVolunteers } from "../store/actions/volunteerActions";
+import { loadVolunteers, filterVolunteers } from "../store/actions/volunteerActions";
 
 import { Loader } from "./Loader";
 
-export const VolunteersTable = () => {
-  const dispatch = useDispatch();
-  const { volunteers, filteredVolunteers } = useSelector(state => state.volunteerReducer);
-
+const VolunteersTable = () => {
+  const dispatch = useDispatch(); // mapDispatchToProps
+  const { volunteers, filters } = useSelector(state => state.volunteerReducer); // mapPropsToState(state) {return }
+  
   // runs only on component mount
   useEffect(() => {
-    if (!volunteers.length) dispatch(loadVolunteers());
-  }, []);
+    if (!volunteers.length) {
+      dispatch(loadVolunteers());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log('filter changed');
+    // filterVolunteers()
+  }, [filters]);
+  
 
   const columns = [
     {
@@ -64,9 +72,9 @@ export const VolunteersTable = () => {
     },
   ];
 
-  const volunteersToShow = filteredVolunteers || volunteers;
-  const rows = volunteersToShow.map((volunteer) => {
-    const obj = {
+  // const volunteersToShow = filteredVolunteers || volunteers;
+  const rows = volunteers.map((volunteer) => {
+    return {
       id: volunteer.taz,
       firstName: volunteer.first_name,
       lastName: volunteer.last_name,
@@ -74,7 +82,6 @@ export const VolunteersTable = () => {
       misgeret_m: volunteer.scholarship,
       hours: volunteer.year_joined,
     };
-    return obj;
   });
 
   function CustomToolbar() {
@@ -160,3 +167,5 @@ export const VolunteersTable = () => {
     </>
   );
 };
+
+export default VolunteersTable;

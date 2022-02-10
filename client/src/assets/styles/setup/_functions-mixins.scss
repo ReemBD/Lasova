@@ -1,0 +1,17 @@
+// PX to REM
+@function rem($pixelSize) {
+    $remSize: $pixelSize / 16px;
+    @return ($remSize) * 1rem;
+}
+
+// vh from PX/1080
+@function vh($pixelSize) {
+    $vhSize: $pixelSize / 1080px * 100;
+    @return ($vhSize) * 1vh;
+}
+
+// vw from PX/1920
+@function vw($pixelSize) {
+    $vwSize: $pixelSize / 1920px * 100;
+    @return ($vwSize) * 1vw;
+}
