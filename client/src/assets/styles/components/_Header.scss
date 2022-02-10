@@ -1,0 +1,32 @@
+header {
+    gap: 2.1vw;
+    background-color: $navBg;
+    height: 8.5vh;
+        font-size: 2vh;
+
+    .user-icon {
+        margin-inline-end: 1.3vw;
+        border-radius: 50%;
+        background-color: $darkBg;
+        height: 5.7vh;
+        width: 5.7vh;
+    }
+    .messages {
+        position: relative;
+        svg {
+            width: 2.9vh;
+            height: 2.3vh;
+            position: relative;
+            top: 3px;
+        }
+        .notification {
+            height: 1.15vh;
+            width: 1.15vh;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            right: -2px;
+            top: 0;
+        }
+    }
+}

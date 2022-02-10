@@ -1,5 +1,6 @@
 [
   {
+    "id": "123451",
     "group_name": "קדימה נווה שאנן",
     "first_name": "יוליה",
     "last_name": "צמח",
@@ -17,6 +18,7 @@
     "weekday_available": "ב'"
   },
   {
+    "id": "123452",
     "group_name": "מסעדת ת\"א",
     "first_name": "גלי ",
     "last_name": "כהן",
@@ -35,6 +37,7 @@
     "weekday_available": "טרם נקבע יום קבוע"
   },
   {
+    "id": "123453",
     "group_name": "קדימה צפת",
     "first_name": "חמי",
     "last_name": "צמח",
@@ -52,6 +55,7 @@
     "weekday_available": "ג'"
   },
   {
+    "id": "123454",
     "group_name": "מסעדת עכו",
     "first_name": "אוקסנה",
     "last_name": "צמח",
@@ -69,6 +73,7 @@
     "weekday_available": "ד'"
   },
   {
+    "id": "123455",
     "group_name": "אסיף העיר",
     "first_name": "מקארה",
     "last_name": "צמח",
@@ -87,6 +92,7 @@
     "weekday_available": "ד'"
   },
   {
+    "id": "123456",
     "group_name": "קדימה ערד",
     "first_name": "שי",
     "last_name": "צמח",
@@ -105,6 +111,7 @@
     "weekday_available": "יומיים קבועים"
   },
   {
+    "id": "123457",
     "group_name": "קדימה יפו",
     "first_name": "תמר",
     "last_name": "צמח",
@@ -122,6 +129,7 @@
     "weekday_available": "א'"
   },
   {
+    "id": "123458",
     "group_name": "קדימה אופקים",
     "first_name": "מיכל",
     "last_name": "צמח",

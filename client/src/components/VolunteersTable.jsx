@@ -1,6 +1,5 @@
-import React from "react";
 import { useEffect } from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import {
@@ -13,11 +12,31 @@ import {
   GridToolbarExport,
 } from "@mui/x-data-grid";
 
-const VolunteersTable = ({ volunteers = [], dispatch }) => {
+import { loadVolunteers, filterVolunteers } from "../store/actions/volunteerActions";
+
+import { Loader } from "./Loader";
+
+const VolunteersTable = () => {
+  const dispatch = useDispatch(); // mapDispatchToProps
+  const { volunteers, filters } = useSelector(state => state.volunteerReducer); // mapPropsToState(state) {return }
+  
+  // runs only on component mount
+  useEffect(() => {
+    if (!volunteers.length) {
+      dispatch(loadVolunteers());
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log('filter changed');
+    // filterVolunteers()
+  }, [filters]);
+  
+
   const columns = [
     {
       field: "id",
-      headerName: "מזהה",
+      headerName: "ת.ז",
       width: 150,
       headerClassName: "header",
     },
@@ -53,8 +72,9 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
     },
   ];
 
+  // const volunteersToShow = filteredVolunteers || volunteers;
   const rows = volunteers.map((volunteer) => {
-    const obj = {
+    return {
       id: volunteer.taz,
       firstName: volunteer.first_name,
       lastName: volunteer.last_name,
@@ -62,7 +82,6 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
       misgeret_m: volunteer.scholarship,
       hours: volunteer.year_joined,
     };
-    return obj;
   });
 
   function CustomToolbar() {
@@ -91,16 +110,6 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
       />
     );
   }
-
-  useEffect(() => {
-    try {
-      fetch("http://localhost:8000/users")
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: "INITIAL", payload: data }));
-    } catch (error) {
-      console.log(error);
-    }
-  }, [dispatch]);
 
   return (
     <>
@@ -134,7 +143,7 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
           direction: "rtl",
         }}
       >
-        <DataGrid
+        {volunteers.length ? <DataGrid
           sx={{
             "& .header": {
               fontSize: "2rem",
@@ -151,15 +160,12 @@ const VolunteersTable = ({ volunteers = [], dispatch }) => {
             Pagination: CustomPagination,
             Toolbar: CustomToolbar,
           }}
-        />
+        /> :
+        <Loader />
+      }
       </div>
     </>
   );
 };
 
-const mapState = (state) => {
-  const { volunteers } = state;
-  return { volunteers };
-};
-
-export default connect(mapState)(VolunteersTable);
+export default VolunteersTable;

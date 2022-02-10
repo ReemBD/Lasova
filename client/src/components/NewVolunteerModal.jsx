@@ -1,15 +1,33 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import styled from "styled-components";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Button from "@mui/material/Button";
 
+const emptyVolunteer = {
+  groupName: '',
+  firstName: '',
+  lastName: '',
+  cellphone: '',
+  city: '',
+  email: '',
+  summary: '',
+};
+
 const NewVolunteerModal = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [selected, setSelected] = useState(0);
+  const [newVolunteer, setVolunteer] = useState(emptyVolunteer);
+
+  const handleChange = e => {
+    setVolunteer(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log('..will submit:', newVolunteer);
+    setVolunteer(emptyVolunteer);
+  };
 
   const style = {
     position: "absolute",
@@ -57,10 +75,10 @@ const NewVolunteerModal = () => {
 
   return (
     <Wrapper>
-      <button onClick={handleOpen} className="addVolunteerBtn">
+      <button onClick={() => setOpen(true)} className="addVolunteerBtn">
         מתנדב חדש +
       </button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={open} onClose={() => setOpen(false)}>
         <Box sx={style}>
           <h1>הוספת מתנדב חדש</h1>
           <div
@@ -75,11 +93,9 @@ const NewVolunteerModal = () => {
           >
             <label style={labelStyle}>בחר מסגרת מפנה</label>
             <select
+              name="groupName"
               style={inputStyle}
-              onChange={(e) => {
-                console.log(e.target.value);
-                setSelected(e.target.value);
-              }}
+              onChange={handleChange}
             >
               <option value="1">עצמאי</option>
               <option value="2">סטודנט</option>
@@ -91,6 +107,7 @@ const NewVolunteerModal = () => {
                 display: "flex",
                 justifyContent: "space-between",
               }}
+              onSubmit={handleSubmit}
             >
               <div className="right_side">
                 <div>
@@ -100,6 +117,8 @@ const NewVolunteerModal = () => {
                     type="text"
                     name="firstName"
                     required
+                    value={newVolunteer["firstName"]}
+                    onChange={handleChange}
                   />
                   <label style={labelStyle}>שם משפחה</label>
                   <input
@@ -107,21 +126,39 @@ const NewVolunteerModal = () => {
                     type="text"
                     name="lastName"
                     required
+                    onChange={handleChange}
                   />
                 </div>
                 <div>
                   <label style={labelStyle}>טלפון</label>
-                  <input style={inputStyle} type="tel" name="tel" required />
+                  <input
+                    style={inputStyle}
+                    type="tel"
+                    name="cellphone"
+                    required
+                    onChange={handleChange}
+                  />
                 </div>
                 <div>
                   <label style={labelStyle}>עיר מגורים</label>
-                  <input style={inputStyle} type="text" name="city" />
+                  <input
+                    style={inputStyle}
+                    type="text"
+                    name="city"
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
               <div className="left">
                 <div>
                   <label style={labelStyle}>מייל</label>
-                  <input style={mailInputStyle} type="email" name="email" />
+                  <input
+                    style={mailInputStyle}
+                    type="email"
+                    name="email"
+                    value={newVolunteer["email"]}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div>
                   <label style={labelStyle}>סיכום שיחה</label>
@@ -138,8 +175,10 @@ const NewVolunteerModal = () => {
                       backgroundColor: "#ebebeb",
                       border: "none",
                     }}
+                    onChange={handleChange}
                   />
                 </div>
+
                 <Button
                   variant="contained"
                   type="submit"
@@ -151,6 +190,7 @@ const NewVolunteerModal = () => {
                 >
                   הוסף
                 </Button>
+
               </div>
             </form>
           </div>

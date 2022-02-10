@@ -1,26 +1,26 @@
-import React from "react";
-import "./App.css";
-import { createStore } from "redux";
-import reducer from "./reducers/reducer";
-import { Provider } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Home from "./pages/Home"
+import Login from "./pages/Login"
 
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-const App = () => {
+function App() {
   return (
-    <Provider store={store}>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Provider>
-  );
-};
+    <Router>
+      <div className="top-container flex column">
+          <Header />
+        <div className="content-wrapper flex">
+        <Sidebar />
+          <main>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </Router>
+  )
+}
 
 export default App;
