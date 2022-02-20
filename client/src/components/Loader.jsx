@@ -1,5 +1,7 @@
 import { ReactComponent as LoaderSVG } from '../assets/imgs/loader.svg';
 
-export const Loader = () => {
+const Loader = () => {
     return <div className="loader"><LoaderSVG /></div>;
-}
+};
+
+export default Loader;

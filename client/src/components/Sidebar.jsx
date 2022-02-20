@@ -4,7 +4,6 @@ import { ReactComponent as SettingsIcon } from '../assets/imgs/icons/settings-ic
 
 const Sidebar = () => {
     const currLocation = useLocation().pathname;
-    console.log('currLocation:', currLocation);
     
     const links = [
         { title: 'דשבורד', destination: '/dashboard' },
@@ -15,7 +14,7 @@ const Sidebar = () => {
     ];
 
     return <aside>
-        <img src={Logo} alt="laSova" className="logo"/>
+        <Link to="/"><img src={Logo} alt="laSova" className="logo" /></Link>
         <nav className="flex column">{links.map(link =>
             <Link key={link.title+link.destination} to={link.destination}
                 className={currLocation === link.destination ? 'active' : ''}>
