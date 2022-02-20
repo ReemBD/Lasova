@@ -1,47 +1,83 @@
 .home {
-        height: calc(100vh - 8.5vh);
-    overflow-y: hidden;
-    .home-header {
-        height: 13vh;
-        h1 {
-            line-height: vh(47px);
-            font-size: vh(36px);
-            font-family: Assistant-Semibold;
-        }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 8.5vh);
+  overflow-y: hidden;
+  .home-header {
+    height: 13vh;
+    h1 {
+      line-height: vh(47px);
+      font-size: vh(36px);
+      font-family: Assistant-Semibold;
+      padding: rem(20px);
     }
-    .home-body {
-        height: calc(100vh - 21.5vh);
-        overflow-y: auto;
-        padding-inline-start: 1.6vw;
-        padding-inline-end: Max(8px, 1.6vw);
-        margin-inline-end: 6px;
-        .table-header {
-            position: fixed;
-            height: 7vh;
-            background-color: #fff;
-        }
-        // selects first row after table-header
-        .table-header + .table-row {
-            padding-top: 7vh;
-        }
-        .big-div {
-            height: 1000px;
-            width: 100%;
-        }
-        
-        // scrollbar
-        &::-webkit-scrollbar {
-            width: 15px;
-        }
-        &::-webkit-scrollbar-track {
-            margin: 4px;
-        }
-        &::-webkit-scrollbar-track-piece {
-            background: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-            border-radius: 2rem;
-            background: $scrollClr;
-        }
+  }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    .search {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      padding: rem(5px) rem(10px);
+      .search-icon {
+        position: relative;
+        left: rem(-30px);
+      }
+      .serach_input {
+        padding-right: rem(40px);
+        background: #e5e5e5;
+        border-radius: rem(30px);
+        width: rem(180px);
+        height: rem(40px);
+        border: none;
+        font-size: inherit;
+      }
     }
+    .header-btns {
+      margin-left: rem(12px);
+      display: flex;
+      width: rem(230px);
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+  .home-body {
+    height: calc(100vh - 21.5vh);
+    overflow-y: auto;
+    padding-inline-start: 1.6vw;
+    padding-inline-end: Max(8px, 1.6vw);
+    margin-inline-end: 6px;
+    margin-top: rem(40px);
+    // .table-header {
+    //   position: fixed;
+    //   height: 7vh;
+    //   background-color: #fff;
+    // }
+    // selects first row after table-header
+    // .table-header + .table-row {
+    //   padding-top: 7vh;
+    // }
+    // .big-div {
+    //   height: 1000px;
+    //   width: 100%;
+    // }
+
+    // scrollbar
+    &::-webkit-scrollbar {
+      width: 15px;
+    }
+    &::-webkit-scrollbar-track {
+      margin: 4px;
+    }
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2rem;
+      background: $scrollClr;
+    }
+  }
 }

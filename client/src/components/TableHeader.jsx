@@ -1,34 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { DebounceInput } from "react-debounce-input";
 import styled from "styled-components";
-
-// import { filterVolunteers } from "../store/actions/volunteerActions"
-
 import NewVolunteerModal from "./NewVolunteerModal";
 
 const TableHeader = () => {
   const dispatch = useDispatch();
   const [filters, setfilters] = useState({
     filterBy: {},
-    search: ''
+    search: "",
   });
-  
-  // useEffect(() => {
-  //   dispatch(filterVolunteers(filters));
-  // }, [filters, dispatch]);
-  
-  const handleSearch = e => {
-    setfilters(prevFilters => ({...prevFilters, search: e.target.value}))
-  }
 
-  const handleFilter = e => {
+  const handleSearch = (e) => {
+    setfilters((prevFilters) => ({ ...prevFilters, search: e.target.value }));
+  };
+
+  const handleFilter = (e) => {
     if (e.target.value) {
-      setfilters(prev => (
-        { ...prev, filterBy: { tempFilter: e.target.value } }
-      ));
+      setfilters((prev) => ({
+        ...prev,
+        filterBy: { tempFilter: e.target.value },
+      }));
     }
-  }
+  };
 
   return (
     <Wrapper>
@@ -40,7 +34,8 @@ const TableHeader = () => {
               className="serach_input"
               placeholder="חיפוש"
               debounceTimeout={300}
-              onChange={handleSearch} />
+              onChange={handleSearch}
+            />
           </div>
           <div className="filter">
             <label className="filter_label">סינון לפי:</label>

@@ -25,13 +25,13 @@ const NewVolunteerModal = ({ volunteer, isOpen, setOpen }) => {
   const [editVolunteer, setVolunteer] = useState(volunteer);
   const [isEdit, setIsEdit] = useState({});
 
-  const handleChange = e => {
-    setVolunteer(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    setVolunteer((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('..will submit:', editVolunteer);
+    console.log("..will submit:", editVolunteer);
   };
 
   return (
@@ -41,22 +41,20 @@ const NewVolunteerModal = ({ volunteer, isOpen, setOpen }) => {
           <h1>פרטי מתנדב/ת</h1>
           <span>
             <h4>שם מלא:</h4>
-            <p className="first-name">{ volunteer.firstName}</p>
+            <p className="first-name">{volunteer.firstName}</p>
             <p className="last-name"></p>
-            </span>
-
-                <Button
-                  variant="contained"
-                  type="submit"
-                  style={{
-                    margin: "1rem 0",
-                    padding: "0 8rem",
-                    fontSize: "2rem",
-                  }}
-                >
-                  שמירה
-                </Button>
-
+          </span>
+          <Button
+            variant="contained"
+            type="submit"
+            style={{
+              margin: "1rem 0",
+              padding: "0 8rem",
+              fontSize: "2rem",
+            }}
+          >
+            שמירה
+          </Button>
         </Box>
       </Modal>
     </Wrapper>

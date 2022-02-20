@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "123451",
     "group_name": "קדימה נווה שאנן",
     "first_name": "יוליה",
     "last_name": "צמח",
@@ -14,11 +14,11 @@
     "home_adress": "הקונגרס 31",
     "city": "תל אביב",
     "volunteer_type": "חונכות אישית",
-    "hours": "1/6 ",
+    "year_joined": "שניה ",
     "weekday_available": "ב'"
   },
   {
-    "id": "2",
+    "id": "123452",
     "group_name": "מסעדת ת\"א",
     "first_name": "גלי ",
     "last_name": "כהן",
@@ -33,11 +33,11 @@
     "city": "תל אביב",
     "volunteer_type": "הגשת מזון",
     "scholarship": "אימפקט",
-    "hours": "10/20",
+    "year_joined": "ראשונה",
     "weekday_available": "טרם נקבע יום קבוע"
   },
   {
-    "id": "3",
+    "id": "123453",
     "group_name": "קדימה צפת",
     "first_name": "חמי",
     "last_name": "צמח",
@@ -51,11 +51,11 @@
     "city": "צפת",
     "volunteer_type": "שעת למידה",
     "points": "בר אילן",
-    "hours": "4/17",
+    "year_joined": "ראשונה",
     "weekday_available": "ג'"
   },
   {
-    "id": "4",
+    "id": "123454",
     "group_name": "מסעדת עכו",
     "first_name": "אוקסנה",
     "last_name": "צמח",
@@ -73,7 +73,7 @@
     "weekday_available": "ד'"
   },
   {
-    "id": "5",
+    "id": "123455",
     "group_name": "אסיף העיר",
     "first_name": "מקארה",
     "last_name": "צמח",
@@ -88,11 +88,11 @@
     "city": "תל אביב",
     "volunteer_type": "איסוף מזון",
     "scholarship": "שח\"ק",
-    "hours": "34/87",
+    "year_joined": "ראשונה",
     "weekday_available": "ד'"
   },
   {
-    "id": "6",
+    "id": "123456",
     "group_name": "קדימה ערד",
     "first_name": "שי",
     "last_name": "צמח",
@@ -107,11 +107,11 @@
     "city": "ערד",
     "volunteer_type": "יום פעילות מלא",
     "scholarship": "מכינת ישראל",
-    "hours": "45/76",
+    "year_joined": "ראשונה",
     "weekday_available": "יומיים קבועים"
   },
   {
-    "id": "7",
+    "id": "123457",
     "group_name": "קדימה יפו",
     "first_name": "תמר",
     "last_name": "צמח",
@@ -125,11 +125,11 @@
     "city": "תל אביב",
     "volunteer_type": "מועדון למידה",
     "scholarship": "דיור - אקדמית",
-    "hours": "9/76",
+    "year_joined": "שניה ",
     "weekday_available": "א'"
   },
   {
-    "id": "8",
+    "id": "123458",
     "group_name": "קדימה אופקים",
     "first_name": "מיכל",
     "last_name": "צמח",
@@ -144,7 +144,7 @@
     "city": "אופקים",
     "volunteer_type": "יום פעילות מלא",
     "scholarship": "דיור - אקדמית",
-    "hours": "4/7 ",
+    "year_joined": "רביעית ומעלה",
     "weekday_available": "יומיים קבועים"
   }
 ]

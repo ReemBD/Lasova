@@ -1,48 +1,48 @@
 aside {
-    position: fixed;
-    height: 100vh;
-    right:0;
-    // font-size: 17px;
-    font-size: 2.3vh;
-    background-color: $navBg;
-    .logo {
-        // width: 157px;
-        width: 14.5vh;
-        // height: 166px;
-        height: 15.4vh;
-        margin-top: 36px;
-        margin-inline-start: 36px;
-        // margin-bottom: 62px;
-        margin-bottom: 4vh;
+  position: fixed;
+  height: 100vh;
+  right: 0;
+  //   font-size: 17px;
+  font-size: 2.3vh;
+  background-color: $navBg;
+  .logo {
+    // width: 157px;
+    width: 14.5vh;
+    // height: 166px;
+    height: 15.4vh;
+    margin-top: 36px;
+    margin-inline-start: 36px;
+    // margin-bottom: 62px;
+    margin-bottom: 4vh;
+  }
+  .settings {
+    font-size: 2vh;
+    gap: 9px;
+    padding-inline-start: 65px;
+    svg {
+      height: 20px;
+      width: 20px;
     }
-    .settings {
-        font-size: 2vh;
-        gap: 9px;
-        padding-inline-start: 65px;
-        svg {
-            height: 20px;
-            width: 20px;
-        }
-        &:hover {
-                font-family: Assistant-Bold;
-        }
+    &:hover {
+      font-family: Assistant-Bold;
     }
-    nav {
-        // margin-bottom: 160px;
-        margin-bottom: 14vh;
-        a {
-            display: flex;
-    align-items: center;
-        padding-inline-start: 65px;
-            // height: 70px;
-            height: 6.6vh;
-            &.active {
-                background: #fff;
-                font-family: Assistant-Extrabold;
-            }
-            &:hover{
-                font-family: Assistant-Bold;
-            }
-        }
+  }
+  nav {
+    // margin-bottom: 160px;
+    margin-bottom: 14vh;
+    a {
+      display: flex;
+      align-items: center;
+      padding-inline-start: 65px;
+      // height: 70px;
+      height: 6.6vh;
+      &.active {
+        background: #fff;
+        font-family: Assistant-Extrabold;
+      }
+      &:hover {
+        font-family: Assistant-Bold;
+      }
     }
+  }
 }
