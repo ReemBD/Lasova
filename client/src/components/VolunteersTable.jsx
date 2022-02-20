@@ -102,7 +102,7 @@ const VolunteersTable = ({ volunteers, onExport }) => {
             field: 'taz',
             headerName: 'תעודת זהות',
             description: 'תעודת זהות',
-            valueGetter: params => params.row.taz || NaN,
+            valueGetter: params => params.row.taz || '-',
         },
         {
             field: 'volunteerType',

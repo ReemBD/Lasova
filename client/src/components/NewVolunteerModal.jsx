@@ -1,128 +1,84 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { saveVolunteer } from "../store/actions/volunteerActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import styled from "styled-components";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Button from "@mui/material/Button";
 
-const emptyVolunteer = {
-  groupName: '',
-  firstName: '',
-  lastName: '',
-  cellphone: '',
-  city: '',
-  email: '',
-  summary: '',
+const VolunteerObj = {
+  groupName: "",
+  firstName: "",
+  lastName: "",
+  phone: "",
+  city: "",
+  email: "",
+  gender: "",
+  summary: "",
 };
 
-const NewVolunteerModal = () => {
-  const [open, setOpen] = useState(false);
-  const [newVolunteer, setVolunteer] = useState(emptyVolunteer);
+const NewVolunteerModal = ({open, setOpen}) => {
+  const dispatch = useDispatch();
+  // const [open, setOpen] = useState(false);
+  const [isOption2, setIsOption2] = useState(false);
+  const [isOption3, setIsOption3] = useState(false);
+  const [enable, setEnable] = useState(true);
+  const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
 
-  const handleChange = e => {
-    setVolunteer(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    setNewVolunteer((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (e.target.name === "groupName") {
+      switch (e.target.value) {
+        case "עצמאי":
+          setIsOption2(false);
+          setIsOption3(false);
+          break;
+        case "סטודנט":
+          setIsOption2(true);
+          setIsOption3(false);
+          break;
+        case "שלצ":
+          setIsOption2(false);
+          setIsOption3(true);
+          break;
+        default:
+          break;
+      }
+    }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('..will submit:', newVolunteer);
-    setVolunteer(emptyVolunteer);
-  };
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 1200,
-    height: 650,
-    bgcolor: "background.paper",
-    border: "3px solid #000",
-    borderRadius: 3,
-    boxShadow: 24,
-    p: 4,
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    h1: {
-      color: "black",
-    },
-  };
-
-  const labelStyle = {
-    fontSize: "2rem",
-    display: "block",
-  };
-
-  const inputStyle = {
-    width: "20rem",
-    height: "3rem",
-    margin: "1rem 0",
-    backgroundColor: "#ebebeb",
-    border: "none",
-    paddingRight: "0.5rem",
-  };
-
-  const mailInputStyle = {
-    width: "20rem",
-    height: "3rem",
-    margin: "1rem 0",
-    backgroundColor: "#ebebeb",
-    border: "none",
-    paddingLeft: "0.5rem",
-    direction: "ltr",
+    console.log("..will submit:", newVolunteer);
+    setNewVolunteer(newVolunteer);
+    dispatch(saveVolunteer(newVolunteer));
+    setOpen(false);
   };
 
   return (
-    <Wrapper>
-      <button onClick={() => setOpen(true)} className="addVolunteerBtn">
-        מתנדב חדש +
-      </button>
+    <>
+      {/* <button onClick={() => setOpen(true)}>
+        <NewVolunteerBtn />
+      </button> */}
       <Modal open={open} onClose={() => setOpen(false)}>
-        <Box sx={style}>
-          <h1>הוספת מתנדב חדש</h1>
-          <div
-            style={{
-              alignSelf: "start",
-              margin: "3rem",
-              marginRight: "6rem",
-              display: "flex",
-              flexDirection: "column",
-              width: "50rem",
-            }}
-          >
-            <label style={labelStyle}>בחר מסגרת מפנה</label>
-            <select
-              name="groupName"
-              style={inputStyle}
-              onChange={handleChange}
-            >
-              <option value="1">עצמאי</option>
-              <option value="2">סטודנט</option>
-              <option value="3">של"צ</option>
-              <option value="4">קבוצות ואירגונים</option>
-            </select>
-            <form
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-              onSubmit={handleSubmit}
-            >
-              <div className="right_side">
+        <Box className="modal">
+          <h1>רישום מתנדב חדש</h1>
+          <div className="modal_content">
+            <form className="modal_form" onSubmit={handleSubmit}>
+              <div className="right">
                 <div>
-                  <label style={labelStyle}>שם פרטי</label>
+                  <label className="modal_label">שם פרטי</label>
                   <input
-                    style={inputStyle}
+                    className="modal_input"
                     type="text"
                     name="firstName"
                     required
-                    value={newVolunteer["firstName"]}
+                    // value={newVolunteer["firstName"]}
                     onChange={handleChange}
                   />
-                  <label style={labelStyle}>שם משפחה</label>
+                  <label className="modal_label">שם משפחה</label>
                   <input
-                    style={inputStyle}
+                    className="modal_input"
                     type="text"
                     name="lastName"
                     required
@@ -130,93 +86,138 @@ const NewVolunteerModal = () => {
                   />
                 </div>
                 <div>
-                  <label style={labelStyle}>טלפון</label>
+                  <label className="modal_label">טלפון</label>
                   <input
-                    style={inputStyle}
+                    className="modal_input"
                     type="tel"
-                    name="cellphone"
+                    name="phone"
                     required
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label style={labelStyle}>עיר מגורים</label>
+                  <label className="modal_label">עיר מגורים</label>
                   <input
-                    style={inputStyle}
+                    className="modal_input"
                     type="text"
                     name="city"
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label className="modal_label">מייל</label>
+                  <input
+                    className="modal_input modal_input_mail"
+                    type="email"
+                    name="email"
+                    required
+                    // value={newVolunteer["email"]}
                     onChange={handleChange}
                   />
                 </div>
               </div>
+              <div className="center">
+                <label className="modal_label">לשון פניה</label>
+                <div className="gender_group" onChange={handleChange}>
+                  <span className="gender_btns">
+                    <input type="radio" value="male" name="gender" />
+                    <label htmlFor="male">זכר</label>
+                  </span>
+                  <span className="gender_btns">
+                    <input type="radio" value="female" name="gender" />
+                    <label htmlFor="female">נקבה</label>
+                  </span>
+                  <span className="gender_btns">
+                    <input type="radio" value="other" name="gender" />
+                    <label htmlFor="other">אחר</label>
+                  </span>
+                </div>
+                <label className="modal_label">סיכום שיחה</label>
+                <TextareaAutosize
+                  type="text"
+                  name="summary"
+                  className="summary_text"
+                  onChange={handleChange}
+                />
+              </div>
               <div className="left">
                 <div>
-                  <label style={labelStyle}>מייל</label>
-                  <input
-                    style={mailInputStyle}
-                    type="email"
-                    name="email"
-                    value={newVolunteer["email"]}
+                  <label className="modal_label">בחר מסגרת מפנה</label>
+                  <select
+                    name="groupName"
+                    className="modal_input"
                     onChange={handleChange}
-                  />
+                  >
+                    <option id="dfdfd" value="עצמאי">
+                      עצמאי
+                    </option>
+                    <option id="dsdsd2" value="סטודנט">
+                      סטודנט
+                    </option>
+                    <option id="3" value="שלצ">
+                      של"צ
+                    </option>
+                  </select>
+                  {isOption2 && (
+                    <>
+                      <div className="student_group" onChange={handleChange}>
+                        <span className="student_btns">
+                          <input type="radio" value="נקז" name="student" />
+                          <label htmlFor="nakaz">נק"ז</label>
+                        </span>
+                        <span className="student_btns">
+                          <input type="radio" value="מלגה" name="student" />
+                          <label htmlFor="milga">מלגה</label>
+                        </span>
+                      </div>
+                      <label className="modal_label">שם המלגה</label>
+                      <input
+                        className="modal_input"
+                        type="text"
+                        name="milgaName"
+                        required
+                        onChange={handleChange}
+                      />
+                    </>
+                  )}
+                  {isOption3 && (
+                    <>
+                      <label className="modal_label">שם קצינת מבחן</label>
+                      <input
+                        className="modal_input"
+                        type="text"
+                        name="kzinaName"
+                        required
+                        onChange={handleChange}
+                      />
+                      <label className="modal_label">טלפון קצינת מבחן</label>
+                      <input
+                        className="modal_input"
+                        type="text"
+                        name="kzinaPhone"
+                        required
+                        onChange={handleChange}
+                      />
+                    </>
+                  )}
                 </div>
                 <div>
-                  <label style={labelStyle}>סיכום שיחה</label>
-                  <TextareaAutosize
-                    type="text"
-                    name="summary"
-                    style={{
-                      minWidth: 200,
-                      maxWidth: 200,
-                      minHeight: 125,
-                      maxHeight: 225,
-                      padding: "0.7rem",
-                      margin: "1rem 0",
-                      backgroundColor: "#ebebeb",
-                      border: "none",
-                    }}
-                    onChange={handleChange}
-                  />
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    className={enable ? "modal_btn" : "modal_btn disable"}
+                  >
+                    הוסף למסגרת
+                  </Button>
                 </div>
-
-                <Button
-                  variant="contained"
-                  type="submit"
-                  style={{
-                    margin: "1rem 0",
-                    padding: "0 8rem",
-                    fontSize: "2rem",
-                  }}
-                >
-                  הוסף
-                </Button>
-
               </div>
             </form>
           </div>
         </Box>
       </Modal>
-    </Wrapper>
+    </>
   );
 };
-
-const Wrapper = styled.section`
-  .addVolunteerBtn {
-    width: 14rem;
-    height: 4rem;
-    padding: 1rem;
-    border-radius: 1.9rem;
-    background-color: #4b5563;
-    color: #e5e5e5;
-    font-size: 1.5rem;
-    letter-spacing: 0.26rem;
-    text-align: right;
-    cursor: pointer;
-    border: none;
-  }
-  .addVolunteerBtn:hover {
-    opacity: 0.9;
-  }
-`;
 
 export default NewVolunteerModal;

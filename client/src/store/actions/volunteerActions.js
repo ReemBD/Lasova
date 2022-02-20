@@ -32,13 +32,12 @@ export function saveVolunteer(volunteerToSave) {
   return async (dispatch) => {
     try {
       const type = volunteerToSave.id ? "UPDATE_VOLUNTEER" : "ADD_VOLUNTEER";
-      
       if (volunteerToSave.id) {
         await storageService.put(STORAGE_KEY, volunteerToSave);
       } else {
         volunteerToSave = await storageService.post(STORAGE_KEY, volunteerToSave);
       }
-      dispatch({ type, volunteer: volunteerToSave });
+      dispatch({ type, payload: volunteerToSave });
     } catch (err) {
       console.log("error saving volunteer", volunteerToSave);
       console.error(err);
@@ -58,10 +57,23 @@ export function removeVolunteer(volunteerId) {
   }
 }
 
-export function setFilter(newFilters) {
-  return (dispatch, getState) => {
-    const { volunteers } = getState().volunteerReducer;
-    const filteredVolunteers = volunteers; //volunteers.filter.....
-    dispatch({ type: "SET_AND_FILTER", newFilters, filteredVolunteers });
-  }
+export function searchVolunteers(searchText) {
+	return (dispatch, getState) => {
+		const { volunteers } = getState().volunteerReducer;
+		let filteredVolunteers = volunteers.filter(volunteer => {
+			return (
+				volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+				volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
+			);
+		});
+		dispatch({ type: "SEARCH_VOLUNTEERS", filteredVolunteers });
+	};
 }
+
+// export function setFilter(newFilters) {
+//   return (dispatch, getState) => {
+//     const { volunteers } = getState().volunteerReducer;
+//     const filteredVolunteers = volunteers; //volunteers.filter.....
+//     dispatch({ type: "SET_AND_FILTER", newFilters, filteredVolunteers });
+//   }
+// }

@@ -1,0 +1,102 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: rem(1200px);
+  height: rem(600px);
+  background-color: white;
+  border: none;
+  border-radius: rem(3px);
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+
+  h1 {
+    margin-right: rem(48px);
+    font-size: rem(36.8px);
+    font-family: Assistant-Semibold;
+  }
+
+  .modal_content {
+    margin-right: rem(48px);
+  }
+
+  .modal_form {
+    width: rem(1000px);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .modal_label {
+    font-size: rem(16px);
+    display: block;
+  }
+
+  .modal_input {
+    width: rem(226px);
+    height: rem(40px);
+    margin: 0.3rem 0 1.2rem 0;
+    background-color: white;
+    border-color: black;
+    border-radius: rem(5px);
+    border-width: rem(1px);
+    padding-right: rem(8px);
+  }
+
+  .modal_input_mail {
+    padding-left: rem(8px);
+    direction: ltr;
+  }
+
+  .gender_group {
+    margin: 0.3rem 0 2.6rem 0;
+  }
+
+  .gender_btns {
+    padding: rem(11.2px);
+  }
+
+  .summary_text {
+    min-width: rem(254px);
+    max-width: rem(254px);
+    min-height: rem(162px);
+    max-height: rem(290px);
+    padding: rem(11.2px);
+    margin: 0.3rem 0 1.2rem 0;
+    background-color: white;
+    border-color: black;
+    border-radius: rem(5px);
+    border-width: rem(1px);
+    border: "none";
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .student_group {
+    margin: 0.3rem 0 2.6rem 0;
+  }
+
+  .student_btns {
+    padding: rem(11.2px);
+  }
+
+  .modal_btn {
+    font-family: Assistant-Reg;
+    font-size: rem(24px);
+    width: rem(226px);
+    height: rem(40px);
+    top: rem(-19.2px);
+  }
+
+  .disable {
+    cursor: not-allowed;
+    background-color: #c4c4c4;
+    pointer-events: none;
+  }
+}
