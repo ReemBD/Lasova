@@ -12,6 +12,8 @@ export const storageService = {
 };
 
 function query(dbName) {
+    // mimic loading time
+    setTimeout(() => { }, 500)
     const entities = JSON.parse(localStorage.getItem(dbName)) || [];
     return Promise.resolve(entities);
 }
