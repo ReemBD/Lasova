@@ -37,7 +37,7 @@ export function saveVolunteer(volunteerToSave) {
       } else {
         volunteerToSave = await storageService.post(STORAGE_KEY, volunteerToSave);
       }
-      dispatch({ type, payload: volunteerToSave });
+      dispatch({ type, volunteer: volunteerToSave });
     } catch (err) {
       console.log("error saving volunteer", volunteerToSave);
       console.error(err);

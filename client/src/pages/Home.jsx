@@ -43,8 +43,8 @@ const Home = () => {
                         
                     </span>
                     <span className="header-btns flex">
-                        <button onClick={() => onExport.current()}><ExportIcon /></button>
-                        <button onClick={() => setNewModalOpen(true)}><AddVolunteerIcon /></button>
+                        <button className="export" onClick={() => onExport.current()}><ExportIcon /></button>
+                        <button className="add-new" onClick={() => setNewModalOpen(true)}><AddVolunteerIcon /></button>
                     </span>
                 </section>
             </section>

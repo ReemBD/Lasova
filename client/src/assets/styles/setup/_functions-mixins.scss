@@ -3,3 +3,15 @@
     $remSize: $pixelSize / 16px;
     @return ($remSize) * 1rem;
 }
+
+// PX to VH (based on full height 1080px)
+@function vh($pixelSize) {
+    $vhSize: $pixelSize / 1080px * 100;
+    @return ($vhSize) * 1vh;
+}
+
+// PX to VW (based on full width 1920px)
+@function vw($pixelSize) {
+    $vwSize: $pixelSize / 1920px * 100;
+    @return ($vwSize) * 1vw;
+}

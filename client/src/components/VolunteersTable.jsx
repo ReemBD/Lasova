@@ -82,7 +82,7 @@ const VolunteersTable = ({ volunteers, onExport }) => {
             field: 'status',
             description: 'סטטוס',
             renderHeader: () => FilterColumnBtn('status', 'סטטוס'),
-            valueFormatter: ({ value }) => statuses.find(status => status.type === value).label,
+            valueFormatter: ({ value }) => statuses.find(status => status.type === value)?.label,
             renderCell: params => (statuses.find(status =>
                 status.type === params.row.status)?.icon || '')
         },

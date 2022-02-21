@@ -1,19 +1,19 @@
 .home {
 	.table-header {
-		margin-inline-end: rem(34px);
-		margin-bottom: rem(20px);
+		margin-inline-end: rem(45px);
+		margin-bottom: vh(20px);
 		h1 {
-			margin: rem(26px) rem(28px);
-			line-height: rem(47px);
-			font-size: rem(36px);
+			margin: vh(26px) vh(28px);
+			line-height: vh(47px);
+			font-size: vh(36px);
 			font-family: Assistant-Bold;
 		}
 
 		.search {
-			margin-inline-start: rem(37px);
-			height: rem(40px);
-			width: rem(180px);
-			padding: rem(10px) rem(13px) rem(10px) rem(8px);
+			margin-inline-start: vh(28px);
+			height: vh(40px);
+			width: vh(180px);
+			padding: vh(10px) vh(13px) vh(10px) vh(8px);
 			background-color: $lightBg;
 			border-radius: 2rem;
 			position: relative;
@@ -21,19 +21,21 @@
 				background-color: $hoverBg;
 			}
 			label {
-				height: rem(20px);
+				height: vh(20px);
 				svg {
-					height: rem(20px);
-					width: rem(20.43px);
+					height: vh(20px);
+					width: vh(20.43px);
+					position: relative;
+					top: vh(-5px);
 				}
 			}
 			input {
 				font-family: Assistant-Reg;
 				width: 100%;
-				margin-inline-start: rem(14px);
-				line-height: rem(20px);
-				height: rem(20px);
-				font-size: rem(20px);
+				margin-inline-start: vh(14px);
+				line-height: vh(20px);
+				height: vh(20px);
+				font-size: vh(20px);
 				background-color: transparent;
 				border: none;
 				&:focus {
@@ -43,36 +45,41 @@
 					-webkit-appearance: none;
 				}
 			}
-			.clear-btn {
-				height: rem(20px);
-				width: rem(30px);
-				border-radius: 50%;
-				opacity: 0;
-				&:hover {
-					background-color: $darkBg;
-				}
-				svg {
-					height: rem(15px);
-					width: rem(12px);
-				}
-				&.show {
-					opacity: 1;
-				}
-			}
+			// .clear-btn {
+			// 	height: vh(20px);
+			// 	width: vh(30px);
+			// 	border-radius: 50%;
+			// 	opacity: 0;
+			// 	svg {
+			// 		height: vh(15px);
+			// 		width: vh(12px);
+			// 	}
+			// 	&.show {
+			// 		opacity: 1;
+			// 	}
+			// }
 		}
 		
 		.header-btns {
-			gap: rem(58px);
+			gap: vh(58px);
 			button {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				height: rem(56px);
-				width: rem(75px);
+				height: vh(56px);
+				width: vh(75px);
 				background-color: $lightBg;
-				border-radius: rem(6px);
+				border-radius: vh(6px);
 				&:hover {
 					background-color: $hoverBg;
+				}
+				&.export svg {
+					height: vh(40px);
+					width: vh(40px);
+				}
+				&.add-new svg {
+					height: vh(50px);
+					width: vh(50px);
 				}
 			}
 		}
