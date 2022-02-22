@@ -1,83 +1,80 @@
 .home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: calc(100vh - 8.5vh);
-  overflow-y: hidden;
-  .home-header {
-    height: 13vh;
+  .table-header {
+    margin-inline-end: rem(34px);
+    margin-bottom: rem(20px);
     h1 {
-      line-height: vh(47px);
-      font-size: vh(36px);
-      font-family: Assistant-Semibold;
-      padding: rem(20px);
+      margin: rem(26px) rem(28px);
+      line-height: rem(47px);
+      font-size: rem(36px);
+      font-family: Assistant-Bold;
     }
-  }
-  .actions {
-    display: flex;
-    justify-content: space-between;
-    .search {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      align-items: center;
-      padding: rem(5px) rem(10px);
-      .search-icon {
-        position: relative;
-        left: rem(-30px);
-      }
-      .serach_input {
-        padding-right: rem(40px);
-        background: #e5e5e5;
-        border-radius: rem(30px);
-        width: rem(180px);
-        height: rem(40px);
-        border: none;
-        font-size: inherit;
-      }
-    }
-    .header-btns {
-      margin-left: rem(12px);
-      display: flex;
-      width: rem(230px);
-      justify-content: space-around;
-      align-items: center;
-    }
-  }
-  .home-body {
-    height: calc(100vh - 21.5vh);
-    overflow-y: auto;
-    padding-inline-start: 1.6vw;
-    padding-inline-end: Max(8px, 1.6vw);
-    margin-inline-end: 6px;
-    margin-top: rem(40px);
-    // .table-header {
-    //   position: fixed;
-    //   height: 7vh;
-    //   background-color: #fff;
-    // }
-    // selects first row after table-header
-    // .table-header + .table-row {
-    //   padding-top: 7vh;
-    // }
-    // .big-div {
-    //   height: 1000px;
-    //   width: 100%;
-    // }
 
-    // scrollbar
-    &::-webkit-scrollbar {
-      width: 15px;
-    }
-    &::-webkit-scrollbar-track {
-      margin: 4px;
-    }
-    &::-webkit-scrollbar-track-piece {
-      background: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
+    .search {
+      margin-inline-start: rem(37px);
+      height: rem(40px);
+      width: rem(180px);
+      padding: rem(10px) rem(13px) rem(10px) rem(8px);
+      background-color: $lightBg;
       border-radius: 2rem;
-      background: $scrollClr;
+      position: relative;
+      &:hover {
+        background-color: $hoverBg;
+      }
+      label {
+        height: rem(20px);
+        svg {
+          height: rem(20px);
+          width: rem(20.43px);
+        }
+      }
+      input {
+        font-family: Assistant-Reg;
+        width: 100%;
+        margin-inline-start: rem(14px);
+        line-height: rem(20px);
+        height: rem(20px);
+        font-size: rem(20px);
+        background-color: transparent;
+        border: none;
+        &:focus {
+          outline: none;
+        }
+        &::-webkit-search-cancel-button {
+          -webkit-appearance: none;
+        }
+      }
+      .clear-btn {
+        height: rem(20px);
+        width: rem(30px);
+        border-radius: 50%;
+        opacity: 0;
+        &:hover {
+          background-color: $darkBg;
+        }
+        svg {
+          height: rem(15px);
+          width: rem(12px);
+        }
+        &.show {
+          opacity: 1;
+        }
+      }
+    }
+
+    .header-btns {
+      gap: rem(58px);
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: rem(56px);
+        width: rem(75px);
+        background-color: $lightBg;
+        border-radius: rem(6px);
+        &:hover {
+          background-color: $hoverBg;
+        }
+      }
     }
   }
 }

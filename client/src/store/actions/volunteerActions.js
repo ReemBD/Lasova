@@ -1,9 +1,7 @@
 // temporary service to mimic server-DB requests
-// uses localStorage as DB, final app will not use localStorage..
 import { storageService } from "../../services/async-storage.service";
 const STORAGE_KEY = "volunteers";
 // TEMPORARY IIFE to load volunteers from mock_data.json to localStorage
-// remove this when working with server+DB...
 (function loadMockToStorage() {
   if (!JSON.parse(localStorage.getItem(STORAGE_KEY))) {
     const mockData = require("../../services/mock-data.json");
@@ -16,17 +14,15 @@ const STORAGE_KEY = "volunteers";
 
 /*******************************************************************************************/
 
-// BEGINS HERE
-
 export function loadVolunteers() {
   return async (dispatch) => {
     try {
-      // ask "server" for all volunteers data:
-      const allVolunteers = await storageService.query(STORAGE_KEY);
-      dispatch({ type: "SET_VOLUNTEERS", payload: allVolunteers });
+      const volunteers = await storageService.query(STORAGE_KEY);
+      // const volunteers = await serverService.get('volunteers')
+      dispatch({ type: "LOAD_VOLUNTEERS", volunteers });
     } catch (err) {
       console.log("Error loading volunteers:");
-      console.dir(err);
+      console.error(err);
     }
   };
 }
@@ -45,12 +41,9 @@ export function searchVolunteers(searchText) {
   };
 }
 
-export function addVolunteer(volunteerToSave) {
+export function saveVolunteer(volunteerToSave) {
   return async (dispatch) => {
     try {
-      // if the colunteer has id - it already exists in DB = update action
-      // no id? send new volunteer to server
-      // both cases- server returns the updated item
       const type = volunteerToSave.id ? "UPDATE_VOLUNTEER" : "ADD_VOLUNTEER";
       if (volunteerToSave.id) {
         await storageService.put(STORAGE_KEY, volunteerToSave);
@@ -80,11 +73,10 @@ export function removeVolunteer(volunteerId) {
   };
 }
 
-// queryParams from VT header: {filter input}
-export function filterVolunteers(newFilters) {
-  return (dispatch, getState) => {
-    // const { allVolunteers } = getState().volunteerReducer;
-    const filteredVolunteers = [];
-    dispatch({ type: "FILTER_VOLUNTEERS", newFilters, filteredVolunteers });
-  };
-}
+// export function setFilter(newFilters) {
+//   return (dispatch, getState) => {
+//     const { volunteers } = getState().volunteerReducer;
+//     const filteredVolunteers = volunteers; //volunteers.filter.....
+//     dispatch({ type: "SET_AND_FILTER", newFilters, filteredVolunteers });
+//   }
+// }

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addVolunteer } from "../store/actions/volunteerActions";
+import { saveVolunteer } from "../store/actions/volunteerActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Button from "@mui/material/Button";
-import { ReactComponent as NewVolunteerBtn } from "../assets/imgs/icons/new-vol-btn.svg";
 
 const VolunteerObj = {
   groupName: "",
@@ -18,16 +17,15 @@ const VolunteerObj = {
   summary: "",
 };
 
-const NewVolunteerModal = () => {
+const NewVolunteerModal = ({ open, setOpen }) => {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
   const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
     setNewVolunteer((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (e.target.name === "groupName") {
       switch (e.target.value) {
@@ -53,14 +51,15 @@ const NewVolunteerModal = () => {
     e.preventDefault();
     console.log("..will submit:", newVolunteer);
     setNewVolunteer(newVolunteer);
-    dispatch(addVolunteer(newVolunteer));
+    dispatch(saveVolunteer(newVolunteer));
+    setOpen(false);
   };
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>
+      {/* <button onClick={() => setOpen(true)}>
         <NewVolunteerBtn />
-      </button>
+      </button> */}
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="modal">
           <h1>רישום מתנדב חדש</h1>
@@ -122,15 +121,15 @@ const NewVolunteerModal = () => {
                 <label className="modal_label">לשון פניה</label>
                 <div className="gender_group" onChange={handleChange}>
                   <span className="gender_btns">
-                    <input type="radio" value="male" name="gender" /> 
+                    <input type="radio" value="male" name="gender" />
                     <label htmlFor="male">זכר</label>
                   </span>
                   <span className="gender_btns">
-                    <input type="radio" value="female" name="gender" /> 
+                    <input type="radio" value="female" name="gender" />
                     <label htmlFor="female">נקבה</label>
                   </span>
                   <span className="gender_btns">
-                    <input type="radio" value="other" name="gender" /> 
+                    <input type="radio" value="other" name="gender" />
                     <label htmlFor="other">אחר</label>
                   </span>
                 </div>
@@ -164,11 +163,11 @@ const NewVolunteerModal = () => {
                     <>
                       <div className="student_group" onChange={handleChange}>
                         <span className="student_btns">
-                          <input type="radio" value="נקז" name="student" /> 
+                          <input type="radio" value="נקז" name="student" />
                           <label htmlFor="nakaz">נק"ז</label>
                         </span>
                         <span className="student_btns">
-                          <input type="radio" value="מלגה" name="student" /> 
+                          <input type="radio" value="מלגה" name="student" />
                           <label htmlFor="milga">מלגה</label>
                         </span>
                       </div>

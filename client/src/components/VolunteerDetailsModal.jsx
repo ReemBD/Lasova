@@ -44,6 +44,7 @@ const NewVolunteerModal = ({ volunteer, isOpen, setOpen }) => {
             <p className="first-name">{volunteer.firstName}</p>
             <p className="last-name"></p>
           </span>
+
           <Button
             variant="contained"
             type="submit"

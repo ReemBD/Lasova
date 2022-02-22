@@ -3,15 +3,15 @@ import { ReactComponent as EnvelopeIcon } from "../assets/imgs/icons/envelope-ic
 const Header = () => {
   return (
     <header className="flex justify-end align-center">
-      <span className="messages">
+      <button className="messages">
         <EnvelopeIcon />
         <span className="notification"></span>
         {/* {userHasNotification && <span className="notification">
                 {notificationCount}
             </span>} */}
-      </span>
+      </button>
       <p>יוליה צמח</p>
-      <span className="user-icon"></span>
+      <button className="user-icon"></button>
     </header>
   );
 };

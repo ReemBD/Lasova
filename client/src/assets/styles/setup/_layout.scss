@@ -1,7 +1,6 @@
 $sidebarWidth: 298px;
 
 .top-container {
-    // display: flex;
     min-height: 100vh;
     width: 100%;
 
@@ -11,10 +10,8 @@ $sidebarWidth: 298px;
     
     .content-wrapper {
         flex-grow: 1;
-        // display: flex;
-        // flex-direction: column;
         main {
-            margin-right: $sidebarWidth;
+            // margin-right: $sidebarWidth;
             flex-grow: 1;
             display: flex;
             flex-direction: column;

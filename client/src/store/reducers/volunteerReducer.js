@@ -1,33 +1,29 @@
 const initialState = {
-  allVolunteers: [],
-  filteredVolunteers: [],
-  filters: {
-    /*
+  volunteers: [],
+  volunteersToShow: null,
+  // filters: {
+  /*
       search: '',
       status: [''], 
       volunteerMisgeret: [''],
       referringMisgeret: ['']
   */
-  },
+  // },
 };
 
 export function volunteerReducer(state = initialState, action) {
   switch (action.type) {
-    case "SET_VOLUNTEERS":
+    case "LOAD_VOLUNTEERS":
       return {
         ...state,
-        allVolunteers: action.payload,
-        filteredVolunteers: action.payload,
-      };
-    case "SEARCH_VOLUNTEERS":
-      return {
-        ...state,
-        filteredVolunteers: action.payload,
+        volunteers: action.volunteers,
+        volunteersToShow: action.volunteers,
       };
     case "ADD_VOLUNTEER":
       return {
         ...state,
-        filteredVolunteers: [...state.filteredVolunteers, action.payload],
+        volunteers: [...state.volunteers, action.payload],
+        volunteersToShow: [...state.volunteersToShow, action.payload],
       };
     case "REMOVE_VOLUNTEER":
       return {
@@ -43,11 +39,18 @@ export function volunteerReducer(state = initialState, action) {
           volunteer.id === action.volunteer.id ? action.volunteer : volunteer
         ),
       };
-    case "FILTER_VOLUNTEERS":
+    case "SEARCH_VOLUNTEERS":
       return {
         ...state,
-        filters: action.newFilters,
-        filteredVolunteers: action.filteredVolunteers,
+        // filters: action.newFilters,
+        volunteersToShow: action.filteredVolunteers,
+      };
+
+    case "SET_AND_FILTER":
+      return {
+        ...state,
+        // filters: action.newFilters,
+        volunteersToShow: action.filteredVolunteers,
       };
     default:
       return state;

@@ -1,3 +1,224 @@
-.vt_section {
-  height: rem(600px);
+.volunteers-table {
+  height: calc(100vh - 270px - 7px);
+  width: calc(100% - 11px);
+
+  .MuiDataGrid-root {
+    border: none;
+    color: $darkFont;
+    font-size: rem(24px);
+    line-height: rem(30px);
+    font-family: Assistant-Reg;
+
+    .MuiDataGrid-toolbarContainer {
+      display: none;
+    }
+
+    .MuiDataGrid-main {
+      overflow-x: auto;
+      overflow-y: auto;
+
+      .MuiDataGrid-columnHeaders {
+        overflow: visible;
+        min-height: rem(110px) !important;
+        max-height: rem(110px) !important;
+        border-top: 1px solid $scrollClr;
+        border-bottom: 1px solid $scrollClr;
+        // left: unset;
+        // right: unset;
+        // width: calc(100vw - 330px) !important;
+        .MuiDataGrid-columnHeadersInner {
+          width: 100%;
+        }
+        .MuiDataGrid-columnHeader {
+          min-width: rem(205px) !important;
+          max-width: unset !important;
+          padding: 0;
+          &:focus,
+          &:focus-within {
+            outline: none;
+          }
+          &:first-of-type {
+            margin-inline-start: rem(63px);
+          }
+          // don't show 'sort icon' on filterable columns hover
+          &[data-field="status"],
+          &[data-field="volunteerType"],
+          &[data-field="misgeretType"] {
+            &:hover {
+              .MuiDataGrid-iconButtonContainer {
+                display: none;
+              }
+            }
+          }
+          .MuiDataGrid-columnHeaderDraggableContainer {
+            width: unset !important;
+            .MuiDataGrid-columnHeaderTitleContainer {
+              font-family: Assistant-Semibold;
+              // gap: rem(6px);
+              .MuiDataGrid-columnHeaderTitle {
+                line-height: 1.2;
+                white-space: pre-line;
+                overflow: visible;
+                text-align: center;
+              }
+              .MuiButtonBase-root {
+                margin-inline-end: 5px;
+              }
+              .filter-btn-wrapper {
+                order: 1;
+                flex-grow: 1;
+                flex-direction: row-reverse;
+                display: flex;
+                .show-filter-btn {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: rem(24px);
+                  width: rem(24px);
+                  border-radius: 50%;
+                  &:hover {
+                    background-color: rgba(0, 0, 0, 0.04);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .MuiCheckbox-root {
+          color: $darkFont;
+        }
+
+        .MuiDataGrid-iconSeparator {
+          width: 0;
+        }
+      }
+
+      .MuiDataGrid-cellCheckbox {
+        color: $lightCheckbox;
+        margin-inline-start: rem(63px);
+      }
+
+      .MuiDataGrid-virtualScroller {
+        margin-top: rem(110px) !important;
+        overflow-x: visible !important;
+        overflow-y: visible;
+        width: calc(100vw - 330px) !important;
+        height: calc(100vh - 270px - 11px - 110px) !important;
+
+        .MuiDataGrid-virtualScrollerRenderZone {
+          width: 100% !important;
+        }
+
+        .MuiDataGrid-row {
+          cursor: pointer;
+          min-height: rem(64px) !important;
+          max-height: unset !important;
+          height: fit-content !important;
+          width: 100% !important;
+
+          .MuiDataGrid-cell {
+            min-height: rem(64px) !important;
+            max-height: unset !important;
+            white-space: pre-line;
+            border-bottom: none;
+            flex-wrap: wrap;
+            padding: 10px;
+            .reported-hours {
+              color: $reportedHoursClr;
+            }
+            .approved-hours {
+              color: $approvedHoursClr;
+            }
+            &:not(:last-of-type) {
+              border-inline-start: 1px dashed $scrollClr;
+              min-width: rem(205px) !important;
+            }
+            &:first-of-type,
+            &:nth-of-type(2) {
+              display: flex;
+              justify-content: center;
+            }
+            // extra cell with 400px width added for some reason..
+            &:last-of-type {
+              width: 0 !important;
+              max-width: 0 !important;
+              padding: 0 !important;
+            }
+            // center hours column
+            &:nth-last-of-type(2) {
+              justify-content: center;
+            }
+
+            &:focus,
+            &:focus-within {
+              outline: none;
+            }
+          }
+        }
+      }
+
+      // columns flex-grow
+      .MuiDataGrid-columnHeaders
+        .MuiDataGrid-columnHeadersInner
+        .MuiDataGrid-columnHeader,
+      .MuiDataGrid-virtualScroller .MuiDataGrid-row .MuiDataGrid-cell {
+        max-width: unset !important;
+        &:first-of-type,
+        &:nth-of-type(2) {
+          min-width: rem(118px) !important;
+          flex: 1 0 118px;
+          // max-width: rem(118px) !important;
+        }
+
+        &[data-field="firstName"],
+        &[data-field="lastName"],
+        &[data-field="taz"] {
+          flex: 2 0 204px;
+        }
+
+        &[data-field="volunteerType"],
+        &[data-field="misgeretType"] {
+          flex: 5 1 230px;
+          // flex-grow: 1.5;
+        }
+        &[data-field="volunteerHours"] {
+          flex: 3 0 204px;
+        }
+
+        &:last-of-type {
+          // width: 0;
+          // max-width: 0 !important;
+        }
+      }
+
+      // table scrollbars
+      &::-webkit-scrollbar {
+        width: 14px;
+        height: 14px;
+      }
+      &::-webkit-scrollbar:vertical {
+        position: relative;
+        right: 0;
+      }
+      &::-webkit-scrollbar-track:horizontal {
+        margin-inline-start: 10px;
+      }
+      &::-webkit-scrollbar-track:vertical {
+        margin: 3px;
+      }
+      &::-webkit-scrollbar-track-piece {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 2rem;
+        background: $scrollClr;
+      }
+    }
+  }
+
+  .loader svg {
+    width: rem(150px);
+    height: rem(150px);
+  }
 }
