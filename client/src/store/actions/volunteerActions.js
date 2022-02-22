@@ -53,7 +53,7 @@ export function saveVolunteer(volunteerToSave) {
           volunteerToSave
         );
       }
-      dispatch({ type, payload: volunteerToSave });
+      dispatch({ type, volunteer: volunteerToSave });
     } catch (err) {
       console.log("error adding volunteer", volunteerToSave);
       console.error(err);

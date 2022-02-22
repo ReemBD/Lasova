@@ -1,32 +1,33 @@
 header {
-	padding: rem(15px) rem(25px);
-	gap: rem(40px);
+	padding: 0 vh(45px);
+	gap: vh(40px);
 	background-color: $navBg;
-	height: rem(92px);
-	font-size: rem(20px);
+	height: vh(92px);
+	font-size: vh(20px);
+	width: 100%x;
 
 	.user-icon {
 		border-radius: 50%;
 		background-color: $darkBg;
-		height: rem(62px);
-		width: rem(62px);
+		height: vh(62px);
+		width: vh(62px);
 	}
 
     .messages {
 		position: relative;
 		svg {
-			width: rem(30.9px);
-			height: rem(24.7px);
+			width: vh(30.9px);
+			height: vh(24.7px);
 			position: relative;
-			top: rem(3px);
+			top: vh(3px);
 		}
 		.notification {
-			height: rem(12.36px);
-			width: rem(12.36px);
+			height: vh(12.36px);
+			width: vh(12.36px);
 			background: #000;
 			border-radius: 50%;
 			position: absolute;
-			right: rem(-3px);
+			right: vh(-3px);
 			top: 0;
 		}
 	}
