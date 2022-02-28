@@ -1,83 +1,41 @@
 aside {
-<<<<<<< HEAD
-  font-size: rem(24px);
+  font-size: vh(24px);
   background-color: $navBg;
   .logo {
-    width: rem(157px);
-    height: rem(166px);
-    margin-top: rem(36px);
-    margin-inline-start: rem(36px);
-    margin-bottom: rem(92px);
+    width: vh(157px);
+    height: vh(166px);
+    margin-top: vh(36px);
+    margin-inline-start: vh(36px);
+    margin-bottom: vh(92px);
   }
 
   .settings {
-    font-size: rem(20px);
-    gap: rem(9px);
-    padding-inline-start: rem(72px);
+    font-size: vh(20px);
+    gap: vh(9px);
+    padding-inline-start: vh(72px);
     svg {
-      height: rem(20px);
-      width: rem(19.46px);
+      height: vh(20px);
+      width: vh(19.46px);
     }
     &:hover {
       font-family: Assistant-Bold;
-=======
-    font-size: vh(24px);
-    background-color: $navBg;
-    .logo {
-        width: vh(157px);
-        height: vh(166px);
-        margin-top: vh(36px);
-        margin-inline-start: vh(36px);
-        margin-bottom: vh(92px);
-    }
-    
-    .settings {
-        font-size: vh(20px);
-        gap: vh(9px);
-        padding-inline-start: vh(72px);
-        svg {
-            height: vh(20px);
-            width: vh(19.46px);
-        }
-        &:hover {
-                font-family: Assistant-Bold;
-        }
->>>>>>> dd91f86f19d566427c792154a679eb2990fb9c7a
     }
   }
+}
 
-<<<<<<< HEAD
-  nav {
-    margin-bottom: rem(160px);
-    a {
-      display: flex;
-      align-items: center;
-      padding-inline-start: rem(65px);
-      height: rem(70px);
-      &.active {
-        background: #fff;
-        font-family: Assistant-Extrabold;
-      }
-      &:hover {
-        font-family: Assistant-Bold;
-      }
-=======
-    nav {
-        margin-bottom: vh(160px);
-        a {
-            display: flex;
-            align-items: center;
-            padding-inline-start: vh(65px);
-            height: vh(70px);
-            &.active {
-                background: #fff;
-                font-family: Assistant-Extrabold;
-            }
-            &:hover{
-                font-family: Assistant-Bold;
-            }
-        }
->>>>>>> dd91f86f19d566427c792154a679eb2990fb9c7a
+nav {
+  margin-bottom: vh(160px);
+  a {
+    display: flex;
+    align-items: center;
+    padding-inline-start: vh(65px);
+    height: vh(70px);
+    &.active {
+      background: #fff;
+      font-family: Assistant-Extrabold;
+    }
+    &:hover {
+      font-family: Assistant-Bold;
     }
   }
 }

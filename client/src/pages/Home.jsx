@@ -29,7 +29,6 @@ const Home = () => {
     }
   }, [volunteers]);
 
-<<<<<<< HEAD
   return (
     <section className="home page">
       <section className="table-header">
@@ -48,40 +47,13 @@ const Home = () => {
             />
           </span>
           <span className="header-btns flex">
-            <button onClick={() => onExport.current()}>
+            <button className="export" onClick={() => onExport.current()}>
               <ExportIcon />
             </button>
-            <button onClick={() => setNewModalOpen(true)}>
+            <button className="add-new" onClick={() => setNewModalOpen(true)}>
               <AddVolunteerIcon />
             </button>
           </span>
-=======
-            <section className="table-header">
-                <h1>טבלת מתנדבים</h1>
-                <section className="actions flex align-center space-between">
-                    <span className="search flex align-center">
-                        <label htmlFor="search"><SearchIcon /></label>
-                        <DebounceInput
-                            type="search"
-                            id="search"
-                            placeholder="חיפוש"
-                            debounceTimeout={300}
-                            onChange={ev =>
-                                dispatch(searchVolunteers(ev.target.value))}
-                        />
-                        
-                    </span>
-                    <span className="header-btns flex">
-                        <button className="export" onClick={() => onExport.current()}><ExportIcon /></button>
-                        <button className="add-new" onClick={() => setNewModalOpen(true)}><AddVolunteerIcon /></button>
-                    </span>
-                </section>
-            </section>
-
-            <VolunteersTable volunteers={volunteersToShow} onExport={onExport} />
-            {/* <Footer /> */}
-            {isNewModalOpen && <NewVolunteerModal open={ isNewModalOpen} setOpen={ setNewModalOpen} />}
->>>>>>> dd91f86f19d566427c792154a679eb2990fb9c7a
         </section>
       </section>
 

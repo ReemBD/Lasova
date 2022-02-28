@@ -1,45 +1,43 @@
 .volunteers-table {
-<<<<<<< HEAD
-  height: calc(100vh - 270px - 7px);
-  width: calc(100% - 11px);
-
+  height: calc(100vh - 25.37vh);
+  // max-height: calc(100vh - 25.37vh);
+  // width: calc(100% - 11px);
+  // max-width: 1440px;
   .MuiDataGrid-root {
     border: none;
     color: $darkFont;
-    font-size: rem(24px);
-    line-height: rem(30px);
+    font-size: vh(24px);
+    line-height: vh(30px);
     font-family: Assistant-Reg;
 
-    .MuiDataGrid-toolbarContainer {
-      display: none;
-    }
-
     .MuiDataGrid-main {
+      margin-inline-end: 6px;
       overflow-x: auto;
       overflow-y: auto;
 
       .MuiDataGrid-columnHeaders {
-        overflow: visible;
-        min-height: rem(110px) !important;
-        max-height: rem(110px) !important;
+        position: sticky;
+        // width: calc(100vw - 27.59vh - 17px);
+        background: white;
+        z-index: 1;
+        // overflow: visible;
+        min-height: vh(100px) !important;
+        max-height: vh(100px) !important;
         border-top: 1px solid $scrollClr;
         border-bottom: 1px solid $scrollClr;
-        // left: unset;
-        // right: unset;
-        // width: calc(100vw - 330px) !important;
-        .MuiDataGrid-columnHeadersInner {
-          width: 100%;
-        }
+        left: unset;
+        right: unset;
         .MuiDataGrid-columnHeader {
-          min-width: rem(205px) !important;
+          min-width: vw(205px) !important;
           max-width: unset !important;
           padding: 0;
+          // justify-content: center;
           &:focus,
           &:focus-within {
             outline: none;
           }
           &:first-of-type {
-            margin-inline-start: rem(63px);
+            margin-inline-start: vh(28px);
           }
           // don't show 'sort icon' on filterable columns hover
           &[data-field="status"],
@@ -55,7 +53,6 @@
             width: unset !important;
             .MuiDataGrid-columnHeaderTitleContainer {
               font-family: Assistant-Semibold;
-              // gap: rem(6px);
               .MuiDataGrid-columnHeaderTitle {
                 line-height: 1.2;
                 white-space: pre-line;
@@ -74,11 +71,15 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  height: rem(24px);
-                  width: rem(24px);
+                  height: vh(24px);
+                  width: vh(24px);
                   border-radius: 50%;
                   &:hover {
                     background-color: rgba(0, 0, 0, 0.04);
+                  }
+                  svg {
+                    height: vh(7px);
+                    width: vh(10px);
                   }
                 }
               }
@@ -86,45 +87,61 @@
           }
         }
 
-        .MuiCheckbox-root {
+        .MuiCheckbox-root svg {
           color: $darkFont;
+          height: vh(26px);
+          width: vh(26px);
         }
 
         .MuiDataGrid-iconSeparator {
-          width: 0;
+          max-width: 0;
         }
       }
 
       .MuiDataGrid-cellCheckbox {
         color: $lightCheckbox;
-        margin-inline-start: rem(63px);
+        margin-inline-start: vh(28px);
       }
-
+      .MuiCheckbox-root svg {
+        height: vh(26px);
+        width: vh(26px);
+      }
       .MuiDataGrid-virtualScroller {
-        margin-top: rem(110px) !important;
+        margin-top: 0 !important;
+        width: calc(100vw - 27.59vh - 17px) !important;
         overflow-x: visible !important;
         overflow-y: visible;
-        width: calc(100vw - 330px) !important;
-        height: calc(100vh - 270px - 11px - 110px) !important;
+        // width: unset !important;
 
-        .MuiDataGrid-virtualScrollerRenderZone {
-          width: 100% !important;
+        // width: calc(100vw - 330px) !important;
+        // height: calc(100vh - 270px - 11px - 110px) !important;
+        .MuiDataGrid-virtualScrollerContent {
+          height: unset !important;
         }
+        // .MuiDataGrid-virtualScrollerRenderZone {
+        // width: 100% !important;
+        .MuiDataGrid-cellCheckbox .MuiCheckbox-root:hover {
+          background-color: inherit;
+        }
+        // }
 
         .MuiDataGrid-row {
           cursor: pointer;
-          min-height: rem(64px) !important;
+          min-height: vh(64px) !important;
+          height: vh(64px) !important;
           max-height: unset !important;
           height: fit-content !important;
           width: 100% !important;
 
           .MuiDataGrid-cell {
-            min-height: rem(64px) !important;
+            min-height: vh(64px) !important;
+            height: vh(64px) !important;
             max-height: unset !important;
             white-space: pre-line;
             border-bottom: none;
             flex-wrap: wrap;
-            padding: 10px;
+            // padding: 10px;
+            //status
             .reported-hours {
               color: $reportedHoursClr;
             }
@@ -133,12 +150,15 @@
             }
             &:not(:last-of-type) {
               border-inline-start: 1px dashed $scrollClr;
-              min-width: rem(205px) !important;
+              min-width: vw(205px) !important;
             }
-            &:first-of-type,
             &:nth-of-type(2) {
               display: flex;
               justify-content: center;
+              svg {
+                width: vh(48px);
+                height: vh(48px);
+              }
             }
             // extra cell with 400px width added for some reason..
             &:last-of-type {
@@ -149,6 +169,7 @@
             // center hours column
             &:nth-last-of-type(2) {
               justify-content: center;
+              padding-inline-end: 0 !important;
             }
 
             &:focus,
@@ -167,40 +188,38 @@
         max-width: unset !important;
         &:first-of-type,
         &:nth-of-type(2) {
-          min-width: rem(118px) !important;
-          flex: 1 0 118px;
+          min-width: vw(118px) !important;
+          flex: 1 0 vw(118px);
           // max-width: rem(118px) !important;
         }
+        // &:first-of-type svg {
+        // }
 
         &[data-field="firstName"],
         &[data-field="lastName"],
         &[data-field="taz"] {
-          flex: 2 0 204px;
+          flex: 2 0 vw(204px);
         }
 
         &[data-field="volunteerType"],
         &[data-field="misgeretType"] {
-          flex: 5 1 230px;
+          flex: 5 1 vw(230px);
           // flex-grow: 1.5;
         }
         &[data-field="volunteerHours"] {
-          flex: 3 0 204px;
+          flex: 3 0 vw(204px);
         }
 
-        &:last-of-type {
-          // width: 0;
-          // max-width: 0 !important;
-        }
+        // &:last-of-type {
+        //   // width: 0;
+        //   // max-width: 0 !important;
+        // }
       }
 
       // table scrollbars
       &::-webkit-scrollbar {
-        width: 14px;
-        height: 14px;
-      }
-      &::-webkit-scrollbar:vertical {
-        position: relative;
-        right: 0;
+        width: 11px;
+        height: 11px;
       }
       &::-webkit-scrollbar-track:horizontal {
         margin-inline-start: 10px;
@@ -216,257 +235,15 @@
         background: $scrollClr;
       }
     }
+
+    .MuiDataGrid-toolbarContainer {
+      display: none;
+      padding: 0 !important;
+    }
   }
 
   .loader svg {
-    width: rem(150px);
-    height: rem(150px);
+    width: vh(150px);
+    height: vh(150px);
   }
-=======
-	height: calc(100vh - 25.37vh);
-	// max-height: calc(100vh - 25.37vh);
-	// width: calc(100% - 11px);
-	// max-width: 1440px;
-	.MuiDataGrid-root {
-		border: none;
-		color: $darkFont;
-		font-size: vh(24px);
-		line-height: vh(30px);
-		font-family: Assistant-Reg;
-
-		.MuiDataGrid-main {
-			margin-inline-end: 6px;
-			overflow-x: auto;
-			overflow-y: auto;
-
-			.MuiDataGrid-columnHeaders {
-				position: sticky;
-				// width: calc(100vw - 27.59vh - 17px);
-				background: white;
-				z-index: 1;
-				// overflow: visible;
-				min-height: vh(100px) !important;
-				max-height: vh(100px) !important;
-				border-top: 1px solid $scrollClr;
-				border-bottom: 1px solid $scrollClr;
-				left: unset;
-				right: unset;
-				.MuiDataGrid-columnHeader {
-					min-width: vw(205px) !important;
-					max-width: unset !important;
-					padding: 0;
-					// justify-content: center;
-					&:focus,
-					&:focus-within {
-						outline: none;
-					}
-					&:first-of-type {
-						margin-inline-start: vh(28px);
-					}
-					// don't show 'sort icon' on filterable columns hover
-					&[data-field="status"],
-					&[data-field="volunteerType"],
-					&[data-field="misgeretType"] {
-						&:hover {
-							.MuiDataGrid-iconButtonContainer {
-								display: none;
-							}
-						}
-					}
-					.MuiDataGrid-columnHeaderDraggableContainer {
-						width: unset !important;
-						.MuiDataGrid-columnHeaderTitleContainer {
-							font-family: Assistant-Semibold;
-							.MuiDataGrid-columnHeaderTitle {
-								line-height: 1.2;
-								white-space: pre-line;
-								overflow: visible;
-								text-align: center;
-							}
-							.MuiButtonBase-root {
-								margin-inline-end: 5px;
-							}
-							.filter-btn-wrapper {
-								order: 1;
-								flex-grow: 1;
-								flex-direction: row-reverse;
-								display: flex;
-								.show-filter-btn {
-									display: flex;
-									align-items: center;
-									justify-content: center;
-									height: vh(24px);
-									width: vh(24px);
-									border-radius: 50%;
-									&:hover {
-										background-color: rgba(0, 0, 0, 0.04);
-									}
-									svg {
-										height: vh(7px);
-										width: vh(10px);
-									}
-								}
-							}
-						}
-					}
-				}
-
-				.MuiCheckbox-root svg {
-					color: $darkFont;
-					height: vh(26px);
-					width: vh(26px);
-				}
-
-				.MuiDataGrid-iconSeparator {
-					max-width: 0;
-				}
-			}
-
-			.MuiDataGrid-cellCheckbox {
-				color: $lightCheckbox;
-				margin-inline-start: vh(28px);
-			}
-			.MuiCheckbox-root svg {
-				height: vh(26px);
-				width: vh(26px);
-			}
-			.MuiDataGrid-virtualScroller {
-				margin-top: 0 !important;
-				width: calc(100vw - 27.59vh - 17px) !important;
-				overflow-x: visible !important;
-				overflow-y: visible;
-				// width: unset !important;
-
-				// width: calc(100vw - 330px) !important;
-				// height: calc(100vh - 270px - 11px - 110px) !important;
-				.MuiDataGrid-virtualScrollerContent {
-					height: unset !important;
-				}
-				// .MuiDataGrid-virtualScrollerRenderZone {
-				// width: 100% !important;
-				.MuiDataGrid-cellCheckbox .MuiCheckbox-root:hover {
-					background-color: inherit;
-				}
-				// }
-
-				.MuiDataGrid-row {
-					cursor: pointer;
-					min-height: vh(64px) !important;
-					height: vh(64px) !important;
-					max-height: unset !important;
-					height: fit-content !important;
-					width: 100% !important;
-
-					.MuiDataGrid-cell {
-						min-height: vh(64px) !important;
-						height: vh(64px) !important;
-						max-height: unset !important;
-						white-space: pre-line;
-						border-bottom: none;
-						flex-wrap: wrap;
-						// padding: 10px;
-						//status
-						.reported-hours {
-							color: $reportedHoursClr;
-						}
-						.approved-hours {
-							color: $approvedHoursClr;
-						}
-						&:not(:last-of-type) {
-							border-inline-start: 1px dashed $scrollClr;
-							min-width: vw(205px) !important;
-						}
-						&:nth-of-type(2) {
-							display: flex;
-							justify-content: center;
-							svg {
-								width: vh(48px);
-								height: vh(48px);
-							}
-						}
-						// extra cell with 400px width added for some reason..
-						&:last-of-type {
-							width: 0 !important;
-							max-width: 0 !important;
-							padding: 0 !important;
-						}
-						// center hours column
-						&:nth-last-of-type(2) {
-							justify-content: center;
-							padding-inline-end: 0 !important;
-						}
-
-						&:focus,
-						&:focus-within {
-							outline: none;
-						}
-					}
-				}
-			}
-
-			// columns flex-grow
-			.MuiDataGrid-columnHeaders .MuiDataGrid-columnHeadersInner .MuiDataGrid-columnHeader,
-			.MuiDataGrid-virtualScroller .MuiDataGrid-row .MuiDataGrid-cell {
-				max-width: unset !important;
-				&:first-of-type,
-				&:nth-of-type(2) {
-					min-width: vw(118px) !important;
-					flex: 1 0 vw(118px);
-					// max-width: rem(118px) !important;
-				}
-				&:first-of-type svg {
-				}
-
-				&[data-field="firstName"],
-				&[data-field="lastName"],
-				&[data-field="taz"] {
-					flex: 2 0 vw(204px);
-				}
-
-				&[data-field="volunteerType"],
-				&[data-field="misgeretType"] {
-					flex: 5 1 vw(230px);
-					// flex-grow: 1.5;
-				}
-				&[data-field="volunteerHours"] {
-					flex: 3 0 vw(204px);
-				}
-
-				&:last-of-type {
-					// width: 0;
-					// max-width: 0 !important;
-				}
-			}
-
-			// table scrollbars
-			&::-webkit-scrollbar {
-				width: 11px;
-				height: 11px;
-			}
-			&::-webkit-scrollbar-track:horizontal {
-				margin-inline-start: 10px;
-			}
-			&::-webkit-scrollbar-track:vertical {
-				margin: 3px;
-			}
-			&::-webkit-scrollbar-track-piece {
-				background: transparent;
-			}
-			&::-webkit-scrollbar-thumb {
-				border-radius: 2rem;
-				background: $scrollClr;
-			}
-		}
-
-		.MuiDataGrid-toolbarContainer {
-			display: none;
-			padding: 0 !important;
-		}
-	}
-
-	.loader svg {
-		width: vh(150px);
-		height: vh(150px);
-	}
->>>>>>> dd91f86f19d566427c792154a679eb2990fb9c7a
 }
