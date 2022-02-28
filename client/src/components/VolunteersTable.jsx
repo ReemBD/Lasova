@@ -1,5 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { GridOverlay, DataGrid, GridToolbarContainer, useGridApiContext } from '@mui/x-data-grid';
+import { updateUserMsg } from '../store/actions/systemActions.js'
 import Loader from './Loader';
 
 import { ReactComponent as FilterIcon } from '../assets/imgs/icons/arrowhead-down-icon.svg';
@@ -61,6 +63,7 @@ const VolunteersTable = ({ volunteers, onExport }) => {
     }, [volunteers]);
 
     const ExportCsvBtn = () => {
+        const dispatch = useDispatch()
         const apiRef = useGridApiContext();
         const csvOptions = {
             utf8WithBom: true,
@@ -71,11 +74,24 @@ const VolunteersTable = ({ volunteers, onExport }) => {
                     year: 'numeric',
                 }),
         };
+        const exportSelectedData = () => {
+            if (!apiRef.current.state.selection.length) {
+                const msg = {
+                    txt: 'יש לסמן רשומות לפני ייצוא',
+                    type: 'failure'
+                }
+                dispatch(updateUserMsg(msg))
+                return
+            }
+            apiRef.current.exportDataAsCsv(csvOptions)
+        }
 
         return <GridToolbarContainer>
-            <button ref={csvBtnRef} onClick={() => apiRef.current.exportDataAsCsv(csvOptions)}></button>
+            <button ref={csvBtnRef} onClick={exportSelectedData}></button>
         </GridToolbarContainer>;
     };
+
+
 
     const columns = useMemo(() => [
         {
