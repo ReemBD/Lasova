@@ -17,7 +17,7 @@ const VolunteerObj = {
   summary: "",
 };
 
-const NewVolunteerModal = ({open, setOpen}) => {
+const NewVolunteerModal = ({ open, setOpen }) => {
   const dispatch = useDispatch();
   // const [open, setOpen] = useState(false);
   const [isOption2, setIsOption2] = useState(false);
@@ -66,56 +66,57 @@ const NewVolunteerModal = ({open, setOpen}) => {
           <div className="modal_content">
             <form className="modal_form" onSubmit={handleSubmit}>
               <div className="right">
-                <div>
-                  <label className="modal_label">שם פרטי</label>
-                  <input
-                    className="modal_input"
-                    type="text"
-                    name="firstName"
-                    required
-                    // value={newVolunteer["firstName"]}
-                    onChange={handleChange}
-                  />
-                  <label className="modal_label">שם משפחה</label>
-                  <input
-                    className="modal_input"
-                    type="text"
-                    name="lastName"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="modal_label">טלפון</label>
-                  <input
-                    className="modal_input"
-                    type="tel"
-                    name="phone"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="modal_label">עיר מגורים</label>
-                  <input
-                    className="modal_input"
-                    type="text"
-                    name="city"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="modal_label">מייל</label>
-                  <input
-                    className="modal_input modal_input_mail"
-                    type="email"
-                    name="email"
-                    required
-                    // value={newVolunteer["email"]}
-                    onChange={handleChange}
-                  />
-                </div>
+                <label className="modal_label">שם פרטי</label>
+                <input
+                  className="modal_input"
+                  type="text"
+                  name="firstName"
+                  required
+                  // value={newVolunteer["firstName"]}
+                  onChange={handleChange}
+                />
+                <label for="lastName" className="modal_label">שם משפחה</label>
+                <input
+                  className="modal_input"
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  required
+                  onChange={handleChange}
+                />
+                <label className="modal_label">ת.ז</label>
+                <input
+                  className="modal_input"
+                  type="text"
+                  name="taz"
+                  required
+                  onChange={handleChange}
+                />
+                <label className="modal_label">טלפון</label>
+                <input
+                  className="modal_input"
+                  type="tel"
+                  name="phone"
+                  required
+                  onChange={handleChange}
+                />
+                <label className="modal_label">מייל</label>
+                <input
+                  className="modal_input modal_input_mail"
+                  type="email"
+                  name="email"
+                  required
+                  // value={newVolunteer["email"]}
+                  onChange={handleChange}
+                />
+                <label className="modal_label">עיר מגורים</label>
+                <input
+                  className="modal_input"
+                  type="text"
+                  name="city"
+                  required
+                  onChange={handleChange}
+                />
               </div>
               <div className="center">
                 <label className="modal_label">לשון פניה</label>
