@@ -1,58 +1,56 @@
 const initialState = {
-	volunteers: [],
-	volunteersToShow: null,
-	// filters: {
-		/*
+  volunteers: [],
+  volunteersToShow: null,
+  // filters: {
+  /*
       search: '',
       status: [''], 
       volunteerMisgeret: [''],
       referringMisgeret: ['']
   */
-	// },
+  // },
 };
 
 export function volunteerReducer(state = initialState, action) {
-	switch (action.type) {
-		case "LOAD_VOLUNTEERS":
-			return {
-				...state,
-				volunteers: action.volunteers,
-				volunteersToShow: action.volunteers,
-			};
-		case "ADD_VOLUNTEER":
-			return {
-				...state,
-				volunteers: [...state.volunteers, action.volunteer],
-				volunteersToShow : [...state.volunteersToShow, action.volunteer]
-			};
-		case "REMOVE_VOLUNTEER":
-			return {
-				...state,
-				volunteers: state.volunteers.filter(
-					volunteer => volunteer.id !== action.volunteerId
-				),
-			};
-		case "UPDATE_VOLUNTEER":
-			return {
-				...state,
-				volunteers: state.volunteers.map(volunteer =>
-					volunteer.id === action.volunteer.id ? action.volunteer : volunteer
-				),
-			};
-		case "SEARCH_VOLUNTEERS":
-			return {
-				...state,
-				// filters: action.newFilters,
-				volunteersToShow: action.filteredVolunteers,
-			};
+  switch (action.type) {
+    case "LOAD_VOLUNTEERS":
+      return {
+        ...state,
+        volunteers: action.volunteers,
+        volunteersToShow: action.volunteers,
+      };
+    case "ADD_VOLUNTEER":
+      return {
+        ...state,
+        volunteers: [...state.volunteers, action.volunteer],
+        volunteersToShow: [...state.volunteersToShow, action.volunteer],
+      };
+    case "REMOVE_VOLUNTEER":
+      return {
+        ...state,
+        volunteers: state.volunteers.filter(
+          (volunteer) => volunteer.id !== action.volunteerId
+        ),
+      };
+    case "UPDATE_VOLUNTEER":
+      return {
+        ...state,
+        volunteers: state.volunteers.map((volunteer) =>
+          volunteer.id === action.volunteer.id ? action.volunteer : volunteer
+        ),
+      };
+    case "SEARCH_VOLUNTEERS":
+      return {
+        ...state,
+        volunteersToShow: action.filteredVolunteers,
+      };
 
-		case "SET_AND_FILTER":
-			return {
-				...state,
-				// filters: action.newFilters,
-				volunteersToShow: action.filteredVolunteers,
-			};
-		default:
-			return state;
-	}
+    case "SET_AND_FILTER":
+      return {
+        ...state,
+        volunteersToShow: action.filteredVolunteers,
+      };
+    default:
+      return state;
+  }
 }

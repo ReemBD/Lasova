@@ -5,22 +5,22 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 
 function App() {
-	return (
-		<Router>
-			<div className="top-container flex column">
-				<Header />
-				<div className="content-wrapper flex">
-					<Sidebar />
-					<main>
-						<Routes>
-							<Route path="/login" element={<Login />} />
-							<Route path="/" element={<Home />} />
-						</Routes>
-					</main>
-				</div>
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <div className="top-container flex column">
+        <Header />
+        <div className="content-wrapper flex">
+          <Sidebar />
+          <main>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

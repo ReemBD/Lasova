@@ -1,10 +1,10 @@
-// temporary service to mimic server-DB requests 
-import { storageService } from '../../services/async-storage.service';
-const STORAGE_KEY = 'volunteers';
+// temporary service to mimic server-DB requests
+import { storageService } from "../../services/async-storage.service";
+const STORAGE_KEY = "volunteers";
 // TEMPORARY IIFE to load volunteers from mock_data.json to localStorage
 (function loadMockToStorage() {
   if (!JSON.parse(localStorage.getItem(STORAGE_KEY))) {
-    const mockData = require("../../services/mock-data.json")
+    const mockData = require("../../services/mock-data.json");
     localStorage[STORAGE_KEY] = JSON.stringify(mockData);
   }
 })();
@@ -12,20 +12,31 @@ const STORAGE_KEY = 'volunteers';
 // serverService will be used to make requests to server:
 // import { serverService } from "../../services/client-server.service"
 
-
 /*******************************************************************************************/
 
 export function loadVolunteers() {
   return async (dispatch) => {
     try {
       const volunteers = await storageService.query(STORAGE_KEY);
-      // const volunteers = await serverService.get('volunteers')
-      dispatch({ type: 'LOAD_VOLUNTEERS', volunteers });
+      dispatch({ type: "LOAD_VOLUNTEERS", volunteers });
     } catch (err) {
       console.log("Error loading volunteers:");
       console.error(err);
     }
-  }
+  };
+}
+
+export function searchVolunteers(searchText) {
+  return (dispatch, getState) => {
+    const { volunteers } = getState().volunteerReducer;
+    let filteredVolunteers = volunteers.filter((volunteer) => {
+      return (
+        volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+        volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
+    dispatch({ type: "SEARCH_VOLUNTEERS", filteredVolunteers });
+  };
 }
 
 export function saveVolunteer(volunteerToSave) {
@@ -35,14 +46,17 @@ export function saveVolunteer(volunteerToSave) {
       if (volunteerToSave.id) {
         await storageService.put(STORAGE_KEY, volunteerToSave);
       } else {
-        volunteerToSave = await storageService.post(STORAGE_KEY, volunteerToSave);
+        volunteerToSave = await storageService.post(
+          STORAGE_KEY,
+          volunteerToSave
+        );
       }
       dispatch({ type, volunteer: volunteerToSave });
     } catch (err) {
-      console.log("error saving volunteer", volunteerToSave);
+      console.log("error adding volunteer", volunteerToSave);
       console.error(err);
     }
-  }
+  };
 }
 
 export function removeVolunteer(volunteerId) {
@@ -54,20 +68,7 @@ export function removeVolunteer(volunteerId) {
       console.log("error removing volunteer with ID:", volunteerId);
       console.error(err);
     }
-  }
-}
-
-export function searchVolunteers(searchText) {
-	return (dispatch, getState) => {
-		const { volunteers } = getState().volunteerReducer;
-		let filteredVolunteers = volunteers.filter(volunteer => {
-			return (
-				volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-				volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
-			);
-		});
-		dispatch({ type: "SEARCH_VOLUNTEERS", filteredVolunteers });
-	};
+  };
 }
 
 // export function setFilter(newFilters) {

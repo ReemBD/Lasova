@@ -1,41 +1,41 @@
 aside {
-    font-size: vh(24px);
-    background-color: $navBg;
-    .logo {
-        width: vh(157px);
-        height: vh(166px);
-        margin-top: vh(36px);
-        margin-inline-start: vh(36px);
-        margin-bottom: vh(92px);
-    }
-    
-    .settings {
-        font-size: vh(20px);
-        gap: vh(9px);
-        padding-inline-start: vh(72px);
-        svg {
-            height: vh(20px);
-            width: vh(19.46px);
-        }
-        &:hover {
-                font-family: Assistant-Bold;
-        }
-    }
+  font-size: vh(24px);
+  background-color: $navBg;
+  .logo {
+    width: vh(157px);
+    height: vh(166px);
+    margin-top: vh(36px);
+    margin-inline-start: vh(36px);
+    margin-bottom: vh(92px);
+  }
 
-    nav {
-        margin-bottom: vh(160px);
-        a {
-            display: flex;
-            align-items: center;
-            padding-inline-start: vh(65px);
-            height: vh(70px);
-            &.active {
-                background: #fff;
-                font-family: Assistant-Extrabold;
-            }
-            &:hover{
-                font-family: Assistant-Bold;
-            }
-        }
+  .settings {
+    font-size: vh(20px);
+    gap: vh(9px);
+    padding-inline-start: vh(72px);
+    svg {
+      height: vh(20px);
+      width: vh(19.46px);
     }
+    &:hover {
+      font-family: Assistant-Bold;
+    }
+  }
+}
+
+nav {
+  margin-bottom: vh(160px);
+  a {
+    display: flex;
+    align-items: center;
+    padding-inline-start: vh(65px);
+    height: vh(70px);
+    &.active {
+      background: #fff;
+      font-family: Assistant-Extrabold;
+    }
+    &:hover {
+      font-family: Assistant-Bold;
+    }
+  }
 }

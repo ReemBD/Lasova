@@ -15,9 +15,7 @@
     "city": "תל אביב",
     "volunteerType": "חונכות אישית",
     "yearJoined": 2,
-    "weekdayAvailability": [
-      "Mon"
-    ],
+    "weekdayAvailability": ["Mon"],
     "status": "active",
     "reportedHours": 0,
     "approvedHours": 0
@@ -60,9 +58,7 @@
     "volunteerType": "שעת למידה",
     "points": "בר אילן",
     "yearJoined": 1,
-    "weekdayAvailability": [
-      "Tue"
-    ],
+    "weekdayAvailability": ["Tue"],
     "status": "standby"
   },
   {
@@ -81,9 +77,7 @@
     "city": "תל אביב",
     "volunteerType": "הגשת מזון",
     "points": "המכללה למנהל",
-    "weekdayAvailability": [
-      "Wed"
-    ],
+    "weekdayAvailability": ["Wed"],
     "status": "inactive"
   },
   {
@@ -103,9 +97,7 @@
     "volunteerType": "איסוף מזון",
     "scholarship": "שח\"ק",
     "yearJoined": 1,
-    "weekdayAvailability": [
-      "Thu"
-    ],
+    "weekdayAvailability": ["Thu"],
     "status": "new"
   },
   {
@@ -125,10 +117,7 @@
     "volunteerType": "יום פעילות מלא",
     "scholarship": "מכינת ישראל",
     "yearJoined": 3,
-    "weekdayAvailability": [
-      "Sun",
-      "Wed"
-    ],
+    "weekdayAvailability": ["Sun", "Wed"],
     "status": "active"
   },
   {
@@ -262,10 +251,7 @@
     "volunteerType": "יום פעילות מלא",
     "scholarship": "דיור - אקדמית",
     "yearJoined": 4,
-    "weekdayAvailability": [
-      "Tue",
-      "Thu"
-    ],
+    "weekdayAvailability": ["Tue", "Thu"],
     "status": "active"
   }
 ]
