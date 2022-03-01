@@ -18,7 +18,6 @@ export function loadVolunteers() {
   return async (dispatch) => {
     try {
       const volunteers = await storageService.query(STORAGE_KEY);
-      // const volunteers = await serverService.get('volunteers')
       dispatch({ type: "LOAD_VOLUNTEERS", volunteers });
     } catch (err) {
       console.log("Error loading volunteers:");
@@ -29,15 +28,14 @@ export function loadVolunteers() {
 
 export function searchVolunteers(searchText) {
   return (dispatch, getState) => {
-    const { allVolunteers } = getState().volunteerReducer;
-    let filteredVolunteers = [...allVolunteers];
-    filteredVolunteers = filteredVolunteers.filter((volunteer) => {
+    const { volunteers } = getState().volunteerReducer;
+    let filteredVolunteers = volunteers.filter((volunteer) => {
       return (
-        volunteer.first_name.toLowerCase().includes(searchText.toLowerCase()) ||
-        volunteer.last_name.toLowerCase().includes(searchText.toLowerCase())
+        volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+        volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
       );
     });
-    dispatch({ type: "SEARCH_VOLUNTEERS", payload: filteredVolunteers });
+    dispatch({ type: "SEARCH_VOLUNTEERS", filteredVolunteers });
   };
 }
 

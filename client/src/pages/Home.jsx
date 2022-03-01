@@ -7,6 +7,7 @@ import {
 } from "../store/actions/volunteerActions";
 import VolunteersTable from "../components/VolunteersTable";
 import NewVolunteerModal from "../components/NewVolunteerModal";
+import VolunteerDetailsModal from "../components/VolunteerDetailsModal";
 // import Footer from "../components/Footer";
 
 import { ReactComponent as SearchIcon } from "../assets/imgs/icons/search-icon.svg";
@@ -20,8 +21,14 @@ const Home = () => {
     (state) => state.volunteerReducer
   );
   const onExport = useRef(null);
-  const [isNewModalOpen, setNewModalOpen] = useState(false);
-  // const [isProfileModalOpen, setProfileModalOpen] = useState(false)
+  const [isNewVolModalOpen, setNewVolModalOpen] = useState(false);
+  const [isProfileModalOpen, setProfileModalOpen] = useState(false);
+  const [volunteerProfileToShow, setVolunteerProfileToShow] = useState({});
+
+  const openProfileModal = (volunteer) => {
+    setProfileModalOpen(true);
+    setVolunteerProfileToShow(volunteer);
+  };
 
   useEffect(() => {
     if (!volunteers.length) {
@@ -50,17 +57,34 @@ const Home = () => {
             <button className="export" onClick={() => onExport.current()}>
               <ExportIcon />
             </button>
-            <button className="add-new" onClick={() => setNewModalOpen(true)}>
+            <button
+              className="add-new"
+              onClick={() => setNewVolModalOpen(true)}
+            >
               <AddVolunteerIcon />
             </button>
           </span>
         </section>
       </section>
 
-      <VolunteersTable volunteers={volunteersToShow} onExport={onExport} />
+      <VolunteersTable
+        volunteers={volunteersToShow}
+        onExport={onExport}
+        openProfileModal={openProfileModal}
+      />
       {/* <Footer /> */}
-      {isNewModalOpen && (
-        <NewVolunteerModal open={isNewModalOpen} setOpen={setNewModalOpen} />
+      {isNewVolModalOpen && (
+        <NewVolunteerModal
+          open={isNewVolModalOpen}
+          setOpen={setNewVolModalOpen}
+        />
+      )}
+      {isProfileModalOpen && (
+        <VolunteerDetailsModal
+          volunteer={volunteerProfileToShow}
+          open={isProfileModalOpen}
+          setOpen={setProfileModalOpen}
+        />
       )}
     </section>
   );

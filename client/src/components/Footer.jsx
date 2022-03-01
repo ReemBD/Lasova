@@ -1,5 +1,5 @@
 const Footer = () => {
-    console.log(`MEET THE TEAM:
+  console.log(`MEET THE TEAM:
     Amitay.. Junex..
     Guy..
     Amit Weiner, Fullstack developer https://linkedin.com/in/amiteew
@@ -8,8 +8,8 @@ const Footer = () => {
     Noam..
     Bar..
     Omri..?
-    `)
-    return <></>
+    `);
+  return <></>;
 };
 
 export default Footer;

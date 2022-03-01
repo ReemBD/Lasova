@@ -19,7 +19,6 @@ const VolunteerObj = {
 
 const NewVolunteerModal = ({ open, setOpen }) => {
   const dispatch = useDispatch();
-  // const [open, setOpen] = useState(false);
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
@@ -57,68 +56,85 @@ const NewVolunteerModal = ({ open, setOpen }) => {
 
   return (
     <>
-      {/* <button onClick={() => setOpen(true)}>
-        <NewVolunteerBtn />
-      </button> */}
       <Modal open={open} onClose={() => setOpen(false)}>
-        <Box className="modal">
-          <h1>רישום מתנדב חדש</h1>
-          <div className="modal_content">
-            <form className="modal_form" onSubmit={handleSubmit}>
+        <Box className="new_vol_modal">
+          <h1 className="new_vol_title">רישום מתנדב חדש</h1>
+          <div className="new_vol_modal_content">
+            <form className="new_vol_modal_form" onSubmit={handleSubmit}>
               <div className="right">
-                <div>
-                  <label className="modal_label">שם פרטי</label>
-                  <input
-                    className="modal_input"
-                    type="text"
-                    name="firstName"
-                    required
-                    // value={newVolunteer["firstName"]}
-                    onChange={handleChange}
-                  />
-                  <label className="modal_label">שם משפחה</label>
-                  <input
-                    className="modal_input"
-                    type="text"
-                    name="lastName"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="modal_label">טלפון</label>
-                  <input
-                    className="modal_input"
-                    type="tel"
-                    name="phone"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="modal_label">עיר מגורים</label>
-                  <input
-                    className="modal_input"
-                    type="text"
-                    name="city"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="modal_label">מייל</label>
-                  <input
-                    className="modal_input modal_input_mail"
-                    type="email"
-                    name="email"
-                    required
-                    // value={newVolunteer["email"]}
-                    onChange={handleChange}
-                  />
-                </div>
+                <label htmlFor="firstName" className="new_vol_modal_label">
+                  שם פרטי*
+                </label>
+                <input
+                  className="new_vol_modal_input"
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="lastName" className="new_vol_modal_label">
+                  שם משפחה*
+                </label>
+                <input
+                  className="new_vol_modal_input"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="taz" className="new_vol_modal_label">
+                  ת.ז*
+                </label>
+                <input
+                  className="new_vol_modal_input"
+                  type="text"
+                  id="taz"
+                  name="taz"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="phone" className="new_vol_modal_label">
+                  טלפון*
+                </label>
+                <input
+                  className="new_vol_modal_input"
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  pattern="05?[0-9]-?[0-9]{7}"
+                  title="אנא הזן מספר סלולרי תקין"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="email" className="new_vol_modal_label">
+                  מייל*
+                </label>
+                <input
+                  className="new_vol_modal_input new_vol_modal_input_mail"
+                  type="email"
+                  id="email"
+                  name="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                  title="אנא הזן כתובת מייל תקינה"
+                  required
+                  onChange={handleChange}
+                />
+                <label htmlFor="city" className="new_vol_modal_label">
+                  עיר מגורים*
+                </label>
+                <input
+                  className="new_vol_modal_input"
+                  type="text"
+                  id="city"
+                  name="city"
+                  required
+                  onChange={handleChange}
+                />
               </div>
               <div className="center">
-                <label className="modal_label">לשון פניה</label>
+                <label className="new_vol_modal_label">לשון פניה</label>
                 <div className="gender_group" onChange={handleChange}>
                   <span className="gender_btns">
                     <input type="radio" value="male" name="gender" />
@@ -133,7 +149,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                     <label htmlFor="other">אחר</label>
                   </span>
                 </div>
-                <label className="modal_label">סיכום שיחה</label>
+                <label className="new_vol_modal_label">סיכום שיחה</label>
                 <TextareaAutosize
                   type="text"
                   name="summary"
@@ -143,16 +159,16 @@ const NewVolunteerModal = ({ open, setOpen }) => {
               </div>
               <div className="left">
                 <div>
-                  <label className="modal_label">בחר מסגרת מפנה</label>
+                  <label className="new_vol_modal_label">בחר מסגרת מפנה</label>
                   <select
                     name="groupName"
-                    className="modal_input"
+                    className="new_vol_modal_input"
                     onChange={handleChange}
                   >
-                    <option id="dfdfd" value="עצמאי">
+                    <option id="1" value="עצמאי">
                       עצמאי
                     </option>
-                    <option id="dsdsd2" value="סטודנט">
+                    <option id="2" value="סטודנט">
                       סטודנט
                     </option>
                     <option id="3" value="שלצ">
@@ -163,17 +179,17 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                     <>
                       <div className="student_group" onChange={handleChange}>
                         <span className="student_btns">
-                          <input type="radio" value="נקז" name="student" />
+                          <input type="checkbox" value="נקז" name="student" />
                           <label htmlFor="nakaz">נק"ז</label>
                         </span>
                         <span className="student_btns">
-                          <input type="radio" value="מלגה" name="student" />
+                          <input type="checkbox" value="מלגה" name="student" />
                           <label htmlFor="milga">מלגה</label>
                         </span>
                       </div>
-                      <label className="modal_label">שם המלגה</label>
+                      <label className="new_vol_modal_label">שם המלגה</label>
                       <input
-                        className="modal_input"
+                        className="new_vol_modal_input"
                         type="text"
                         name="milgaName"
                         required
@@ -183,17 +199,21 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   )}
                   {isOption3 && (
                     <>
-                      <label className="modal_label">שם קצינת מבחן</label>
+                      <label className="new_vol_modal_label">
+                        שם קצינת מבחן
+                      </label>
                       <input
-                        className="modal_input"
+                        className="new_vol_modal_input"
                         type="text"
                         name="kzinaName"
                         required
                         onChange={handleChange}
                       />
-                      <label className="modal_label">טלפון קצינת מבחן</label>
+                      <label className="new_vol_modal_label">
+                        טלפון קצינת מבחן
+                      </label>
                       <input
-                        className="modal_input"
+                        className="new_vol_modal_input"
                         type="text"
                         name="kzinaPhone"
                         required
@@ -206,7 +226,9 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   <Button
                     variant="contained"
                     type="submit"
-                    className={enable ? "modal_btn" : "modal_btn disable"}
+                    className={
+                      enable ? "new_vol_modal_btn" : "new_vol_modal_btn disable"
+                    }
                   >
                     הוסף למסגרת
                   </Button>

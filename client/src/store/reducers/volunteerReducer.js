@@ -42,14 +42,12 @@ export function volunteerReducer(state = initialState, action) {
     case "SEARCH_VOLUNTEERS":
       return {
         ...state,
-        // filters: action.newFilters,
         volunteersToShow: action.filteredVolunteers,
       };
 
     case "SET_AND_FILTER":
       return {
         ...state,
-        // filters: action.newFilters,
         volunteersToShow: action.filteredVolunteers,
       };
     default:

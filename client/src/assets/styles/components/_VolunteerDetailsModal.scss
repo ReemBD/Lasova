@@ -1,4 +1,4 @@
-.new_vol_modal {
+.profile_modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,32 +9,40 @@
   border: none;
   border-radius: rem(3px);
   display: flex;
-  justify-content: space-around;
+  //   justify-content: space-around;
   align-items: flex-start;
   flex-direction: column;
 
-  .new_vol_title {
+  .profile_title {
     margin-right: rem(48px);
     font-size: rem(36.8px);
     font-family: Assistant-Semibold;
   }
 
-  .new_vol_modal_content {
+  .profile_modal_content {
     margin-right: rem(48px);
   }
 
-  .new_vol_modal_form {
+  h4 {
+    display: inline;
+  }
+
+  p {
+    display: inline;
+  }
+
+  .profile_modal_form {
     width: rem(1000px);
     display: flex;
     justify-content: space-between;
   }
 
-  .new_vol_modal_label {
+  .profile_modal_label {
     font-size: rem(16px);
     display: block;
   }
 
-  .new_vol_modal_input {
+  .profile_modal_input {
     width: rem(226px);
     height: rem(40px);
     margin: 0.3rem 0 1.2rem 0;
@@ -45,7 +53,7 @@
     padding-right: rem(8px);
   }
 
-  .new_vol_modal_input_mail {
+  .profile_modal_input_mail {
     padding-left: rem(8px);
     direction: ltr;
   }
@@ -86,7 +94,7 @@
     padding: rem(11.2px);
   }
 
-  .new_vol_modal_btn {
+  .profile_modal_btn {
     font-family: Assistant-Reg;
     font-size: rem(24px);
     width: rem(226px);
