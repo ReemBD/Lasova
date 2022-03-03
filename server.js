@@ -16,7 +16,6 @@ app.use(
 );
 
 // Settings up routes, can be found at './routes/'
-app.use('/users', require('./routes/users/get.js'));
 app.use('/api/volunteer', require('./api/volunteer/volunteer.routes'));
 
 // Starting the server on http://localhost:PORT
