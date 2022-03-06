@@ -15,6 +15,8 @@ const VolunteerObj = {
   email: "",
   gender: "",
   summary: "",
+  volunteerType: "",
+  status: "standby"
 };
 
 const NewVolunteerModal = ({ open, setOpen }) => {
@@ -134,6 +136,15 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                 />
               </div>
               <div className="center">
+                <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
+                <select name="volunteerType"
+                 className="new_vol_modal_input"
+                 onChange={handleChange}
+                 >
+                   <option value="מסעדת לשובע תא">
+                   מסעדת לשובע ת"א
+                   </option>
+                 </select>
                 <label className="new_vol_modal_label">לשון פניה</label>
                 <div className="gender_group" onChange={handleChange}>
                   <span className="gender_btns">
