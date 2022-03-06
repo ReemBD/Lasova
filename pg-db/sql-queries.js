@@ -24,10 +24,7 @@ const execute = async (query) => {
 };
 
 
-
-
-
-const create_volunteer_table = `
+const createVolunteerTable = `
     CREATE TABLE IF NOT EXISTS "volunteers" (
     "id" SERIAL,
     "taz" VARCHAR(10) NOT NULL UNIQUE,
@@ -46,6 +43,18 @@ const create_volunteer_table = `
     );`
 
 
+    const createPotentialTable = `
+    CREATE TABLE IF NOT EXISTS "potentials" (
+    "id" SERIAL,
+    "first_name" VARCHAR(15),
+    "last_name" VARCHAR(25),
+    "cellphone" VARCHAR(11) NOT NULL UNIQUE,
+    "email" VARCHAR(40) NOT NULL UNIQUE,
+    "password" VARCHAR(25) NOT NULL,
+    "home_adress" VARCHAR(100),
+    "gender" int DEFAULT 0,
+    PRIMARY KEY("id")
+    );`
 
 
 const paramQuery = {
@@ -62,7 +71,7 @@ execute(create_volunteer_table).then(result => {
 });
 
 
-function insert_volunteer(taz, first_name, last_name, cellphone, email, password){
+function insertVolunteer(taz, first_name, last_name, cellphone, email, password){
     const add_vol_query = `INSERT INTO volunteers(taz, first_name, last_name, cellphone, email, password) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`
     const values = [taz, first_name, last_name, cellphone, email, password]
 
@@ -78,7 +87,7 @@ function insert_volunteer(taz, first_name, last_name, cellphone, email, password
 }
 
 
-insert_volunteer(123956784, 'Sheli', 'roluz', '0757462494', "reli1.simhi@gmail.com", "1password")
+insertVolunteer(123956784, 'Sheli', 'roluz', '0757462494', "reli1.simhi@gmail.com", "1password")
 //volunteer_list = execute('select * from volunteers')
 //console.log(volunteer_list)
 // callback
