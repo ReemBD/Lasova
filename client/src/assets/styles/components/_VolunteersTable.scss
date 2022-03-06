@@ -40,9 +40,9 @@
             margin-inline-start: vh(28px);
           }
           // don't show 'sort icon' on filterable columns hover
-          &[data-field="status"],
-          &[data-field="volunteerType"],
-          &[data-field="misgeretType"] {
+          &[data-field='status'],
+          &[data-field='volunteerType'],
+          &[data-field='misgeretType'] {
             &:hover {
               .MuiDataGrid-iconButtonContainer {
                 display: none;
@@ -185,28 +185,36 @@
         .MuiDataGrid-columnHeadersInner
         .MuiDataGrid-columnHeader,
       .MuiDataGrid-virtualScroller .MuiDataGrid-row .MuiDataGrid-cell {
-        max-width: unset !important;
+        // max-width: unset !important;
         &:first-of-type,
         &:nth-of-type(2) {
           min-width: vw(118px) !important;
           flex: 1 0 vw(118px);
           // max-width: rem(118px) !important;
         }
+        // .MuiDataGrid-columnHeader {
+        //   // max-width: unset;
+        //   &:first-of-type,
+        //   &:nth-of-type(2) {
+        //     min-width: vw(118px) !important;
+        //     flex: 1 0 vw(118px);
+        //   }
+        // }
         // &:first-of-type svg {
         // }
 
-        &[data-field="firstName"],
-        &[data-field="lastName"],
-        &[data-field="taz"] {
+        &[data-field='firstName'],
+        &[data-field='lastName'],
+        &[data-field='taz'] {
           flex: 2 0 vw(204px);
         }
 
-        &[data-field="volunteerType"],
-        &[data-field="misgeretType"] {
+        &[data-field='volunteerType'],
+        &[data-field='misgeretType'] {
           flex: 5 1 vw(230px);
           // flex-grow: 1.5;
         }
-        &[data-field="volunteerHours"] {
+        &[data-field='volunteerHours'] {
           flex: 3 0 vw(204px);
         }
 
