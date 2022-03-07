@@ -9,7 +9,7 @@
   border: none;
   border-radius: rem(3px);
   display: flex;
-  //   justify-content: space-around;
+  justify-content: space-around;
   align-items: flex-start;
   flex-direction: column;
 
@@ -21,13 +21,36 @@
 
   .profile_modal_content {
     margin-right: rem(48px);
+    display: flex;
+    justify-content: space-between;
+    width: rem(950px);
+    height: rem(500px);
   }
 
-  h4 {
+  .profile_modal_content_right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile_modal_content_center {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile_modal_content_left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile_details {
+    margin-bottom: rem(30px);
+  }
+
+  .profile_details_title {
     display: inline;
   }
 
-  p {
+  .profile_details_content {
     display: inline;
   }
 
@@ -58,19 +81,64 @@
     direction: ltr;
   }
 
-  .gender_group {
-    margin: 0.3rem 0 2.6rem 0;
+  .selection_group {
+    margin: 0.3rem 0 1rem 0;
   }
 
-  .gender_btns {
+  .selection_group_btns {
     padding: rem(11.2px);
   }
 
+  .volunteering_hours {
+    display: flex;
+    justify-content: space-between;
+    width: rem(160px);
+    margin-bottom: rem(20px);
+  }
+
+  .reported_hours {
+    display: flex;
+    justify-content: space-between;
+    width: rem(180px);
+  }
+
+  .reported_hours_sum {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .profile_modal_mini_input {
+    width: rem(35px);
+    height: rem(25px);
+    margin: 0.3rem 0 1.2rem 0;
+    background-color: white;
+    border-color: black;
+    border-radius: rem(3px);
+    border-width: rem(1px);
+    margin-right: rem(5px);
+  }
+
+  .attached_files {
+    display: flex;
+    justify-content: space-between;
+    width: rem(140px);
+  }
+
+  .attached_files_types {
+    margin-top: rem(5px);
+  }
+
+  .attached_files_btns {
+    width: rem(37px);
+    display: flex;
+    justify-content: space-between;
+  }
+
   .summary_text {
-    min-width: rem(254px);
-    max-width: rem(254px);
-    min-height: rem(162px);
-    max-height: rem(290px);
+    min-width: rem(250px);
+    max-width: rem(250px);
+    min-height: rem(160px);
+    max-height: rem(220px);
     padding: rem(11.2px);
     margin: 0.3rem 0 1.2rem 0;
     background-color: white;
@@ -78,20 +146,6 @@
     border-radius: rem(5px);
     border-width: rem(1px);
     border: "none";
-  }
-
-  .left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .student_group {
-    margin: 0.3rem 0 2.6rem 0;
-  }
-
-  .student_btns {
-    padding: rem(11.2px);
   }
 
   .profile_modal_btn {

@@ -7,7 +7,7 @@ import {
 } from "../store/actions/volunteerActions";
 import VolunteersTable from "../components/VolunteersTable";
 import NewVolunteerModal from "../components/NewVolunteerModal";
-import VolunteerDetailsModal from "../components/VolunteerDetailsModal";
+import ProfileVolunteerModal from "../components/ProfileVolunteerModal";
 // import Footer from "../components/Footer";
 
 import { ReactComponent as SearchIcon } from "../assets/imgs/icons/search-icon.svg";
@@ -80,7 +80,7 @@ const Home = () => {
         />
       )}
       {isProfileModalOpen && (
-        <VolunteerDetailsModal
+        <ProfileVolunteerModal
           volunteer={volunteerProfileToShow}
           open={isProfileModalOpen}
           setOpen={setProfileModalOpen}

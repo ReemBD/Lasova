@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: rem(1200px);
-  height: rem(600px);
+  height: rem(550px);
   background-color: white;
   border: none;
   border-radius: rem(3px);
@@ -51,7 +51,7 @@
   }
 
   .gender_group {
-    margin: 0.3rem 0 2.6rem 0;
+    margin: 0.3rem 0 2.5rem 0;
   }
 
   .gender_btns {
@@ -59,10 +59,10 @@
   }
 
   .summary_text {
-    min-width: rem(254px);
-    max-width: rem(254px);
-    min-height: rem(162px);
-    max-height: rem(290px);
+    min-width: rem(250px);
+    max-width: rem(250px);
+    min-height: rem(140px);
+    max-height: rem(200px);
     padding: rem(11.2px);
     margin: 0.3rem 0 1.2rem 0;
     background-color: white;
@@ -79,7 +79,7 @@
   }
 
   .student_group {
-    margin: 0.3rem 0 2.6rem 0;
+    margin: 0.3rem 0 1rem 0;
   }
 
   .student_btns {
