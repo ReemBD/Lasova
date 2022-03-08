@@ -1,10 +1,7 @@
-// for the first time run 'npm install'
-// Libraries installed: express, nodemon, dotenv
-// temporarily libraries: fs
-
 const express = require('express');
-const app = express();
 const cors = require('cors');
+
+const app = express();
 
 require('dotenv').config();
 
