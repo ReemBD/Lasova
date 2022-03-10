@@ -87,7 +87,7 @@ function insertVolunteer(taz, first_name, last_name, cellphone, email, password)
 }
 
 
-insertVolunteer(123956784, 'Sheli', 'roluz', '0757462494', "reli1.simhi@gmail.com", "1password")
+insertVolunteer(1239567854, 'Ori', 'roluz', '07327462494', "rel2.simhi@gmail.com", "1password")
 //volunteer_list = execute('select * from volunteers')
 //console.log(volunteer_list)
 // callback
