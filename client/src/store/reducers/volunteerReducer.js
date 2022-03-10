@@ -22,8 +22,8 @@ export function volunteerReducer(state = initialState, action) {
     case "ADD_VOLUNTEER":
       return {
         ...state,
-        volunteers: [...state.volunteers, action.volunteer],
-        volunteersToShow: [...state.volunteersToShow, action.volunteer],
+        volunteers: [action.volunteer, ...state.volunteers],
+        volunteersToShow: [action.volunteer, ...state.volunteersToShow],
       };
     case "REMOVE_VOLUNTEER":
       return {

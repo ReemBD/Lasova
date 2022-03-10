@@ -112,6 +112,7 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
       {
         field: "status",
         description: "סטטוס",
+        headerName: "סטטוס",
         renderHeader: () => FilterColumnBtn("status", "סטטוס"),
         valueFormatter: ({ value }) =>
           statuses.find((status) => status.type === value)?.label,
@@ -134,7 +135,6 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
       {
         field: "taz",
         headerName: "תעודת זהות",
-        description: "תעודת זהות",
         valueGetter: (params) => params.row.taz || "-",
       },
       {
