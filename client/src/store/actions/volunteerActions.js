@@ -18,7 +18,7 @@ const STORAGE_KEY = 'volunteers';
 export function loadVolunteers() {
   return async (dispatch) => {
     try {
-      const volunteers = await storageService.query(STORAGE_KEY);
+      const volunteers = await volunteerService.query();
       dispatch({ type: 'LOAD_VOLUNTEERS', volunteers });
     } catch (err) {
       console.log('Error loading volunteers:');
@@ -51,17 +51,9 @@ export function saveVolunteer(volunteerToSave) {
       if (type === 'UPDATE_VOLUNTEER') {
         volunteerService.saveVolunteer(volunteerToSave);
       } else {
-        await volunteerService.saveVolunteer(volunteerToSave);
+        volunteerToSave = await volunteerService.saveVolunteer(volunteerToSave);
       }
       dispatch({ type, volunteer: volunteerToSave });
-      // if (volunteerToSave.id) {
-      //   await storageService.put(STORAGE_KEY, volunteerToSave);
-      // } else {
-      //   volunteerToSave = await storageService.post(
-      //     STORAGE_KEY,
-      //     volunteerToSave
-      //   );
-      // }
     } catch (err) {
       console.log('error adding volunteer', volunteerToSave);
       console.error(err);

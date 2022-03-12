@@ -36,6 +36,7 @@ async function updateVolunteer(req, res) {
 async function addVolunteer(req, res) {
   try {
     const volunteer = req.body;
+    console.log({volunteer})
     const newVolunteer = await add(volunteer);
     res.send(newVolunteer);
   } catch (err) {

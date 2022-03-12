@@ -14,13 +14,13 @@ async function query({ isDefault, doReset }) {
   try {
     let volunteersToSend;
 
-    if (JSON.parse(doReset)) {
+    if (doReset && JSON.parse(doReset)) {
       const defaultVolunteers = await _getVolunteers(true);
       _setVolunteers(defaultVolunteers);
       volunteersToSend = defaultVolunteers;
     }
 
-    volunteersToSend = await _getVolunteers(JSON.parse(isDefault));
+    volunteersToSend = await _getVolunteers(isDefault && JSON.parse(isDefault));
     return volunteersToSend;
   } catch (err) {
     logger.error(`failed to fetch volunteers` + err);
@@ -116,5 +116,5 @@ module.exports = {
   remove,
   update,
   getById,
-  add
+  add,
 };
