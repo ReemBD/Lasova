@@ -107,3 +107,5 @@ insertVolunteer(1239567854, 'Ori', 'roluz', '07327462494', "rel2.simhi@gmail.com
 // } catch (err) {
 //  console.log(err.stack)
 // }
+
+export default insertVolunteer()

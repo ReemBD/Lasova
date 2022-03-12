@@ -39,6 +39,10 @@ export function searchVolunteers(searchText) {
   };
 }
 
+/**
+ * save refers both to put and post requests
+ * if volunteer has id, we know it is an update request,
+ * else it is post. */ 
 export function saveVolunteer(volunteerToSave) {
   return async (dispatch) => {
     try {
