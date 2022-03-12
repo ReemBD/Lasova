@@ -37,6 +37,19 @@ async function getById(volunteerId) {
     throw err;
   }
 }
+
+async function add(volunteer) {
+  try {
+    volunteer.id = Math.floor(Math.random() * 10000);
+    const volunteers = await _getVolunteers();
+    volunteers.unshift(volunteer);
+    _setVolunteers(volunteers);
+    return volunteer;
+  } catch (err) {
+    logger.error(`couldn't add volunteer `, err);
+    throw err;
+  }
+}
 /**
  * this function gets an array of volunteerIds
  * and removes the corresponding volunteers from the volunteer collection.
@@ -103,4 +116,5 @@ module.exports = {
   remove,
   update,
   getById,
+  add
 };

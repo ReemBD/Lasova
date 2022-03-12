@@ -7,6 +7,7 @@ const {
   removeVolunteers,
   updateVolunteer,
   getVolunteerById,
+  addVolunteer
 } = require('./volunteer.controller');
 
 const jsonParser = bodyParser.json();
@@ -18,5 +19,7 @@ router.get('/', getVolunteers);
 router.delete('/', removeVolunteers);
 
 router.put('/:volunteerId', jsonParser, updateVolunteer);
+
+router.post('/', jsonParser, addVolunteer);
 
 module.exports = router;
