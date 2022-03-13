@@ -9,11 +9,13 @@ const client = new Client({
     port: 5432,
 });
 
+
 // this is a very general query executor I found online; its pretty good for now, but wont work when we need to debug things properly.
 const execute = async (query) => {
     try {
         await client.connect();     // gets connection if clause
         await client.query(query);  // sends queries
+        console.log('hopa')
         return true;
     } catch (error) {
         console.error(error.stack);
@@ -42,7 +44,7 @@ const createVolunteerTable = `
     PRIMARY KEY("id")
     );`
 
-
+// this attributes are not matched with Yulia; so currently wont create any queries related to this table.
     const createPotentialTable = `
     CREATE TABLE IF NOT EXISTS "potentials" (
     "id" SERIAL,
@@ -63,14 +65,13 @@ const paramQuery = {
   }
 
 
-
 execute(create_volunteer_table).then(result => {
     if (result) {
         console.log('Table created');
     }
 });
 
-
+/**currently has no authentication\authorization. also- adding try\catch is required. */
 function insertVolunteer(taz, first_name, last_name, cellphone, email, password){
     const add_vol_query = `INSERT INTO volunteers(taz, first_name, last_name, cellphone, email, password) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`
     const values = [taz, first_name, last_name, cellphone, email, password]
@@ -108,4 +109,4 @@ insertVolunteer(1239567854, 'Ori', 'roluz', '07327462494', "rel2.simhi@gmail.com
 //  console.log(err.stack)
 // }
 
-export default insertVolunteer()
+export default insertVolunteer
