@@ -10,12 +10,13 @@ const VolunteerObj = {
   groupName: "",
   firstName: "",
   lastName: "",
+  taz: "",
   phone: "",
   city: "",
   email: "",
   gender: "",
   summary: "",
-  volunteerType: "",
+  volunteerType: "מסעדת לשובע תא",
   status: "standby"
 };
 
@@ -27,6 +28,8 @@ const NewVolunteerModal = ({ open, setOpen }) => {
   const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
 
   const handleChange = (e) => {
+    console.log(e.target.name)
+    console.log(e.target.value)
     setNewVolunteer((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (e.target.name === "groupName") {
       switch (e.target.value) {
@@ -68,6 +71,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   שם פרטי*
                 </label>
                 <input
+                  value={newVolunteer.firstName}
                   className="new_vol_modal_input"
                   type="text"
                   id="firstName"
@@ -79,6 +83,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   שם משפחה*
                 </label>
                 <input
+                  value={newVolunteer.lastName}
                   className="new_vol_modal_input"
                   type="text"
                   id="lastName"
@@ -90,6 +95,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   ת.ז*
                 </label>
                 <input
+                  value={newVolunteer.taz}
                   className="new_vol_modal_input"
                   type="text"
                   id="taz"
@@ -101,6 +107,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   טלפון*
                 </label>
                 <input
+                  value={newVolunteer.phone}
                   className="new_vol_modal_input"
                   type="text"
                   id="phone"
@@ -114,6 +121,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   מייל*
                 </label>
                 <input
+                  value={newVolunteer.email}
                   className="new_vol_modal_input new_vol_modal_input_mail"
                   type="email"
                   id="email"
@@ -127,6 +135,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   עיר מגורים*
                 </label>
                 <input
+                  value={newVolunteer.city}
                   className="new_vol_modal_input"
                   type="text"
                   id="city"
@@ -137,16 +146,18 @@ const NewVolunteerModal = ({ open, setOpen }) => {
               </div>
               <div className="center">
                 <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
-                <select name="volunteerType"
-                 className="new_vol_modal_input"
-                 onChange={handleChange}
-                 >
-                   <option value="מסעדת לשובע תא">
-                   מסעדת לשובע ת"א
-                   </option>
-                 </select>
+                <select
+                  value={newVolunteer.volunteerType}
+                  name="volunteerType"
+                  className="new_vol_modal_input"
+                  onChange={handleChange}
+                >
+                  <option value="מסעדת לשובע תא">
+                    מסעדת לשובע ת"א
+                  </option>
+                </select>
                 <label className="new_vol_modal_label">לשון פניה</label>
-                <div className="gender_group" onChange={handleChange}>
+                <div className="gender_group" onChange={handleChange} >
                   <span className="gender_btns">
                     <input type="radio" value="male" name="gender" />
                     <label htmlFor="male">זכר</label>
@@ -172,6 +183,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                 <div>
                   <label className="new_vol_modal_label">בחר מסגרת מפנה</label>
                   <select
+                    value={newVolunteer.groupName}
                     name="groupName"
                     className="new_vol_modal_input"
                     onChange={handleChange}
