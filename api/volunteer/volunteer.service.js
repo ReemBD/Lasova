@@ -14,13 +14,13 @@ async function query({ isDefault, doReset }) {
   try {
     let volunteersToSend;
 
-    if (JSON.parse(doReset)) {
+    if (doReset && JSON.parse(doReset)) {
       const defaultVolunteers = await _getVolunteers(true);
       _setVolunteers(defaultVolunteers);
       volunteersToSend = defaultVolunteers;
     }
 
-    volunteersToSend = await _getVolunteers(JSON.parse(isDefault));
+    volunteersToSend = await _getVolunteers(isDefault && JSON.parse(isDefault));
     return volunteersToSend;
   } catch (err) {
     logger.error(`failed to fetch volunteers` + err);
@@ -34,6 +34,19 @@ async function getById(volunteerId) {
     return volunteers.find((v) => v.id === volunteerId);
   } catch (err) {
     logger.error(`failed to fetch voluntter` + err);
+    throw err;
+  }
+}
+
+async function add(volunteer) {
+  try {
+    volunteer.id = Math.floor(Math.random() * 10000);
+    const volunteers = await _getVolunteers();
+    volunteers.unshift(volunteer);
+    _setVolunteers(volunteers);
+    return volunteer;
+  } catch (err) {
+    logger.error(`couldn't add volunteer `, err);
     throw err;
   }
 }
@@ -103,4 +116,5 @@ module.exports = {
   remove,
   update,
   getById,
+  add,
 };

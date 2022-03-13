@@ -1,4 +1,4 @@
-const { query, remove, update, getById } = require('./volunteer.service');
+const { query, remove, update, getById, add } = require('./volunteer.service');
 
 async function getVolunteers(req, res) {
   try {
@@ -27,8 +27,18 @@ async function updateVolunteer(req, res) {
   try {
     const volunteer = req.body;
     const updatedVolunteer = await update(volunteer);
-    console.log('updatedVol: ', updatedVolunteer);
     res.send(updatedVolunteer);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+async function addVolunteer(req, res) {
+  try {
+    const volunteer = req.body;
+    console.log({volunteer})
+    const newVolunteer = await add(volunteer);
+    res.send(newVolunteer);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -54,5 +64,6 @@ module.exports = {
   getVolunteersByProjectId,
   removeVolunteers,
   updateVolunteer,
+  addVolunteer,
   getVolunteerById,
 };
