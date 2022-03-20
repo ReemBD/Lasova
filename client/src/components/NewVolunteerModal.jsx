@@ -76,6 +76,8 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   type="text"
                   id="firstName"
                   name="firstName"
+                  pattern=".{2,}"
+                  title="אנא הזן שם פרטי"
                   required
                   onChange={handleChange}
                 />
@@ -88,6 +90,8 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   type="text"
                   id="lastName"
                   name="lastName"
+                  pattern=".{2,}"
+                  title="אנא הזן שם משפחה"
                   required
                   onChange={handleChange}
                 />
@@ -100,6 +104,8 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   type="text"
                   id="taz"
                   name="taz"
+                  pattern=".{9}"
+                  title="אנא הזן תעודת זהות תקינה"
                   required
                   onChange={handleChange}
                 />
@@ -131,6 +137,9 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   required
                   onChange={handleChange}
                 />
+              </div>
+
+              <div className="center">
                 <label htmlFor="city" className="new_vol_modal_label">
                   עיר מגורים*
                 </label>
@@ -140,12 +149,12 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   type="text"
                   id="city"
                   name="city"
+                  pattern=".{2,}"
+                  title="אנא הזן עיר"
                   required
                   onChange={handleChange}
                 />
-              </div>
-              <div className="center">
-                <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
+                {/* <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
                 <select
                   value={newVolunteer.volunteerType}
                   name="volunteerType"
@@ -155,7 +164,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   <option value="מסעדת לשובע תא">
                     מסעדת לשובע ת"א
                   </option>
-                </select>
+                </select> */}
                 <label className="new_vol_modal_label">לשון פניה</label>
                 <div className="gender_group" onChange={handleChange} >
                   <span className="gender_btns">
@@ -181,6 +190,16 @@ const NewVolunteerModal = ({ open, setOpen }) => {
               </div>
               <div className="left">
                 <div>
+                  <label className="new_vol_modal_label">
+                    בחר מסגרת התנדבות
+                  </label>
+                  <select
+                    name="volunteerType"
+                    className="new_vol_modal_input"
+                    onChange={handleChange}
+                  >
+                    <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
+                  </select>
                   <label className="new_vol_modal_label">בחר מסגרת מפנה</label>
                   <select
                     value={newVolunteer.groupName}
