@@ -65,7 +65,7 @@ const paramQuery = {
   }
 
 
-execute(create_volunteer_table).then(result => {
+execute(createVolunteerTable).then(result => {
     if (result) {
         console.log('Table created');
     }
@@ -75,20 +75,28 @@ execute(create_volunteer_table).then(result => {
 function insertVolunteer(taz, first_name, last_name, cellphone, email, password){
     const add_vol_query = `INSERT INTO volunteers(taz, first_name, last_name, cellphone, email, password) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`
     const values = [taz, first_name, last_name, cellphone, email, password]
-
-    client.query(add_vol_query, values, (err, res) => {
-        if (err) {
-          console.log(err.stack)
-        } else {
-          console.log('worksssssssssss?')
-          console.log(res.rows[0])
-          // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
-        }
-       })
-}
+    client.query(add_vol_query, values)
+    .then(res => {
+        console.log(res.rows[0])
+        // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+      })
+      .catch(e => console.error(e.stack))
 
 
-insertVolunteer(1239567854, 'Ori', 'roluz', '07327462494', "rel2.simhi@gmail.com", "1password")
+
+    // client.query(add_vol_query, values, (err, res) => {
+    //     if (err) {
+    //       console.log(err.stack)
+    //     } else {
+    //       console.log('worksssssssssss?')
+    //       console.log(res.rows[0])
+    //       // { name: 'brianc', email: 'brian.m.carlson@gmail.com' }
+    //     }
+    //    })
+    }
+
+
+insertVolunteer(3463458678, 'tprobOri', 'riyoluz', '06527462494', "rel2.s2hi@gmail.com", "1password")
 //volunteer_list = execute('select * from volunteers')
 //console.log(volunteer_list)
 // callback
@@ -109,4 +117,4 @@ insertVolunteer(1239567854, 'Ori', 'roluz', '07327462494', "rel2.simhi@gmail.com
 //  console.log(err.stack)
 // }
 
-export default insertVolunteer
+//export default insertVolunteer()
