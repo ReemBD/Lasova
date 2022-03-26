@@ -1,4 +1,7 @@
 const { Client } = require("pg");
+var validator = require("validator");
+const TAZ_PATTERN = new RegExp("^(d{8,9})$");
+const MOBILE_PATTERN = new RegExp("^(d{10})$");
 
 const client = new Client({
   host: "127.0.0.1",
@@ -66,7 +69,10 @@ execute(createVolunteerTable).then((result) => {
   }
 });
 
-/**currently has no authentication\authorization. also- adding try\catch is required. */
+/**this function has very basic validation of email, taz and mobile phone- the regex patters are viewable in the begginning of this code.
+ * also- function will return true/false according to if the volunteers was added successfuly.
+ * BUG- still doesnt handle case where id, cellphone or any of the unique values already exists in table
+ */
 function insertVolunteer(
   taz,
   first_name,
@@ -77,21 +83,32 @@ function insertVolunteer(
 ) {
   const add_vol_query = `INSERT INTO volunteers(taz, first_name, last_name, cellphone, email, password) VALUES($1, $2, $3, $4, $5, $6) RETURNING *`;
   const values = [taz, first_name, last_name, cellphone, email, password];
+  if (
+    validator.isEmail(email) &&
+    MOBILE_PATTERN.test(cellphone) &&
+    TAZ_PATTERN.test(taz)
+  ) {
+    console.log(
+      "one of the details you entered is invalid. please try to check it again."
+    );
+    return false;
+  }
   client
     .query(add_vol_query, values)
     .then((res) => {
-      console.log(res.rows[0]);
-      // the log will show the values new row inside the table, as long as it runs w/o errors.
+      console.log(res.rows[0]); //inside the table, as long as it runs w/o errors.
+      return true;
     })
     .catch((e) => console.error(e.stack));
 }
 
 insertVolunteer(
-  3463458678,
-  "tprobOri",
-  "riyoluz",
-  "06527462494",
-  "rel2.s2hi@gmail.com",
+  7429185646,
+  "tprob3Ori",
+  // the log will show the values new row
+  "sfds",
+  "0547859798",
+  "rel2@s2h.com",
   "1password"
 );
 //volunteer_list = execute('select * from volunteers')
