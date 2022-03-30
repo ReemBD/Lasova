@@ -1,10 +1,11 @@
 // temporary service to mimic server-DB requests
-import { storageService } from "../../services/async-storage.service";
-const STORAGE_KEY = "volunteers";
+import { storageService } from '../../services/async-storage.service';
+import { volunteerService } from '../../services/volunteer-service';
+const STORAGE_KEY = 'volunteers';
 // TEMPORARY IIFE to load volunteers from mock_data.json to localStorage
 (function loadMockToStorage() {
   if (!JSON.parse(localStorage.getItem(STORAGE_KEY))) {
-    const mockData = require("../../services/mock-data.json");
+    const mockData = require('../../services/mock-data.json');
     localStorage[STORAGE_KEY] = JSON.stringify(mockData);
   }
 })();
@@ -17,10 +18,10 @@ const STORAGE_KEY = "volunteers";
 export function loadVolunteers() {
   return async (dispatch) => {
     try {
-      const volunteers = await storageService.query(STORAGE_KEY);
-      dispatch({ type: "LOAD_VOLUNTEERS", volunteers });
+      const volunteers = await volunteerService.query();
+      dispatch({ type: 'LOAD_VOLUNTEERS', volunteers });
     } catch (err) {
-      console.log("Error loading volunteers:");
+      console.log('Error loading volunteers:');
       console.error(err);
     }
   };
@@ -35,25 +36,26 @@ export function searchVolunteers(searchText) {
         volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
       );
     });
-    dispatch({ type: "SEARCH_VOLUNTEERS", filteredVolunteers });
+    dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });
   };
 }
 
+/**
+ * save refers both to put and post requests
+ * if volunteer has id, we know it is an update request,
+ * else it is post. */
 export function saveVolunteer(volunteerToSave) {
   return async (dispatch) => {
     try {
-      const type = volunteerToSave.id ? "UPDATE_VOLUNTEER" : "ADD_VOLUNTEER";
-      if (volunteerToSave.id) {
-        await storageService.put(STORAGE_KEY, volunteerToSave);
+      const type = volunteerToSave.id ? 'UPDATE_VOLUNTEER' : 'ADD_VOLUNTEER';
+      if (type === 'UPDATE_VOLUNTEER') {
+        volunteerService.saveVolunteer(volunteerToSave);
       } else {
-        volunteerToSave = await storageService.post(
-          STORAGE_KEY,
-          volunteerToSave
-        );
+        volunteerToSave = await volunteerService.saveVolunteer(volunteerToSave);
       }
       dispatch({ type, volunteer: volunteerToSave });
     } catch (err) {
-      console.log("error adding volunteer", volunteerToSave);
+      console.log('error adding volunteer', volunteerToSave);
       console.error(err);
     }
   };
@@ -63,9 +65,9 @@ export function removeVolunteer(volunteerId) {
   return async (dispatch) => {
     try {
       await storageService.remove(STORAGE_KEY, volunteerId);
-      dispatch({ type: "REMOVE_VOLUNTEER", volunteerId });
+      dispatch({ type: 'REMOVE_VOLUNTEER', volunteerId });
     } catch (err) {
-      console.log("error removing volunteer with ID:", volunteerId);
+      console.log('error removing volunteer with ID:', volunteerId);
       console.error(err);
     }
   };
