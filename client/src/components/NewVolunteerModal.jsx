@@ -153,19 +153,19 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   required
                   onChange={handleChange}
                 />
-                <label className='new_vol_modal_label'>לשון פניה</label>
-                <div className='gender_group' onChange={handleChange}>
-                  <span className='gender_btns'>
-                    <input type='radio' value='male' name='gender' />
-                    <label htmlFor='male'>זכר</label>
+                <label className="new_vol_modal_label">לשון פניה</label>
+                <div className="gender_group" onChange={handleChange}>
+                  <span className="gender_btns">
+                    <input type="radio" value="זכר" name="gender" />
+                    <label htmlFor="male">זכר</label>
                   </span>
-                  <span className='gender_btns'>
-                    <input type='radio' value='female' name='gender' />
-                    <label htmlFor='female'>נקבה</label>
+                  <span className="gender_btns">
+                    <input type="radio" value="נקבה" name="gender" />
+                    <label htmlFor="female">נקבה</label>
                   </span>
-                  <span className='gender_btns'>
-                    <input type='radio' value='other' name='gender' />
-                    <label htmlFor='other'>אחר</label>
+                  <span className="gender_btns">
+                    <input type="radio" value="אחר" name="gender" />
+                    <label htmlFor="other">אחר</label>
                   </span>
                 </div>
                 <label className='new_vol_modal_label'>סיכום שיחה</label>
