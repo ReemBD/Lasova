@@ -10,6 +10,7 @@ const VolunteerObj = {
   groupName: "",
   firstName: "",
   lastName: "",
+  taz: "",
   phone: "",
   city: "",
   email: "",
@@ -147,15 +148,15 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                 <label className="new_vol_modal_label">לשון פניה</label>
                 <div className="gender_group" onChange={handleChange}>
                   <span className="gender_btns">
-                    <input type="radio" value="male" name="gender" />
+                    <input type="radio" value="זכר" name="gender" />
                     <label htmlFor="male">זכר</label>
                   </span>
                   <span className="gender_btns">
-                    <input type="radio" value="female" name="gender" />
+                    <input type="radio" value="נקבה" name="gender" />
                     <label htmlFor="female">נקבה</label>
                   </span>
                   <span className="gender_btns">
-                    <input type="radio" value="other" name="gender" />
+                    <input type="radio" value="אחר" name="gender" />
                     <label htmlFor="other">אחר</label>
                   </span>
                 </div>

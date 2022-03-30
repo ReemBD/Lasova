@@ -1,9 +1,11 @@
 {
   "dependencies": {
+    "@syncfusion/ej2-react-calendars": "^19.4.56",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "fs": "^0.0.1-security",
+    "moment": "^2.29.1",
     "nodemon": "^2.0.15"
   },
   "name": "lasova-back",
