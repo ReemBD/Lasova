@@ -72,7 +72,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   שם פרטי*
                 </label>
                 <input
-                  className='new_vol_modal_input'
+                  className='input'
                   type='text'
                   id='firstName'
                   name='firstName'
@@ -86,7 +86,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   שם משפחה*
                 </label>
                 <input
-                  className='new_vol_modal_input'
+                  className='input'
                   type='text'
                   id='lastName'
                   name='lastName'
@@ -100,7 +100,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   ת.ז*
                 </label>
                 <input
-                  className='new_vol_modal_input'
+                  className='input'
                   type='text'
                   id='taz'
                   name='taz'
@@ -114,7 +114,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   טלפון*
                 </label>
                 <input
-                  className='new_vol_modal_input'
+                  className='input'
                   type='text'
                   id='phone'
                   name='phone'
@@ -128,7 +128,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   מייל*
                 </label>
                 <input
-                  className='new_vol_modal_input new_vol_modal_input_mail'
+                  className='input new_vol_modal_input_mail '
                   type='email'
                   id='email'
                   name='email'
@@ -143,7 +143,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   עיר מגורים*
                 </label>
                 <input
-                  className='new_vol_modal_input'
+                  className='input'
                   value={newVolunteer.city}
                   type='text'
                   id='city'
@@ -184,14 +184,14 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   </label>
                   <select
                     name='volunteerType'
-                    className='new_vol_modal_input'
+                    className='input'
                     onChange={handleChange}>
                     <option value='מסעדת לשובע תא'>מסעדת לשובע ת"א</option>
                   </select>
                   <label className='new_vol_modal_label'>בחר מסגרת מפנה</label>
                   <select
                     name='groupName'
-                    className='new_vol_modal_input'
+                    className='input'
                     onChange={handleChange}>
                     <option id='1' value='עצמאי'>
                       עצמאי
@@ -217,7 +217,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                       </div>
                       <label className='new_vol_modal_label'>שם המלגה</label>
                       <input
-                        className='new_vol_modal_input'
+                        className='input'
                         type='text'
                         name='milgaName'
                         required
@@ -231,7 +231,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                         שם קצינת מבחן
                       </label>
                       <input
-                        className='new_vol_modal_input'
+                        className='input'
                         type='text'
                         name='kzinaName'
                         required
@@ -241,7 +241,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                         טלפון קצינת מבחן
                       </label>
                       <input
-                        className='new_vol_modal_input'
+                        className='input'
                         type='text'
                         name='kzinaPhone'
                         required
