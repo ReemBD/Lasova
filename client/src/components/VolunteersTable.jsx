@@ -7,6 +7,8 @@ import {
   useGridApiContext,
 } from "@mui/x-data-grid";
 import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 import { updateUserMsg } from "../store/actions/systemActions.js";
 import Loader from "./Loader";
@@ -26,8 +28,11 @@ const TableLoader = () => {
   );
 };
 
-const FilterableHeaderCell = ({ name, value, title, onChange, onToggleDropdown, options, isSelectingFilter }) => {
+
+
+const FilterableHeaderCell = ({ name, value, title, onChange, onToggleDropdown, options, isSelectingFilter, filter }) => {
   const containerRef = useRef()
+
   return (
     <div style={{ display: 'flex', alignItems: 'center' }} ref={containerRef}>
       <p>{title}</p>
@@ -42,9 +47,6 @@ const FilterableHeaderCell = ({ name, value, title, onChange, onToggleDropdown, 
         >
           <FilterIcon />
         </button>
-        {isSelectingFilter && <div style={{ position: 'absolute', backgroundColor: 'red', top: '100%', zIndex: 2 }}>
-          {options.map(o => <MenuItem key={o}>{o}</MenuItem>)}
-        </div>}
       </span>
     </div>
   );
@@ -78,7 +80,6 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
     groupName: '',
     volunteerType: ''
   });
-
   const filterOptions = useMemo(() => {
     if (!volunteers) return {};
     const retval = volunteers.reduce((acc, curr) => {
@@ -92,7 +93,10 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
   }, [volunteers])
   function createInitialFilterOptions() {
     const retval = {};
-    Object.keys(filter).forEach(key => { retval[key] = new Set() })
+    Object.keys(filter).forEach(key => {
+      retval[key] = new Set()
+      retval[key].add('בחר הכל')
+    })
     return retval;
   }
 
@@ -102,9 +106,18 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
 
   useEffect(() => {
     if (volunteers !== null) {
-      setRows(volunteers);
+      let volunteersToShow = volunteers
+      for (let filterBy in filter) {
+        const currFilter = filter[filterBy]
+        if (currFilter) {
+          if (currFilter !== 'בחר הכל') {
+            volunteersToShow = volunteersToShow.filter(val => val[filterBy] === currFilter)
+          }
+        }
+      }
+      setRows(volunteersToShow);
     }
-  }, [volunteers]);
+  }, [volunteers, filter]);
 
   const ExportCsvBtn = () => {
     const dispatch = useDispatch();
@@ -138,8 +151,12 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
     );
   };
 
-  const onSetFilter = () => {
-
+  const onSetFilter = (filterBy) => {
+    setFilter({
+      ...filter,
+      [activeFilter]: filterBy
+    })
+    setActiveFilter('')
   }
 
   const getFilterableHeaderCellProps = (name, title) => {
@@ -151,9 +168,8 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
       isSelectingFilter: dropdownPosition === name,
       onToggleDropdown: ({ bottom, left }) => {
         setDropdownPosition({ top: bottom, left });
-        activeFilter? setActiveFilter('') : setActiveFilter(name);
+        activeFilter === name ? setActiveFilter('') : setActiveFilter(name);
       },
-      onChange: onSetFilter
     }
   }
   const columns = useMemo(
@@ -246,15 +262,10 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
 
   return (
     <>
-      {activeFilter && <div style={{
-        position: 'absolute',
-        backgroundColor: 'white',
-        zIndex: 2,
-        padding: '3px',
-        border: '1px solid black',
+      {activeFilter && <div className="filter-menu" style={{
         ...dropdownPosition,
       }}>
-        {filterOptions[activeFilter].map(o => <MenuItem key={o}>{o}</MenuItem>)}
+        {filterOptions[activeFilter].map(o => <MenuItem className="filter-option" key={o} onClick={() => onSetFilter(o)}>{o}</MenuItem>)}
       </div>}
       <section className="volunteers-table">
         <DataGrid
@@ -274,6 +285,9 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
             console.log("open profile of volunteerId:", ev.row);
             openProfileModal(ev.row);
           }}
+          // onCellClick={(ev) => {
+          //   ev.stopPropagation()
+          // }}
         />
       </section>
     </>
