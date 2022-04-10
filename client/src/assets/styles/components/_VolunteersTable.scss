@@ -59,9 +59,6 @@
                 overflow: visible;
                 text-align: center;
               }
-              .MuiButtonBase-root {
-                margin-inline-end: 5px;
-              }
               .filter-btn-wrapper {
                 order: 1;
                 flex-grow: 1;
@@ -253,5 +250,16 @@
   .loader svg {
     width: vh(150px);
     height: vh(150px);
+  }
+}
+
+.filter-menu {
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+  padding: 3px;
+  border: 1px solid black;
+  .filter-option.selected {
+    background-color: red;
   }
 }
