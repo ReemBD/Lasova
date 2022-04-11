@@ -34,7 +34,7 @@ nav {
       background: #fff;
       font-family: Assistant-Extrabold;
     }
-    &:hover {
+    &:hover:not(.active) {
       font-family: Assistant-Bold;
     }
   }

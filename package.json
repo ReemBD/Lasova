@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@syncfusion/ej2-react-calendars": "^19.4.56",
+    "axios": "^0.26.1",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

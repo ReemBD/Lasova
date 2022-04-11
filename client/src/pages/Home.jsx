@@ -13,6 +13,7 @@ import ProfileVolunteerModal from "../components/ProfileVolunteerModal";
 import { ReactComponent as SearchIcon } from "../assets/imgs/icons/search-icon.svg";
 import { ReactComponent as ExportIcon } from "../assets/imgs/icons/export-icon.svg";
 import { ReactComponent as AddVolunteerIcon } from "../assets/imgs/icons/add-person-icon.svg";
+import BasePage from "../pages/BasePage";
 // import { ReactComponent as ClearIcon } from '../assets/imgs/icons/close-icon.svg';
 
 const Home = () => {
@@ -37,36 +38,13 @@ const Home = () => {
   }, [volunteers]);
 
   return (
-    <section className="home page">
-      <section className="table-header">
-        <h1>טבלת מתנדבים</h1>
-        <section className="actions flex align-center space-between">
-          <span className="search flex align-center">
-            <label htmlFor="search">
-              <SearchIcon />
-            </label>
-            <DebounceInput
-              type="search"
-              id="search"
-              placeholder="חיפוש"
-              debounceTimeout={300}
-              onChange={(ev) => dispatch(searchVolunteers(ev.target.value))}
-            />
-          </span>
-          <span className="header-btns flex">
-            <button className="export" onClick={() => onExport.current()}>
-              <ExportIcon />
-            </button>
-            <button
-              className="add-new"
-              onClick={() => setNewVolModalOpen(true)}
-            >
-              <AddVolunteerIcon />
-            </button>
-          </span>
-        </section>
-      </section>
 
+    <BasePage
+      title='טבלת מתנדבים'
+      doSearch={(searchWord) => { dispatch(searchVolunteers(searchWord)) }}
+      doExport={() => onExport.current()}
+      onAdd={() => setNewVolModalOpen(true)}
+    >
       <VolunteersTable
         volunteers={volunteersToShow}
         onExport={onExport}
@@ -86,7 +64,58 @@ const Home = () => {
           setOpen={setProfileModalOpen}
         />
       )}
-    </section>
+    </BasePage>
+
+    // <section className="home page">
+    //   <section className="table-header">
+    //     <h1>טבלת מתנדבים</h1>
+    //     <section className="actions flex align-center space-between">
+    //       <span className="search flex align-center">
+    //         <label htmlFor="search">
+    //           <SearchIcon />
+    //         </label>
+    //         <DebounceInput
+    //           type="search"
+    //           id="search"
+    //           placeholder="חיפוש"
+    //           debounceTimeout={300}
+    //           onChange={(ev) => dispatch(searchVolunteers(ev.target.value))}
+    //         />
+    //       </span>
+    //       <span className="header-btns flex">
+    //         <button className="export" onClick={() => onExport.current()}>
+    //           <ExportIcon />
+    //         </button>
+    //         <button
+    //           className="add-new"
+    //           onClick={() => setNewVolModalOpen(true)}
+    //         >
+    //           <AddVolunteerIcon />
+    //         </button>
+    //       </span>
+    //     </section>
+    //   </section>
+
+    //   <VolunteersTable
+    //     volunteers={volunteersToShow}
+    //     onExport={onExport}
+    //     openProfileModal={openProfileModal}
+    //   />
+    //   {/* <Footer /> */}
+    //   {isNewVolModalOpen && (
+    //     <NewVolunteerModal
+    //       open={isNewVolModalOpen}
+    //       setOpen={setNewVolModalOpen}
+    //     />
+    //   )}
+    //   {isProfileModalOpen && (
+    //     <ProfileVolunteerModal
+    //       volunteer={volunteerProfileToShow}
+    //       open={isProfileModalOpen}
+    //       setOpen={setProfileModalOpen}
+    //     />
+    //   )}
+    // </section>
   );
 };
 
