@@ -1,9 +1,11 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
 .profile_modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: rem(1200px);
+  width: rem(1100px);
   height: rem(600px);
   background-color: white;
   border: none;
@@ -15,6 +17,14 @@
 
   .profile_title {
     margin-right: rem(48px);
+    background-color: #e5e5e5;
+    padding: rem(5px);
+    margin-top: rem(40px);
+    border-top-left-radius: rem(10px);
+    border-top-right-radius: rem(10px);
+  }
+
+  .title {
     font-size: rem(36.8px);
     font-family: Assistant-Semibold;
   }
@@ -22,9 +32,25 @@
   .profile_modal_content {
     margin-right: rem(48px);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: rem(950px);
     height: rem(500px);
+  }
+
+  .profile_modal_content_top {
+    display: flex;
+    background: #e5e5e5;
+    border-top-left-radius: rem(10px);
+    border-bottom-left-radius: rem(10px);
+    border-bottom-right-radius: rem(10px);
+    width: rem(800px);
+  }
+
+  .profile_modal_content_bottom {
+    display: flex;
+    justify-content: space-between;
+    height: rem(350px);
   }
 
   .profile_modal_content_right {
@@ -35,6 +61,8 @@
   .profile_modal_content_center {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: rem(160px);
   }
 
   .profile_modal_content_left {
@@ -42,22 +70,37 @@
     flex-direction: column;
   }
 
+  .profile_pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(160px);
+    margin-left: rem(48px);
+  }
+
+  .profile_pic_img {
+    width: rem(85px);
+    height: rem(85px);
+    background: #bcbcbc;
+    border-radius: 50%;
+  }
+
   .profile_details {
-    margin-bottom: rem(30px);
+    height: rem(112px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
-  .profile_details_title {
-    display: inline;
-  }
-
-  .profile_details_content {
-    display: inline;
-  }
-
-  .profile_modal_form {
-    width: rem(1000px);
+  .profile_details_packages {
     display: flex;
     justify-content: space-between;
+    width: rem(480px);
+  }
+
+  .package {
+    display: flex;
+    flex-direction: column;
   }
 
   .profile_modal_label {
@@ -81,8 +124,30 @@
     direction: ltr;
   }
 
-  .selection_group {
-    margin: 0.3rem 0 1rem 0;
+  .profile_modal_input_date {
+    width: rem(126px);
+    height: rem(30px);
+    margin: 0.3rem 0 1.2rem 0;
+    background-color: white;
+    border-color: black;
+    border-radius: rem(5px);
+    border-width: rem(1px);
+    padding-right: rem(8px);
+  }
+
+  .attached_files {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: rem(280px);
+    height: rem(42px);
+    background-color: #e5e5e5;
+    border-radius: rem(4px);
+  }
+
+  .selection_group_package {
+    display: flex;
+    justify-content: space-between;
   }
 
   .selection_group_btns {
@@ -118,27 +183,23 @@
     margin-right: rem(5px);
   }
 
-  .attached_files {
+  .dates {
     display: flex;
     justify-content: space-between;
-    width: rem(140px);
+    width: rem(320px);
+    margin-bottom: rem(20px);
   }
 
-  .attached_files_types {
-    margin-top: rem(5px);
-  }
-
-  .attached_files_btns {
-    width: rem(37px);
-    display: flex;
-    justify-content: space-between;
+  .e-input-group input.e-input,
+  .e-input-group.e-control-wrapper input.e-input {
+    width: rem(120px);
   }
 
   .summary_text {
-    min-width: rem(250px);
-    max-width: rem(250px);
-    min-height: rem(160px);
-    max-height: rem(220px);
+    min-width: rem(320px);
+    max-width: rem(320px);
+    min-height: rem(110px);
+    max-height: rem(110px);
     padding: rem(11.2px);
     margin: 0.3rem 0 1.2rem 0;
     background-color: white;
