@@ -9,6 +9,7 @@ function App() {
   return (
     <Router>
       <div className='top-container flex column'>
+        <div id="dropdown-root"></div>
         <Header />
         <div className='content-wrapper flex'>
           <Sidebar />
