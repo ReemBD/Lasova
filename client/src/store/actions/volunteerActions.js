@@ -52,6 +52,7 @@ export function saveVolunteer(volunteerToSave) {
         volunteerService.saveVolunteer(volunteerToSave);
       } else {
         volunteerToSave = await volunteerService.saveVolunteer(volunteerToSave);
+        console.log({ volunteerToSave });
       }
       dispatch({ type, volunteer: volunteerToSave });
     } catch (err) {

@@ -3,8 +3,8 @@ import Axios from 'axios';
 const BASE_URL =
   process.env.NODE_ENV === 'production' ? '/api/' : '//localhost:8000/api/';
 
-var axios = Axios.create({
-});
+var axios = Axios.create({});
+axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 
 export const httpService = {
   get(endpoint, data) {

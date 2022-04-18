@@ -1,4 +1,6 @@
+const logger = require('../../services/logger.service');
 const { query, remove, update, getById, add } = require('./volunteer.service');
+const googleDriveService = require('../../services/google-drive.service');
 
 async function getVolunteers(req, res) {
   try {
@@ -35,11 +37,21 @@ async function updateVolunteer(req, res) {
 
 async function addVolunteer(req, res) {
   try {
-    const volunteer = req.body;
-    console.log({volunteer})
+    const {
+      body: { document },
+      files,
+    } = req;
+    const volunteer = JSON.parse(document);
+    if (files) {
+      await googleDriveService.createInitialVolunteerFolder(
+        volunteer.firstName + ' ' + volunteer.lastName,
+        files
+      );
+    }
     const newVolunteer = await add(volunteer);
     res.send(newVolunteer);
   } catch (err) {
+    logger.error(`err while trying to add volunteer`, err);
     res.status(500).send(err);
   }
 }
