@@ -1,44 +1,44 @@
 const { google } = require('googleapis');
-const fs = require('fs');
-const { oauth2Client } = require('../lib/oauth');
-
+const { serviceAccountAuth } = require('../lib/service-account-auth');
+const logger = require('./logger.service');
+const bufferToStream = require('../helpers/buffer-to-stream.helper');
 const ROOT_FOLDER_ID = '1v7IbKTbhJeMXR-mN_fSIvOOaXAcuuHQ3';
-const DEFAULT_DATA = [
-  {
-    resource: { name: 'test-file' },
-    media: {
-      mimeType: 'image/jpg',
-      body: fs.createReadStream('mocks/mechnical-keyboard-pic.jpg'),
-    },
-    fields: 'id',
-  },
-  {
-    resource: { name: 'CV' },
-    media: {
-      mimeType: 'application/pdf',
-      body: fs.createReadStream('mocks/CV-Reem-Ben-David.pdf'),
-    },
-    fields: 'id',
-  },
-];
+// const DEFAULT_DATA = [
+//   {
+//     resource: { name: 'test-file' },
+//     media: {
+//       mimeType: 'image/jpg',
+//       body: fs.createReadStream('mocks/mechnical-keyboard-pic.jpg'),
+//     },
+//     fields: 'id',
+//   },
+//   {
+//     resource: { name: 'CV' },
+//     media: {
+//       mimeType: 'application/pdf',
+//       body: fs.createReadStream('mocks/CV-Reem-Ben-David.pdf'),
+//     },
+//     fields: 'id',
+//   },
+// ];
 
 const drive = google.drive({
   version: 'v3',
-  auth: oauth2Client,
+  auth: serviceAccountAuth,
 });
 
 /**
  * */
-async function createInitialVolunteerFolder(
-  volunteerName,
-  data = DEFAULT_DATA
-) {
+async function createInitialVolunteerFolder(volunteerName, data) {
   try {
+    console.log('creatingInitialVolundeerFolder')
+    data = _adjustDataToGoogleDriveApiFormat(data);
+    console.log('data: ', data);
     const folder = await createFolder(volunteerName);
     data.forEach((options) => (options.resource.parents = [folder.id]));
     await Promise.all(data.map(uploadFile));
   } catch (err) {
-    console.error(err);
+    logger.error(`error while trying to create initival volunteer folder`, err);
   }
 }
 async function createFolder(name, customFileMetadata = {}) {
@@ -49,6 +49,7 @@ async function createFolder(name, customFileMetadata = {}) {
     ...customFileMetadata,
   };
   try {
+    console.log('creating folder');
     const response = await drive.files.create({
       resource: fileMetadata,
       fields: 'id',
@@ -62,15 +63,24 @@ async function createFolder(name, customFileMetadata = {}) {
 
 async function uploadFile(options) {
   try {
-    const response = await drive.files.create({ fields: 'id', ...options });
-
-    console.log('file uploaded: ', response.data);
+    await drive.files.create({ fields: 'id', ...options });
   } catch (err) {
-    console.log('err trying to uploadfile: ', err);
+    logger.error(`error while trying to upload file to google drive`, err);
   }
 }
 
-createInitialVolunteerFolder('Testing');
+function _adjustDataToGoogleDriveApiFormat(data) {
+  return Object.values(data).map((i) => ({
+    resource: {
+      name: i.name,
+    },
+    media: {
+      mimeType: i.mimetype,
+      body: bufferToStream(i.data),
+    },
+    fields: 'id',
+  }));
+}
 
 module.exports = {
   createInitialVolunteerFolder,

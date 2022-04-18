@@ -19,6 +19,16 @@ function _updateVolunteer(volunteer) {
   return httpService.put(`${BASE_URL}/${volunteer.id}`, volunteer);
 }
 
-function _addVolunteer(volunteer) {
-  return httpService.post(`${BASE_URL}`, volunteer);
+async function _addVolunteer(volunteer) {
+  const { files, ...volunteerJSON } = volunteer;
+  const formData = new FormData();
+  const json = JSON.stringify(volunteerJSON);
+  formData.append('document', json);
+  if (files) {
+    for (let i = 0; i < files.length; i++) {
+      const currFile = files.item(i);
+      formData.append(currFile.name, currFile);
+    }
+  }
+  return await httpService.post(`${BASE_URL}`, formData);
 }
