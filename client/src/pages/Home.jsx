@@ -66,56 +66,6 @@ const Home = () => {
       )}
     </BasePage>
 
-    // <section className="home page">
-    //   <section className="table-header">
-    //     <h1>טבלת מתנדבים</h1>
-    //     <section className="actions flex align-center space-between">
-    //       <span className="search flex align-center">
-    //         <label htmlFor="search">
-    //           <SearchIcon />
-    //         </label>
-    //         <DebounceInput
-    //           type="search"
-    //           id="search"
-    //           placeholder="חיפוש"
-    //           debounceTimeout={300}
-    //           onChange={(ev) => dispatch(searchVolunteers(ev.target.value))}
-    //         />
-    //       </span>
-    //       <span className="header-btns flex">
-    //         <button className="export" onClick={() => onExport.current()}>
-    //           <ExportIcon />
-    //         </button>
-    //         <button
-    //           className="add-new"
-    //           onClick={() => setNewVolModalOpen(true)}
-    //         >
-    //           <AddVolunteerIcon />
-    //         </button>
-    //       </span>
-    //     </section>
-    //   </section>
-
-    //   <VolunteersTable
-    //     volunteers={volunteersToShow}
-    //     onExport={onExport}
-    //     openProfileModal={openProfileModal}
-    //   />
-    //   {/* <Footer /> */}
-    //   {isNewVolModalOpen && (
-    //     <NewVolunteerModal
-    //       open={isNewVolModalOpen}
-    //       setOpen={setNewVolModalOpen}
-    //     />
-    //   )}
-    //   {isProfileModalOpen && (
-    //     <ProfileVolunteerModal
-    //       volunteer={volunteerProfileToShow}
-    //       open={isProfileModalOpen}
-    //       setOpen={setProfileModalOpen}
-    //     />
-    //   )}
-    // </section>
   );
 };
 

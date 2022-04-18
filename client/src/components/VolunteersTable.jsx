@@ -196,7 +196,7 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
   );
 
   return (
-    <section className="volunteers-table">
+    <section className="base-table">
       <DataGrid
         rows={rows}
         columns={columns}

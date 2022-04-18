@@ -1,0 +1,35 @@
+[
+  {
+    "id": "g01",
+    "groupType": "מגזר ציבורי",
+    "groupName": "מכינת נחשון",
+    "contactNane": "בר הורביץ",
+    "contactRole": "מנהלת קהילה",
+    "cellphone": "0528996574",
+    "volunteersCount": 20,
+    "reportedHours": 100,
+    "volunteeringsCount": 7
+  },
+  {
+    "id": "g02",
+    "groupType": "מגזר ציבורי",
+    "groupName": "מכינת נחשון",
+    "contactNane": "בר הורביץ",
+    "contactRole": "מנהלת קהילה",
+    "cellphone": "0528996574",
+    "volunteersCount": 20,
+    "reportedHours": 100,
+    "volunteeringsCount": 7
+  },
+  {
+    "id": "g03",
+    "groupType": "מגזר ציבורי",
+    "groupName": "מכינת נחשון",
+    "contactNane": "בר הורביץ",
+    "contactRole": "מנהלת קהילה",
+    "cellphone": "0528996574",
+    "volunteersCount": 20,
+    "reportedHours": 100,
+    "volunteeringsCount": 7
+  }
+]
