@@ -31,5 +31,17 @@
     "volunteersCount": 20,
     "reportedHours": 100,
     "volunteeringsCount": 7
+  },
+  {
+    "id": "g04",
+    "groupType": "נסיון",
+    "groupName": "נסיון",
+    "contactNane": "בר הורביץ",
+    "contactRole": "מנהלת קהילה",
+    "cellphone": "0528996574",
+    "volunteersCount": 20,
+    "reportedHours": 100,
+    "volunteeringsCount": 7
   }
+
 ]

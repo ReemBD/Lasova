@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import {
   GridOverlay,
@@ -9,7 +9,8 @@ import {
 import Loader from "./Loader";
 
 import { ReactComponent as NoResult } from "../assets/imgs/icons/no-result.svg";
-
+import { useDispatch } from 'react-redux';
+import ExportCsvBtn from './ExportCsvBtn'
 const TableLoader = () => {
   return (
     <GridOverlay>
@@ -30,9 +31,13 @@ const CustomNoRowsOverlay = () => {
   );
 };
 
-const BaseTable = ({ entities, rows, columns, ExportCsvBtn, onEntityClick }) => {
+const BaseTable = ({ entities, rows, columns, exportRef, csvBtnRef, onEntityClick }) => {
 
-  useEffect(() => { console.log({ entities }) }, [])
+  useEffect(() => {
+    console.log({ entities })
+    exportRef.current = () => csvBtnRef.current.click();
+  }, [])
+
 
   return (
     <section className="base-table">
@@ -40,7 +45,7 @@ const BaseTable = ({ entities, rows, columns, ExportCsvBtn, onEntityClick }) => 
         rows={rows}
         columns={columns}
         components={{
-          Toolbar: ExportCsvBtn,
+          Toolbar: () => <ExportCsvBtn name="לשובע-קבוצות-וארגונים" csvBtnRef={csvBtnRef} />,
           LoadingOverlay: TableLoader,
           NoRowsOverlay: CustomNoRowsOverlay,
         }}

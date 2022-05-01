@@ -27,6 +27,7 @@
         border-bottom: 1px solid $scrollClr;
         left: unset;
         right: unset;
+        overflow: unset;
         .MuiDataGrid-columnHeader {
           min-width: vw(205px) !important;
           max-width: unset !important;

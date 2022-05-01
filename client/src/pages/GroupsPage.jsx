@@ -2,38 +2,44 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { groupService } from "../services/group-service"
 
+import {
+    GridToolbarContainer,
+    useGridApiContext,
+} from "@mui/x-data-grid";
+
+import { updateUserMsg } from "../store/actions/systemActions.js";
+
 import BasePage from './BasePage';
 import BaseTable from '../components/BaseTable'
-// (function loadMockToStorage() {
-//     console.log()
-//     if (!JSON.parse(localStorage.getItem('group'))) {
-//         const mockData = require('../services/group-mock-data.json');
-//         localStorage['group'] = JSON.stringify(mockData);
-//     }
-// })();
+
 const GroupsPage = () => {
 
 
     const [groups, setGroups] = useState();
+    const [groupsToShow, setGroupsToShow] = useState();
+    const exportRef = useRef(null);
+    const csvBtnRef = useRef(null);
+
+
     // const dispatch = useDispatch();
     // const { groups, groupsToShow } = useSelector(
     //   (state) => state.volunteerReducer
     // );
     useEffect(() => {
         if (!groups) {
-         
             loadGroups()
         }
     }, [])
 
     const loadGroups = async () => {
+        //should move to store
         if (!JSON.parse(localStorage.getItem('group'))) {
             const mockData = require('../services/group-mock-data.json');
             localStorage['group'] = JSON.stringify(mockData);
         }
         const newGroups = await groupService.query()
-        console.log({newGroups})
         setGroups(newGroups)
+        setGroupsToShow(newGroups)
     }
 
 
@@ -44,7 +50,6 @@ const GroupsPage = () => {
                 description: "סוג קבוצה",
                 headerName: "סוג קבוצה",
                 valueGetter: (params) => params.row.groupType || "",
-
             },
             {
                 field: "groupName",
@@ -89,24 +94,34 @@ const GroupsPage = () => {
                 description: "סהכ התנדבויות",
                 valueGetter: (params) => params.row.volunteeringsCount || "",
             },
-            // {
-            //     field: 'actions',
-            //     type: 'actions',
-            //     getActions: params => [
-            //         <GridActionsCellItem icon={<Edit />} onClick={...} label="Edit" />,
-            //         <GridActionsCellItem icon={<DeleteIcon />} onClick={onRemoveVolunteer(params.row.volunteerId)} label="Delete" />,
-            //     ]
-            // }
         ],
         []
     );
 
+
+    //should move to store
+    function searchGroups(searchText) {
+        if(!searchText) setGroupsToShow(groups)
+        let filteredGroups = groups.filter((group) => {
+            return (
+                group.groupName.toLowerCase().includes(searchText.toLowerCase())
+            );
+        });
+        setGroupsToShow(filteredGroups)
+    };
+
+
     return (
-        <BasePage title="טבלת קבוצות וארגונים">
+        <BasePage title="טבלת קבוצות וארגונים"
+            doExport={() => exportRef.current()}
+            doSearch={(searchText) => searchGroups(searchText)}
+        >
             <BaseTable
-                entities={groups}
+                entities={groupsToShow}
                 columns={columns}
-                rows={groups}
+                rows={groupsToShow}
+                exportRef={exportRef}
+                csvBtnRef={csvBtnRef}
             />
         </BasePage>
     )
