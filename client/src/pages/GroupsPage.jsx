@@ -1,47 +1,28 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { groupService } from "../services/group-service"
 
 import {
-    GridToolbarContainer,
-    useGridApiContext,
-} from "@mui/x-data-grid";
-
-import { updateUserMsg } from "../store/actions/systemActions.js";
-
+    loadGroups,
+    searchGroups,
+} from "../store/actions/groupActions";
 import BasePage from './BasePage';
 import BaseTable from '../components/BaseTable'
 
 const GroupsPage = () => {
 
-
-    const [groups, setGroups] = useState();
-    const [groupsToShow, setGroupsToShow] = useState();
     const exportRef = useRef(null);
     const csvBtnRef = useRef(null);
 
+    const dispatch = useDispatch();
+    const { groups, groupsToShow } = useSelector(
+        (state) => state.groupReducer
+    );
 
-    // const dispatch = useDispatch();
-    // const { groups, groupsToShow } = useSelector(
-    //   (state) => state.volunteerReducer
-    // );
     useEffect(() => {
-        if (!groups) {
-            loadGroups()
+        if (!groups.length) {
+            dispatch(loadGroups());
         }
-    }, [])
-
-    const loadGroups = async () => {
-        //should move to store
-        if (!JSON.parse(localStorage.getItem('group'))) {
-            const mockData = require('../services/group-mock-data.json');
-            localStorage['group'] = JSON.stringify(mockData);
-        }
-        const newGroups = await groupService.query()
-        setGroups(newGroups)
-        setGroupsToShow(newGroups)
-    }
-
+    }, [groups]);
 
     const columns = useMemo(
         () => [
@@ -98,23 +79,10 @@ const GroupsPage = () => {
         []
     );
 
-
-    //should move to store
-    function searchGroups(searchText) {
-        if(!searchText) setGroupsToShow(groups)
-        let filteredGroups = groups.filter((group) => {
-            return (
-                group.groupName.toLowerCase().includes(searchText.toLowerCase())
-            );
-        });
-        setGroupsToShow(filteredGroups)
-    };
-
-
     return (
         <BasePage title="טבלת קבוצות וארגונים"
             doExport={() => exportRef.current()}
-            doSearch={(searchText) => searchGroups(searchText)}
+            doSearch={(searchText) => dispatch(searchGroups(searchText))}
         >
             <BaseTable
                 entities={groupsToShow}
@@ -122,6 +90,7 @@ const GroupsPage = () => {
                 rows={groupsToShow}
                 exportRef={exportRef}
                 csvBtnRef={csvBtnRef}
+                exportFileName="לשובע-קבוצות-וארגונים"
             />
         </BasePage>
     )
