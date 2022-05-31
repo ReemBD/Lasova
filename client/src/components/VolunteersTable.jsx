@@ -1,67 +1,24 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
-  GridOverlay,
   DataGrid,
   GridToolbarContainer,
   useGridApiContext,
 } from "@mui/x-data-grid";
 import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 
 import { updateUserMsg } from "../store/actions/systemActions.js";
-import Loader from "./Loader";
 
-import { ReactComponent as FilterIcon } from "../assets/imgs/icons/arrowhead-down-icon.svg";
 import { ReactComponent as NewLead } from "../assets/imgs/icons/status/new-lead.svg";
 import { ReactComponent as Standby } from "../assets/imgs/icons/status/standby.svg";
 import { ReactComponent as Active } from "../assets/imgs/icons/status/active.svg";
 import { ReactComponent as Inactive } from "../assets/imgs/icons/status/inactive.svg";
-import { ReactComponent as NoResult } from "../assets/imgs/icons/no-result.svg";
-import ReactDOM from 'react-dom';
-const TableLoader = () => {
-  return (
-    <GridOverlay>
-      <Loader />
-    </GridOverlay>
-  );
-};
 
+import CustomNoRowsOverlay from './dataGrid/CustomNoRowsOverlay';
+import TableLoader from './dataGrid/TableLoader';
+import FilterableHeaderCell from './FilterableHeaderCell'
+import ExportCsvBtn from './ExportCsvBtn'
 
-
-const FilterableHeaderCell = ({ name, value, title, onChange, onToggleDropdown, options, isSelectingFilter, filter }) => {
-  const containerRef = useRef()
-
-  return (
-    <div style={{ display: 'flex', alignItems: 'center' }} ref={containerRef}>
-      <p>{title}</p>
-      <span style={{ position: 'relative', zIndex: '100' }} className="filter-btn-wrapper">
-        <button
-          className="show-filter-btn"
-          onClick={(ev) => {
-            ev.stopPropagation();
-            const rect = containerRef.current.getBoundingClientRect()
-            onToggleDropdown(containerRef.current.getBoundingClientRect());
-          }}
-        >
-          <FilterIcon />
-        </button>
-      </span>
-    </div>
-  );
-};
-
-const CustomNoRowsOverlay = () => {
-  return (
-    <GridOverlay>
-      <div className="flex column align-center">
-        <NoResult />
-        No results
-      </div>
-    </GridOverlay>
-  );
-};
 
 const statuses = [
   { type: "active", label: "פעיל", icon: <Active /> },
@@ -119,37 +76,6 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
     }
   }, [volunteers, filter]);
 
-  const ExportCsvBtn = () => {
-    const dispatch = useDispatch();
-    const apiRef = useGridApiContext();
-    const csvOptions = {
-      utf8WithBom: true,
-      fileName:
-        "לשובע-מתנדבים-" +
-        new Date().toLocaleDateString("he-IL", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        }),
-    };
-    const exportSelectedData = () => {
-      if (!apiRef.current.state.selection.length) {
-        const msg = {
-          txt: "יש לסמן רשומות לפני ייצוא",
-          type: "failure",
-        };
-        dispatch(updateUserMsg(msg));
-        return;
-      }
-      apiRef.current.exportDataAsCsv(csvOptions);
-    };
-
-    return (
-      <GridToolbarContainer>
-        <button ref={csvBtnRef} onClick={exportSelectedData}></button>
-      </GridToolbarContainer>
-    );
-  };
 
   const onSetFilter = (filterBy) => {
     setFilter({
@@ -272,9 +198,9 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
           rows={rows}
           columns={columns}
           components={{
-            Toolbar: ExportCsvBtn,
-            LoadingOverlay: TableLoader,
-            NoRowsOverlay: CustomNoRowsOverlay,
+            Toolbar: () => <ExportCsvBtn name={"לשובע-מתנדבים-"} csvBtnRef={csvBtnRef} />,
+            LoadingOverlay: () => <TableLoader />,
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}
           loading={volunteers === null}
           hideFooter

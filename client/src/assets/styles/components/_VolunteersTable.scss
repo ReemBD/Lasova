@@ -2,11 +2,15 @@
   flex-grow: 1;
 
   .MuiDataGrid-cell {
-    padding: 10px !important;
+    padding: 20px !important;
   }
 
   .MuiDataGrid-columnHeader {
-    padding: 10px !important;
+    padding: 20px !important;
+    &:focus,
+    &:focus-within {
+      outline: none !important;
+    }
   }
 
   .MuiDataGrid-columnHeaders {
@@ -23,6 +27,10 @@
 
     .MuiDataGrid-columnSeparator {
       display: none;
+    }
+
+    .filter-btn-wrapper {
+      padding-inline-start: 10px;
     }
 
     > div {
@@ -55,6 +63,7 @@
 
     .MuiDataGrid-row {
       width: 100%;
+      cursor: pointer;
 
       * {
         min-width: unset !important;
@@ -64,6 +73,13 @@
       .MuiDataGrid-cell {
         border-bottom: none;
         border-left: 1px dashed rgba(224, 224, 224, 1);
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        word-break: break-word;
+        &:focus,
+        &:focus-within {
+          outline: none !important;
+        }
       }
 
       > .MuiDataGrid-cell {
@@ -82,16 +98,15 @@
       }
     }
   }
-
-  .filter-menu {
-    position: absolute;
-    background-color: white;
-    z-index: 2;
-    padding: 3px;
-    border: 1px solid black;
-    .filter-option.selected {
-      background-color: red;
-    }
+}
+.filter-menu {
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+  padding: 3px;
+  border: 1px solid black;
+  .filter-option.selected {
+    background-color: red;
   }
 }
 
