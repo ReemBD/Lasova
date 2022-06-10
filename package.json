@@ -10,6 +10,8 @@
     "google-auth-library": "^7.14.1",
     "googleapis": "^39.2.0",
     "moment": "^2.29.1",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.5",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "pgtools": "^0.3.2"
