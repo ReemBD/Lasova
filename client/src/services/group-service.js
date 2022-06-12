@@ -12,13 +12,13 @@ function query({ isDefault, doReset } = {}) {
 }
 
 function saveGroup(group) {
-//   return group.id ? _updateGroup(group) : _addGroup(group);
-  return group.id ? _updateGroup(group) : _addGroup(group);
+//   return group._id ? _updateGroup(group) : _addGroup(group);
+  return group._id ? _updateGroup(group) : _addGroup(group);
 }
 
 function _updateGroup(group) {
-//   return httpService.put(`${BASE_URL}/${group.id}`, group);
-  return storageService.put(`${BASE_URL}/${group.id}`, group);
+//   return httpService.put(`${BASE_URL}/${group._id}`, group);
+  return storageService.put(`${BASE_URL}/${group._id}`, group);
 }
 
 function _addGroup(group) {

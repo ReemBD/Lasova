@@ -29,14 +29,14 @@ export function volunteerReducer(state = initialState, action) {
       return {
         ...state,
         volunteers: state.volunteers.filter(
-          (volunteer) => volunteer.id !== action.volunteerId
+          (volunteer) => volunteer._id !== action.volunteerId
         ),
       };
     case "UPDATE_VOLUNTEER":
       return {
         ...state,
         volunteers: state.volunteers.map((volunteer) =>
-          volunteer.id === action.volunteer.id ? action.volunteer : volunteer
+          volunteer._id === action.volunteer._id ? action.volunteer : volunteer
         ),
       };
     case "SEARCH_VOLUNTEERS":

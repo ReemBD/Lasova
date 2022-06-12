@@ -20,12 +20,12 @@ function query(dbName) {
 
 async function get(dbName, entityId) {
   const entities = await query(dbName);
-  return entities.find((entity) => entity.id === entityId);
+  return entities.find((entity) => entity._id === entityId);
 }
 
 // create
 async function post(dbName, newEntity) {
-  newEntity.id = makeId();
+  newEntity._id = makeId();
   const entities = await query(dbName);
   entities.push(newEntity);
   _save(dbName, entities);
@@ -35,14 +35,14 @@ async function post(dbName, newEntity) {
 // update
 async function put(dbName, updatedEntity) {
   const entities = await query(dbName);
-  const idx = entities.findIndex((entity) => entity.id === updatedEntity.id);
+  const idx = entities.findIndex((entity) => entity._id === updatedEntity._id);
   entities.splice(idx, 1, updatedEntity);
   _save(dbName, entities);
 }
 
 async function remove(dbName, entityId) {
   const entities = await query(dbName);
-  const idx = entities.findIndex((entity) => entity.id === entityId);
+  const idx = entities.findIndex((entity) => entity._id === entityId);
   entities.splice(idx, 1);
   _save(dbName, entities);
 }
@@ -50,7 +50,7 @@ async function remove(dbName, entityId) {
 async function postMany(dbName, newEntities) {
   const entities = await query(dbName);
   newEntities.forEach((entity) => {
-    entity.id = makeId();
+    entity._id = makeId();
   });
   entities.push(...newEntities);
   _save(dbName, entities);

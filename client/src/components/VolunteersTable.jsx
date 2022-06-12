@@ -1,30 +1,29 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   DataGrid,
   GridToolbarContainer,
   useGridApiContext,
-} from "@mui/x-data-grid";
+} from '@mui/x-data-grid';
 import MenuItem from '@mui/material/MenuItem';
 
-import { updateUserMsg } from "../store/actions/systemActions.js";
+import { updateUserMsg } from '../store/actions/systemActions.js';
 
-import { ReactComponent as NewLead } from "../assets/imgs/icons/status/new-lead.svg";
-import { ReactComponent as Standby } from "../assets/imgs/icons/status/standby.svg";
-import { ReactComponent as Active } from "../assets/imgs/icons/status/active.svg";
-import { ReactComponent as Inactive } from "../assets/imgs/icons/status/inactive.svg";
+import { ReactComponent as NewLead } from '../assets/imgs/icons/status/new-lead.svg';
+import { ReactComponent as Standby } from '../assets/imgs/icons/status/standby.svg';
+import { ReactComponent as Active } from '../assets/imgs/icons/status/active.svg';
+import { ReactComponent as Inactive } from '../assets/imgs/icons/status/inactive.svg';
 
 import CustomNoRowsOverlay from './dataGrid/CustomNoRowsOverlay';
 import TableLoader from './dataGrid/TableLoader';
-import FilterableHeaderCell from './FilterableHeaderCell'
-import ExportCsvBtn from './ExportCsvBtn'
-
+import FilterableHeaderCell from './FilterableHeaderCell';
+import ExportCsvBtn from './ExportCsvBtn';
 
 const statuses = [
-  { type: "active", label: "פעיל", icon: <Active /> },
-  { type: "new", label: "חדש", icon: <NewLead /> },
-  { type: "standby", label: "מושהה", icon: <Standby /> },
-  { type: "inactive", label: "לא פעיל", icon: <Inactive /> },
+  { type: 'active', label: 'פעיל', icon: <Active /> },
+  { type: 'new', label: 'חדש', icon: <NewLead /> },
+  { type: 'standby', label: 'מושהה', icon: <Standby /> },
+  { type: 'inactive', label: 'לא פעיל', icon: <Inactive /> },
 ];
 
 const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
@@ -35,25 +34,27 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
   const [filter, setFilter] = useState({
     status: '',
     groupName: '',
-    volunteerType: ''
+    volunteerType: '',
   });
   const filterOptions = useMemo(() => {
     if (!volunteers) return {};
     const retval = volunteers.reduce((acc, curr) => {
-      Object.keys(filter).forEach(key => {
-        acc[key].add(curr[key])
-      })
+      Object.keys(filter).forEach((key) => {
+        acc[key].add(curr[key]);
+      });
       return acc;
-    }, createInitialFilterOptions())
-    Object.keys(retval).forEach(key => { retval[key] = Array.from(retval[key]) })
+    }, createInitialFilterOptions());
+    Object.keys(retval).forEach((key) => {
+      retval[key] = Array.from(retval[key]);
+    });
     return retval;
-  }, [volunteers])
+  }, [volunteers]);
   function createInitialFilterOptions() {
     const retval = {};
-    Object.keys(filter).forEach(key => {
-      retval[key] = new Set()
-      retval[key].add('בחר הכל')
-    })
+    Object.keys(filter).forEach((key) => {
+      retval[key] = new Set();
+      retval[key].add('בחר הכל');
+    });
     return retval;
   }
 
@@ -63,12 +64,14 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
 
   useEffect(() => {
     if (volunteers !== null) {
-      let volunteersToShow = volunteers
+      let volunteersToShow = volunteers;
       for (let filterBy in filter) {
-        const currFilter = filter[filterBy]
+        const currFilter = filter[filterBy];
         if (currFilter) {
           if (currFilter !== 'בחר הכל') {
-            volunteersToShow = volunteersToShow.filter(val => val[filterBy] === currFilter)
+            volunteersToShow = volunteersToShow.filter(
+              (val) => val[filterBy] === currFilter
+            );
           }
         }
       }
@@ -76,14 +79,13 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
     }
   }, [volunteers, filter]);
 
-
   const onSetFilter = (filterBy) => {
     setFilter({
       ...filter,
-      [activeFilter]: filterBy
-    })
-    setActiveFilter('')
-  }
+      [activeFilter]: filterBy,
+    });
+    setActiveFilter('');
+  };
 
   const getFilterableHeaderCellProps = (name, title) => {
     return {
@@ -96,79 +98,91 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
         setDropdownPosition({ top: bottom, left });
         activeFilter === name ? setActiveFilter('') : setActiveFilter(name);
       },
-    }
-  }
+    };
+  };
   const columns = useMemo(
     () => [
       {
-        field: "status",
-        description: "סטטוס",
-        headerName: "סטטוס",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('status', "סטטוס")} />,
+        field: 'status',
+        description: 'סטטוס',
+        headerName: 'סטטוס',
+        renderHeader: () => (
+          <FilterableHeaderCell
+            {...getFilterableHeaderCellProps('status', 'סטטוס')}
+          />
+        ),
         valueFormatter: ({ value }) =>
           statuses.find((status) => status.type === value)?.label,
         renderCell: (params) =>
           statuses.find((status) => status.type === params.row.status)?.icon ||
-          "",
+          '',
       },
       {
-        field: "firstName",
-        headerName: "שם פרטי",
-        description: "שם פרטי",
-        valueGetter: (params) => params.row.firstName || "",
+        field: 'firstName',
+        headerName: 'שם פרטי',
+        description: 'שם פרטי',
+        valueGetter: (params) => params.row.firstName || '',
       },
       {
-        field: "lastName",
-        headerName: "שם משפחה",
-        description: "שם משפחה",
-        valueGetter: (params) => params.row.lastName || "",
+        field: 'lastName',
+        headerName: 'שם משפחה',
+        description: 'שם משפחה',
+        valueGetter: (params) => params.row.lastName || '',
       },
       {
-        field: "taz",
-        headerName: "תעודת זהות",
-        valueGetter: (params) => params.row.taz || "-",
+        field: 'taz',
+        headerName: 'תעודת זהות',
+        valueGetter: (params) => params.row.taz || '-',
       },
       {
-        field: "volunteerType",
-        headerName: "מסגרת התנדבות",
-        description: "מסגרת התנדבות",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps("volunteerType", "מסגרת התנדבות")} />,
-        valueGetter: (params) => params.row.volunteerType || "",
+        field: 'volunteerType',
+        headerName: 'מסגרת התנדבות',
+        description: 'מסגרת התנדבות',
+        renderHeader: () => (
+          <FilterableHeaderCell
+            {...getFilterableHeaderCellProps('volunteerType', 'מסגרת התנדבות')}
+          />
+        ),
+        valueGetter: (params) => params.row.volunteerType || '',
       },
       {
-        field: "groupName",
-        headerName: "מסגרת מפנה",
-        description: "מסגרת מפנה",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps("groupName", "מסגרת מפנה")} />,
+        field: 'groupName',
+        headerName: 'מסגרת מפנה',
+        description: 'מסגרת מפנה',
+        renderHeader: () => (
+          <FilterableHeaderCell
+            {...getFilterableHeaderCellProps('groupName', 'מסגרת מפנה')}
+          />
+        ),
         valueGetter: (params) => {
           if (params.row.scholarship) {
             return `מלגה, ${params.row.scholarship}`;
           }
-          return params.row.groupName || "";
+          return params.row.groupName || '';
         },
       },
       {
-        field: "volunteerHours",
-        headerName: "שעות מדווחות/מאושרות",
-        description: "שעות מדווחות/מאושרות",
+        field: 'volunteerHours',
+        headerName: 'שעות מדווחות/מאושרות',
+        description: 'שעות מדווחות/מאושרות',
         sortable: false,
         valueFormatter: ({ id }) => {
           const volunteer = volunteers?.find(
-            (volunteer) => volunteer.id === id
+            (volunteer) => volunteer._id === id
           );
           const volunteerHours =
             (volunteer?.reportedHours || 0) +
-            " / " +
+            ' / ' +
             (volunteer?.approvedHours || 0);
           return volunteerHours;
         },
         renderCell: (params) => (
           <>
-            <span className="reported-hours">
+            <span className='reported-hours'>
               {params.row.reportedHours || 13}
-            </span>{" "}
+            </span>{' '}
             /
-            <span className="approved-hours">
+            <span className='approved-hours'>
               {params.row.approvedHours || 45}
             </span>
           </>
@@ -188,17 +202,31 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
 
   return (
     <>
-      {activeFilter && <div className="filter-menu" style={{
-        ...dropdownPosition,
-      }}>
-        {filterOptions[activeFilter].map(o => <MenuItem className="filter-option" key={o} onClick={() => onSetFilter(o)}>{o}</MenuItem>)}
-      </div>}
-      <section className="base-table">
+      {activeFilter && (
+        <div
+          className='filter-menu'
+          style={{
+            ...dropdownPosition,
+          }}>
+          {filterOptions[activeFilter].map((o) => (
+            <MenuItem
+              className='filter-option'
+              key={o}
+              onClick={() => onSetFilter(o)}>
+              {o}
+            </MenuItem>
+          ))}
+        </div>
+      )}
+      <section className='base-table'>
         <DataGrid
           rows={rows}
+          getRowId={(row) => row._id}
           columns={columns}
           components={{
-            Toolbar: () => <ExportCsvBtn name={"לשובע-מתנדבים-"} csvBtnRef={csvBtnRef} />,
+            Toolbar: () => (
+              <ExportCsvBtn name={'לשובע-מתנדבים-'} csvBtnRef={csvBtnRef} />
+            ),
             LoadingOverlay: () => <TableLoader />,
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}
@@ -208,16 +236,15 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
           disableColumnMenu
           disableSelectionOnClick
           onRowClick={(ev) => {
-            console.log("open profile of volunteerId:", ev.row);
+            console.log('open profile of volunteerId:', ev.row);
             openProfileModal(ev.row);
           }}
           onCellClick={(ev) => {
-            ev.stopPropagation()
+            ev.stopPropagation();
           }}
         />
       </section>
     </>
-
   );
 };
 
