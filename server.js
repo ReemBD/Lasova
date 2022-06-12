@@ -3,14 +3,14 @@ const cors = require('cors');
 const app = express();
 const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
-const { dbURL } = require('./config/index.config');
+const { dbURI, dbName } = require('./config/index.config');
 const volunteerModel = require('./api/volunteer/volunteer.schema');
 require('dotenv').config();
 
 // requests can only come from this domains
 app.use(
   cors({
-    origin: '*',
+    origin: 'http://localhost:3000',
   })
 );
 
@@ -23,8 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // connect to db
-mongoose.connect(dbURL, {
-  dbName: 'lasova_dev',
+mongoose.connect(dbURI, {
+  dbName,
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
