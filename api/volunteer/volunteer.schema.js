@@ -1,22 +1,24 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
-module.exports = new Schema({
-  groupName: String,
-  firstName: String,
-  lastName: String,
-  taz: String,
+const Volunteer = new Schema({
+  groupName: { type: String, trim: true, default: '' },
+  firstName: { type: String, trim: true, default: '' },
+  lastName: { type: String, trim: true, default: '' },
+  taz: { type: String, trim: true, default: '' },
   birth: { type: Date, default: Date.now },
-  gender: String,
-  policeCertification: Boolean,
-  otherDocuments: Boolean,
-  cellphone: String,
-  email: String,
-  city: String,
-  volunteerType: String,
-  yearJoined: Number,
-  weekdayAvailability: [Number],
-  status: String,
-  reportedHours: Number,
-  approvedHours: Number,
+  gender: { type: String, trim: true, default: '' },
+  policeCertification: { type: Boolean, default: false },
+  otherDocuments: { type: Boolean, default: false },
+  cellphone: { type: String, trim: true, default: '' },
+  email: { type: String, trim: true, default: '' },
+  city: { type: String, trim: true, default: '' },
+  volunteerType: { type: String, trim: true, default: '' },
+  yearJoined: { type: Number, default: new Date().getFullYear() },
+  weekdayAvailability: [{ type: String, default: '' }],
+  status: { type: String, trim: true, default: '' },
+  reportedHours: { type: Number, default: 0 },
+  approvedHours: { type: Number, default: 0 },
 });
+
+module.exports = model('Volunteer', Volunteer);

@@ -1,1 +1,7 @@
 3/12/2022, 2:55:58 PM - ERROR - failed to fetch volunteersSyntaxError: Unexpected token u in JSON at position 0 
+6/12/2022, 2:34:06 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token u in JSON at position 0 
+6/12/2022, 2:36:10 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token u in JSON at position 0 
+6/12/2022, 2:36:39 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
+6/12/2022, 2:36:53 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
+6/12/2022, 2:37:32 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
+6/12/2022, 2:54:44 PM - ERROR - error updating volunteer undefined | CastError: Cast to date failed for value "16.08.89" (type string) at path "birth" 
