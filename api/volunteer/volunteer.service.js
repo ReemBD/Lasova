@@ -27,8 +27,8 @@ async function getById(volunteerId) {
 
 async function add(volunteer) {
   try {
-    const volunteerInstance = new Volunteer(volunteer);
-    volunteerInstance.save((err, volunteer) => {
+    volunteer = new Volunteer(volunteer);
+    volunteer.save((err, volunteer) => {
       if (err) return logger.error('couldnt save volunteer', err);
     });
     return volunteer;
@@ -56,7 +56,7 @@ async function remove(volunteerIds) {
 async function update(volunteer) {
   try {
     const res = await Volunteer.findByIdAndUpdate(volunteer._id, volunteer);
-    return volunteer;
+    return res;
   } catch (err) {
     logger.error(`error updating volunteer ${volunteer.id}`, err);
     throw err;

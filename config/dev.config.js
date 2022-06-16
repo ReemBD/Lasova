@@ -1,5 +1,6 @@
 module.exports = {
-  dbURI:
-    'mongodb+srv://Reem:bK8mmFfUSACjZ8Tr@devcluster.nnqvqex.mongodb.net/?retryWrites=true&w=majority',
-  dbName: 'lasova_dev',
+  env: process.env.NODE_ENV,
+  dbURI: process.env.DB_URI,
+  dbName: process.env.DB_NAME,
+  clientLocalhostPorts: process.env.CLIENT_LOCALHOST_SUPPORTED_PORTS.split(','),
 };

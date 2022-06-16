@@ -1,16 +1,22 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
-const { dbURI, dbName } = require('./config/index.config');
-const volunteerModel = require('./api/volunteer/volunteer.schema');
-require('dotenv').config();
+const {
+  dbURI,
+  dbName,
+  clientLocalhostPorts,
+} = require('./config/index.config');
 
 // requests can only come from this domains
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? '' // todo: add production
+        : clientLocalhostPorts.map((port) => `http://localhost:${port}`),
   })
 );
 
@@ -33,6 +39,7 @@ db.once('open', function () {
 });
 
 app.use('/api/volunteer', require('./api/volunteer/volunteer.routes'));
+app.use('/api/group', require('./api/group/group.routes'));
 
 // Starting the server on http://localhost:PORT
 app.listen(process.env.PORT, () =>

@@ -5,3 +5,15 @@
 6/12/2022, 2:36:53 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
 6/12/2022, 2:37:32 PM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
 6/12/2022, 2:54:44 PM - ERROR - error updating volunteer undefined | CastError: Cast to date failed for value "16.08.89" (type string) at path "birth" 
+6/17/2022, 12:52:02 AM - ERROR - failed to fetch voluntterCastError: Cast to ObjectId failed for value "62ab5a992534d7878bcd17f" (type string) at path "_id" for model "Group" 
+6/17/2022, 12:52:23 AM - ERROR - failed to fetch voluntterCastError: Cast to ObjectId failed for value "62ab5a992534d7878bcd17" (type string) at path "_id" for model "Group" 
+6/17/2022, 12:52:53 AM - ERROR - failed to fetch volunteer CastError: Cast to ObjectId failed for value "62ab5a992534d7878bcd17" (type string) at path "_id" for model "Group" 
+6/17/2022, 1:16:06 AM - ERROR - error updating group undefined | CastError: Cast to ObjectId failed for value "62ab5a992534d7878bcd17f" (type string) at path "_id" for model "Group" 
+6/17/2022, 1:17:48 AM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token m in JSON at position 1 
+6/17/2022, 1:18:12 AM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token d in JSON at position 0 
+6/17/2022, 1:18:39 AM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token d in JSON at position 0 
+6/17/2022, 1:18:47 AM - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token d in JSON at position 0 
+6/17/2022, 1:22:16 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
+6/17/2022, 1:23:27 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
+6/17/2022, 1:23:46 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
+6/17/2022, 1:24:37 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
