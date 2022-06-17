@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,23 +9,10 @@ import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import GroupsPage from './pages/GroupsPage';
 import Login from './pages/Login';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.groupReducer);
-
-  let routes;
-
-  if (isAuthenticated) {
-    routes = (
-      <>
-        <Route path="/groups" element={<GroupsPage />} />
-        <Route path="/" element={<Home />} />
-      </>
-    );
-  } else {
-    routes = <Route path="/login" element={<Login />} />;
-  }
+  const { isAuthenticated } = useSelector((state) => state.authReducer);
 
   return (
     <Router>
@@ -37,20 +23,26 @@ function App() {
           <Sidebar />
           <main>
             <Routes>
-              {routes}
-              {/* <Route path="/login" element={<Login />} /> */}
+              <Route path="/login" element={<Login />} />
               {/* <Route path="/groups" element={<GroupsPage />} /> */}
-              {/* {isAuthenticated ? (
-                <Route path="/groups" element={<GroupsPage />} />
-              ) : (
-                <Navigate to="/" replace />
-              )}
-              {isAuthenticated ? (
-                <Route path="/" element={<Home />} />
-              ) : (
-                <Navigate to="/" replace />
-              )} */}
               {/* <Route path="/" element={<Home />} /> */}
+              <Route
+                path="/groups"
+                element={
+                  isAuthenticated ? (
+                    <GroupsPage />
+                  ) : (
+                    <Navigate replace to="/login" />
+                  )
+                }
+              />
+              <Route
+                path="/"
+                element={
+                  isAuthenticated ? <Home /> : <Navigate replace to="/login" />
+                }
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
         </div>

@@ -34,19 +34,9 @@ export function authReducer(state = initialState, action) {
         ...state,
         // ...payload,
         token: payload,
-        // user: action.user,
-        // email: payload,
         isAuthenticated: true,
-        // type: 'ADMIN',
         loading: false,
       };
-    // case LOGIN_FAIL:
-    //   return {
-    //     ...state,
-    //     ...payload,
-    //     isAuthenticated: false,
-    //     loading: false,
-    //   };
     case LOGIN_FAIL:
     case AUTH_ERROR:
     case LOGOUT:

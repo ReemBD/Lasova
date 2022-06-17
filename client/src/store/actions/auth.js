@@ -28,6 +28,7 @@ export const loadUser = (email) => async (dispatch) => {
 // Login User
 export const login = (email, password) => async (dispatch) => {
   //   const body = { email, password };
+//   let navigate = useNavigate();
   // Check if it is yulia with mongoDB
   // no token logic yet
   try {
@@ -43,7 +44,7 @@ export const login = (email, password) => async (dispatch) => {
       dispatch(loadUser(email));
       console.log('🚀 ~ file: auth.js ~ line 48 ~ login ~ user', user);
       console.log('sucsess');
-      //   navigate('/');
+        // navigate('/');
     } else {
       console.log('bummer');
       dispatch({

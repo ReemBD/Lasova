@@ -11,7 +11,7 @@ import styled from "styled-components";
 const Login = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector(
-        (state) => state.groupReducer
+        (state) => state.authReducer
     );
   let navigate = useNavigate();
   
@@ -38,12 +38,14 @@ const Login = () => {
       return;
     }
     dispatch(login(email, password))
+    // navigate('/')
   }
 
   useEffect(() => {
     if (isAuthenticated) {
-      // return <Navigate to="/" replace />;
-      navigate('/')
+      console.log("🚀 ~ file: Login.jsx ~ line 46 ~ useEffect ~ isAuthenticated", isAuthenticated)
+      return <Navigate to="/" replace />;
+      // navigate('/')
     }
   }, [isAuthenticated])
 
