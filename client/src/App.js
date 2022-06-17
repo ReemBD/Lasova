@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,6 +14,20 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.groupReducer);
+
+  let routes;
+
+  if (isAuthenticated) {
+    routes = (
+      <>
+        <Route path="/groups" element={<GroupsPage />} />
+        <Route path="/" element={<Home />} />
+      </>
+    );
+  } else {
+    routes = <Route path="/login" element={<Login />} />;
+  }
+
   return (
     <Router>
       <div className="top-container flex column">
@@ -22,8 +37,9 @@ function App() {
           <Sidebar />
           <main>
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/groups" element={<GroupsPage />} />
+              {routes}
+              {/* <Route path="/login" element={<Login />} /> */}
+              {/* <Route path="/groups" element={<GroupsPage />} /> */}
               {/* {isAuthenticated ? (
                 <Route path="/groups" element={<GroupsPage />} />
               ) : (
@@ -34,7 +50,7 @@ function App() {
               ) : (
                 <Navigate to="/" replace />
               )} */}
-              <Route path="/" element={<Home />} />
+              {/* <Route path="/" element={<Home />} /> */}
             </Routes>
           </main>
         </div>

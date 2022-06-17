@@ -1,46 +1,58 @@
 import { useNavigate } from 'react-router-dom';
-import { LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGOUT,
+} from './types';
 
 // Load User
-export const loadUser = () => async (dispatch) => {
+export const loadUser = (email) => async (dispatch) => {
   try {
     // const res = await api.get('/auth');
-    const res = '1234';
-
+    const user = { email: email, type: 'ADMIN', name: 'Yulia' };
     dispatch({
-      type: 'USER_LOADED',
-      payload: res.data,
+      type: USER_LOADED,
+      payload: user,
     });
+    console.log('🚀 ~ file: auth.js ~ line 13 ~ loadUser ~ user', user);
   } catch (err) {
-    dispatch({
-      type: 'AUTH_ERROR',
-    });
+    console.log('🚀 ~ file: auth.js ~ line 14 ~ loadUser ~ err', err);
+    // dispatch({
+    //   type: 'AUTH_ERROR',
+    // });
   }
 };
 
 // Login User
 export const login = (email, password) => async (dispatch) => {
-  //   let navigate = useNavigate();
   //   const body = { email, password };
   // Check if it is yulia with mongoDB
-  // no token logic yet?
-  // mock - change to redux actiuon later
-  if (password === '1234' && email === 'yulia@gmail.com') {
-    dispatch({
-      type: 'LOGIN_SUCCESS',
-      payload: email,
-    });
-    console.log('sucsess');
-    console.log(email);
-    console.log(password);
-    //   navigate('/');
-  } else {
-    console.log('bummer');
-    console.log(email);
-    console.log(password);
-    dispatch({
-      type: 'LOGIN_FAIL',
-    });
+  // no token logic yet
+  try {
+    if (password === '1234' && email === 'yulia@gmail.com') {
+      const token = '1234YuliaTopSecretJWT'; // res.data
+      const user = { email: email, type: 'ADMIN', name: 'Yulia' };
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        // payload: token,
+        payload: token,
+      });
+      dispatch(loadUser(email));
+      console.log('🚀 ~ file: auth.js ~ line 48 ~ login ~ user', user);
+      console.log('sucsess');
+      //   navigate('/');
+    } else {
+      console.log('bummer');
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    }
+  } catch (error) {
+    console.log('🚀 ~ file: auth.js ~ line 50 ~ login ~ error', error);
+    // localStorage.removeItem('token');
   }
 
   //   try {
@@ -69,4 +81,4 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 // Logout
-export const logout = () => ({ type: 'LOGOUT' });
+export const logout = () => ({ type: LOGOUT });

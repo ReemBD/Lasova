@@ -38,10 +38,6 @@ const Login = () => {
       return;
     }
     dispatch(login(email, password))
-    if (isAuthenticated) {
-      // return <Navigate to="/" replace />;
-      navigate('/')
-    }
   }
 
   useEffect(() => {
@@ -50,6 +46,11 @@ const Login = () => {
       navigate('/')
     }
   }, [isAuthenticated])
+
+  if (isAuthenticated) {
+      return <Navigate to="/" replace />;
+      // navigate('/')
+    }
 
   return (
     <Wrapper> 

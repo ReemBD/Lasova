@@ -1,33 +1,62 @@
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGOUT,
+} from '../actions/types';
+
 const initialState = {
-  //   token: localStorage.getItem('token'),
+  token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,
   user: null,
   //   email: null,
-  type: null,
+  //   type: null,
 };
 
 export function authReducer(state = initialState, action) {
+  console.log('🚀 ~ file: auth.js ~ line 19 ~ authReducer ~ state', state);
   const { type, payload } = action;
-  //   console.log('🚀 ~ file: auth.js ~ line 13 ~ authReducer ~ payload', payload);
+  console.log('🚀 ~ file: auth.js ~ line 21 ~ authReducer ~ payload', payload);
 
   switch (type) {
-    case 'LOGIN_SUCCESS':
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
+    case LOGIN_SUCCESS:
+      localStorage.setItem('token', payload);
       return {
         ...state,
         // ...payload,
-        user: { ...state.user, email: payload },
+        token: payload,
+        // user: action.user,
         // email: payload,
         isAuthenticated: true,
-        type: 'ADMIN',
+        // type: 'ADMIN',
         loading: false,
       };
-    case 'LOGIN_FAIL':
+    // case LOGIN_FAIL:
+    //   return {
+    //     ...state,
+    //     ...payload,
+    //     isAuthenticated: false,
+    //     loading: false,
+    //   };
+    case LOGIN_FAIL:
+    case AUTH_ERROR:
+    case LOGOUT:
+      localStorage.removeItem('token');
       return {
         ...state,
-        ...payload,
+        token: null,
         isAuthenticated: false,
         loading: false,
+        user: null,
       };
 
     default:
