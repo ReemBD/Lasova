@@ -16,11 +16,10 @@ export const loadUser = (email) => async (dispatch) => {
       type: USER_LOADED,
       payload: user,
     });
-    console.log('🚀 ~ file: auth.js ~ line 13 ~ loadUser ~ user', user);
   } catch (err) {
     console.log('🚀 ~ file: auth.js ~ line 14 ~ loadUser ~ err', err);
     dispatch({
-      type: 'AUTH_ERROR',
+      type: AUTH_ERROR,
     });
   }
 };
@@ -33,11 +32,9 @@ export const login = (email, password) => async (dispatch) => {
   try {
     if (password === '1234' && email === 'yulia@gmail.com') {
       const token = '1234YuliaTopSecretJWT'; // res.data
-      const user = { email: email, type: 'ADMIN', name: 'Yulia' };
 
       dispatch({
         type: LOGIN_SUCCESS,
-        // payload: token,
         payload: token,
       });
       dispatch(loadUser(email));
@@ -50,7 +47,6 @@ export const login = (email, password) => async (dispatch) => {
     }
   } catch (error) {
     console.log('🚀 ~ file: auth.js ~ line 50 ~ login ~ error', error);
-    // localStorage.removeItem('token');
   }
 
   //   try {

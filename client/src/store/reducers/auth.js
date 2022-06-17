@@ -11,8 +11,6 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: JSON.parse(localStorage.getItem('user')) | {},
-  //   email: null,
-  //   type: null,
 };
 
 export function authReducer(state = initialState, action) {
@@ -20,10 +18,6 @@ export function authReducer(state = initialState, action) {
 
   switch (type) {
     case USER_LOADED:
-    //   console.log(
-    //     '🚀 ~ file: auth.js ~ line 20 ~ authReducer ~ payload',
-    //     payload
-    //   );
       localStorage.setItem('user', JSON.stringify(payload));
       return {
         ...state,
