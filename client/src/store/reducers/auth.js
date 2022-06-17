@@ -7,21 +7,24 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem('token') | null,
   isAuthenticated: null,
   loading: true,
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) | {},
   //   email: null,
   //   type: null,
 };
 
 export function authReducer(state = initialState, action) {
-  console.log('🚀 ~ file: auth.js ~ line 19 ~ authReducer ~ state', state);
   const { type, payload } = action;
-  console.log('🚀 ~ file: auth.js ~ line 21 ~ authReducer ~ payload', payload);
 
   switch (type) {
     case USER_LOADED:
+    //   console.log(
+    //     '🚀 ~ file: auth.js ~ line 20 ~ authReducer ~ payload',
+    //     payload
+    //   );
+      localStorage.setItem('user', JSON.stringify(payload));
       return {
         ...state,
         isAuthenticated: true,
@@ -41,6 +44,7 @@ export function authReducer(state = initialState, action) {
     case AUTH_ERROR:
     case LOGOUT:
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       return {
         ...state,
         token: null,

@@ -19,16 +19,15 @@ export const loadUser = (email) => async (dispatch) => {
     console.log('🚀 ~ file: auth.js ~ line 13 ~ loadUser ~ user', user);
   } catch (err) {
     console.log('🚀 ~ file: auth.js ~ line 14 ~ loadUser ~ err', err);
-    // dispatch({
-    //   type: 'AUTH_ERROR',
-    // });
+    dispatch({
+      type: 'AUTH_ERROR',
+    });
   }
 };
 
 // Login User
 export const login = (email, password) => async (dispatch) => {
   //   const body = { email, password };
-//   let navigate = useNavigate();
   // Check if it is yulia with mongoDB
   // no token logic yet
   try {
@@ -42,9 +41,7 @@ export const login = (email, password) => async (dispatch) => {
         payload: token,
       });
       dispatch(loadUser(email));
-      console.log('🚀 ~ file: auth.js ~ line 48 ~ login ~ user', user);
       console.log('sucsess');
-        // navigate('/');
     } else {
       console.log('bummer');
       dispatch({

@@ -1,3 +1,4 @@
+// import { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,9 +10,11 @@ import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import GroupsPage from './pages/GroupsPage';
 import Login from './pages/Login';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+// import { loadUser } from './store/actions/auth';
 
 function App() {
+  // const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.authReducer);
 
   return (
@@ -23,7 +26,10 @@ function App() {
           <Sidebar />
           <main>
             <Routes>
-              <Route path="/login" element={<Login />} />
+              <Route
+                path="/login"
+                element={localStorage.token ? <Home /> : <Login />}
+              />
               {/* <Route path="/groups" element={<GroupsPage />} /> */}
               {/* <Route path="/" element={<Home />} /> */}
               <Route
