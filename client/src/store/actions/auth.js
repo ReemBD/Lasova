@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -38,9 +37,7 @@ export const login = (email, password) => async (dispatch) => {
         payload: token,
       });
       dispatch(loadUser(email));
-      console.log('sucsess');
     } else {
-      console.log('bummer');
       dispatch({
         type: LOGIN_FAIL,
       });
@@ -49,29 +46,6 @@ export const login = (email, password) => async (dispatch) => {
     console.log('🚀 ~ file: auth.js ~ line 50 ~ login ~ error', error);
   }
 
-  //   try {
-  //     // const res = await api.post('/auth', body);
-  //     // !! Change to mock response !! --------------------------:
-  //     const res = '1234';
-
-  //     dispatch({
-  //       type: 'LOGIN_SUCCESS',
-  //       payload: res.data,
-  //     });
-
-  //     dispatch(loadUser());
-  //   } catch (err) {
-  //     const errors = err.response.data.errors;
-
-  //     if (errors) {
-  //       console.log('🚀 ~ file: auth.js ~ line 19 ~ login ~ errors', errors);
-  //       //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-  //     }
-
-  //     dispatch({
-  //       type: 'LOGIN_FAIL',
-  //     });
-  //   }
 };
 
 // Logout

@@ -49,10 +49,7 @@ function App() {
                   isAuthenticated ? <Home /> : <Navigate replace to="/login" />
                 }
               />
-              {/* <Route path="/groups" element={<GroupsPage />} /> */}
-              {/* <Route path="/" element={<Home />} /> */}
-
-              {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
         </div>
