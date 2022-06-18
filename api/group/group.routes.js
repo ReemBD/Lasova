@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {
   getGroups,
-  removeGroups,
+  removeManyGroups,
+  removeGroup,
   updateGroup,
   getGroupById,
   addGroup,
@@ -11,7 +12,8 @@ const {
 router.get('/:groupId', getGroupById);
 router.get('/', getGroups);
 
-router.delete('/', removeGroups);
+router.delete('/:groupId', removeGroup)
+router.delete('/', removeManyGroups);
 
 router.put('/:groupId', updateGroup);
 

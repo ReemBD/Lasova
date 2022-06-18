@@ -31,6 +31,7 @@ app.use(fileUpload());
 // connect to db
 mongoose.connect(dbURI, {
   dbName,
+  useUnifiedTopology: true
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));

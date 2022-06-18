@@ -1,6 +1,13 @@
+const {
+  NODE_ENV,
+  DB_URI,
+  DB_NAME,
+  CLIENT_LOCALHOST_SUPPORTED_PORTS
+} = process.env;
+
 module.exports = {
-  env: process.env.NODE_ENV,
-  dbURI: process.env.DB_URI,
-  dbName: process.env.DB_NAME,
-  clientLocalhostPorts: process.env.CLIENT_LOCALHOST_SUPPORTED_PORTS.split(','),
+  env: NODE_ENV,
+  dbURI: DB_URI,
+  dbName: DB_NAME,
+  clientLocalhostPorts: CLIENT_LOCALHOST_SUPPORTED_PORTS.split(','),
 };

@@ -1,7 +1,7 @@
 const logger = require('../../services/logger.service');
 const Group = require('./group.schema');
 
-async function query({} = {}) {
+async function query({ } = {}) {
   try {
     const groups = await Group.find();
     return groups;
@@ -40,9 +40,15 @@ async function add(group) {
  *   */
 async function remove(groupIds) {
   try {
-    const res = await Group.deleteMany({
-      _id: { $in: groupIds },
-    });
+    let res;
+    if (groupIds.length === 1 || typeof groupIds === 'string') {
+      res = await Group.deleteOne({ _id: groupIds });
+    } else {
+      res = await Group.deleteMany({
+        _id: { $in: groupIds },
+      });
+    }
+
     return res;
   } catch (err) {
     logger.error(

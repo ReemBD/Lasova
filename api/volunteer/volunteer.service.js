@@ -1,5 +1,4 @@
 const logger = require('../../services/logger.service');
-const fs = require('fs/promises');
 const Volunteer = require('./volunteer.schema');
 /**
  * Currently acceps isDefault and doReset as params,

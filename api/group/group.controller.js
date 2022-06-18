@@ -10,7 +10,17 @@ async function getGroups(req, res) {
   }
 }
 
-async function removeGroups(req, res) {
+async function removeGroup(req, res) {
+  try {
+    const { groupId } = req.params;
+    const serviceRes = await remove(groupId);
+    res.send(serviceRes);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
+async function removeManyGroups(req, res) {
   try {
     const { ids } = req.query;
     if (!ids || !ids.length)
@@ -56,7 +66,8 @@ async function getGroupById(req, res) {
 
 module.exports = {
   getGroups,
-  removeGroups,
+  removeGroup,
+  removeManyGroups,
   updateGroup,
   addGroup,
   getGroupById,

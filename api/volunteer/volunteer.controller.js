@@ -4,7 +4,6 @@ const googleDriveService = require('../../services/google-drive.service');
 
 async function getVolunteers(req, res) {
   try {
-    //fake async for now
     const queryOptions = req.query;
     const volunteers = await query(queryOptions);
     res.send(volunteers);
@@ -66,15 +65,9 @@ async function getVolunteerById(req, res) {
     res.status(500).send(err);
   }
 }
-async function getVolunteersByProjectId(req, res) {
-  try {
-    setTimeout(() => {}, 200);
-  } catch (err) {}
-}
 
 module.exports = {
   getVolunteers,
-  getVolunteersByProjectId,
   removeVolunteers,
   updateVolunteer,
   addVolunteer,
