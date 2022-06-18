@@ -12,11 +12,11 @@ function query({ isDefault, doReset } = {}) {
 }
 
 function saveVolunteer(volunteer) {
-  return volunteer.id ? _updateVolunteer(volunteer) : _addVolunteer(volunteer);
+  return volunteer._id ? _updateVolunteer(volunteer) : _addVolunteer(volunteer);
 }
 
 function _updateVolunteer(volunteer) {
-  return httpService.put(`${BASE_URL}/${volunteer.id}`, volunteer);
+  return httpService.put(`${BASE_URL}/${volunteer._id}`, volunteer);
 }
 
 async function _addVolunteer(volunteer) {

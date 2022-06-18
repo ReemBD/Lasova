@@ -4,9 +4,6 @@ import { useDispatch } from 'react-redux';
 import { updateUserMsg } from "../store/actions/systemActions.js";
 
 const ExportCsvBtn = ({name, csvBtnRef}) => {
-    useEffect(() => {
-        console.log('got here', name)
-    },[])
     const dispatch = useDispatch();
     const apiRef = useGridApiContext();
     const csvOptions = {

@@ -157,9 +157,9 @@ const Home = () => {
         headerName: "שעות מדווחות/מאושרות",
         description: "שעות מדווחות/מאושרות",
         sortable: false,
-        valueFormatter: ({ id }) => {
+        valueFormatter: ({ _id }) => {
           const volunteer = volunteers?.find(
-            (volunteer) => volunteer.id === id
+            (volunteer) => volunteer._id === _id
           );
           const volunteerHours =
             (volunteer?.reportedHours || 0) +
