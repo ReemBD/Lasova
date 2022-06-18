@@ -21,14 +21,14 @@ const initialState = {
         return {
           ...state,
           groups: state.groups.filter(
-            (group) => group.id !== action.groupId
+            (group) => group._id !== action.groupId
           ),
         };
       case "UPDATE_GROUP":
         return {
           ...state,
           groups: state.groups.map((group) =>
-          group.id === action.group.id ? action.group : group
+          group._id === action.group._id ? action.group : group
           ),
         };
       case "SEARCH_GROUPS":

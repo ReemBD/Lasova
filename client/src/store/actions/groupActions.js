@@ -46,7 +46,7 @@ export function searchGroups(searchText) {
 export function saveGroup(groupToSave) {
   return async (dispatch) => {
     try {
-      const type = groupToSave.id ? 'UPDATE_GROUP' : 'ADD_GROUP';
+      const type = groupToSave._id ? 'UPDATE_GROUP' : 'ADD_GROUP';
       if (type === 'UPDATE_GROUP') {
         groupService.saveGroup(groupToSave);
       } else {

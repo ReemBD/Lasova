@@ -5,11 +5,9 @@ const googleDriveService = require('../../services/google-drive.service');
 async function getVolunteers(req, res) {
   try {
     //fake async for now
-    setTimeout(async () => {
-      const queryOptions = req.query;
-      const volunteers = await query(queryOptions);
-      res.send(volunteers);
-    }, 200);
+    const queryOptions = req.query;
+    const volunteers = await query(queryOptions);
+    res.send(volunteers);
   } catch (err) {
     res.status(500).send({ err: 'Failed to fetch volunteers' });
   }
@@ -37,17 +35,20 @@ async function updateVolunteer(req, res) {
 
 async function addVolunteer(req, res) {
   try {
-    const {
-      body: { document },
-      files,
-    } = req;
-    const volunteer = JSON.parse(document);
-    if (files) {
+    let { body: volunteer, files } = req;
+    const contentType = req.headers['content-type'];
+
+    if (contentType?.startsWith('multipart/form-data')) {
+      volunteer = JSON.parse(body.document);
+    }
+
+    if (!!files) {
       await googleDriveService.createInitialVolunteerFolder(
         volunteer.firstName + ' ' + volunteer.lastName,
         files
       );
     }
+
     const newVolunteer = await add(volunteer);
     res.send(newVolunteer);
   } catch (err) {

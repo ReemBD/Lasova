@@ -47,7 +47,7 @@ export function searchVolunteers(searchText) {
 export function saveVolunteer(volunteerToSave) {
   return async (dispatch) => {
     try {
-      const type = volunteerToSave.id ? 'UPDATE_VOLUNTEER' : 'ADD_VOLUNTEER';
+      const type = volunteerToSave._id ? 'UPDATE_VOLUNTEER' : 'ADD_VOLUNTEER';
       if (type === 'UPDATE_VOLUNTEER') {
         volunteerService.saveVolunteer(volunteerToSave);
       } else {
