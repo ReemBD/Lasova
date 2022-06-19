@@ -8,7 +8,6 @@ import { ReactComponent as EnvelopeIcon } from "../assets/imgs/icons/envelope-ic
 
 import Avatar from '@mui/material/Avatar';
 import { pink } from '@mui/material/colors';
-// import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
