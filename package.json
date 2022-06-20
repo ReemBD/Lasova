@@ -23,7 +23,8 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "testEnv": "nodemon server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "node server.js",
+    "start:dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
