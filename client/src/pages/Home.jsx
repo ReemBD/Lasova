@@ -70,7 +70,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!volunteers.length) {
+    if (!volunteers) {
       dispatch(loadVolunteers());
     }
   }, [volunteers]);

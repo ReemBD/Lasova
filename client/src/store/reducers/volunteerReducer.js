@@ -1,5 +1,5 @@
 const initialState = {
-  volunteers: [],
+  volunteers: null,
   volunteersToShow: null,
   // filters: {
   /*
