@@ -20,7 +20,7 @@ const GroupsPage = () => {
     );
 
     useEffect(() => {
-        if (!groups.length) {
+        if (!groups) {
             dispatch(loadGroups());
         }
     }, [groups]);
