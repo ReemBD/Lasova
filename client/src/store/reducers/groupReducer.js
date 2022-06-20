@@ -1,5 +1,5 @@
 const initialState = {
-    groups: [],
+    groups: null,
     groupsToShow: null,
   };
   
