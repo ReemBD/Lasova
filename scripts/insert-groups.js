@@ -132,7 +132,7 @@ const groupsToInsert = [
 ];
 
 const mongoose = require('mongoose');
-const { dbURI, dbName } = require('../config/index.config');
+const { dbURI, dbName } = require('../env/index.config');
 const Group = require('../api/group/group.schema');
 
 mongoose.connect(dbURI, {
