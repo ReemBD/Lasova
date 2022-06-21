@@ -10,7 +10,7 @@ import {
 export const loadUser = (email) => async (dispatch) => {
   try {
     // const res = await api.get('/auth');
-    const user = { email: email, type: 'ADMIN', name: 'Yulia' };
+    const user = { email: email, type: 'ADMIN', name: 'yulia' };
     dispatch({
       type: USER_LOADED,
       payload: user,
@@ -45,7 +45,6 @@ export const login = (email, password) => async (dispatch) => {
   } catch (error) {
     console.log('🚀 ~ file: auth.js ~ line 50 ~ login ~ error', error);
   }
-
 };
 
 // Logout

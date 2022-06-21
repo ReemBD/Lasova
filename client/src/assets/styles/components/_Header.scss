@@ -6,6 +6,18 @@ header {
 	font-size: vh(20px);
 	width: 100%x;
 
+	.avatar-initials {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 90%;
+		width: 90%;
+		font-weight: bold;
+		font-size: larger;
+		font-style: oblique;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	}
+
 	.user-icon {
 		border-radius: 50%;
 		background-color: $darkBg;
