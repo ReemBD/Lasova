@@ -30,10 +30,16 @@ export function loadVolunteers() {
 export function searchVolunteers(searchText) {
   return (dispatch, getState) => {
     const { volunteers } = getState().volunteerReducer;
+    console.log("🚀 ~ file: volunteerActions.js ~ line 33 ~ return ~ volunteers", volunteers)
     let filteredVolunteers = volunteers.filter((volunteer) => {
+    console.log(
+      '🚀 ~ file: volunteerActions.js ~ line 34 ~ filteredVolunteers ~ volunteer',
+      typeof volunteer.taz
+    );
       return (
         volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-        volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
+        volunteer.lastName.toLowerCase().includes(searchText.toLowerCase()) ||
+        volunteer.taz === searchText
       );
     });
     dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });

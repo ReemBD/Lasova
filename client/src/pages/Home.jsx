@@ -28,8 +28,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const { volunteers, volunteersToShow } = useSelector(
     (state) => state.volunteerReducer
-  );
-  
+    );
+
   const exportRef = useRef(null);
   const csvBtnRef = useRef(null);
 
