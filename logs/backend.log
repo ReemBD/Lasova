@@ -17,3 +17,5 @@
 6/17/2022, 1:23:27 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
 6/17/2022, 1:23:46 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
 6/17/2022, 1:24:37 AM - ERROR - err while trying to add volunteer | TypeError: Cannot read properties of undefined (reading 'startsWith') 
+22/06/2022, 3:38:14 - ERROR - failed to fetch groupsMongooseServerSelectionError: getaddrinfo ENOTFOUND ac-thrhdqd-shard-00-01.nnqvqex.mongodb.net 
+22/06/2022, 3:38:50 - ERROR - failed to fetch groupsMongooseServerSelectionError: getaddrinfo ENOTFOUND ac-thrhdqd-shard-00-01.nnqvqex.mongodb.net 
