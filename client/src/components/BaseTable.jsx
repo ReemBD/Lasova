@@ -78,7 +78,7 @@ const BaseTable = ({
           checkboxSelection
           disableColumnMenu
           disableSelectionOnClick
-          onRowClick={(ev) => {
+          onRowDoubleClick={(ev) => {
             onEntityClick(ev.row);
           }}
         />
