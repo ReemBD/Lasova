@@ -33,7 +33,8 @@ export function searchVolunteers(searchText) {
     let filteredVolunteers = volunteers.filter((volunteer) => {
       return (
         volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
-        volunteer.lastName.toLowerCase().includes(searchText.toLowerCase())
+        volunteer.lastName.toLowerCase().includes(searchText.toLowerCase()) ||
+        volunteer.taz === searchText
       );
     });
     dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });
