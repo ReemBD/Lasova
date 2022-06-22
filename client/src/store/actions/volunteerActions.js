@@ -34,7 +34,7 @@ export function searchVolunteers(searchText) {
       return (
         volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
         volunteer.lastName.toLowerCase().includes(searchText.toLowerCase()) ||
-        volunteer.taz === searchText
+        volunteer.taz.includes(searchText.toLowerCase())
       );
     });
     dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });
