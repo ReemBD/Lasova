@@ -7,7 +7,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Button from '@mui/material/Button';
 import { newVolunteerMock } from '../mock/volunteer-mock.data';
 import { isDev } from '../services/util.service';
-import { UploadVolunteerFilesButton } from './UploadButton';
+// import { UploadVolunteerFilesButton } from './UploadButton';
 const VolunteerObj = {
   taz: '',
   groupName: '',
@@ -256,18 +256,18 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                       />
                     </>
                   )}
-                </div>
+                {/* </div>
                 <UploadVolunteerFilesButton onChange={handleChange} />
-                <div>
-                  <Button
+                <div> */}
+                </div>
+                <Button
                     variant='contained'
                     type='submit'
                     className={
                       enable ? 'new_vol_modal_btn' : 'new_vol_modal_btn disable'
                     }>
                     הוסף למסגרת
-                  </Button>
-                </div>
+                </Button>
               </div>
             </form>
           </div>
