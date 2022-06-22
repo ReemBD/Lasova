@@ -33,13 +33,12 @@ const Header = () => {
     <header className="flex justify-end align-center">
       {userMsg.txt && <UserMsg msg={userMsg} />}
       <button className="messages">
-        <EnvelopeIcon />
-        <span className="notification"></span>
+        {/* <EnvelopeIcon /> */}
+        {/* <span className="notification"></span> */}
         {/* {userHasNotification && <span className="notification">
                 {notificationCount}
             </span>} */}
       </button>
-      {/* <p>יוליה צמח</p> */}
       <p>{user?.name}</p>
       <Avatar
        alt={user?.name}
@@ -50,7 +49,7 @@ const Header = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-      >{user && user.name.charAt(0)}</Avatar>
+      ><span className="avatar-initials">{user && (user.name.split(' ')[0][0]).toUpperCase()}</span></Avatar>
       <Menu
         id="menu"
         aria-labelledby="avatar"
