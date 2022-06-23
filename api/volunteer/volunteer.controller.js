@@ -1,6 +1,7 @@
 const logger = require('../../services/logger.service');
 const { query, remove, update, getById, add } = require('./volunteer.service');
 const googleDriveService = require('../../services/google-drive.service');
+const { json } = require('express/lib/response');
 
 async function getVolunteers(req, res) {
   try {
@@ -34,11 +35,14 @@ async function updateVolunteer(req, res) {
 
 async function addVolunteer(req, res) {
   try {
-    let { body: volunteer, files } = req;
+    let {
+      body: { document: volunteer },
+      files,
+    } = req;
     const contentType = req.headers['content-type'];
 
     if (contentType?.startsWith('multipart/form-data')) {
-      volunteer = JSON.parse(body.document);
+      volunteer = JSON.parse(volunteer);
     }
 
     if (!!files) {

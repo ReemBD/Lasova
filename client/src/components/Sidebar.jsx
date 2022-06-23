@@ -7,11 +7,11 @@ const Sidebar = () => {
   console.log("currLocation:", currLocation);
 
   const links = [
-    { title: "דשבורד", destination: "/dashboard" },
+    // { title: "דשבורד", destination: "/dashboard" },
     { title: "מתנדבים", destination: "/" },
     { title: "קבוצות וארגונים", destination: "/groups" },
-    { title: "מנהלי מסגרות", destination: "/managers" },
-    { title: "מסגרות התנדבות", destination: "/misgarot" },
+    // { title: "מנהלי מסגרות", destination: "/managers" },
+    // { title: "מסגרות התנדבות", destination: "/misgarot" },
   ];
 
   return (
@@ -28,10 +28,10 @@ const Sidebar = () => {
           </Link>
         ))}
       </nav>
-      <Link to={"/"} className="settings flex align-center">
+      {/* <Link to={"/"} className="settings flex align-center">
         <SettingsIcon />
         <span>הגדרות</span>
-      </Link>
+      </Link> */}
     </aside>
   );
 };

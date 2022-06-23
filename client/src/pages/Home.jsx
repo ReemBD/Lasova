@@ -28,8 +28,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const { volunteers, volunteersToShow } = useSelector(
     (state) => state.volunteerReducer
-  );
-  const onExport = useRef(null);
+    );
+
   const exportRef = useRef(null);
   const csvBtnRef = useRef(null);
 
@@ -196,7 +196,7 @@ const Home = () => {
     <BasePage
       title='טבלת מתנדבים'
       doSearch={(searchWord) => { dispatch(searchVolunteers(searchWord)) }}
-      doExport={() => onExport.current()}
+      doExport={() => exportRef.current()}
       onAdd={() => setNewVolModalOpen(true)}
     >
       <BaseTable
