@@ -2,6 +2,7 @@
   "dependencies": {
     "@syncfusion/ej2-react-calendars": "^19.4.56",
     "axios": "^0.26.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -10,6 +11,7 @@
     "fs": "^0.0.1-security",
     "google-auth-library": "^7.14.1",
     "googleapis": "^39.2.0",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^6.3.5",
     "nodemon": "^2.0.15",
