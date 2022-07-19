@@ -33,3 +33,4 @@
 22/06/2022, 19:56:44 - ERROR - err while trying to add volunteer | ReferenceError: body is not defined 
 22/06/2022, 19:57:56 - ERROR - err while trying to add volunteer | ReferenceError: body is not defined 
 22/06/2022, 19:59:23 - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
+7/18/2022, 9:47:50 PM - ERROR - err while trying to login user undefined | TypeError: user.checkPassword is not a function 

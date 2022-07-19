@@ -43,6 +43,8 @@ db.once('open', function () {
 
 app.use('/api/volunteer', require('./api/volunteer/volunteer.routes'));
 app.use('/api/group', require('./api/group/group.routes'));
+app.use('/api/auth', require('./api/auth/auth.routes'));
+
 app.get('/**', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
