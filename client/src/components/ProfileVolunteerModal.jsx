@@ -54,6 +54,9 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <Box className="profile_modal">
+        <button className="profile_close-button" onClick={() => setOpen(false)}>
+          {" "}
+        </button>
         <div className="profile_title">
           <h1 className="title">פרופיל מתנדב</h1>
         </div>
