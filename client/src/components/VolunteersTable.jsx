@@ -21,12 +21,12 @@ import ExportCsvBtn from "./ExportCsvBtn";
 
 const statuses = [
   { type: "active", label: "פעיל", icon: <Active /> }, //Green
-  { type: "new", label: "חדש", icon: <NewLead /> },
+  { type: "new", label: "חדש", icon: <NewLead /> }, //Blue, undefined yet what is the function for
   { type: "standby", label: "מושהה", icon: <Standby /> }, //Yellow
   { type: "inactive", label: "לא פעיל", icon: <Inactive /> }, //Red
 ];
 
-const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
+export const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
   const csvBtnRef = useRef(null);
   const [rows, setRows] = useState([]);
   const [dropdownPosition, setDropdownPosition] = useState(null);

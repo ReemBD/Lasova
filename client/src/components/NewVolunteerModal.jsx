@@ -71,6 +71,11 @@ const NewVolunteerModal = ({ open, setOpen }) => {
     <>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="new_vol_modal">
+          <button
+            className="new_vol_close-button"
+            onClick={() => setOpen(false)}
+            type="button"
+          ></button>
           <h1 className="new_vol_title">רישום מתנדב חדש</h1>
           <div className="new_vol_modal_content">
             <form className="new_vol_modal_form" onSubmit={handleSubmit}>
@@ -173,7 +178,6 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                 <TextareaAutosize
                   type="text"
                   name="summary"
-                  value={newVolunteer.summary}
                   className="summary_text"
                   onChange={handleChange}
                 />

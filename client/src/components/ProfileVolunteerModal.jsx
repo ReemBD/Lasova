@@ -6,8 +6,11 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { ReactComponent as Table } from "../assets/imgs/icons/profile/table.svg";
 import { ReactComponent as Notify } from "../assets/imgs/icons/profile/notify.svg";
 import { ReactComponent as Folder } from "../assets/imgs/icons/profile/folder.svg";
-import { ReactComponent as Avatar } from "../assets/imgs/icons/profile/avatar.svg";
-
+import { ReactComponent as NewLead } from "../assets/imgs/icons/status/new-lead.svg";
+import { ReactComponent as Standby } from "../assets/imgs/icons/status/standby.svg";
+import { ReactComponent as Active } from "../assets/imgs/icons/status/active.svg";
+import { ReactComponent as Inactive } from "../assets/imgs/icons/status/inactive.svg";
+import VolunteersTable from "./VolunteersTable";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import moment from "moment";
 
@@ -21,8 +24,6 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
     const date = moment(value).format("DD/MM/YYYY");
     console.log(date);
   };
-
-  console.log(volunteer);
 
   const handleChange = (e) => {
     setVolunteer((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -50,11 +51,28 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
     e.preventDefault();
     console.log("..will submit:", editVolunteer);
   };
+  function setStatusImage(className) {
+    className = "profile_pic_status";
+    switch (volunteer.status) {
+      case "new":
+        return <NewLead className={className} />;
+      case "active":
+        return <Active className={className} />;
+      case "standby":
+        return <Standby className={className} />;
+      case "inactive":
+        return <Inactive className={className} />;
+    }
+  }
 
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <Box className="profile_modal">
-        <button className="profile_close-button" onClick={() => setOpen(false)}>
+        <button
+          className="profile_close-button"
+          onClick={() => setOpen(false)}
+          type="button"
+        >
           {" "}
         </button>
         <div className="profile_title">
@@ -64,7 +82,8 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
           <div className="profile_modal_content_top">
             <div className="profile_pic">
               <span className="profile_pic_img">
-                <Avatar className="profile_pic_status" />
+                {/* <Active className="profile_pic_status" /> */}
+                {setStatusImage()}
               </span>
             </div>
             <div className="profile_details">
