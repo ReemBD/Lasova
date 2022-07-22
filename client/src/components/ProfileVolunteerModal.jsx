@@ -2,7 +2,6 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import Button from "@mui/material/Button";
 
 import { ReactComponent as Table } from "../assets/imgs/icons/profile/table.svg";
 import { ReactComponent as Notify } from "../assets/imgs/icons/profile/notify.svg";
