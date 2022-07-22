@@ -94,10 +94,16 @@
   }
 
   .profile_pic_img {
+    position: relative;
     width: rem(85px);
     height: rem(85px);
     background: #bcbcbc;
     border-radius: 50%;
+  }
+  .profile_pic_status {
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 
   .profile_details {

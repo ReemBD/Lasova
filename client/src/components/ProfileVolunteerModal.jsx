@@ -64,7 +64,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
           <div className="profile_modal_content_top">
             <div className="profile_pic">
               <span className="profile_pic_img">
-                <Avatar />
+                <Avatar className="profile_pic_status" />
               </span>
             </div>
             <div className="profile_details">
