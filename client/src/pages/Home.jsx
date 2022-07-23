@@ -5,7 +5,6 @@ import {
   loadVolunteers,
   searchVolunteers,
 } from "../store/actions/volunteerActions";
-import VolunteersTable from "../components/VolunteersTable";
 import NewVolunteerModal from "../components/NewVolunteerModal";
 import ProfileVolunteerModal from "../components/ProfileVolunteerModal";
 import { ReactComponent as NewLead } from "../assets/imgs/icons/status/new-lead.svg";
@@ -224,7 +223,7 @@ const Home = () => {
         filter={filter}
         onEntityClick={openProfileModal}
       />
-      {/* <VolunteersTable
+      {/* <VolunteersTable // Probably need to be deleted
         volunteers={volunteersToShow}
         onExport={onExport}
         openProfileModal={openProfileModal}

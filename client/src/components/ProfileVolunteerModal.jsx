@@ -52,7 +52,6 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
     console.log("..will submit:", editVolunteer);
   };
   function setStatusImage(className) {
-    className = "profile_pic_status";
     switch (volunteer.status) {
       case "new":
         return <NewLead className={className} />;
@@ -83,7 +82,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
             <div className="profile_pic">
               <span className="profile_pic_img">
                 {/* <Active className="profile_pic_status" /> */}
-                {setStatusImage()}
+                {setStatusImage("profile_pic_status")}
               </span>
             </div>
             <div className="profile_details">

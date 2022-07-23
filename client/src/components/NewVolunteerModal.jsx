@@ -28,9 +28,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
-  const [newVolunteer, setNewVolunteer] = useState(
-    isDev() ? newVolunteerMock : VolunteerObj
-  );
+  const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -42,6 +40,10 @@ const NewVolunteerModal = ({ open, setOpen }) => {
     if (e.target.name === "groupName") {
       switch (e.target.value) {
         case "עצמאי":
+          setIsOption2(false);
+          setIsOption3(false);
+          break;
+        case "null":
           setIsOption2(false);
           setIsOption3(false);
           break;
@@ -63,6 +65,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
     e.preventDefault();
     console.log("..will submit:", newVolunteer);
     setNewVolunteer(newVolunteer);
+    console.log(newVolunteer);
     dispatch(saveVolunteer(newVolunteer));
     setOpen(false);
   };
@@ -192,6 +195,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                     className="input"
                     onChange={handleChange}
                   >
+                    <option value="">בחר מסגרת התנדבות</option>
                     <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
                   </select>
                   <label className="new_vol_modal_label">בחר מסגרת מפנה</label>
@@ -200,6 +204,9 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                     className="input"
                     onChange={handleChange}
                   >
+                    <option id="0" value="null">
+                      בחר מסגרת מפנה
+                    </option>
                     <option id="1" value="עצמאי">
                       עצמאי
                     </option>

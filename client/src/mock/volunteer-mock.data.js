@@ -1,6 +1,6 @@
 // export const newVolunteerMock = {
 //   taz: "123456788",
-//   groupName: "עצמאי",
+//   מסגרת מפנה groupName: "עצמאי",
 //   firstName: "ראם",
 //   lastName: "בן-דוד",
 //   phone: "0546202464",
@@ -8,6 +8,6 @@
 //   email: "Lasova.dev@gmail.com",
 //   gender: "male",
 //   summary: "",
-//   volunteerType: "מסעדת לשובע ת״א",
+//   מסגרת התנדבות volunteerType: "מסעדת לשובע ת״א",
 //   status: "standby",
 // };

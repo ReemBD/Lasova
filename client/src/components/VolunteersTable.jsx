@@ -224,7 +224,7 @@ export const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
         <DataGrid
           rows={rows}
           getRowId={(row) => row._id}
-          columns={columns}
+          // columns={columns} // Seems like this implementation has no meaning
           components={{
             Toolbar: () => (
               <ExportCsvBtn name={"לשובע-מתנדבים-"} csvBtnRef={csvBtnRef} />
