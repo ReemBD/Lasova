@@ -71,9 +71,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!volunteers) {
-      dispatch(loadVolunteers());
-    }
+    dispatch(loadVolunteers());
   }, [volunteers]);
 
   const onSetFilter = (filterBy) => {
