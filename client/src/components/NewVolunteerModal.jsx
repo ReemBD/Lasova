@@ -13,13 +13,13 @@ const VolunteerObj = {
   groupName: "",
   firstName: "",
   lastName: "",
-  phone: "",
+  cellphone: "",
   city: "",
   email: "",
   gender: "",
   summary: "",
   volunteerType: "",
-  status: "standby",
+  status: "",
   files: [],
 };
 
@@ -78,7 +78,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
             className="new_vol_close-button"
             onClick={() => setOpen(false)}
             type="button"
-          ></button>
+          />
           <h1 className="new_vol_title">רישום מתנדב חדש</h1>
           <div className="new_vol_modal_content">
             <form className="new_vol_modal_form" onSubmit={handleSubmit}>
@@ -122,14 +122,14 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   required
                   onChange={handleChange}
                 />
-                <label htmlFor="phone" className="new_vol_modal_label">
+                <label htmlFor="cellphone" className="new_vol_modal_label">
                   טלפון*
                 </label>
                 <input
                   className="input"
                   type="text"
-                  id="phone"
-                  name="phone"
+                  id="cellphone"
+                  name="cellphone"
                   pattern="05?[0-9]-?[0-9]{7}"
                   title="אנא הזן מספר סלולרי תקין"
                   required

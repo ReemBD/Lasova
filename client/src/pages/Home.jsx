@@ -113,10 +113,11 @@ const Home = () => {
           />
         ),
         valueFormatter: ({ value }) =>
-          statuses.find((status) => status.type === value)?.label,
+          statuses.find((status) => status.type === value)?.label ||
+          statuses[2].type,
         renderCell: (params) =>
-          statuses.find((status) => status.type === params.row.status)?.icon ||
-          "",
+          statuses.find((status) => status.type === params.row.status)
+            ?.icon || <Standby />,
       },
       {
         field: "firstName",
@@ -164,27 +165,20 @@ const Home = () => {
       },
       {
         field: "volunteerHours",
-        headerName: "שעות מדווחות/מאושרות",
-        description: "שעות מדווחות/מאושרות",
+        headerName: "שעות מדווחות",
+        description: "שעות מדווחות",
         sortable: false,
         valueFormatter: ({ _id }) => {
           const volunteer = volunteers?.find(
             (volunteer) => volunteer._id === _id
           );
-          const volunteerHours =
-            (volunteer?.reportedHours || 0) +
-            " / " +
-            (volunteer?.approvedHours || 0);
+          const volunteerHours = volunteer?.reportedHours || 0;
           return volunteerHours;
         },
         renderCell: (params) => (
           <>
             <span className="reported-hours">
-              {params.row.reportedHours || 13}
-            </span>{" "}
-            /
-            <span className="approved-hours">
-              {params.row.approvedHours || 45}
+              {params.row.reportedHours || 0}
             </span>
           </>
         ),

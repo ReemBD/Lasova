@@ -21,6 +21,7 @@
     margin-top: rem(40px);
     border-top-left-radius: rem(10px);
     border-top-right-radius: rem(10px);
+    max-width: 400px;
   }
 
   .title {
@@ -59,6 +60,7 @@
     border-bottom-left-radius: rem(10px);
     border-bottom-right-radius: rem(10px);
     width: rem(800px);
+    margin-bottom: 20px;
   }
 
   .profile_modal_content_bottom {
@@ -241,5 +243,13 @@
     cursor: not-allowed;
     background-color: #c4c4c4;
     pointer-events: none;
+  }
+  .profile_modal_submit {
+    font-family: Assistant-Reg;
+    font-size: rem(24px);
+    color: #bcbcbc;
+    width: rem(226px);
+    height: rem(50px);
+    bottom: rem(35px);
   }
 }
