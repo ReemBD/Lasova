@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { saveVolunteer } from "../store/actions/volunteerActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -15,6 +17,7 @@ import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import moment from "moment";
 
 const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
+  const dispatch = useDispatch();
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState(volunteer);
@@ -51,6 +54,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
     e.preventDefault();
     setVolunteer(editVolunteer);
     console.log(editVolunteer);
+    dispatch(saveVolunteer(editVolunteer));
   };
   function setStatusImage(className) {
     if (volunteer.status === "") {
@@ -90,43 +94,71 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
               <div className="profile_details">
                 <div className="profile_details_packages">
                   <div className="package">
-                    <h4 className="profile_details_title">שם מלא: </h4>
+                    <label
+                      htmlFor="firstName"
+                      className="profile_details_title"
+                    >
+                      שם פרטי:
+                    </label>
                     <input
                       className="profile_details_content"
                       onChange={handleChange}
-                      defaultValue={`${volunteer.firstName} ${volunteer.lastName}`}
+                      name="firstName"
+                      type="text"
+                      defaultValue={editVolunteer.firstName}
+                    />
+                    <label htmlFor="lastName" className="profile_details_title">
+                      שם משפחה:
+                    </label>
+                    <input
+                      type="text"
+                      className="profile_details_content"
+                      onChange={handleChange}
+                      name="lastName"
+                      defaultValue={editVolunteer.lastName}
                     />
 
                     <br />
-                    <h4 className="profile_details_title">מייל: </h4>
+                    <label className="profile_details_title">מייל: </label>
                     <input
                       className="profile_details_content"
-                      defaultValue={volunteer.email}
+                      defaultValue={editVolunteer.email}
                     />
                   </div>
                   <div className="package">
-                    <h4 className="profile_details_title">טלפון: </h4>
+                    <label
+                      htmlFor="cellphone"
+                      className="profile_details_title"
+                    >
+                      טלפון:{" "}
+                    </label>
                     <input
+                      onChange={handleChange}
+                      name="cellphone"
                       className="profile_details_content"
-                      defaultValue={volunteer.cellphone}
+                      defaultValue={editVolunteer.cellphone}
                     />
                     <br />
-                    <h4 className="profile_details_title">ת.ז: </h4>
+                    <label htmlFor="taz" className="profile_details_title">
+                      ת.ז:
+                    </label>
                     <input
+                      onChange={handleChange}
                       className="profile_details_content"
-                      defaultValue={volunteer.taz}
+                      defaultValue={editVolunteer.taz}
+                      name="taz"
                     />
                   </div>
                   <div className="package">
                     <h4 className="profile_details_title">עיר מגורים: </h4>
                     <input
                       className="profile_details_content"
-                      defaultValue={volunteer.city}
+                      defaultValue={editVolunteer.city}
                     />
                     <br />
                     <h4 className="profile_details_title">לשון פנייה: </h4>
                     <p className="profile_details_content">
-                      {volunteer.gender}
+                      {editVolunteer.gender}
                     </p>
                   </div>
                   {/* <h4 className="profile_details_title">תאריך לידה: </h4>
@@ -315,7 +347,12 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
                 </span>
                 <span className="reported_hours">
                   <div className="reported_hours_sum">
-                    <label className="profile_modal_label">שעות מדווחות</label>
+                    <label
+                      htmlFor="reportedHours"
+                      className="profile_modal_label"
+                    >
+                      שעות מדווחות
+                    </label>
                     <input
                       className="profile_modal_mini_input"
                       type="text"

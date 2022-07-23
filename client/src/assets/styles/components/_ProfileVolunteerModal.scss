@@ -18,7 +18,7 @@
     margin-right: rem(48px);
     background-color: #e5e5e5;
     padding: rem(5px);
-    margin-top: rem(40px);
+    margin-top: rem(10px);
     border-top-left-radius: rem(10px);
     border-top-right-radius: rem(10px);
     max-width: 400px;
@@ -61,6 +61,7 @@
     border-bottom-right-radius: rem(10px);
     width: rem(800px);
     margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   .profile_modal_content_bottom {
@@ -108,21 +109,21 @@
   }
 
   .profile_details {
-    height: rem(112px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .profile_details_content {
+    border: none;
+    padding: 2%;
+    text-indent: 5%;
   }
 
   .profile_details_packages {
     display: flex;
     justify-content: space-between;
     width: rem(480px);
-  }
-
-  .package {
-    display: flex;
-    flex-direction: column;
+    column-gap: 15px;
   }
 
   .profile_modal_label {
@@ -250,6 +251,6 @@
     color: #bcbcbc;
     width: rem(226px);
     height: rem(50px);
-    bottom: rem(35px);
+    bottom: rem(75px);
   }
 }
