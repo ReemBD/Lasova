@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { saveVolunteer } from "../store/actions/volunteerActions";
+import {
+  saveVolunteer,
+  loadVolunteers,
+} from "../store/actions/volunteerActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -15,7 +18,7 @@ import { ReactComponent as Inactive } from "../assets/imgs/icons/status/inactive
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import moment from "moment";
 
-const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
+const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
   const dispatch = useDispatch();
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
@@ -47,28 +50,25 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
       }
     }
   };
-  const [status, setStatus] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setVolunteer(editVolunteer);
     console.log(editVolunteer);
     dispatch(saveVolunteer(editVolunteer));
+    setOpen(false);
   };
   function setStatusImage(className) {
-    if (volunteer.status === "") {
-      setStatus("standby");
-    }
     switch (volunteer.status) {
       case "new":
         return <NewLead className={className} />;
       case "active":
         return <Active className={className} />;
       case "standby":
+      case "":
         return <Standby className={className} />;
       case "inactive":
         return <Inactive className={className} />;
-      default:
-        return status;
     }
   }
 

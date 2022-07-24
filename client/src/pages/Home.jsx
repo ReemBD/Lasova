@@ -71,9 +71,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!volunteers) {
-      dispatch(loadVolunteers());
-    }
+    dispatch(loadVolunteers());
   }, [volunteers]);
 
   const onSetFilter = (filterBy) => {
@@ -231,6 +229,7 @@ const Home = () => {
       )}
       {isProfileModalOpen && (
         <ProfileVolunteerModal
+          volunteers={volunteers}
           volunteer={volunteerProfileToShow}
           open={isProfileModalOpen}
           setOpen={setProfileModalOpen}
