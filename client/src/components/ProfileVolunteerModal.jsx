@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   saveVolunteer,
@@ -18,19 +18,21 @@ import { ReactComponent as Inactive } from "../assets/imgs/icons/status/inactive
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 import moment from "moment";
 
-const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
+const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   const dispatch = useDispatch();
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
-  const [editVolunteer, setVolunteer] = useState(volunteer);
-
-  const onDateChange = (value) => {
-    const date = moment(value).format("DD/MM/YYYY");
-    console.log(date);
-  };
+  const [editVolunteer, setVolunteer] = useState({
+    ...volunteer,
+    startDate: "",
+  });
 
   const handleChange = (e) => {
-    setVolunteer((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setVolunteer((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+
     if (e.target.name === "groupName") {
       switch (e.target.value) {
         case "עצמאי":
@@ -58,6 +60,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
     dispatch(saveVolunteer(editVolunteer));
     setOpen(false);
   };
+
   function setStatusImage(className) {
     switch (volunteer.status) {
       case "new":
@@ -374,12 +377,16 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
                 </span>
                 <span className="dates">
                   <div className="date">
-                    <label className="profile_modal_label">תחילת התנדבות</label>
+                    <label htmlFor="startDate" className="profile_modal_label">
+                      תחילת התנדבות
+                    </label>
                     <DatePickerComponent
                       placeholder="הכנס תאריך"
                       format="dd/MM/yyyy"
-                      onChange={(e) => onDateChange(e.target.value)}
+                      onChange={handleChange}
                       className="datepicker"
+                      name="startDate"
+                      value={editVolunteer.startDate}
                     />
                   </div>
                   <div className="date">
@@ -387,7 +394,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
                     <DatePickerComponent
                       placeholder="הכנס תאריך"
                       format="dd/MM/yyyy"
-                      onChange={(e) => onDateChange(e.target.value)}
+                      // onChange={(e) => onDateChange(e.target.value)}
                       className="datepicker"
                     />
                   </div>

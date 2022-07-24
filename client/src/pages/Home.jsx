@@ -71,8 +71,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(loadVolunteers()); //For any change in our volunteers re-render the data from the server
-  }, [volunteers]);
+    dispatch(loadVolunteers());
+  }, [isProfileModalOpen, isNewVolModalOpen]);
 
   const onSetFilter = (filterBy) => {
     setFilter({
