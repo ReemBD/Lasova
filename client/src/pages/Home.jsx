@@ -71,7 +71,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(loadVolunteers());
+    dispatch(loadVolunteers()); //For any change in our volunteers re-render the data from the server
   }, [volunteers]);
 
   const onSetFilter = (filterBy) => {

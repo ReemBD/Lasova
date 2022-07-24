@@ -358,6 +358,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
                       type="text"
                       name="reportedHours"
                       onChange={handleChange}
+                      defaultValue={editVolunteer.reportedHours}
                     />
                   </div>
                   {/* <div className="reported_hours_sum">
