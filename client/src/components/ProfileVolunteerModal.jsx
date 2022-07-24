@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  saveVolunteer,
-  loadVolunteers,
-} from "../store/actions/volunteerActions";
+import { saveVolunteer } from "../store/actions/volunteerActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -24,7 +21,6 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState({
     ...volunteer,
-    startDate: "",
   });
 
   const handleChange = (e) => {
@@ -52,16 +48,23 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
       }
     }
   };
+  function passedVolunteerSession(date) {
+    return new Date(date).valueOf() < new Date().valueOf();
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setVolunteer(editVolunteer);
-    console.log(editVolunteer);
     dispatch(saveVolunteer(editVolunteer));
+    setVolunteer(editVolunteer);
     setOpen(false);
   };
 
   function setStatusImage(className) {
+    if (passedVolunteerSession(editVolunteer.endDate)) {
+      volunteer.status = "inactive";
+    } else {
+      volunteer.status = "active";
+    }
     switch (volunteer.status) {
       case "new":
         return <NewLead className={className} />;
@@ -381,22 +384,30 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
                       תחילת התנדבות
                     </label>
                     <DatePickerComponent
-                      placeholder="הכנס תאריך"
                       format="dd/MM/yyyy"
+                      placeholder="הכנס תאריך"
                       onChange={handleChange}
                       className="datepicker"
                       name="startDate"
-                      value={editVolunteer.startDate}
                     />
+                    <p>{`${moment(editVolunteer.startDate).format(
+                      "DD/MM/YY"
+                    )}`}</p>
                   </div>
                   <div className="date">
-                    <label className="profile_modal_label">סיום התנדבות</label>
+                    <label htmlFor="endDate" className="profile_modal_label">
+                      סיום התנדבות
+                    </label>
                     <DatePickerComponent
                       placeholder="הכנס תאריך"
                       format="dd/MM/yyyy"
-                      // onChange={(e) => onDateChange(e.target.value)}
                       className="datepicker"
+                      onChange={handleChange}
+                      name="endDate"
                     />
+                    <p>{`${moment(editVolunteer.endDate).format(
+                      "DD/MM/YY"
+                    )}`}</p>
                   </div>
                 </span>
                 <label className="profile_modal_label">סיכום שיחה אחרונה</label>
