@@ -61,11 +61,11 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
 
   function setStatusImage(className) {
     if (passedVolunteerSession(editVolunteer.endDate)) {
-      volunteer.status = "inactive";
+      editVolunteer.status = "inactive";
     } else {
-      volunteer.status = "active";
+      editVolunteer.status = "active";
     }
-    switch (volunteer.status) {
+    switch (editVolunteer.status) {
       case "new":
         return <NewLead className={className} />;
       case "active":
