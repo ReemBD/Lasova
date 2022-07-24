@@ -24,7 +24,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState(volunteer);
 
-  const onChange = (value) => {
+  const onDateChange = (value) => {
     const date = moment(value).format("DD/MM/YYYY");
     console.log(date);
   };
@@ -378,7 +378,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
                     <DatePickerComponent
                       placeholder="הכנס תאריך"
                       format="dd/MM/yyyy"
-                      onChange={(e) => onChange(e.target.value)}
+                      onChange={(e) => onDateChange(e.target.value)}
                       className="datepicker"
                     />
                   </div>
@@ -387,7 +387,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen, volunteers }) => {
                     <DatePickerComponent
                       placeholder="הכנס תאריך"
                       format="dd/MM/yyyy"
-                      onChange={(e) => onChange(e.target.value)}
+                      onChange={(e) => onDateChange(e.target.value)}
                       className="datepicker"
                     />
                   </div>
