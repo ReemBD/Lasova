@@ -6,7 +6,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: rem(1100px);
-  height: rem(600px);
   background-color: white;
   border: none;
   border-radius: rem(3px);
@@ -19,14 +18,30 @@
     margin-right: rem(48px);
     background-color: #e5e5e5;
     padding: rem(5px);
-    margin-top: rem(40px);
+    margin-top: rem(10px);
     border-top-left-radius: rem(10px);
     border-top-right-radius: rem(10px);
+    max-width: 400px;
   }
 
   .title {
     font-size: rem(36.8px);
     font-family: Assistant-Semibold;
+  }
+  .profile_close-button {
+    background-image: url(./../../imgs/icons/close-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    margin: 10px 10px 0 0;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+      transform: rotate(180deg);
+    }
   }
 
   .profile_modal_content {
@@ -45,6 +60,8 @@
     border-bottom-left-radius: rem(10px);
     border-bottom-right-radius: rem(10px);
     width: rem(800px);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 
   .profile_modal_content_bottom {
@@ -79,28 +96,34 @@
   }
 
   .profile_pic_img {
+    position: relative;
     width: rem(85px);
     height: rem(85px);
     background: #bcbcbc;
     border-radius: 50%;
   }
+  .profile_pic_status {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
 
   .profile_details {
-    height: rem(112px);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .profile_details_content {
+    border: none;
+    padding: 2%;
+    text-indent: 5%;
   }
 
   .profile_details_packages {
     display: flex;
     justify-content: space-between;
     width: rem(480px);
-  }
-
-  .package {
-    display: flex;
-    flex-direction: column;
+    column-gap: 15px;
   }
 
   .profile_modal_label {
@@ -221,5 +244,14 @@
     cursor: not-allowed;
     background-color: #c4c4c4;
     pointer-events: none;
+  }
+  .profile_modal_submit {
+    font-family: Assistant-Reg;
+    font-size: rem(24px);
+    color: #bcbcbc;
+    width: rem(300px);
+    height: rem(75px);
+    bottom: rem(75px);
+    right: rem(280px);
   }
 }
