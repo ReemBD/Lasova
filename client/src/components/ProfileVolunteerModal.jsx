@@ -65,7 +65,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
     } else {
       editVolunteer.status = "active";
     }
-    if (editVolunteer.volunteerType === "chooseFalse") {
+    if (editVolunteer.volunteerType === "בחר מסגרת") {
       editVolunteer.status = "standby";
     }
     switch (editVolunteer.status) {
@@ -185,15 +185,19 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
                     name="volunteerType"
                     className="profile_modal_input"
                     onChange={handleChange}
+                    value={editVolunteer.volunteerType}
                   >
-                    <option value="chooseFalse">בחר מסגרת התנדבות</option>
+                    <option value="בחר מסגרת">בחר מסגרת התנדבות</option>
                     <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
                   </select>
-                  <label className="profile_modal_label">בחר מסגרת מפנה</label>
+                  <label className="profile_modal_label" htmlFor="groupName">
+                    בחר מסגרת מפנה
+                  </label>
                   <select
                     name="groupName"
                     className="profile_modal_input"
                     onChange={handleChange}
+                    value={editVolunteer.groupName}
                   >
                     <option id="1" value="עצמאי">
                       עצמאי
