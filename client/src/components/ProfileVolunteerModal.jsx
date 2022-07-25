@@ -28,7 +28,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-
+    console.log(editVolunteer);
     if (e.target.name === "groupName") {
       switch (e.target.value) {
         case "עצמאי":
@@ -65,8 +65,11 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
     } else {
       editVolunteer.status = "active";
     }
+    if (editVolunteer.volunteerType === "chooseFalse") {
+      editVolunteer.status = "standby";
+    }
     switch (editVolunteer.status) {
-      case "new":
+      case "new": //Need to clarify what new is...
         return <NewLead className={className} />;
       case "active":
         return <Active className={className} />;
@@ -183,6 +186,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
                     className="profile_modal_input"
                     onChange={handleChange}
                   >
+                    <option value="chooseFalse">בחר מסגרת התנדבות</option>
                     <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
                   </select>
                   <label className="profile_modal_label">בחר מסגרת מפנה</label>
