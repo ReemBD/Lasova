@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const { validateEmail } = require('../../helpers/auth.helper');
-const { ErrorMessages } = require('../../lib/consts/ErrorCodes');
+const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const {
   UserTypes,
   UserTypePermissionsMap,
 } = require('../../lib/consts/UserType.enum');
 const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
-const { user } = require('pg/lib/defaults');
+const jwt = require('jsonwebtoken');
+const logger = require('../../services/logger.service');
 
 const required = true;
 
@@ -16,7 +17,7 @@ const UserSchema = new Schema({
   lastname: { type: String, required },
   email: {
     type: String,
-    validate: [validateEmail, ErrorMessages.Validation.InvalidEmail],
+    validate: [validateEmail, ErrorMessages.InvalidEmail],
     required,
   },
   hash: { type: String, required },
@@ -25,6 +26,10 @@ const UserSchema = new Schema({
 
 UserSchema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.hash);
+};
+
+UserSchema.methods.generateBearerAuthToken = function () {
+  return jwt.sign(this.toObject(), process.env.JWT_ACCESS_TOKEN_SECRET);
 };
 
 UserSchema.virtual('fullname').get(function () {
@@ -44,4 +49,8 @@ UserSchema.set('toObject', {
   },
 });
 
-module.exports = model('User', UserSchema);
+const User = model('User', UserSchema);
+User.watch().on('error', (err) => {
+  logger.error('Error in user model layer: ', err);
+});
+module.exports = User;

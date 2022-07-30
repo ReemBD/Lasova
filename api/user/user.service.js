@@ -1,16 +1,18 @@
-const { UserTypePermissionsMap } = require('../../lib/consts/UserType.enum');
 const logger = require('../../services/logger.service');
 const User = require('./user.schema');
+const { prettified } = require('../../helpers/prettified.helper');
+const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 
 const saveUser = async (user) => {
   try {
-    const usernameAlreadyExists = await getUser(user.email);
-    if (usernameAlreadyExists) throw new Error('username already exists');
+    const userAlreadyExists = await getUser(_buildUserCriteria(user));
+    if (userAlreadyExists) throw new Error(ErrorMessages.UserAlreadyExists);
     user = new User(user);
-    user.save();
+    await user.save();
     return user;
   } catch (err) {
-    logger.error(`Error trying to save user ${JSON.stringify(user)}`, err);
+    logger.error(`Error trying to save user ${prettified(user)}`, err);
+    throw err;
   }
 };
 
@@ -24,13 +26,10 @@ const getManyUsers = async (query = {}) => {
     return users;
   } catch (err) {
     logger.error(
-      `Error while trying to find users by criteria ${JSON.stringify(
-        query,
-        null,
-        2
-      )}`,
+      `Error while trying to find users by criteria ${prettified(query)}`,
       err
     );
+    throw err;
   }
 };
 
@@ -44,13 +43,10 @@ const getUser = async (query = {}) => {
     return user;
   } catch (err) {
     logger.error(
-      `Error while trying to find user by criteria ${JSON.stringify(
-        query,
-        null,
-        2
-      )}`,
+      `Error while trying to find user by criteria ${prettified(query)}`,
       err
     );
+    throw err;
   }
 };
 

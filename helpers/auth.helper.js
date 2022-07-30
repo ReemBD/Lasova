@@ -1,8 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-const generateAuthToken = (data) => {
-  return jwt.sign(data, process.env.JWT_ACCESS_TOKEN_SECRET);
-};
 
 const verifyAuthToken = (token) => {
   const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET);
@@ -15,7 +12,6 @@ const validateEmail = (email) => {
 };
 
 module.exports = {
-  generateAuthToken,
   verifyAuthToken,
   validateEmail,
 };
