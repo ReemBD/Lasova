@@ -1,17 +1,16 @@
 const logger = require('../../services/logger.service');
 const userService = require('../user/user.service');
 const bcrypt = require('bcrypt');
-const { generateAuthToken } = require('../../helpers/auth.helper');
-const User = require('../user/user.schema');
+const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 
 const signup = async ({ password, ...restOfUser }) => {
-  const SALT_ROUNDS = 10;
   try {
+    const SALT_ROUNDS = 10;
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
-    await userService.saveUser({ ...restOfUser, hash });
-    return generateAuthToken({ username: restOfUser.username });
+    const user = await userService.saveUser({ ...restOfUser, hash });
+    return user.generateBearerAuthToken();
   } catch (err) {
-    logger.error(`err while trying to signup user ${user.username}`, err);
+    logger.error(`err while trying to signup user ${restOfUser.email}`, err);
     throw err;
   }
 };
@@ -25,9 +24,9 @@ const login = async (loggingUser) => {
       logger.info(
         `unsuccessful login attempt with ${loggingUser.email}, password ${loggingUser.password}`
       );
-      throw new Error(`Invalid password`);
+      throw new Error(ErrorMessages.InvalidCredentials);
     }
-    return generateAuthToken(user.toObject());
+    return user.generateBearerAuthToken();
   } catch (err) {
     logger.error(`err while trying to login user ${loggingUser.username}`, err);
     throw err;
