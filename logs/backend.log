@@ -34,3 +34,18 @@
 22/06/2022, 19:57:56 - ERROR - err while trying to add volunteer | ReferenceError: body is not defined 
 22/06/2022, 19:59:23 - ERROR - err while trying to add volunteer | SyntaxError: Unexpected token o in JSON at position 1 
 7/18/2022, 9:47:50 PM - ERROR - err while trying to login user undefined | TypeError: user.checkPassword is not a function 
+7/30/2022, 4:04:15 PM - ERROR - err while trying to login user undefined | TypeError: user.checkPassword is not a function 
+7/30/2022, 4:11:55 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
+7/30/2022, 4:17:34 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
+7/30/2022, 4:44:07 PM - ERROR - err while trying to login user undefined | TypeError: user.checkPassword is not a function 
+7/30/2022, 4:49:20 PM - ERROR - err while trying to login user undefined | TypeError: user.checkPassword is not a function 
+7/30/2022, 4:59:08 PM - ERROR - err while trying to login user undefined | ReferenceError: username is not defined 
+7/30/2022, 5:04:59 PM - ERROR - err while trying to login user undefined | ReferenceError: username is not defined 
+7/30/2022, 5:06:39 PM - ERROR - err while trying to login user undefined | ReferenceError: jwtAccessToken is not defined 
+7/30/2022, 5:07:05 PM - ERROR - err while trying to login user undefined | Error: secretOrPrivateKey must have a value 
+7/30/2022, 5:07:42 PM - ERROR - err while trying to login user undefined | {} 
+7/30/2022, 5:08:00 PM - ERROR - err while trying to login user undefined | Error: secretOrPrivateKey must have a value 
+7/30/2022, 5:45:50 PM - ERROR - err while trying to login user undefined | RangeError: Maximum call stack size exceeded 
+7/30/2022, 5:45:52 PM - ERROR - err while trying to login user undefined | RangeError: Maximum call stack size exceeded 
+7/30/2022, 5:46:19 PM - ERROR - err while trying to login user undefined | RangeError: Maximum call stack size exceeded 
+7/30/2022, 5:46:27 PM - ERROR - err while trying to login user undefined | RangeError: Maximum call stack size exceeded 

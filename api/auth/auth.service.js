@@ -2,6 +2,7 @@ const logger = require('../../services/logger.service');
 const userService = require('../user/user.service');
 const bcrypt = require('bcrypt');
 const { generateAuthToken } = require('../../helpers/auth.helper');
+const User = require('../user/user.schema');
 
 const signup = async ({ password, ...restOfUser }) => {
   const SALT_ROUNDS = 10;
@@ -17,15 +18,16 @@ const signup = async ({ password, ...restOfUser }) => {
 
 const login = async (loggingUser) => {
   try {
-    const user = await userService.findUserByEmail(loggingUser.email);
-    const isPasswordCorrect = user.checkPassword(loggingUser.password);
+    let user = await userService.getUser({ email: loggingUser.email });
+
+    const isPasswordCorrect = await user.checkPassword(loggingUser.password);
     if (!isPasswordCorrect) {
       logger.info(
-        `unsuccessful login attempt with ${loggingUser.username}, password ${loggingUser.password}`
+        `unsuccessful login attempt with ${loggingUser.email}, password ${loggingUser.password}`
       );
       throw new Error(`Invalid password`);
     }
-    return generateAuthToken({ username });
+    return generateAuthToken(user.toObject());
   } catch (err) {
     logger.error(`err while trying to login user ${loggingUser.username}`, err);
     throw err;

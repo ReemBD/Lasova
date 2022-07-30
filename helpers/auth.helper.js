@@ -1,12 +1,11 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 
 const generateAuthToken = (data) => {
-  return jwt.sign(data, jwtAccessToken);
+  return jwt.sign(data, process.env.JWT_ACCESS_TOKEN_SECRET);
 };
 
 const verifyAuthToken = (token) => {
-  const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN);
+  const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET);
   return decoded || false;
 };
 
