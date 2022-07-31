@@ -43,8 +43,6 @@ UserSchema.virtual('permissions').get(function () {
 UserSchema.set('toObject', {
   transform: function (doc, ret, options) {
     delete ret.hash;
-    delete ret.userType;
-    ret.permissions = UserTypePermissionsMap.get(1);
     return ret;
   },
 });

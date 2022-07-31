@@ -10,6 +10,9 @@ const {
   dbName,
   apiAccessAllowedURIs,
 } = require('./env/index.config');
+const {
+  authenticateToken,
+} = require('./middlewares/authentication.middleware');
 
 // requests can only come from this domains
 if (env === 'development') {
@@ -41,9 +44,11 @@ db.once('open', function () {
   console.log('Succesfully connected to db', db.db.databaseName);
 });
 
+app.all('/api/*', authenticateToken);
 app.use('/api/volunteer', require('./api/volunteer/volunteer.routes'));
 app.use('/api/group', require('./api/group/group.routes'));
 app.use('/api/auth', require('./api/auth/auth.routes'));
+app.use('/api/user', require('./api/user/user.routes'));
 
 app.get('/**', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

@@ -2,6 +2,7 @@ const logger = require('../../services/logger.service');
 const User = require('./user.schema');
 const { prettified } = require('../../helpers/prettified.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
+const { UserTypePermissionsMap } = require('../../lib/consts/UserType.enum');
 
 const saveUser = async (user) => {
   try {
@@ -50,6 +51,16 @@ const getUser = async (query = {}) => {
   }
 };
 
+const getUserPermissions = (user) => {
+  try {
+    user = new User(user);
+    const permissions = user.permissions;
+    return permissions;
+  } catch (err) {
+    logger.error(`err occured trying to get user permissions`, err);
+    throw err;
+  }
+};
 /**
  * @param {{email?: string, firstname?: string, lastname?: string, _id?:string, userType?: userTypeEnum}} query user query object
  * */
@@ -66,4 +77,5 @@ module.exports = {
   saveUser,
   getUser,
   getManyUsers,
+  getUserPermissions,
 };

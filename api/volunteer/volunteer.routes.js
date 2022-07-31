@@ -1,4 +1,9 @@
 const express = require('express');
+const { UserPermissions } = require('../../lib/consts/UserType.enum');
+const {
+  authenticateToken,
+  getIsPermitted,
+} = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
   getVolunteers,
@@ -8,13 +13,25 @@ const {
   addVolunteer,
 } = require('./volunteer.controller');
 
-router.get('/:volunteerId', getVolunteerById);
-router.get('/', getVolunteers);
+router.get(
+  '/:volunteerId',
+  getIsPermitted(UserPermissions.Read.Volunteer),
+  getVolunteerById
+);
+router.get('/', getIsPermitted(UserPermissions.Read.Volunteer), getVolunteers);
 
-router.delete('/', removeVolunteers);
+router.delete(
+  '/',
+  getIsPermitted(UserPermissions.Edit.Volunteer),
+  removeVolunteers
+);
 
-router.put('/:volunteerId', updateVolunteer);
+router.put(
+  '/:volunteerId',
+  getIsPermitted(UserPermissions.Edit.Volunteer),
+  updateVolunteer
+);
 
-router.post('/', addVolunteer);
+router.post('/', getIsPermitted(UserPermissions.Write.Volunteer), addVolunteer);
 
 module.exports = router;
