@@ -1,4 +1,8 @@
 const express = require('express');
+const { UserPermissions } = require('../../lib/consts/UserType.enum');
+const {
+  getIsPermitted,
+} = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
   getGroups,
@@ -9,14 +13,30 @@ const {
   addGroup,
 } = require('./group.controller');
 
-router.get('/:groupId', getGroupById);
-router.get('/', getGroups);
+router.get(
+  '/:groupId',
+  getIsPermitted(UserPermissions.Read.Group),
+  getGroupById
+);
+router.get('/', getIsPermitted(UserPermissions.Read.Group), getGroups);
 
-router.delete('/:groupId', removeGroup)
-router.delete('/', removeManyGroups);
+router.delete(
+  '/:groupId',
+  getIsPermitted(UserPermissions.Edit.Group),
+  removeGroup
+);
+router.delete(
+  '/',
+  getIsPermitted(UserPermissions.Edit.Group),
+  removeManyGroups
+);
 
-router.put('/:groupId', updateGroup);
+router.put(
+  '/:groupId',
+  getIsPermitted(UserPermissions.Edit.Group),
+  updateGroup
+);
 
-router.post('/', addGroup);
+router.post('/', getIsPermitted(UserPermissions.Write.Group), addGroup);
 
 module.exports = router;
