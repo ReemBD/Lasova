@@ -14,7 +14,7 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-const getIsPermitted = (...requiredPermissions) => {
+const requirePermissions = (...requiredPermissions) => {
   return (req, res, next) => {
     let { user } = req;
     user = new User(user);
@@ -27,5 +27,5 @@ const getIsPermitted = (...requiredPermissions) => {
 };
 module.exports = {
   authenticateToken,
-  getIsPermitted,
+  requirePermissions,
 };

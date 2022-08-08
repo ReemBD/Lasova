@@ -1,9 +1,11 @@
 const express = require('express');
+const { UserPermissions } = require('../../lib/consts/UserType.enum');
 const {
-  authenticateToken,
+  requirePermissions,
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
-const { getUserPermissions } = require('./user.controller');
+const { getUserPermissions, getUsers } = require('./user.controller');
 
-router.get('/permissions', authenticateToken, getUserPermissions);
+router.get('/', requirePermissions(UserPermissions.Read.User), getUsers);
+router.get('/permissions', getUserPermissions);
 module.exports = router;

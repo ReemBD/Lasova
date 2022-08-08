@@ -1,5 +1,7 @@
 const userService = require('./user.service');
 
+const getUsers = async (req, res) => {};
+
 const getUserPermissions = async (req, res) => {
   try {
     const { user } = req;
@@ -11,5 +13,6 @@ const getUserPermissions = async (req, res) => {
 };
 
 module.exports = {
+  getUsers,
   getUserPermissions,
 };

@@ -100,7 +100,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
               <span className="volunteering_details">
                 <label className="profile_modal_label">בחר מסגרת התנדבות</label>
                 <select
-                  name="volunteerType"
+                  name="volunteeringProgram"
                   className="profile_modal_input"
                   onChange={handleChange}
                 >

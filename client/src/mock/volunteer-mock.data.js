@@ -8,6 +8,6 @@ export const newVolunteerMock = {
   email: 'Lasova.dev@gmail.com',
   gender: 'male',
   summary: '',
-  volunteerType: 'מסעדת לשובע ת״א',
+  volunteeringProgram: 'מסעדת לשובע ת״א',
   status: 'standby',
 };

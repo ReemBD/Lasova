@@ -1,8 +1,7 @@
 const express = require('express');
 const { UserPermissions } = require('../../lib/consts/UserType.enum');
 const {
-  authenticateToken,
-  getIsPermitted,
+  requirePermissions,
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
@@ -15,23 +14,31 @@ const {
 
 router.get(
   '/:volunteerId',
-  getIsPermitted(UserPermissions.Read.Volunteer),
+  requirePermissions(UserPermissions.Read.Volunteer),
   getVolunteerById
 );
-router.get('/', getIsPermitted(UserPermissions.Read.Volunteer), getVolunteers);
+router.get(
+  '/',
+  requirePermissions(UserPermissions.Read.Volunteer),
+  getVolunteers
+);
 
 router.delete(
   '/',
-  getIsPermitted(UserPermissions.Edit.Volunteer),
+  requirePermissions(UserPermissions.Edit.Volunteer),
   removeVolunteers
 );
 
 router.put(
   '/:volunteerId',
-  getIsPermitted(UserPermissions.Edit.Volunteer),
+  requirePermissions(UserPermissions.Edit.Volunteer),
   updateVolunteer
 );
 
-router.post('/', getIsPermitted(UserPermissions.Write.Volunteer), addVolunteer);
+router.post(
+  '/',
+  requirePermissions(UserPermissions.Write.Volunteer),
+  addVolunteer
+);
 
 module.exports = router;

@@ -1,7 +1,6 @@
 const logger = require('../../services/logger.service');
 const { query, remove, update, getById, add } = require('./volunteer.service');
 const googleDriveService = require('../../services/google-drive.service');
-const { json } = require('express/lib/response');
 
 async function getVolunteers(req, res) {
   try {

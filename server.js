@@ -4,21 +4,16 @@ const cors = require('cors');
 const app = express();
 const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
-const {
-  env,
-  dbURI,
-  dbName,
-  apiAccessAllowedURIs,
-} = require('./env/index.config');
+const { apiAccessAllowedURIs } = require('./env/index.config');
 const {
   authenticateToken,
 } = require('./middlewares/authentication.middleware');
 
 // requests can only come from this domains
-if (env === 'development') {
+if (process.env.NODE_ENV === 'development') {
   app.use(
     cors({
-      origin: apiAccessAllowedURIs,
+      origin: process.env.API_ACCESS_ALLOWED_URIs.split(','),
     })
   );
 } else {
@@ -34,8 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // connect to db
-mongoose.connect(dbURI, {
-  dbName,
+mongoose.connect(process.env.DB_URI, {
+  dbName: process.env.DB_NAME,
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;

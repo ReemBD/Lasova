@@ -34,7 +34,7 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
   const [filter, setFilter] = useState({
     status: '',
     groupName: '',
-    volunteerType: '',
+    volunteeringProgram: '',
   });
   const filterOptions = useMemo(() => {
     if (!volunteers) return {};
@@ -135,15 +135,15 @@ const VolunteersTable = ({ volunteers, onExport, openProfileModal }) => {
         valueGetter: (params) => params.row.taz || '-',
       },
       {
-        field: 'volunteerType',
+        field: 'volunteeringProgram',
         headerName: 'מסגרת התנדבות',
         description: 'מסגרת התנדבות',
         renderHeader: () => (
           <FilterableHeaderCell
-            {...getFilterableHeaderCellProps('volunteerType', 'מסגרת התנדבות')}
+            {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת התנדבות')}
           />
         ),
-        valueGetter: (params) => params.row.volunteerType || '',
+        valueGetter: (params) => params.row.volunteeringProgram || '',
       },
       {
         field: 'groupName',

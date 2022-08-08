@@ -48,7 +48,4 @@ UserSchema.set('toObject', {
 });
 
 const User = model('User', UserSchema);
-User.watch().on('error', (err) => {
-  logger.error('Error in user model layer: ', err);
-});
 module.exports = User;

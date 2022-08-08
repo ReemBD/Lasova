@@ -4,9 +4,10 @@ const Volunteer = require('./volunteer.schema');
  * Currently acceps isDefault and doReset as params,
  * doReset - flag that indicates whether should restore data to initial value
  * isDefault - flag that indicates whether should use initial data */
-async function query({} = {}) {
+async function query(filter = {}) {
   try {
-    const volunteers = await Volunteer.find();
+    const criteria = _buildVolunteerCriteria(filter);
+    const volunteers = await Volunteer.find(criteria);
     return volunteers;
   } catch (err) {
     logger.error(`failed to fetch volunteers` + err);
@@ -36,11 +37,7 @@ async function add(volunteer) {
     throw err;
   }
 }
-/**
- * this function gets an array of volunteerIds
- * and removes the corresponding volunteers from the volunteer collection.
- * then returns the updated collection to controller.
- *   */
+
 async function remove(volunteerIds) {
   try {
     const res = await Volunteer.deleteMany({
@@ -62,6 +59,9 @@ async function update(volunteer) {
   }
 }
 
+const _buildVolunteerCriteria = (filter) => {
+  return filter;
+};
 module.exports = {
   query,
   remove,

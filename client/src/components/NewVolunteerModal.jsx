@@ -18,7 +18,7 @@ const VolunteerObj = {
   email: '',
   gender: '',
   summary: '',
-  volunteerType: '',
+  volunteeringProgram: '',
   status: 'standby',
   files: [],
 };
@@ -190,7 +190,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                     בחר מסגרת התנדבות
                   </label>
                   <select
-                    name='volunteerType'
+                    name='volunteeringProgram'
                     className='input'
                     onChange={handleChange}>
                     <option value='מסעדת לשובע תא'>מסעדת לשובע ת"א</option>

@@ -42,7 +42,7 @@ const Home = () => {
   const [filter, setFilter] = useState({
     status: '',
     groupName: '',
-    volunteerType: ''
+    volunteeringProgram: ''
   });
   const filterOptions = useMemo(() => {
     if (!volunteers) return {};
@@ -134,11 +134,11 @@ const Home = () => {
         valueGetter: (params) => params.row.taz || "-",
       },
       {
-        field: "volunteerType",
+        field: "volunteeringProgram",
         headerName: "מסגרת התנדבות",
         description: "מסגרת התנדבות",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps("volunteerType", "מסגרת התנדבות")} />,
-        valueGetter: (params) => params.row.volunteerType || "",
+        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps("volunteeringProgram", "מסגרת התנדבות")} />,
+        valueGetter: (params) => params.row.volunteeringProgram || "",
       },
       {
         field: "groupName",
