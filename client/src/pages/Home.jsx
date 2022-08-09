@@ -5,7 +5,6 @@ import {
   loadVolunteers,
   searchVolunteers,
 } from "../store/actions/volunteerActions";
-import VolunteersTable from "../components/VolunteersTable";
 import NewVolunteerModal from "../components/NewVolunteerModal";
 import ProfileVolunteerModal from "../components/ProfileVolunteerModal";
 import { ReactComponent as NewLead } from "../assets/imgs/icons/status/new-lead.svg";
@@ -19,8 +18,8 @@ import { ReactComponent as SearchIcon } from "../assets/imgs/icons/search-icon.s
 import { ReactComponent as ExportIcon } from "../assets/imgs/icons/export-icon.svg";
 import { ReactComponent as AddVolunteerIcon } from "../assets/imgs/icons/add-person-icon.svg";
 import BasePage from "../pages/BasePage";
-import BaseTable from '../components/BaseTable';
-import FilterableHeaderCell from '../components/FilterableHeaderCell'
+import BaseTable from "../components/BaseTable";
+import FilterableHeaderCell from "../components/FilterableHeaderCell";
 
 // import { ReactComponent as ClearIcon } from '../assets/imgs/icons/close-icon.svg';
 
@@ -28,7 +27,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { volunteers, volunteersToShow } = useSelector(
     (state) => state.volunteerReducer
-    );
+  );
 
   const exportRef = useRef(null);
   const csvBtnRef = useRef(null);
@@ -38,29 +37,31 @@ const Home = () => {
   const [volunteerProfileToShow, setVolunteerProfileToShow] = useState({});
 
   const [dropdownPosition, setDropdownPosition] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('');
+  const [activeFilter, setActiveFilter] = useState("");
   const [filter, setFilter] = useState({
-    status: '',
-    groupName: '',
-    volunteeringProgram: ''
+    status: "",
+    groupName: "",
+    volunteerType: "",
   });
   const filterOptions = useMemo(() => {
     if (!volunteers) return {};
     const retval = volunteers.reduce((acc, curr) => {
-      Object.keys(filter).forEach(key => {
-        acc[key].add(curr[key])
-      })
+      Object.keys(filter).forEach((key) => {
+        acc[key].add(curr[key]);
+      });
       return acc;
-    }, createInitialFilterOptions())
-    Object.keys(retval).forEach(key => { retval[key] = Array.from(retval[key]) })
+    }, createInitialFilterOptions());
+    Object.keys(retval).forEach((key) => {
+      retval[key] = Array.from(retval[key]);
+    });
     return retval;
-  }, [volunteers])
+  }, [volunteers]);
   function createInitialFilterOptions() {
     const retval = {};
-    Object.keys(filter).forEach(key => {
-      retval[key] = new Set()
-      retval[key].add('בחר הכל')
-    })
+    Object.keys(filter).forEach((key) => {
+      retval[key] = new Set();
+      retval[key].add("בחר הכל");
+    });
     return retval;
   }
 
@@ -70,30 +71,26 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (!volunteers) {
-      dispatch(loadVolunteers());
-    }
-  }, [volunteers]);
-
+    dispatch(loadVolunteers());
+  }, [isProfileModalOpen, isNewVolModalOpen]);
 
   const onSetFilter = (filterBy) => {
     setFilter({
       ...filter,
-      [activeFilter]: filterBy
-    })
-    setActiveFilter('')
-  }
+      [activeFilter]: filterBy,
+    });
+    setActiveFilter("");
+  };
 
   const getFilterableHeaderCellProps = (name, title) => {
     return {
-        title,
-        onToggleDropdown: ({ bottom, left }) => {
-            setDropdownPosition({ top: bottom, left });
-            activeFilter === name ? setActiveFilter('') : setActiveFilter(name);
-        },
-    }
-}
-
+      title,
+      onToggleDropdown: ({ bottom, left }) => {
+        setDropdownPosition({ top: bottom, left });
+        activeFilter === name ? setActiveFilter("") : setActiveFilter(name);
+      },
+    };
+  };
 
   const statuses = [
     { type: "active", label: "פעיל", icon: <Active /> },
@@ -102,19 +99,23 @@ const Home = () => {
     { type: "inactive", label: "לא פעיל", icon: <Inactive /> },
   ];
 
-
   const columns = useMemo(
     () => [
       {
         field: "status",
         description: "סטטוס",
         headerName: "סטטוס",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('status', "סטטוס")} />,
+        renderHeader: () => (
+          <FilterableHeaderCell
+            {...getFilterableHeaderCellProps("status", "סטטוס")}
+          />
+        ),
         valueFormatter: ({ value }) =>
-          statuses.find((status) => status.type === value)?.label,
+          statuses.find((status) => status.type === value)?.label ||
+          statuses[2].type,
         renderCell: (params) =>
-          statuses.find((status) => status.type === params.row.status)?.icon ||
-          "",
+          statuses.find((status) => status.type === params.row.status)
+            ?.icon || <Standby />,
       },
       {
         field: "firstName",
@@ -137,14 +138,22 @@ const Home = () => {
         field: "volunteeringProgram",
         headerName: "מסגרת התנדבות",
         description: "מסגרת התנדבות",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps("volunteeringProgram", "מסגרת התנדבות")} />,
-        valueGetter: (params) => params.row.volunteeringProgram || "",
+        renderHeader: () => (
+          <FilterableHeaderCell
+            {...getFilterableHeaderCellProps("volunteerType", "מסגרת התנדבות")}
+          />
+        ),
+        valueGetter: (params) => params.row.volunteerType || "",
       },
       {
         field: "groupName",
         headerName: "מסגרת מפנה",
         description: "מסגרת מפנה",
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps("groupName", "מסגרת מפנה")} />,
+        renderHeader: () => (
+          <FilterableHeaderCell
+            {...getFilterableHeaderCellProps("groupName", "מסגרת מפנה")}
+          />
+        ),
         valueGetter: (params) => {
           if (params.row.scholarship) {
             return `מלגה, ${params.row.scholarship}`;
@@ -154,27 +163,20 @@ const Home = () => {
       },
       {
         field: "volunteerHours",
-        headerName: "שעות מדווחות/מאושרות",
-        description: "שעות מדווחות/מאושרות",
+        headerName: "שעות מדווחות",
+        description: "שעות מדווחות",
         sortable: false,
         valueFormatter: ({ _id }) => {
           const volunteer = volunteers?.find(
             (volunteer) => volunteer._id === _id
           );
-          const volunteerHours =
-            (volunteer?.reportedHours || 0) +
-            " / " +
-            (volunteer?.approvedHours || 0);
+          const volunteerHours = volunteer?.reportedHours || 0;
           return volunteerHours;
         },
         renderCell: (params) => (
           <>
             <span className="reported-hours">
-              {params.row.reportedHours || 13}
-            </span>{" "}
-            /
-            <span className="approved-hours">
-              {params.row.approvedHours || 45}
+              {params.row.reportedHours || 0}
             </span>
           </>
         ),
@@ -192,10 +194,11 @@ const Home = () => {
   );
 
   return (
-
     <BasePage
-      title='טבלת מתנדבים'
-      doSearch={(searchWord) => { dispatch(searchVolunteers(searchWord)) }}
+      title="טבלת מתנדבים"
+      doSearch={(searchWord) => {
+        dispatch(searchVolunteers(searchWord));
+      }}
       doExport={() => exportRef.current()}
       onAdd={() => setNewVolModalOpen(true)}
     >
@@ -212,7 +215,7 @@ const Home = () => {
         filter={filter}
         onEntityClick={openProfileModal}
       />
-      {/* <VolunteersTable
+      {/* <VolunteersTable // Probably need to be deleted
         volunteers={volunteersToShow}
         onExport={onExport}
         openProfileModal={openProfileModal}
@@ -226,13 +229,14 @@ const Home = () => {
       )}
       {isProfileModalOpen && (
         <ProfileVolunteerModal
+          volunteers={volunteers}
           volunteer={volunteerProfileToShow}
           open={isProfileModalOpen}
           setOpen={setProfileModalOpen}
+          statuses={statuses}
         />
       )}
     </BasePage>
-
   );
 };
 
