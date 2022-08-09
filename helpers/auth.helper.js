@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 
 const verifyAuthToken = (token) => {
-  const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN_SECRET);
+  const decoded = jwt.verify(token, process.env.LASOVA_ACCESS_TOKEN_SECRET);
   return decoded || false;
 };
 

@@ -6,7 +6,7 @@ const Volunteer = require('./volunteer.schema');
  * isDefault - flag that indicates whether should use initial data */
 async function query(filter = {}) {
   try {
-    const criteria = _buildVolunteerCriteria(filter);
+    const criteria = _buildVolunteerQueryFilter(filter);
     const volunteers = await Volunteer.find(criteria);
     return volunteers;
   } catch (err) {
@@ -59,9 +59,29 @@ async function update(volunteer) {
   }
 }
 
-const _buildVolunteerCriteria = (filter) => {
+const _buildVolunteerQueryFilter = (query) => {
+  const filter = {};
+  Object.keys(query).forEach((currQueryKey) => {
+    _setFilterPropVal(filter, currQueryKey);
+  });
   return filter;
 };
+
+function _setFilterPropVal(filter, propKey) {
+  let currFilterPropertyVal;
+  switch (currQueryKey) {
+    case 'volunteeringPrograms':
+      currFilterPropertyVal = {
+        $in: query[currQueryKey],
+      };
+      break;
+    default:
+      currFilterPropertyVal = query[currQueryKey];
+      break;
+  }
+  filter[propKey] = currFilterPropertyVal;
+}
+
 module.exports = {
   query,
   remove,

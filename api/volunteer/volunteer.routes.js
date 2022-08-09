@@ -2,6 +2,7 @@ const express = require('express');
 const { UserPermissions } = require('../../lib/consts/UserType.enum');
 const {
   requirePermissions,
+  authenticateToken,
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
@@ -12,6 +13,7 @@ const {
   addVolunteer,
 } = require('./volunteer.controller');
 
+router.use(authenticateToken);
 router.get(
   '/:volunteerId',
   requirePermissions(UserPermissions.Read.Volunteer),

@@ -9,6 +9,9 @@ const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const logger = require('../../services/logger.service');
+const {
+  managerProgramsObjectMap,
+} = require('../../lib/managerProgramMap.index');
 
 const required = true;
 
@@ -29,7 +32,7 @@ UserSchema.methods.checkPassword = function (password) {
 };
 
 UserSchema.methods.generateBearerAuthToken = function () {
-  return jwt.sign(this.toObject(), process.env.JWT_ACCESS_TOKEN_SECRET);
+  return jwt.sign(this.toObject(), process.env.LASOVA_ACCESS_TOKEN_SECRET);
 };
 
 UserSchema.virtual('fullname').get(function () {
@@ -40,9 +43,17 @@ UserSchema.virtual('permissions').get(function () {
   return UserTypePermissionsMap.get(this.userType);
 });
 
+UserSchema.virtual('associatedPrograms').get(function () {
+  if (this.userType === UserTypes.ProgramManager) {
+    return managerProgramsObjectMap[this.email];
+  }
+  return null;
+});
+
 UserSchema.set('toObject', {
   transform: function (doc, ret, options) {
     delete ret.hash;
+    delete ret.iat;
     return ret;
   },
 });

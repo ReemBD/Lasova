@@ -39,7 +39,6 @@ db.once('open', function () {
   console.log('Succesfully connected to db', db.db.databaseName);
 });
 
-app.all('/api/*', authenticateToken);
 app.use('/api/volunteer', require('./api/volunteer/volunteer.routes'));
 app.use('/api/group', require('./api/group/group.routes'));
 app.use('/api/auth', require('./api/auth/auth.routes'));

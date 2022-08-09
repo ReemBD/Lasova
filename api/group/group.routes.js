@@ -2,6 +2,7 @@ const express = require('express');
 const { UserPermissions } = require('../../lib/consts/UserType.enum');
 const {
   requirePermissions,
+  authenticateToken,
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
@@ -13,6 +14,7 @@ const {
   addGroup,
 } = require('./group.controller');
 
+router.use(authenticateToken);
 router.get(
   '/:groupId',
   requirePermissions(UserPermissions.Read.Group),

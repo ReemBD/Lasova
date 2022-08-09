@@ -2,7 +2,6 @@ const logger = require('../../services/logger.service');
 const User = require('./user.schema');
 const { prettified } = require('../../helpers/prettified.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
-const { UserTypePermissionsMap } = require('../../lib/consts/UserType.enum');
 
 const saveUser = async (user) => {
   try {
