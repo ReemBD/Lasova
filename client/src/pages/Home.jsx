@@ -135,7 +135,7 @@ const Home = () => {
         valueGetter: (params) => params.row.taz || "-",
       },
       {
-        field: "volunteerType",
+        field: "volunteeringProgram",
         headerName: "מסגרת התנדבות",
         description: "מסגרת התנדבות",
         renderHeader: () => (
