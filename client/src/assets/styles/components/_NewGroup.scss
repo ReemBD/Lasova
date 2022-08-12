@@ -11,4 +11,28 @@
     justify-content: space-around;
     align-items: flex-start;
     flex-direction: column;
+    .new_group_form {
+        width: 100%;
+        padding: 5%;
+    }
+    .new_group_title {
+        margin-right: rem(48px);
+        font-size: rem(36.8px);
+        font-family: Assistant-Semibold;
+    }
+}
+.new_group_organization-data {
+    background-color: rgba(0, 0, 0, 0.342);
+    display: block;
+    padding: 1%;
+
+    .new_group_organization-title {
+        font-size: rem(18.8px);
+        font-family: Assistant-Semibold;
+        margin-bottom: 15px;
+    }
+    .new_group_organization-form {
+        display: flex;
+        column-gap: 5%;
+    }
 }
