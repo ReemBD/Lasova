@@ -12,7 +12,7 @@ function NewGroupModal({ open, setOpen }) {
         <Modal open={open} onClose={() => setOpen(false)}>
             <Box className='new_group_modal'>
                 <button
-                    className='new_vol_close-button'
+                    className='new_group_close-button'
                     onClick={() => setOpen(false)}
                     type='button'
                 />
@@ -20,10 +20,8 @@ function NewGroupModal({ open, setOpen }) {
                 <form className='new_group_form'>
                     <div className='new_group_organization-data'>
                         <div>
-                            <h2 className='new_group_organization-title'>
-                                ארגון
-                            </h2>
-                            <div className='new_group_organization-form'>
+                            <h2 className='title'>ארגון</h2>
+                            <div className='new_group_form-block'>
                                 <label htmlFor='name'>
                                     <input
                                         className='input'
@@ -54,6 +52,44 @@ function NewGroupModal({ open, setOpen }) {
                                     />
                                 </label>
                             </div>
+                        </div>
+                    </div>
+
+                    <div className='new_group_contact-data'>
+                        <h2 className='title'>איש קשר</h2>
+                        <div className='new_group_form-block'>
+                            <label htmlFor='contactName'>
+                                <input
+                                    type='text'
+                                    className='input'
+                                    name='contactName'
+                                    placeholder='שם'
+                                />
+                            </label>
+                            <label htmlFor='position'>
+                                <input
+                                    type='text'
+                                    className='input'
+                                    name='position'
+                                    placeholder='תפקיד'
+                                />
+                            </label>
+                            <label htmlFor='phone'>
+                                <input
+                                    type='tel'
+                                    className='input'
+                                    name='phone'
+                                    placeholder='טלפון'
+                                />
+                            </label>
+                            <label htmlFor='email'>
+                                <input
+                                    type='email'
+                                    className='input'
+                                    name='email'
+                                    placeholder='מייל'
+                                />
+                            </label>
                         </div>
                     </div>
                 </form>

@@ -14,6 +14,33 @@
     .new_group_form {
         width: 100%;
         padding: 5%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+    .new_group_form-block {
+        display: flex;
+        column-gap: 5%;
+    }
+    .title {
+        font-size: rem(18.8px);
+        font-family: Assistant-Semibold;
+        margin-bottom: 15px;
+    }
+    .new_group_close-button {
+        background-image: url(./../../imgs/icons/close-icon.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        margin: 10px 10px 0 0;
+        transition: 0.3s;
+
+        &:hover {
+            opacity: 0.8;
+            transform: rotate(180deg);
+        }
     }
     .new_group_title {
         margin-right: rem(48px);
@@ -25,14 +52,10 @@
     background-color: rgba(0, 0, 0, 0.342);
     display: block;
     padding: 1%;
+}
 
-    .new_group_organization-title {
-        font-size: rem(18.8px);
-        font-family: Assistant-Semibold;
-        margin-bottom: 15px;
-    }
-    .new_group_organization-form {
-        display: flex;
-        column-gap: 5%;
-    }
+.new_group_contact-data {
+    background-color: rgba(0, 0, 0, 0.342);
+    display: block;
+    padding: 1%;
 }
