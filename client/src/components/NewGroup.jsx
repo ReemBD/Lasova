@@ -1,5 +1,5 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { saveVolunteer } from "../store/actions/volunteerActions";
 // import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -9,6 +9,25 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 
 function NewGroupModal({ open, setOpen }) {
+    //This schema is based on the back-end schema in group.schema.js file inside api folder.
+    const newGroupSchema = {
+        type: "",
+        name: "",
+        city: "",
+        contactName: "",
+        contactRole: "",
+        contactEmail: "",
+        contactCellphone: "",
+        volunteersCount: "",
+        reportedHours: "", //No UX/UI for this yet
+        volunteeringsCount: "", //No UX/UI for this yet
+    };
+    const [newGroup, setNewGroup] = useState(newGroupSchema);
+    const handleChange = (e) => {
+        let value = e.target.value;
+        setNewGroup((prev) => ({ ...prev, [e.target.name]: value }));
+    };
+
     return (
         <Modal open={open} onClose={() => setOpen(false)}>
             <Box className='new_group_modal'>
@@ -36,7 +55,7 @@ function NewGroupModal({ open, setOpen }) {
                                         name='name'
                                     />
                                 </label>
-                                <select name='profile' className='input'>
+                                <select name='type' className='input'>
                                     <option id='0' value='null'>
                                         פרופיל
                                     </option>
@@ -78,27 +97,27 @@ function NewGroupModal({ open, setOpen }) {
                                     placeholder='שם'
                                 />
                             </label>
-                            <label htmlFor='position'>
+                            <label htmlFor='contactRole'>
                                 <input
                                     type='text'
                                     className='input'
-                                    name='position'
+                                    name='contactRole'
                                     placeholder='תפקיד'
                                 />
                             </label>
-                            <label htmlFor='phone'>
+                            <label htmlFor='contactCellphone'>
                                 <input
                                     type='tel'
                                     className='input'
-                                    name='phone'
+                                    name='contactCellphone'
                                     placeholder='טלפון'
                                 />
                             </label>
-                            <label htmlFor='email'>
+                            <label htmlFor='contactEmail'>
                                 <input
                                     type='email'
                                     className='input'
-                                    name='email'
+                                    name='contactEmail'
                                     placeholder='מייל'
                                 />
                             </label>
@@ -115,12 +134,12 @@ function NewGroupModal({ open, setOpen }) {
 
                         <div className='new_group_form-block__between'>
                             <div className='new_group_form-block'>
-                                <label htmlFor='volunteers'>
+                                <label htmlFor='volunteersCount'>
                                     <input
                                         className='input'
-                                        placeholder='הוספת מתנדבים'
+                                        placeholder='מספר מתנדבים'
                                         type='text'
-                                        name='volunteers'
+                                        name='volunteersCount'
                                     />
                                 </label>
                             </div>
