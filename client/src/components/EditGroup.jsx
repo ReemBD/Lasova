@@ -11,8 +11,6 @@ import Button from "@mui/material/Button";
 
 function EditGroupModal({ open, setOpen, group }) {
     const dispatch = useDispatch();
-    //This schema is based on the back-end schema in group.schema.js file inside api folder.
-
     const [newGroup, setNewGroup] = useState({ ...group });
     const handleChange = (e) => {
         let value = e.target.value;

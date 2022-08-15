@@ -25,7 +25,6 @@ const NewVolunteerModal = ({ open, setOpen }) => {
     const dispatch = useDispatch();
     const [isOption2, setIsOption2] = useState(false);
     const [isOption3, setIsOption3] = useState(false);
-    const [enable, setEnable] = useState(true);
     const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
 
     const handleChange = (e) => {
@@ -320,11 +319,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                                 <Button
                                     variant='contained'
                                     type='submit'
-                                    className={
-                                        enable
-                                            ? "new_vol_modal_btn"
-                                            : "new_vol_modal_btn disable"
-                                    }>
+                                    className={"new_vol_modal_btn"}>
                                     הוסף למסגרת
                                 </Button>
                             </div>
