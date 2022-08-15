@@ -161,7 +161,7 @@
 //           }
 //           // don't show 'sort icon' on filterable columns hover
 //           &[data-field='status'],
-//           &[data-field='volunteerType'],
+//           &[data-field='volunteeringProgram'],
 //           &[data-field='misgeretType'] {
 //             &:hover {
 //               .MuiDataGrid-iconButtonContainer {
@@ -326,7 +326,7 @@
 //           flex: 2 0 vw(204px);
 //         }
 
-//         &[data-field='volunteerType'],
+//         &[data-field='volunteeringProgram'],
 //         &[data-field='misgeretType'] {
 //           flex: 5 1 vw(230px);
 //           // flex-grow: 1.5;
