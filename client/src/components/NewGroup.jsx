@@ -20,38 +20,50 @@ function NewGroupModal({ open, setOpen }) {
                 <h1 className='new_group_title'>הוספת קבוצה/ארגון חדשים</h1>
                 <form className='new_group_form'>
                     <div className='new_group_block'>
-                        <h2 className='title'>ארגון</h2>
-                        <div className='new_group_form-block'>
-                            <label htmlFor='name'>
-                                <input
-                                    className='input'
-                                    type='text'
-                                    placeholder='שם'
-                                    name='name'
-                                />
-                            </label>
-                            <select name='profile' className='input'>
-                                <option id='0' value='null'>
-                                    פרופיל
-                                </option>
-                                <option id='1' value='עצמאי'>
-                                    עצמאי
-                                </option>
-                                <option id='2' value='סטודנט'>
-                                    סטודנט
-                                </option>
-                                <option id='3' value='שלצ'>
-                                    של"צ
-                                </option>
-                            </select>
-                            <label htmlFor='city'>
-                                <input
-                                    className='input'
-                                    placeholder='עיר'
-                                    type='text'
-                                    name='city'
-                                />
-                            </label>
+                        <div className='new_group_form-titles__even'>
+                            <h2 className='title'>ארגון</h2>
+                            <h2 className='title' style={{ marginLeft: "36%" }}>
+                                עיר
+                            </h2>
+                        </div>
+                        <div className='new_group_form-block__between'>
+                            <div className='new_group_form-block'>
+                                <label htmlFor='name'>
+                                    <input
+                                        className='input'
+                                        type='text'
+                                        placeholder='שם'
+                                        name='name'
+                                    />
+                                </label>
+                                <select name='profile' className='input'>
+                                    <option id='0' value='null'>
+                                        פרופיל
+                                    </option>
+                                    <option id='1' value='עצמאי'>
+                                        עצמאי
+                                    </option>
+                                    <option id='2' value='סטודנט'>
+                                        סטודנט
+                                    </option>
+                                    <option id='3' value='שלצ'>
+                                        של"צ
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div
+                                className='new_group_form-block'
+                                style={{ marginLeft: "18%" }}>
+                                <label htmlFor='city'>
+                                    <input
+                                        className='input'
+                                        placeholder='עיר'
+                                        type='text'
+                                        name='city'
+                                    />
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -94,7 +106,13 @@ function NewGroupModal({ open, setOpen }) {
                     </div>
 
                     <div className='new_group_block'>
-                        <h2 className='title'>מתנדבים</h2>
+                        <div className='new_group_form-titles__even'>
+                            <h2 className='title'>מתנדבים</h2>
+                            <h2 className='title' style={{ marginLeft: "36%" }}>
+                                העדפות
+                            </h2>
+                        </div>
+
                         <div className='new_group_form-block__between'>
                             <div className='new_group_form-block'>
                                 <label htmlFor='volunteers'>
@@ -145,6 +163,19 @@ function NewGroupModal({ open, setOpen }) {
                                     placeholder='מנהל מסגרת'
                                     type='text'
                                     name='placementManager'
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div className='new_group_block'>
+                        <h2 className='title'>אחר</h2>
+                        <div className='new_group_form-block'>
+                            <label htmlFor='comments'>
+                                <textarea
+                                    className='input'
+                                    placeholder='הערות נוספות'
+                                    type='text'
+                                    name='comments'
                                 />
                             </label>
                         </div>
