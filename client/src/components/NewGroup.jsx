@@ -6,6 +6,7 @@ import React from "react";
 // import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 
 function NewGroupModal({ open, setOpen }) {
     return (
@@ -126,6 +127,34 @@ function NewGroupModal({ open, setOpen }) {
                             </div>
                         </div>
                     </div>
+
+                    <div className='new_group_block'>
+                        <h2 className='title'>מסגרת</h2>
+                        <div className='new_group_form-block'>
+                            <label htmlFor='placement'>
+                                <input
+                                    className='input'
+                                    placeholder='שיבוץ'
+                                    type='text'
+                                    name='placement'
+                                />
+                            </label>
+                            <label htmlFor='placementManager'>
+                                <input
+                                    className='input'
+                                    placeholder='מנהל מסגרת'
+                                    type='text'
+                                    name='placementManager'
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <Button
+                        variant='contained'
+                        type='submit'
+                        className='new_group_modal_btn'>
+                        שמירה
+                    </Button>
                 </form>
             </Box>
         </Modal>
