@@ -9,22 +9,11 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 
-function NewGroupModal({ open, setOpen }) {
+function EditGroupModal({ open, setOpen, group }) {
     const dispatch = useDispatch();
     //This schema is based on the back-end schema in group.schema.js file inside api folder.
-    const newGroupSchema = {
-        type: "",
-        name: "",
-        city: "",
-        contactName: "",
-        contactRole: "",
-        contactEmail: "",
-        contactCellphone: "",
-        volunteersCount: "",
-        reportedHours: "", //No UX/UI for this yet
-        volunteeringsCount: "", //No UX/UI for this yet
-    };
-    const [newGroup, setNewGroup] = useState(newGroupSchema);
+
+    const [newGroup, setNewGroup] = useState({ ...group });
     const handleChange = (e) => {
         let value = e.target.value;
         setNewGroup((prev) => ({ ...prev, [e.target.name]: value }));
@@ -33,8 +22,8 @@ function NewGroupModal({ open, setOpen }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("..will submit:", newGroup);
-        setNewGroup(newGroup);
         dispatch(saveGroup(newGroup));
+        setNewGroup(newGroup);
         setOpen(false);
     };
     return (
@@ -63,11 +52,13 @@ function NewGroupModal({ open, setOpen }) {
                                         placeholder='שם'
                                         name='name'
                                         onChange={handleChange}
+                                        defaultValue={group.name}
                                     />
                                 </label>
                                 <select
                                     name='type'
                                     className='input'
+                                    defaultValue={group.type}
                                     onChange={handleChange}>
                                     <option id='0' value='null'>
                                         פרופיל
@@ -94,6 +85,7 @@ function NewGroupModal({ open, setOpen }) {
                                         type='text'
                                         name='city'
                                         onChange={handleChange}
+                                        defaultValue={group.city}
                                     />
                                 </label>
                             </div>
@@ -110,6 +102,7 @@ function NewGroupModal({ open, setOpen }) {
                                     name='contactName'
                                     placeholder='שם'
                                     onChange={handleChange}
+                                    defaultValue={group.contactName}
                                 />
                             </label>
                             <label htmlFor='contactRole'>
@@ -119,6 +112,7 @@ function NewGroupModal({ open, setOpen }) {
                                     name='contactRole'
                                     placeholder='תפקיד'
                                     onChange={handleChange}
+                                    defaultValue={group.contactRole}
                                 />
                             </label>
                             <label htmlFor='contactCellphone'>
@@ -128,6 +122,7 @@ function NewGroupModal({ open, setOpen }) {
                                     name='contactCellphone'
                                     placeholder='טלפון'
                                     onChange={handleChange}
+                                    defaultValue={group.contactCellphone}
                                 />
                             </label>
                             <label htmlFor='contactEmail'>
@@ -137,6 +132,7 @@ function NewGroupModal({ open, setOpen }) {
                                     name='contactEmail'
                                     placeholder='מייל'
                                     onChange={handleChange}
+                                    defaultValue={group.contactEmail}
                                 />
                             </label>
                         </div>
@@ -159,6 +155,7 @@ function NewGroupModal({ open, setOpen }) {
                                         type='text'
                                         name='volunteersCount'
                                         onChange={handleChange}
+                                        defaultValue={group.volunteersCount}
                                     />
                                 </label>
                             </div>
@@ -230,4 +227,4 @@ function NewGroupModal({ open, setOpen }) {
     );
 }
 
-export default NewGroupModal;
+export default EditGroupModal;

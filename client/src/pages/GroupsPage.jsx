@@ -6,20 +6,26 @@ import BasePage from "./BasePage";
 import BaseTable from "../components/BaseTable";
 import FilterableHeaderCell from "../components/FilterableHeaderCell";
 import NewGroupModal from "../components/NewGroup";
+import EditGroupModal from "../components/EditGroup";
 
-const GroupsPage = ({ onAdd }) => {
+const GroupsPage = () => {
     const [isNewGroupModalOpen, setGroupModal] = useState(false);
+    const [isEditGroupModalOpen, setEditGroupModal] = useState(false);
+    const [groupToShow, setGroupToShow] = useState({});
     const exportRef = useRef(null);
     const csvBtnRef = useRef(null);
+
+    const openEditGroup = (group) => {
+        setEditGroupModal(true);
+        setGroupToShow(group);
+    };
 
     const dispatch = useDispatch();
     const { groups, groupsToShow } = useSelector((state) => state.groupReducer);
 
     useEffect(() => {
-        if (!groups) {
-            dispatch(loadGroups());
-        }
-    }, [dispatch, groups]);
+        dispatch(loadGroups());
+    }, [dispatch, isEditGroupModalOpen, isNewGroupModalOpen]);
 
     const [dropdownPosition, setDropdownPosition] = useState(null);
     const [activeFilter, setActiveFilter] = useState("");
@@ -73,30 +79,27 @@ const GroupsPage = ({ onAdd }) => {
     const columns = useMemo(
         () => [
             {
-                field: "groupType",
+                field: "type",
                 description: "סוג קבוצה",
                 headerName: "סוג קבוצה",
-                // valueGetter: (params) => params.row.groupType || "",
+                valueGetter: (params) => params.row.type || "",
                 renderHeader: () => (
                     <FilterableHeaderCell
-                        {...getFilterableHeaderCellProps(
-                            "groupType",
-                            "סוג קבוצה"
-                        )}
+                        {...getFilterableHeaderCellProps("type", "סוג קבוצה")}
                     />
                 ),
             },
             {
-                field: "groupName",
+                field: "name",
                 headerName: "שם הארגון",
                 description: "שם הארגון",
-                valueGetter: (params) => params.row.groupName || "",
+                valueGetter: (params) => params.row.name || "",
             },
             {
                 field: "contactNane",
                 headerName: "איש קשר",
                 description: "איש קשר",
-                valueGetter: (params) => params.row.contactNane || "",
+                valueGetter: (params) => params.row.contactName || "",
             },
             {
                 field: "contactRole",
@@ -108,7 +111,7 @@ const GroupsPage = ({ onAdd }) => {
                 field: "cellphone",
                 headerName: "טלפון",
                 description: "טלפון",
-                valueGetter: (params) => params.row.cellphone || "",
+                valueGetter: (params) => params.row.contactCellphone || "",
             },
             {
                 field: "volunteersCount",
@@ -151,11 +154,19 @@ const GroupsPage = ({ onAdd }) => {
                 filterOptions={filterOptions}
                 onSetFilter={onSetFilter}
                 filter={filter}
+                onEntityClick={openEditGroup}
             />
             {isNewGroupModalOpen && (
                 <NewGroupModal
                     open={isNewGroupModalOpen}
                     setOpen={setGroupModal}
+                />
+            )}
+            {isEditGroupModalOpen && (
+                <EditGroupModal
+                    open={isEditGroupModalOpen}
+                    setOpen={setEditGroupModal}
+                    group={groupToShow}
                 />
             )}
         </BasePage>
