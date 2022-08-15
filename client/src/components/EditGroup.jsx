@@ -34,7 +34,7 @@ function EditGroupModal({ open, setOpen, group }) {
                     onClick={() => setOpen(false)}
                     type='button'
                 />
-                <h1 className='new_group_title'>הוספת קבוצה/ארגון חדשים</h1>
+                <h1 className='new_group_title'>עריכת פרטי קבוצה</h1>
                 <form className='new_group_form' onSubmit={handleSubmit}>
                     <div className='new_group_block'>
                         <div className='new_group_form-titles__even'>
