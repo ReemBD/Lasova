@@ -1,18 +1,11 @@
 const logger = require('../../services/logger.service');
 const { query, remove, update, getById, add } = require('./volunteer.service');
 const googleDriveService = require('../../services/google-drive.service');
-const { UserTypes } = require('../../lib/consts/UserType.enum');
-const {
-  managerProgramsObjectMap,
-} = require('../../lib/managerProgramMap.index');
+const { json } = require('express/lib/response');
 
 async function getVolunteers(req, res) {
   try {
     const queryOptions = req.query;
-    if (req.user.userType === UserTypes.ProgramManager) {
-      queryOptions.volunteeringPrograms =
-        managerProgramsObjectMap[req.user.email];
-    }
     const volunteers = await query(queryOptions);
     res.send(volunteers);
   } catch (err) {
