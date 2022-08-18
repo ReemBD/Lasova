@@ -49,7 +49,7 @@ const Header = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-      ><span className="avatar-initials">{user && (user.name.split(' ')[0][0]).toUpperCase()}</span></Avatar>
+      ><span className="avatar-initials">{user && (user.firstname.charAt(0)).toUpperCase()}</span></Avatar>
       <Menu
         id="menu"
         aria-labelledby="avatar"

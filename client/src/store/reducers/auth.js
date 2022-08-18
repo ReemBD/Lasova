@@ -1,3 +1,6 @@
+import { accessTokenService } from '../../services/access-token.service';
+import { storageService } from '../../services/storage.service';
+import decode from 'jwt-decode';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
@@ -7,10 +10,10 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('token') | null,
+  token: localStorage.getItem('LASOVA_AUTH_TOKEN') || null,
   isAuthenticated: null,
   loading: true,
-  user: JSON.parse(localStorage.getItem('user')) | {},
+  user: storageService.getItem('LOGGED_IN_USER'),
 };
 
 export function authReducer(state = initialState, action) {
@@ -26,18 +29,19 @@ export function authReducer(state = initialState, action) {
         user: payload,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', payload);
+      const user = decode(payload);
+      accessTokenService.setToken(payload);
+      storageService.setItem('LOGGED_IN_USER', user);
       return {
         ...state,
-        // ...payload,
-        token: payload,
+        user,
         isAuthenticated: true,
         loading: false,
       };
     case LOGIN_FAIL:
     case AUTH_ERROR:
     case LOGOUT:
-      localStorage.removeItem('token');
+      accessTokenService.removeItem();
       localStorage.removeItem('user');
       return {
         ...state,
