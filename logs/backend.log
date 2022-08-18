@@ -171,3 +171,5 @@
   "hash": "$2b$10$ODPrL45QS3ZWSGEwqXyX.OR69yOdjJAABhgGbt2G7Kc/MTxBBblgq"
 } | Error: Unable to add user. User already exists 
 7/30/2022, 7:41:27 PM - ERROR - err while trying to signup user test123@gmail.com | Error: Unable to add user. User already exists 
+8/15/2022, 7:43:23 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
+8/15/2022, 7:51:52 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
