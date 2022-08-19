@@ -8,7 +8,7 @@ const router = express.Router();
 const { login, signup } = require('./auth.controller');
 
 // Non requiring Authentication routes.
-router.post('/login', login);
+router.get('/login', login);
 //
 
 router.use(authenticateToken);
