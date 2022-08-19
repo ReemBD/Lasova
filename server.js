@@ -4,16 +4,18 @@ const cors = require('cors');
 const app = express();
 const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
-const { apiAccessAllowedURIs } = require('./env/index.config');
 const {
-  authenticateToken,
-} = require('./middlewares/authentication.middleware');
+  env,
+  dbURI,
+  dbName,
+  apiAccessAllowedURIs,
+} = require('./env/index.config');
 
 // requests can only come from this domains
-if (process.env.NODE_ENV === 'development') {
+if (env === 'development') {
   app.use(
     cors({
-      origin: process.env.API_ACCESS_ALLOWED_URIs.split(','),
+      origin: apiAccessAllowedURIs,
     })
   );
 } else {
@@ -29,8 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
 // connect to db
-mongoose.connect(process.env.DB_URI, {
-  dbName: process.env.DB_NAME,
+mongoose.connect(dbURI, {
+  dbName,
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;
@@ -41,9 +43,6 @@ db.once('open', function () {
 
 app.use('/api/volunteer', require('./api/volunteer/volunteer.routes'));
 app.use('/api/group', require('./api/group/group.routes'));
-app.use('/api/auth', require('./api/auth/auth.routes'));
-app.use('/api/user', require('./api/user/user.routes'));
-
 app.get('/**', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
