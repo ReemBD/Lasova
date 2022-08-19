@@ -5,13 +5,9 @@ const {
   authenticateToken,
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
-const { login, signup } = require('./auth.controller');
-
-// Non requiring Authentication routes.
-router.get('/login', login);
-//
+const { getUserPermissions, getUsers } = require('./user.controller');
 
 router.use(authenticateToken);
-router.post('/signup', requirePermissions(UserPermissions.Write.User), signup);
-
+router.get('/', requirePermissions(UserPermissions.Read.User), getUsers);
+router.get('/permissions', getUserPermissions);
 module.exports = router;
