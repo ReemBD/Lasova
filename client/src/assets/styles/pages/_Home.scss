@@ -1,94 +1,95 @@
-.home, .groups, .base-page {
-  .table-header {
-    margin-inline-end: rem(45px);
-    margin-bottom: vh(20px);
-    h1 {
-      margin: vh(26px) vh(28px);
-      line-height: vh(47px);
-      font-size: vh(36px);
-      font-family: Assistant-Bold;
-    }
+.home,
+.groups,
+.base-page {
+    .table-header {
+        margin-inline-end: rem(45px);
+        margin-bottom: vh(20px);
+        h1 {
+            margin: vh(26px) vh(28px);
+            line-height: vh(47px);
+            font-size: vh(36px);
+            font-family: Assistant-Bold;
+        }
 
-    .search {
-      margin-inline-start: vh(28px);
-      height: vh(40px);
-      width: vh(180px);
-      padding: vh(10px) vh(13px) vh(10px) vh(8px);
-      background-color: $lightBg;
-      border-radius: 2rem;
-      position: relative;
-      &:hover {
-        background-color: $hoverBg;
-      }
-      label {
-        height: vh(20px);
-        svg {
-          height: vh(20px);
-          width: vh(20.43px);
-          position: relative;
-          top: vh(-5px);
+        .search {
+            margin-inline-start: vh(28px);
+            height: vh(40px);
+            width: vh(180px);
+            padding: vh(10px) vh(13px) vh(10px) vh(8px);
+            background-color: $lightBg;
+            border-radius: 2rem;
+            position: relative;
+            &:hover {
+                background-color: $hoverBg;
+            }
+            label {
+                height: vh(20px);
+                svg {
+                    height: vh(20px);
+                    width: vh(20.43px);
+                    position: relative;
+                    top: vh(-5px);
+                }
+            }
+            input {
+                font-family: Assistant-Reg;
+                width: 100%;
+                margin-inline-start: vh(14px);
+                line-height: vh(20px);
+                height: vh(20px);
+                font-size: vh(20px);
+                background-color: transparent;
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+                &::-webkit-search-cancel-button {
+                    -webkit-appearance: none;
+                }
+            }
+            // .clear-btn {
+            // 	height: vh(20px);
+            // 	width: vh(30px);
+            // 	border-radius: 50%;
+            // 	opacity: 0;
+            // 	svg {
+            // 		height: vh(15px);
+            // 		width: vh(12px);
+            // 	}
+            // 	&.show {
+            // 		opacity: 1;
+            // 	}
+            // }
         }
-      }
-      input {
-        font-family: Assistant-Reg;
-        width: 100%;
-        margin-inline-start: vh(14px);
-        line-height: vh(20px);
-        height: vh(20px);
-        font-size: vh(20px);
-        background-color: transparent;
-        border: none;
-        &:focus {
-          outline: none;
-        }
-        &::-webkit-search-cancel-button {
-          -webkit-appearance: none;
-        }
-      }
-      // .clear-btn {
-      // 	height: vh(20px);
-      // 	width: vh(30px);
-      // 	border-radius: 50%;
-      // 	opacity: 0;
-      // 	svg {
-      // 		height: vh(15px);
-      // 		width: vh(12px);
-      // 	}
-      // 	&.show {
-      // 		opacity: 1;
-      // 	}
-      // }
-    }
 
-    .header-btns {
-      gap: vh(58px);
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: vh(56px);
-        width: vh(75px);
-        background-color: $lightBg;
-        border-radius: vh(6px);
-        &:hover {
-          background-color: $hoverBg;
+        .header-btns {
+            gap: vh(58px);
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: vh(56px);
+                width: vh(75px);
+                background-color: $lightBg;
+                border-radius: vh(6px);
+                &:hover {
+                    background-color: $hoverBg;
+                }
+                &.export svg {
+                    height: vh(40px);
+                    width: vh(40px);
+                }
+                &.add-new svg {
+                    height: vh(50px);
+                    width: vh(50px);
+                }
+            }
         }
-        &.export svg {
-          height: vh(40px);
-          width: vh(40px);
-        }
-        &.add-new svg {
-          height: vh(50px);
-          width: vh(50px);
-        }
-      }
     }
-  }
 }
 
-
-.base-page{
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 80px);
+.base-page {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
 }
