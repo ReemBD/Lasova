@@ -29,7 +29,7 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
             [e.target.name]: e.target.value,
         }));
         console.log(editVolunteer);
-        if (e.target.name === "groupName") {
+        if (e.target.name === "volunteeringProgram") {
             switch (e.target.value) {
                 case "עצמאי":
                     setIsOption2(false);
@@ -210,14 +210,14 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
                                     </select>
                                     <label
                                         className='profile_modal_label'
-                                        htmlFor='groupName'>
+                                        htmlFor='volunteeringProgram'>
                                         בחר מסגרת מפנה
                                     </label>
                                     <select
-                                        name='groupName'
+                                        name='volunteeringProgram'
                                         className='profile_modal_input'
                                         onChange={handleChange}
-                                        value={editVolunteer.groupName}>
+                                        value={editVolunteer.volunteeringProgram}>
                                         <option id='1' value='עצמאי'>
                                             עצמאי
                                         </option>

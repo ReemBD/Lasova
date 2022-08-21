@@ -62,25 +62,19 @@ async function update(volunteer) {
 const _buildVolunteerQueryFilter = (query) => {
   const filter = {};
   Object.keys(query).forEach((currQueryKey) => {
-    _setFilterPropVal(filter, currQueryKey);
+    switch (currQueryKey) {
+      case 'volunteeringPrograms':
+        filter['volunteeringProgram'] = {
+          $in: query[currQueryKey],
+        };
+        break;
+      default:
+        filter[currQueryKey] = query[currQueryKey];
+        break;
+    }
   });
   return filter;
 };
-
-function _setFilterPropVal(filter, propKey) {
-  let currFilterPropertyVal;
-  switch (currQueryKey) {
-    case 'volunteeringPrograms':
-      currFilterPropertyVal = {
-        $in: query[currQueryKey],
-      };
-      break;
-    default:
-      currFilterPropertyVal = query[currQueryKey];
-      break;
-  }
-  filter[propKey] = currFilterPropertyVal;
-}
 
 module.exports = {
   query,

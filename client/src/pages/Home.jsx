@@ -42,7 +42,7 @@ const Home = () => {
     const [activeFilter, setActiveFilter] = useState("");
     const [filter, setFilter] = useState({
         status: "",
-        groupName: "",
+        volunteeringProgram: "",
         volunteerType: "",
     });
     const filterOptions = useMemo(() => {
@@ -156,13 +156,13 @@ const Home = () => {
                 valueGetter: (params) => params.row.volunteerType || "",
             },
             {
-                field: "groupName",
+                field: "volunteeringProgram",
                 headerName: "מסגרת מפנה",
                 description: "מסגרת מפנה",
                 renderHeader: () => (
                     <FilterableHeaderCell
                         {...getFilterableHeaderCellProps(
-                            "groupName",
+                            "volunteeringProgram",
                             "מסגרת מפנה"
                         )}
                     />
@@ -171,7 +171,7 @@ const Home = () => {
                     if (params.row.scholarship) {
                         return `מלגה, ${params.row.scholarship}`;
                     }
-                    return params.row.groupName || "";
+                    return params.row.volunteeringProgram || "";
                 },
             },
             {

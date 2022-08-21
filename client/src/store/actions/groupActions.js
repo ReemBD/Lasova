@@ -21,7 +21,7 @@ export function searchGroups(searchText) {
     return (dispatch, getState) => {
         const { groups } = getState().groupReducer;
         let filteredGroups = groups.filter((group) => {
-            return group.groupName
+            return group.volunteeringProgram
                 .toLowerCase()
                 .includes(searchText.toLowerCase());
         });

@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 // import { UploadVolunteerFilesButton } from './UploadButton';
 const VolunteerObj = {
     taz: "",
-    groupName: "",
+    volunteeringProgram: "",
     firstName: "",
     lastName: "",
     cellphone: "",
@@ -35,7 +35,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
             console.log("e.target.value", e.target.files);
         }
         setNewVolunteer((prev) => ({ ...prev, [e.target.name]: value }));
-        if (e.target.name === "groupName") {
+        if (e.target.name === "volunteeringProgram") {
             switch (e.target.value) {
                 case "עצמאי":
                     setIsOption2(false);
@@ -235,7 +235,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                                         בחר מסגרת מפנה
                                     </label>
                                     <select
-                                        name='groupName'
+                                        name='volunteeringProgram'
                                         className='input'
                                         onChange={handleChange}>
                                         <option id='0' value='null'>

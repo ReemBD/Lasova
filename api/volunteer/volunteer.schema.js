@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const Volunteer = new Schema({
-  groupName: { type: String, trim: true, default: '' },
+  volunteeringProgram: { type: String, trim: true, default: '' },
   firstName: { type: String, trim: true, default: '' },
   lastName: { type: String, trim: true, default: '' },
   taz: { type: String, trim: true, default: '' },
