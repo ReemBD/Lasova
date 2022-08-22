@@ -1,7 +1,6 @@
 import { authService } from '../../services/auth-service';
 import {
   LOGIN_SUCCESS,
-  LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,

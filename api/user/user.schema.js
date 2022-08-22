@@ -3,15 +3,13 @@ const { validateEmail } = require('../../helpers/auth.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const {
   UserTypes,
-  UserTypePermissionsMap,
+  UserTypePermissionsMap
 } = require('../../lib/consts/UserType.enum');
 const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const logger = require('../../services/logger.service');
-const {
-  managerProgramsObjectMap,
-} = require('../../lib/managerProgramMap.index');
+const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
 
 const required = true;
 
@@ -21,10 +19,10 @@ const UserSchema = new Schema({
   email: {
     type: String,
     validate: [validateEmail, ErrorMessages.InvalidEmail],
-    required,
+    required
   },
   hash: { type: String, required },
-  userType: { type: Number, enum: Object.values(UserTypes), required },
+  userType: { type: Number, enum: Object.values(UserTypes), required }
 });
 
 UserSchema.methods.checkPassword = function (password) {
@@ -55,7 +53,7 @@ UserSchema.set('toObject', {
     delete ret.hash;
     delete ret.iat;
     return ret;
-  },
+  }
 });
 
 const User = model('User', UserSchema);

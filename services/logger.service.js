@@ -6,23 +6,23 @@ if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir);
 }
 
-//define the time format
-function getTime() {
-  let now = new Date();
+// define the time format
+function getTime () {
+  const now = new Date();
   return now.toLocaleString();
 }
 
-function isError(e) {
+function isError (e) {
   return e && e.stack && e.message;
 }
 
-function doLog(level, ...args) {
+function doLog (level, ...args) {
   // console.log('LOGGER:', args);
   const strs = args.map((arg) =>
     typeof arg === 'string' || isError(arg) ? arg : JSON.stringify(arg)
   );
 
-  var line = strs.join(' | ');
+  let line = strs.join(' | ');
   const store = asyncLocalStorage.getStore();
   const sessionId = store?.sessionId;
   const sid = sessionId ? `(sid: ${sessionId})` : '';
@@ -32,17 +32,17 @@ function doLog(level, ...args) {
 }
 
 module.exports = {
-  debug(...args) {
+  debug (...args) {
     // if (process.env.NODE_NEV === 'production') return
     doLog('DEBUG', ...args);
   },
-  info(...args) {
+  info (...args) {
     doLog('INFO', ...args);
   },
-  warn(...args) {
+  warn (...args) {
     doLog('WARN', ...args);
   },
-  error(...args) {
+  error (...args) {
     doLog('ERROR', ...args);
-  },
+  }
 };

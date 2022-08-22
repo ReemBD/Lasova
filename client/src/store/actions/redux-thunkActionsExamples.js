@@ -12,7 +12,7 @@ export function exampleAction1(exampleParams) {
     // async if await needed..
     const newItems = await someAxiosOrFetch(exampleParams);
     // dispatch action to reducer:
-    dispatch({ type: "SET_ITEMS", newItems });
+    dispatch({ type: 'SET_ITEMS', newItems });
   };
 }
 
@@ -28,12 +28,12 @@ export function exampleAction2(withSomeParams) {
     // (both variables contain the same object)
 
     const newItem = doSomeActionOn(prevItem, withSomeParams);
-    dispatch({ type: "SET_ITEM", newItem });
+    dispatch({ type: 'SET_ITEM', newItem });
   };
 }
 
 // if action is simple, just return the action object,
 // it will be magically dispatched by redux-thunk
 export function simpleAction(newData) {
-  return { type: "SET_DATA", newData };
+  return { type: 'SET_DATA', newData };
 }

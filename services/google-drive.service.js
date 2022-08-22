@@ -24,35 +24,35 @@ const ROOT_FOLDER_ID = '1v7IbKTbhJeMXR-mN_fSIvOOaXAcuuHQ3';
 
 const drive = google.drive({
   version: 'v3',
-  auth: serviceAccountAuth,
+  auth: serviceAccountAuth
 });
 
 /**
  * */
-async function createInitialVolunteerFolder(volunteerName, data) {
+async function createInitialVolunteerFolder (volunteerName, data) {
   try {
-    console.log('creatingInitialVolundeerFolder')
+    console.log('creatingInitialVolundeerFolder');
     data = _adjustDataToGoogleDriveApiFormat(data);
     console.log('data: ', data);
     const folder = await createFolder(volunteerName);
     data.forEach((options) => (options.resource.parents = [folder.id]));
     await Promise.all(data.map(uploadFile));
   } catch (err) {
-    logger.error(`error while trying to create initival volunteer folder`, err);
+    logger.error('error while trying to create initival volunteer folder', err);
   }
 }
-async function createFolder(name, customFileMetadata = {}) {
+async function createFolder (name, customFileMetadata = {}) {
   const fileMetadata = {
     name,
     mimeType: 'application/vnd.google-apps.folder',
     parents: [ROOT_FOLDER_ID],
-    ...customFileMetadata,
+    ...customFileMetadata
   };
   try {
     console.log('creating folder');
     const response = await drive.files.create({
       resource: fileMetadata,
-      fields: 'id',
+      fields: 'id'
     });
     console.log('folder: ', response.data);
     return response.data;
@@ -61,27 +61,27 @@ async function createFolder(name, customFileMetadata = {}) {
   }
 }
 
-async function uploadFile(options) {
+async function uploadFile (options) {
   try {
     await drive.files.create({ fields: 'id', ...options });
   } catch (err) {
-    logger.error(`error while trying to upload file to google drive`, err);
+    logger.error('error while trying to upload file to google drive', err);
   }
 }
 
-function _adjustDataToGoogleDriveApiFormat(data) {
+function _adjustDataToGoogleDriveApiFormat (data) {
   return Object.values(data).map((i) => ({
     resource: {
-      name: i.name,
+      name: i.name
     },
     media: {
       mimeType: i.mimetype,
-      body: bufferToStream(i.data),
+      body: bufferToStream(i.data)
     },
-    fields: 'id',
+    fields: 'id'
   }));
 }
 
 module.exports = {
-  createInitialVolunteerFolder,
+  createInitialVolunteerFolder
 };

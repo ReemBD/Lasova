@@ -9,7 +9,7 @@ export const groupService = {
 
 const BASE_URL = 'group';
 
-function query({ } = {}) {
+function query({} = {}) {
   return httpService.get(`${BASE_URL}`);
 }
 
@@ -23,7 +23,7 @@ function removeManyGroups(ids) {
 }
 
 function removeGroup(id) {
-  return httpService.delete(`${BASE_URL}/${id}`)
+  return httpService.delete(`${BASE_URL}/${id}`);
 }
 
 function _updateGroup(group) {

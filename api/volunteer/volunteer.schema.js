@@ -20,7 +20,7 @@ const Volunteer = new Schema({
   weekdayAvailability: [{ type: String, default: '' }],
   status: { type: String, trim: true, default: '' },
   reportedHours: { type: Number, default: 0 },
-  approvedHours: { type: Number, default: 0 },
+  approvedHours: { type: Number, default: 0 }
 });
 
 module.exports = model('Volunteer', Volunteer);

@@ -26,12 +26,19 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "testEnv": "nodemon server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "lint": "eslint .  --ext .js",
+    "lint:fix": "eslint --fix .  --ext .js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "eslint": "^8.22.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.0"
   }
 }
