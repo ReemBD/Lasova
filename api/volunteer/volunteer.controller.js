@@ -2,11 +2,9 @@ const logger = require('../../services/logger.service');
 const { query, remove, update, getById, add } = require('./volunteer.service');
 const googleDriveService = require('../../services/google-drive.service');
 const { UserTypes } = require('../../lib/consts/UserType.enum');
-const {
-  managerProgramsObjectMap,
-} = require('../../lib/managerProgramMap.index');
+const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
 
-async function getVolunteers(req, res) {
+async function getVolunteers (req, res) {
   try {
     const queryOptions = req.query;
     if (req.user.userType === UserTypes.ProgramManager) {
@@ -20,7 +18,7 @@ async function getVolunteers(req, res) {
   }
 }
 
-async function removeVolunteers(req, res) {
+async function removeVolunteers (req, res) {
   try {
     const volunteerIds = req.query.ids.split(',');
     const updatedVolunteers = await remove(volunteerIds);
@@ -30,7 +28,7 @@ async function removeVolunteers(req, res) {
   }
 }
 
-async function updateVolunteer(req, res) {
+async function updateVolunteer (req, res) {
   try {
     const volunteer = req.body;
     const updatedVolunteer = await update(volunteer);
@@ -40,11 +38,11 @@ async function updateVolunteer(req, res) {
   }
 }
 
-async function addVolunteer(req, res) {
+async function addVolunteer (req, res) {
   try {
     let {
       body: { document: volunteer },
-      files,
+      files
     } = req;
     const contentType = req.headers['content-type'];
 
@@ -52,7 +50,7 @@ async function addVolunteer(req, res) {
       volunteer = JSON.parse(volunteer);
     }
 
-    if (!!files) {
+    if (files) {
       await googleDriveService.createInitialVolunteerFolder(
         volunteer.firstName + ' ' + volunteer.lastName,
         files
@@ -62,12 +60,12 @@ async function addVolunteer(req, res) {
     const newVolunteer = await add(volunteer);
     res.send(newVolunteer);
   } catch (err) {
-    logger.error(`err while trying to add volunteer`, err);
+    logger.error('err while trying to add volunteer', err);
     res.status(500).send(err);
   }
 }
 
-async function getVolunteerById(req, res) {
+async function getVolunteerById (req, res) {
   try {
     const { volunteerId } = req.params;
     const volunteer = await getById(volunteerId);
@@ -82,5 +80,5 @@ module.exports = {
   removeVolunteers,
   updateVolunteer,
   addVolunteer,
-  getVolunteerById,
+  getVolunteerById
 };

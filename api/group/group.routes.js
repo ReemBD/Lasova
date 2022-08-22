@@ -2,7 +2,7 @@ const express = require('express');
 const { UserPermissions } = require('../../lib/consts/UserType.enum');
 const {
   requirePermissions,
-  authenticateToken,
+  authenticateToken
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
@@ -11,7 +11,7 @@ const {
   removeGroup,
   updateGroup,
   getGroupById,
-  addGroup,
+  addGroup
 } = require('./group.controller');
 
 router.use(authenticateToken);

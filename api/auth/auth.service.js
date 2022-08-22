@@ -17,23 +17,25 @@ const signup = async ({ password, ...restOfUser }) => {
 
 const login = async (loggingUser) => {
   try {
-    let user = await userService.getUser({ email: loggingUser.email });
-
+    const user = await userService.getUser({ email: loggingUser.email });
+    if (!user) {
+      throw Error(ErrorMessages.InvalidCredentials);
+    }
     const isPasswordCorrect = await user.checkPassword(loggingUser.password);
     if (!isPasswordCorrect) {
-      logger.info(
-        `unsuccessful login attempt with ${loggingUser.email}, password ${loggingUser.password}`
-      );
-      throw new Error(ErrorMessages.InvalidCredentials);
+      throw Error(ErrorMessages.InvalidCredentials);
     }
     return user.generateBearerAuthToken();
   } catch (err) {
-    logger.error(`err while trying to login user ${loggingUser.username}`, err);
+    logger.error(
+      `error while trying to login user ${loggingUser.username}`,
+      err
+    );
     throw err;
   }
 };
 
 module.exports = {
   signup,
-  login,
+  login
 };

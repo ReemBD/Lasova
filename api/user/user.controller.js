@@ -14,5 +14,5 @@ const getUserPermissions = async (req, res) => {
 
 module.exports = {
   getUsers,
-  getUserPermissions,
+  getUserPermissions
 };

@@ -2,7 +2,7 @@ const express = require('express');
 const { UserPermissions } = require('../../lib/consts/UserType.enum');
 const {
   requirePermissions,
-  authenticateToken,
+  authenticateToken
 } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const {
@@ -10,7 +10,7 @@ const {
   removeVolunteers,
   updateVolunteer,
   getVolunteerById,
-  addVolunteer,
+  addVolunteer
 } = require('./volunteer.controller');
 
 router.use(authenticateToken);

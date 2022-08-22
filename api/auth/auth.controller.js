@@ -1,6 +1,6 @@
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const { UserTypes } = require('../../lib/consts/UserType.enum');
-const { addProgram } = require('../../lib/managerProgramMap.index');
+const { addProgram } = require('../../lib/manager-program-map');
 const authService = require('./auth.service');
 
 const signup = async (req, res) => {
@@ -10,7 +10,7 @@ const signup = async (req, res) => {
       if (!user.managedProgram) {
         return res.status(400).send(ErrorMessages.NoProgramSupplied);
       }
-      addProgram(user.email, user, managedProgram);
+      addProgram(user.email, user, user.managedProgram);
     }
     const authToken = await authService.signup(user);
     res.json({ authToken });
@@ -34,5 +34,5 @@ const login = async (req, res) => {
 
 module.exports = {
   login,
-  signup,
+  signup
 };

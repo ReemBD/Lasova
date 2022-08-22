@@ -1,12 +1,12 @@
 const logger = require('../../services/logger.service');
 const Group = require('./group.schema');
 
-async function query({ } = {}) {
+async function query({} = {}) {
   try {
     const groups = await Group.find();
     return groups;
   } catch (err) {
-    logger.error(`failed to fetch groups` + err);
+    logger.error('failed to fetch groups' + err);
     throw err;
   }
 }
@@ -16,7 +16,7 @@ async function getById(groupId) {
     const group = await Group.findById(groupId);
     return group;
   } catch (err) {
-    logger.error(`failed to fetch volunteer ` + err);
+    logger.error('failed to fetch volunteer ' + err);
     throw err;
   }
 }
@@ -29,7 +29,7 @@ async function add(group) {
     });
     return group;
   } catch (err) {
-    logger.error(`err while trying to add group `, err);
+    logger.error('err while trying to add group ', err);
     throw err;
   }
 }

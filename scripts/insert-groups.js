@@ -141,8 +141,8 @@ mongoose.connect(dbURI, {
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', async function () {
-    const groups = await Group.find()
-    console.log('groups: ', groups)
+  const groups = await Group.find();
+  console.log('groups: ', groups);
 });
 
 console.log('testing');

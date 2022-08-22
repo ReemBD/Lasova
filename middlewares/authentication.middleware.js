@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 const User = require('../api/user/user.schema');
-const { ErrorMessages } = require('../lib/consts/ErrorMessages');
 const { UserTypes } = require('../lib/consts/UserType.enum');
 
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
+  const authHeader = req.headers.authorization;
   const token = authHeader && authHeader.split(' ')[1];
   if (!token) return res.sendStatus(401);
   jwt.verify(token, process.env.LASOVA_ACCESS_TOKEN_SECRET, (err, user) => {
@@ -29,5 +28,5 @@ const requirePermissions = (...requiredPermissions) => {
 
 module.exports = {
   authenticateToken,
-  requirePermissions,
+  requirePermissions
 };

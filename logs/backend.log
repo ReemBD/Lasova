@@ -173,3 +173,4 @@
 7/30/2022, 7:41:27 PM - ERROR - err while trying to signup user test123@gmail.com | Error: Unable to add user. User already exists 
 8/15/2022, 7:43:23 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
 8/15/2022, 7:51:52 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
+8/22/2022, 8:35:36 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 

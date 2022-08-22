@@ -3,6 +3,7 @@ import { storageService } from './storage.service';
 export const accessTokenService = {
   getToken,
   setToken,
+  removeToken,
 };
 
 const TOKEN_STORAGE_KEY = `ACCESS_TOKEN`;

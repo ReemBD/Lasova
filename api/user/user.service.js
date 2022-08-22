@@ -56,7 +56,7 @@ const getUserPermissions = (user) => {
     const permissions = user.permissions;
     return permissions;
   } catch (err) {
-    logger.error(`err occured trying to get user permissions`, err);
+    logger.error('err occured trying to get user permissions', err);
     throw err;
   }
 };
@@ -65,8 +65,8 @@ const getUserPermissions = (user) => {
  * */
 const _buildUserCriteria = (query) => {
   const { email = '' } = query;
-  let retval = {
-    email,
+  const retval = {
+    email
   };
 
   return retval;
@@ -76,5 +76,5 @@ module.exports = {
   saveUser,
   getUser,
   getManyUsers,
-  getUserPermissions,
+  getUserPermissions
 };

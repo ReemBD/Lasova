@@ -8,7 +8,7 @@ const Group = new Schema({
   cellphone: { type: String, default: '', trim: true },
   volunteersCount: { type: Number, default: 0 },
   reportedHours: { type: Number, default: 0 },
-  volunteeringsCount: { type: Number, default: 0 },
+  volunteeringsCount: { type: Number, default: 0 }
 });
 
-module.exports = new model('Group', Group);
+module.exports = model('Group', Group);
