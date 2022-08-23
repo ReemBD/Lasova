@@ -1,45 +1,57 @@
-import {useState} from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import {
-    login,
-} from "../store/actions/auth";
-import { Navigate } from "react-router-dom";
+import { login } from '../store/actions/auth';
+import { Navigate } from 'react-router-dom';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector(
-        (state) => state.authReducer
-    );
+  const { isAuthenticated } = useSelector((state) => state.authReducer);
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handelSubmit = async e => {
+  const handelSubmit = async (e) => {
     e.preventDefault();
-    if (email === "" || password === "") {
+    if (email === '' || password === '') {
       // setError("Fields are required");
       return;
     }
-    dispatch(login(email, password))
-  }
+    dispatch(login(email, password));
+  };
 
   if (isAuthenticated) {
-      return <Navigate to="/" replace />;
-    }
+    return <Navigate to="/" replace />;
+  }
 
   return (
-    <Wrapper> 
+    <Wrapper>
       <img src="logo.svg" alt="logo" className="logo" />
       <form className="login-form">
         <label className="mail-label">מייל</label>
-        <input type="text" className="mail-input" required name="email" value={email} onChange={e => setEmail(e.target.value)}/>
+        <input
+          type="text"
+          className="mail-input"
+          required
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <label className="password-label">סיסמא</label>
-        <input type="password" className="password-input" required  name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+        <input
+          type="password"
+          className="password-input"
+          required
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         {/* <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/> */}
-        <button className="submit" type="submit" onClick={handelSubmit}>כניסה</button>
+        <button className="submit" type="submit" onClick={handelSubmit}>
+          כניסה
+        </button>
       </form>
     </Wrapper>
   );

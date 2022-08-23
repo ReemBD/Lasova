@@ -1,4 +1,4 @@
-import { ReactComponent as LoaderSVG } from "../assets/imgs/loader.svg";
+import { ReactComponent as LoaderSVG } from '../assets/imgs/loader.svg';
 
 const Loader = () => {
   return (

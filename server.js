@@ -31,7 +31,7 @@ mongoose.connect(process.env.DB_URI, {
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function () {
+db.once('open', function() {
   console.log('Succesfully connected to db', db.db.databaseName);
 });
 
@@ -45,6 +45,4 @@ app.get('/**', (req, res) => {
 });
 
 // Starting the server on http://localhost:PORT
-app.listen(process.env.PORT, () =>
-  console.log(`Server Is Up!\nhttp://localhost:${process.env.PORT}`)
-);
+app.listen(process.env.PORT, () => console.log(`Server Is Up!\nhttp://localhost:${process.env.PORT}`));

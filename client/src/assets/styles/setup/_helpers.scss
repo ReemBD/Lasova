@@ -1,81 +1,81 @@
 // Helper classes
 
 .flex {
-    display: flex;
-    &.column {
-        flex-direction: column;
-    }
-    &.wrap {
-        flex-wrap: wrap;
-    }
-    &.align-start {
-        align-items: flex-start;
-    }
-    &.align-end {
-        align-items: flex-end;
-    }
-    &.justify-end {
-        justify-content: flex-end;
-    }
+  display: flex;
+  &.column {
+    flex-direction: column;
+  }
+  &.wrap {
+    flex-wrap: wrap;
+  }
+  &.align-start {
+    align-items: flex-start;
+  }
+  &.align-end {
+    align-items: flex-end;
+  }
+  &.justify-end {
+    justify-content: flex-end;
+  }
 }
 .align-center {
-    align-items: center;
+  align-items: center;
 }
 .justify-center {
-    justify-content: center;
+  justify-content: center;
 }
 .space-around {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 .space-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .full-size {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .clear-bg {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 // ul
 .clean-list {
-    list-style-type: none;
-    margin: 0;
-    padding-inline-start: 0px;
+  list-style-type: none;
+  margin: 0;
+  padding-inline-start: 0px;
 }
 
 .capitalize::first-letter {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 button.disabled {
-    cursor: not-allowed;
+  cursor: not-allowed;
 }
 
 .screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s;
-    &.active {
-        background: rgba(0, 0, 0, 0.75);
-        right: 0;
-        bottom: 0;
-        opacity: 1;
-        z-index: 3;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+  &.active {
+    background: rgba(0, 0, 0, 0.75);
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index: 3;
+  }
 }

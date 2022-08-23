@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux";
-import { updateUserMsg } from "../store/actions/systemActions";
+import { useDispatch } from 'react-redux';
+import { updateUserMsg } from '../store/actions/systemActions';
 
 const UserMsg = ({ msg }) => {
   const dispatch = useDispatch();
 
   const closeModal = () => {
-    dispatch(updateUserMsg({ txt: "", type: "" }));
+    dispatch(updateUserMsg({ txt: '', type: '' }));
   };
 
   return (

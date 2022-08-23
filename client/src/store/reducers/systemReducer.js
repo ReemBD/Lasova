@@ -1,13 +1,13 @@
 const initialState = {
   userMsg: {
-    txt: "",
-    type: "",
+    txt: '',
+    type: '',
   },
 };
 
 export function systemReducer(state = initialState, action) {
   switch (action.type) {
-    case "UPDATE_USER_MSG":
+    case 'UPDATE_USER_MSG':
       return {
         ...state,
         userMsg: {
