@@ -1,4 +1,4 @@
-@import url("https://cdn.syncfusion.com/ej2/material.css");
+@import url('https://cdn.syncfusion.com/ej2/material.css');
 
 .profile_modal {
   position: absolute;
@@ -229,7 +229,7 @@
     border-color: black;
     border-radius: rem(5px);
     border-width: rem(1px);
-    border: "none";
+    border: 'none';
   }
 
   .profile_modal_btn {

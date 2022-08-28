@@ -1,15 +1,15 @@
-import { useLocation, Link } from "react-router-dom";
-import Logo from "../assets/imgs/logo.png";
-import { ReactComponent as SettingsIcon } from "../assets/imgs/icons/settings-icon.svg";
+import { useLocation, Link } from 'react-router-dom';
+import Logo from '../assets/imgs/logo.png';
+import { ReactComponent as SettingsIcon } from '../assets/imgs/icons/settings-icon.svg';
 
 const Sidebar = () => {
   const currLocation = useLocation().pathname;
-  console.log("currLocation:", currLocation);
+  console.log('currLocation:', currLocation);
 
   const links = [
     // { title: "דשבורד", destination: "/dashboard" },
-    { title: "מתנדבים", destination: "/" },
-    { title: "קבוצות וארגונים", destination: "/groups" },
+    { title: 'מתנדבים', destination: '/' },
+    { title: 'קבוצות וארגונים', destination: '/groups' },
     // { title: "מנהלי מסגרות", destination: "/managers" },
     // { title: "מסגרות התנדבות", destination: "/misgarot" },
   ];
@@ -22,7 +22,7 @@ const Sidebar = () => {
           <Link
             key={link.title + link.destination}
             to={link.destination}
-            className={currLocation === link.destination ? "active" : ""}
+            className={currLocation === link.destination ? 'active' : ''}
           >
             {link.title}
           </Link>

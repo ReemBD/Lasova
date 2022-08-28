@@ -1,10 +1,5 @@
 import { authService } from '../../services/auth-service';
-import {
-  LOGIN_SUCCESS,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGOUT,
-} from './types';
+import { LOGIN_SUCCESS, USER_LOADED, AUTH_ERROR, LOGOUT } from './types';
 
 // Load User
 export const loadUser = (user) => async (dispatch) => {

@@ -1,6 +1,6 @@
 // A temporary file to mimic remote server CRUDL requests via localStorage
 
-import { makeId } from "./util.service";
+import { makeId } from './util.service';
 
 export const storageService = {
   post, // Create (add 1 new item)

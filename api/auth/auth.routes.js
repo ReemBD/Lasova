@@ -1,9 +1,6 @@
 const express = require('express');
 const { UserPermissions } = require('../../lib/consts/UserType.enum');
-const {
-  requirePermissions,
-  authenticateToken
-} = require('../../middlewares/authentication.middleware');
+const { requirePermissions, authenticateToken } = require('../../middlewares/authentication.middleware');
 const router = express.Router();
 const { login, signup } = require('./auth.controller');
 

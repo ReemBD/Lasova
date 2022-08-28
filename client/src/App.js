@@ -1,10 +1,5 @@
 import { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
@@ -33,22 +28,8 @@ function App() {
           <main>
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route
-                path="/groups"
-                element={
-                  isAuthenticated ? (
-                    <GroupsPage />
-                  ) : (
-                    <Navigate replace to="/login" />
-                  )
-                }
-              />
-              <Route
-                path="/"
-                element={
-                  isAuthenticated ? <Home /> : <Navigate replace to="/login" />
-                }
-              />
+              <Route path="/groups" element={isAuthenticated ? <GroupsPage /> : <Navigate replace to="/login" />} />
+              <Route path="/" element={isAuthenticated ? <Home /> : <Navigate replace to="/login" />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import { DataGrid } from "@mui/x-data-grid";
-import MenuItem from "@mui/material/MenuItem";
+import { DataGrid } from '@mui/x-data-grid';
+import MenuItem from '@mui/material/MenuItem';
 
-import ExportCsvBtn from "./ExportCsvBtn";
-import CustomNoRowsOverlay from "./dataGrid/CustomNoRowsOverlay";
-import TableLoader from "./dataGrid/TableLoader";
+import ExportCsvBtn from './ExportCsvBtn';
+import CustomNoRowsOverlay from './dataGrid/CustomNoRowsOverlay';
+import TableLoader from './dataGrid/TableLoader';
 
 const BaseTable = ({
   entities,
@@ -32,10 +32,8 @@ const BaseTable = ({
       for (let filterBy in filter) {
         const currFilter = filter[filterBy];
         if (currFilter) {
-          if (currFilter !== "בחר הכל") {
-            entitiesToShow = entitiesToShow.filter(
-              (val) => val[filterBy] === currFilter
-            );
+          if (currFilter !== 'בחר הכל') {
+            entitiesToShow = entitiesToShow.filter((val) => val[filterBy] === currFilter);
           }
         }
       }
@@ -53,11 +51,7 @@ const BaseTable = ({
           }}
         >
           {filterOptions[activeFilter].map((o) => (
-            <MenuItem
-              className="filter-option"
-              key={o}
-              onClick={() => onSetFilter(o)}
-            >
+            <MenuItem className="filter-option" key={o} onClick={() => onSetFilter(o)}>
               {o}
             </MenuItem>
           ))}
@@ -69,9 +63,7 @@ const BaseTable = ({
           getRowId={(row) => row._id}
           columns={columns}
           components={{
-            Toolbar: () => (
-              <ExportCsvBtn name={exportFileName} csvBtnRef={csvBtnRef} />
-            ),
+            Toolbar: () => <ExportCsvBtn name={exportFileName} csvBtnRef={csvBtnRef} />,
             LoadingOverlay: () => <TableLoader />,
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}

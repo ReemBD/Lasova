@@ -4,7 +4,7 @@ const Volunteer = require('./volunteer.schema');
  * Currently acceps isDefault and doReset as params,
  * doReset - flag that indicates whether should restore data to initial value
  * isDefault - flag that indicates whether should use initial data */
-async function query (filter = {}) {
+async function query(filter = {}) {
   try {
     const criteria = _buildVolunteerQueryFilter(filter);
     const volunteers = await Volunteer.find(criteria);
@@ -15,7 +15,7 @@ async function query (filter = {}) {
   }
 }
 
-async function getById (volunteerId) {
+async function getById(volunteerId) {
   try {
     const volunteer = await Volunteer.findById(volunteerId);
     return volunteer;
@@ -25,7 +25,7 @@ async function getById (volunteerId) {
   }
 }
 
-async function add (volunteer) {
+async function add(volunteer) {
   try {
     volunteer = new Volunteer(volunteer);
     volunteer.save((err, volunteer) => {
@@ -38,7 +38,7 @@ async function add (volunteer) {
   }
 }
 
-async function remove (volunteerIds) {
+async function remove(volunteerIds) {
   try {
     const res = await Volunteer.deleteMany({
       _id: { $in: volunteerIds }
@@ -49,7 +49,7 @@ async function remove (volunteerIds) {
   }
 }
 
-async function update (volunteer) {
+async function update(volunteer) {
   try {
     const res = await Volunteer.findByIdAndUpdate(volunteer._id, volunteer);
     return res;

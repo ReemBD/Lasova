@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-    logout,
-} from "../store/actions/auth";
-import UserMsg from "../components/UserMsg.jsx";
-import { ReactComponent as EnvelopeIcon } from "../assets/imgs/icons/envelope-icon.svg";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../store/actions/auth';
+import UserMsg from '../components/UserMsg.jsx';
+import { ReactComponent as EnvelopeIcon } from '../assets/imgs/icons/envelope-icon.svg';
 
 import Avatar from '@mui/material/Avatar';
 import { pink } from '@mui/material/colors';
@@ -26,7 +24,7 @@ const Header = () => {
   };
   const handelLogout = () => {
     setAnchorEl(null);
-    dispatch(logout())
+    dispatch(logout());
   };
 
   return (
@@ -41,15 +39,17 @@ const Header = () => {
       </button>
       <p>{user?.name}</p>
       <Avatar
-       alt={user?.name}
-      // src="/static/images/avatar/1.jpg"
-       sx={{ width: 48, height: 48, bgcolor: pink[500] }}
-       id="avatar"
+        alt={user?.name}
+        // src="/static/images/avatar/1.jpg"
+        sx={{ width: 48, height: 48, bgcolor: pink[500] }}
+        id="avatar"
         aria-controls={open ? 'menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-      ><span className="avatar-initials">{user && (user.firstname.charAt(0)).toUpperCase()}</span></Avatar>
+      >
+        <span className="avatar-initials">{user && user.firstname.charAt(0).toUpperCase()}</span>
+      </Avatar>
       <Menu
         id="menu"
         aria-labelledby="avatar"

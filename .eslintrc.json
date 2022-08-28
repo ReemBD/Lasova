@@ -11,6 +11,8 @@
   },
   "rules": {
     "semi": ["error", "always"],
-    "no-extra-semi": 0
+    "no-extra-semi": 0,
+    "max-len": ["error", { "code": 120, "ignoreComments": true }],
+    "space-before-function-paren": ["error", "never"]
   }
 }

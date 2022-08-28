@@ -3,7 +3,7 @@ const User = require('./user.schema');
 const { prettified } = require('../../helpers/prettified.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 
-const saveUser = async (user) => {
+const saveUser = async(user) => {
   try {
     const userAlreadyExists = await getUser(_buildUserCriteria(user));
     if (userAlreadyExists) throw new Error(ErrorMessages.UserAlreadyExists);
@@ -19,16 +19,13 @@ const saveUser = async (user) => {
 /**
  * @param {{email?: string, firstname?: string, lastname?: string, _id?:string, userType?: userTypeEnum}} query user query object
  * */
-const getManyUsers = async (query = {}) => {
+const getManyUsers = async(query = {}) => {
   try {
     const criteria = _buildUserCriteria(query);
     const users = await User.find(criteria);
     return users;
   } catch (err) {
-    logger.error(
-      `Error while trying to find users by criteria ${prettified(query)}`,
-      err
-    );
+    logger.error(`Error while trying to find users by criteria ${prettified(query)}`, err);
     throw err;
   }
 };
@@ -36,16 +33,13 @@ const getManyUsers = async (query = {}) => {
 /**
  * @param {{email?: string, firstname?: string, lastname?: string, _id?:string, userType?: userTypeEnum}} query user query object
  * */
-const getUser = async (query = {}) => {
+const getUser = async(query = {}) => {
   try {
     const criteria = _buildUserCriteria(query);
     const user = await User.findOne(criteria);
     return user;
   } catch (err) {
-    logger.error(
-      `Error while trying to find user by criteria ${prettified(query)}`,
-      err
-    );
+    logger.error(`Error while trying to find user by criteria ${prettified(query)}`, err);
     throw err;
   }
 };

@@ -4,12 +4,11 @@ const googleDriveService = require('../../services/google-drive.service');
 const { UserTypes } = require('../../lib/consts/UserType.enum');
 const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
 
-async function getVolunteers (req, res) {
+async function getVolunteers(req, res) {
   try {
     const queryOptions = req.query;
     if (req.user.userType === UserTypes.ProgramManager) {
-      queryOptions.volunteeringPrograms =
-        managerProgramsObjectMap[req.user.email];
+      queryOptions.volunteeringPrograms = managerProgramsObjectMap[req.user.email];
     }
     const volunteers = await query(queryOptions);
     res.send(volunteers);
@@ -18,7 +17,7 @@ async function getVolunteers (req, res) {
   }
 }
 
-async function removeVolunteers (req, res) {
+async function removeVolunteers(req, res) {
   try {
     const volunteerIds = req.query.ids.split(',');
     const updatedVolunteers = await remove(volunteerIds);
@@ -28,7 +27,7 @@ async function removeVolunteers (req, res) {
   }
 }
 
-async function updateVolunteer (req, res) {
+async function updateVolunteer(req, res) {
   try {
     const volunteer = req.body;
     const updatedVolunteer = await update(volunteer);
@@ -38,7 +37,7 @@ async function updateVolunteer (req, res) {
   }
 }
 
-async function addVolunteer (req, res) {
+async function addVolunteer(req, res) {
   try {
     let {
       body: { document: volunteer },
@@ -51,10 +50,7 @@ async function addVolunteer (req, res) {
     }
 
     if (files) {
-      await googleDriveService.createInitialVolunteerFolder(
-        volunteer.firstName + ' ' + volunteer.lastName,
-        files
-      );
+      await googleDriveService.createInitialVolunteerFolder(volunteer.firstName + ' ' + volunteer.lastName, files);
     }
 
     const newVolunteer = await add(volunteer);
@@ -65,7 +61,7 @@ async function addVolunteer (req, res) {
   }
 }
 
-async function getVolunteerById (req, res) {
+async function getVolunteerById(req, res) {
   try {
     const { volunteerId } = req.params;
     const volunteer = await getById(volunteerId);

@@ -1,13 +1,13 @@
 .top-container {
-    min-height: 100vh;
-    .content-wrapper {
-        flex-grow: 1;
-        aside {
-            min-width: vh(298px);
-        }
-        main {
-            flex-grow: 1;
-            overflow-x: hidden;
-        }
+  min-height: 100vh;
+  .content-wrapper {
+    flex-grow: 1;
+    aside {
+      min-width: vh(298px);
     }
+    main {
+      flex-grow: 1;
+      overflow-x: hidden;
+    }
+  }
 }
