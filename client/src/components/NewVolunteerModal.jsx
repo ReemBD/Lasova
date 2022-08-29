@@ -1,5 +1,5 @@
-import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { saveVolunteer } from '../store/actions/volunteerActions';
 import Box from '@mui/material/Box';
@@ -24,6 +24,7 @@ const VolunteerObj = {
 
 const NewVolunteerModal = ({ open, setOpen }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authReducer);
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
@@ -177,11 +178,15 @@ const NewVolunteerModal = ({ open, setOpen }) => {
               </div>
               <div className="left">
                 <div>
-                  <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
-                  <select name="volunteerType" className="input" onChange={handleChange}>
-                    <option value="">בחר מסגרת התנדבות</option>
-                    <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
-                  </select>
+                  {user.userType == 2 && (
+                    <>
+                      <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
+                      <select name="volunteerType" className="input" onChange={handleChange}>
+                        <option value="">בחר מסגרת התנדבות</option>
+                        <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
+                      </select>
+                    </>
+                  )}
                   <label className="new_vol_modal_label">בחר מסגרת מפנה</label>
                   <select name="volunteeringProgram" className="input" onChange={handleChange}>
                     <option id="0" value="null">
