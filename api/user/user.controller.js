@@ -1,8 +1,8 @@
 const userService = require('./user.service');
 
-const getUsers = async (req, res) => {};
+const getUsers = async(req, res) => {};
 
-const getUserPermissions = async (req, res) => {
+const getUserPermissions = async(req, res) => {
   try {
     const { user } = req;
     const retval = userService.getUserPermissions(user);

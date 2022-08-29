@@ -1,13 +1,7 @@
 import { accessTokenService } from '../../services/access-token.service';
 import { storageService } from '../../services/storage.service';
 import decode from 'jwt-decode';
-import {
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGOUT,
-} from '../actions/types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED, AUTH_ERROR, LOGOUT } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('LASOVA_AUTH_TOKEN') || null,

@@ -1,46 +1,46 @@
 header {
-	padding: 0 vh(45px);
-	gap: vh(40px);
-	background-color: $navBg;
-	height: vh(92px);
-	font-size: vh(20px);
-	width: 100%x;
+  padding: 0 vh(45px);
+  gap: vh(40px);
+  background-color: $navBg;
+  height: vh(92px);
+  font-size: vh(20px);
+  width: 100%x;
 
-	.avatar-initials {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 90%;
-		width: 90%;
-		font-weight: bold;
-		font-size: larger;
-		font-style: oblique;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-	}
+  .avatar-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    width: 90%;
+    font-weight: bold;
+    font-size: larger;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
 
-	.user-icon {
-		border-radius: 50%;
-		background-color: $darkBg;
-		height: vh(62px);
-		width: vh(62px);
-	}
+  .user-icon {
+    border-radius: 50%;
+    background-color: $darkBg;
+    height: vh(62px);
+    width: vh(62px);
+  }
 
-    .messages {
-		position: relative;
-		svg {
-			width: vh(30.9px);
-			height: vh(24.7px);
-			position: relative;
-			top: vh(3px);
-		}
-		.notification {
-			height: vh(12.36px);
-			width: vh(12.36px);
-			background: #000;
-			border-radius: 50%;
-			position: absolute;
-			right: vh(-3px);
-			top: 0;
-		}
-	}
+  .messages {
+    position: relative;
+    svg {
+      width: vh(30.9px);
+      height: vh(24.7px);
+      position: relative;
+      top: vh(3px);
+    }
+    .notification {
+      height: vh(12.36px);
+      width: vh(12.36px);
+      background: #000;
+      border-radius: 50%;
+      position: absolute;
+      right: vh(-3px);
+      top: 0;
+    }
+  }
 }

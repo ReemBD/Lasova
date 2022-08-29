@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 const { validateEmail } = require('../../helpers/auth.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
-const {
-  UserTypes,
-  UserTypePermissionsMap
-} = require('../../lib/consts/UserType.enum');
+const { UserTypes, UserTypePermissionsMap } = require('../../lib/consts/UserType.enum');
 const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const logger = require('../../services/logger.service');
 const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
 
 const required = true;
@@ -25,23 +21,23 @@ const UserSchema = new Schema({
   userType: { type: Number, enum: Object.values(UserTypes), required }
 });
 
-UserSchema.methods.checkPassword = function (password) {
+UserSchema.methods.checkPassword = function(password) {
   return bcrypt.compare(password, this.hash);
 };
 
-UserSchema.methods.generateBearerAuthToken = function () {
+UserSchema.methods.generateBearerAuthToken = function() {
   return jwt.sign(this.toObject(), process.env.LASOVA_ACCESS_TOKEN_SECRET);
 };
 
-UserSchema.virtual('fullname').get(function () {
+UserSchema.virtual('fullname').get(function() {
   return `${this.firstname} ${this.lastname}`;
 });
 
-UserSchema.virtual('permissions').get(function () {
+UserSchema.virtual('permissions').get(function() {
   return UserTypePermissionsMap.get(this.userType);
 });
 
-UserSchema.virtual('associatedPrograms').get(function () {
+UserSchema.virtual('associatedPrograms').get(function() {
   if (this.userType === UserTypes.ProgramManager) {
     return managerProgramsObjectMap[this.email];
   }
@@ -49,7 +45,7 @@ UserSchema.virtual('associatedPrograms').get(function () {
 });
 
 UserSchema.set('toObject', {
-  transform: function (doc, ret, options) {
+  transform: function(doc, ret, options) {
     delete ret.hash;
     delete ret.iat;
     return ret;

@@ -1,7 +1,7 @@
 const logger = require('../../services/logger.service');
 const Group = require('./group.schema');
 
-async function query({} = {}) {
+async function query({ volunteeringPrograms } = {}) {
   try {
     const groups = await Group.find();
     return groups;
@@ -45,16 +45,13 @@ async function remove(groupIds) {
       res = await Group.deleteOne({ _id: groupIds });
     } else {
       res = await Group.deleteMany({
-        _id: { $in: groupIds },
+        _id: { $in: groupIds }
       });
     }
 
     return res;
   } catch (err) {
-    logger.error(
-      `error trying to delete groups with ids: ${groupIds.split(',')}`,
-      err
-    );
+    logger.error(`error trying to delete groups with ids: ${groupIds.split(',')}`, err);
   }
 }
 
@@ -73,5 +70,5 @@ module.exports = {
   remove,
   update,
   getById,
-  add,
+  add
 };

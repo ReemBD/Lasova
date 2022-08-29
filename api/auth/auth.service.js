@@ -3,7 +3,7 @@ const userService = require('../user/user.service');
 const bcrypt = require('bcrypt');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 
-const signup = async ({ password, ...restOfUser }) => {
+const signup = async({ password, ...restOfUser }) => {
   try {
     const SALT_ROUNDS = 10;
     const hash = await bcrypt.hash(password, SALT_ROUNDS);
@@ -15,7 +15,7 @@ const signup = async ({ password, ...restOfUser }) => {
   }
 };
 
-const login = async (loggingUser) => {
+const login = async(loggingUser) => {
   try {
     const user = await userService.getUser({ email: loggingUser.email });
     if (!user) {
@@ -27,10 +27,7 @@ const login = async (loggingUser) => {
     }
     return user.generateBearerAuthToken();
   } catch (err) {
-    logger.error(
-      `error while trying to login user ${loggingUser.username}`,
-      err
-    );
+    logger.error(`error while trying to login user ${loggingUser.username}`, err);
     throw err;
   }
 };

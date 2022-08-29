@@ -29,7 +29,7 @@ const drive = google.drive({
 
 /**
  * */
-async function createInitialVolunteerFolder (volunteerName, data) {
+async function createInitialVolunteerFolder(volunteerName, data) {
   try {
     console.log('creatingInitialVolundeerFolder');
     data = _adjustDataToGoogleDriveApiFormat(data);
@@ -41,7 +41,7 @@ async function createInitialVolunteerFolder (volunteerName, data) {
     logger.error('error while trying to create initival volunteer folder', err);
   }
 }
-async function createFolder (name, customFileMetadata = {}) {
+async function createFolder(name, customFileMetadata = {}) {
   const fileMetadata = {
     name,
     mimeType: 'application/vnd.google-apps.folder',
@@ -61,7 +61,7 @@ async function createFolder (name, customFileMetadata = {}) {
   }
 }
 
-async function uploadFile (options) {
+async function uploadFile(options) {
   try {
     await drive.files.create({ fields: 'id', ...options });
   } catch (err) {
@@ -69,7 +69,7 @@ async function uploadFile (options) {
   }
 }
 
-function _adjustDataToGoogleDriveApiFormat (data) {
+function _adjustDataToGoogleDriveApiFormat(data) {
   return Object.values(data).map((i) => ({
     resource: {
       name: i.name
