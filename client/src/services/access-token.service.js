@@ -1,11 +1,5 @@
 import { storageService } from './storage.service';
 
-export const accessTokenService = {
-  getToken,
-  setToken,
-  removeToken,
-};
-
 const TOKEN_STORAGE_KEY = `ACCESS_TOKEN`;
 
 function getToken() {
@@ -19,3 +13,9 @@ function setToken(token) {
 function removeToken() {
   storageService.removeItem(TOKEN_STORAGE_KEY);
 }
+
+export const accessTokenService = {
+  getToken,
+  setToken,
+  removeToken
+};

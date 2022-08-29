@@ -9,7 +9,6 @@ import styled from 'styled-components';
 const Login = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.authReducer);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,7 +20,6 @@ const Login = () => {
     }
     dispatch(login(email, password));
   };
-
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }

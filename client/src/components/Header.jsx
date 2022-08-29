@@ -13,7 +13,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const { userMsg } = useSelector((state) => state.systemReducer);
   const { isAuthenticated, user } = useSelector((state) => state.authReducer);
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -47,9 +46,7 @@ const Header = () => {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-      >
-        <span className="avatar-initials">{user && user.firstname.charAt(0).toUpperCase()}</span>
-      </Avatar>
+      ></Avatar>
       <Menu
         id="menu"
         aria-labelledby="avatar"
@@ -58,11 +55,11 @@ const Header = () => {
         onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'left'
         }}
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'left',
+          horizontal: 'left'
         }}
       >
         <MenuItem onClick={handelLogout}>{isAuthenticated ? 'Logout' : 'Login'}</MenuItem>
