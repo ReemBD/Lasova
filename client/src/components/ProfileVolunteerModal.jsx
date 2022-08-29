@@ -20,13 +20,13 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState({
-    ...volunteer,
+    ...volunteer
   });
 
   const handleChange = (e) => {
     setVolunteer((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
     console.log(editVolunteer);
     if (e.target.name === 'volunteeringProgram') {

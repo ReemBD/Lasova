@@ -1,3 +1,4 @@
+import jwt_decode from 'jwt-decode';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveVolunteer } from '../store/actions/volunteerActions';
@@ -18,7 +19,7 @@ const VolunteerObj = {
   summary: '',
   volunteerType: '',
   status: '',
-  files: [],
+  files: []
 };
 
 const NewVolunteerModal = ({ open, setOpen }) => {

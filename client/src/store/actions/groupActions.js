@@ -21,7 +21,11 @@ export function searchGroups(searchText) {
   return (dispatch, getState) => {
     const { groups } = getState().groupReducer;
     let filteredGroups = groups.filter((group) => {
-      return group.volunteeringProgram.toLowerCase().includes(searchText.toLowerCase());
+      return (
+        group.type.toLowerCase().includes(searchText.toLowerCase()) ||
+        group.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        group.contactName.toLowerCase().includes(searchText.toLowerCase())
+      );
     });
     dispatch({ type: 'SEARCH_GROUPS', filteredGroups });
   };
