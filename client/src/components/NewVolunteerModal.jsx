@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { saveVolunteer } from '../store/actions/volunteerActions';
 import Box from '@mui/material/Box';
@@ -18,16 +19,18 @@ const VolunteerObj = {
   summary: '',
   volunteerType: '',
   status: '',
-  files: [],
+  files: []
 };
+
+const associatedPrograms = ['מסעדת לשובע ת״א', 'הסרטן הפריך']; // Test array, needed to come from the back end
 
 const NewVolunteerModal = ({ open, setOpen }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authReducer);
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
   const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
-
   const handleChange = (e) => {
     let value = e.target.value;
     if (e.target.type === 'file') {
@@ -176,13 +179,19 @@ const NewVolunteerModal = ({ open, setOpen }) => {
               </div>
               <div className="left">
                 <div>
-                  <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
-                  <select name="volunteerType" className="input" onChange={handleChange}>
-                    <option value="">בחר מסגרת התנדבות</option>
-                    <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
-                  </select>
+                  <>
+                    <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
+                    <select name="volunteeringProgram" className="input" onChange={handleChange}>
+                      {associatedPrograms.map((assoc, idx) => (
+                        <option value={assoc} key={idx}>
+                          {assoc}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+
                   <label className="new_vol_modal_label">בחר מסגרת מפנה</label>
-                  <select name="volunteeringProgram" className="input" onChange={handleChange}>
+                  <select name="volunteerType" className="input" onChange={handleChange}>
                     <option id="0" value="null">
                       בחר מסגרת מפנה
                     </option>

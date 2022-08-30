@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { saveVolunteer } from '../store/actions/volunteerActions';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -17,18 +18,18 @@ import moment from 'moment';
 
 const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.authReducer);
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState({
-    ...volunteer,
+    ...volunteer
   });
 
   const handleChange = (e) => {
     setVolunteer((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
-    console.log(editVolunteer);
     if (e.target.name === 'volunteeringProgram') {
       switch (e.target.value) {
         case 'עצמאי':
@@ -159,16 +160,20 @@ const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
             <div className="profile_modal_content_bottom">
               <div className="profile_modal_content_right">
                 <span className="volunteering_details">
-                  <label className="profile_modal_label">בחר מסגרת התנדבות</label>
-                  <select
-                    name="volunteerType"
-                    className="profile_modal_input"
-                    onChange={handleChange}
-                    value={editVolunteer.volunteerType}
-                  >
-                    <option value="בחר מסגרת">בחר מסגרת התנדבות</option>
-                    <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
-                  </select>
+                  {user.userType === 2 && (
+                    <>
+                      <label className="profile_modal_label">בחר מסגרת התנדבות</label>
+                      <select
+                        name="volunteerType"
+                        className="profile_modal_input"
+                        onChange={handleChange}
+                        value={editVolunteer.volunteerType}
+                      >
+                        <option value="בחר מסגרת">בחר מסגרת התנדבות</option>
+                        <option value="מסעדת לשובע תא">מסעדת לשובע ת"א</option>
+                      </select>
+                    </>
+                  )}
                   <label className="profile_modal_label" htmlFor="volunteeringProgram">
                     בחר מסגרת מפנה
                   </label>

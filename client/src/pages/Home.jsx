@@ -24,7 +24,6 @@ import FilterableHeaderCell from '../components/FilterableHeaderCell';
 const Home = () => {
   const dispatch = useDispatch();
   const { volunteers, volunteersToShow } = useSelector((state) => state.volunteerReducer);
-
   const exportRef = useRef(null);
   const csvBtnRef = useRef(null);
 
@@ -38,7 +37,7 @@ const Home = () => {
   const [filter, setFilter] = useState({
     status: '',
     volunteeringProgram: '',
-    volunteerType: '',
+    volunteerType: ''
   });
   const filterOptions = useMemo(() => {
     if (!volunteers) return {};
@@ -75,7 +74,7 @@ const Home = () => {
   const onSetFilter = (filterBy) => {
     setFilter({
       ...filter,
-      [activeFilter]: filterBy,
+      [activeFilter]: filterBy
     });
     setActiveFilter('');
   };
@@ -87,7 +86,7 @@ const Home = () => {
       onToggleDropdown: ({ bottom, left }) => {
         setDropdownPosition({ top: bottom, left });
         activeFilter === name ? setActiveFilter('') : setActiveFilter(name);
-      },
+      }
     };
   };
 
@@ -96,7 +95,7 @@ const Home = () => {
     { type: 'active', label: 'פעיל', icon: <Active /> },
     { type: 'new', label: 'חדש', icon: <NewLead /> },
     { type: 'standby', label: 'מושהה', icon: <Standby /> },
-    { type: 'inactive', label: 'לא פעיל', icon: <Inactive /> },
+    { type: 'inactive', label: 'לא פעיל', icon: <Inactive /> }
   ];
 
   const columns = useMemo(
@@ -107,24 +106,24 @@ const Home = () => {
         headerName: 'סטטוס',
         renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('status', 'סטטוס')} />,
         valueFormatter: ({ value }) => statuses.find((status) => status.type === value)?.label || statuses[2].type,
-        renderCell: (params) => statuses.find((status) => status.type === params.row.status)?.icon || <Standby />,
+        renderCell: (params) => statuses.find((status) => status.type === params.row.status)?.icon || <Standby />
       },
       {
         field: 'firstName',
         headerName: 'שם פרטי',
         description: 'שם פרטי',
-        valueGetter: (params) => params.row.firstName || '',
+        valueGetter: (params) => params.row.firstName || ''
       },
       {
         field: 'lastName',
         headerName: 'שם משפחה',
         description: 'שם משפחה',
-        valueGetter: (params) => params.row.lastName || '',
+        valueGetter: (params) => params.row.lastName || ''
       },
       {
         field: 'taz',
         headerName: 'תעודת זהות',
-        valueGetter: (params) => params.row.taz || '-',
+        valueGetter: (params) => params.row.taz || '-'
       },
       {
         field: 'volunteerType',
@@ -133,7 +132,7 @@ const Home = () => {
         renderHeader: () => (
           <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת התנדבות')} />
         ),
-        valueGetter: (params) => params.row.volunteerType || '',
+        valueGetter: (params) => params.row.volunteerType || ''
       },
       {
         field: 'volunteeringProgram',
@@ -147,7 +146,7 @@ const Home = () => {
             return `מלגה, ${params.row.scholarship}`;
           }
           return params.row.volunteeringProgram || '';
-        },
+        }
       },
       {
         field: 'volunteerHours',
@@ -163,8 +162,8 @@ const Home = () => {
           <>
             <span className="reported-hours">{params.row.reportedHours || 0}</span>
           </>
-        ),
-      },
+        )
+      }
       // {
       //     field: 'actions',
       //     type: 'actions',

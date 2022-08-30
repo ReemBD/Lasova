@@ -7,12 +7,12 @@ export const loadUser = (user) => async (dispatch) => {
     // const res = await api.get('/auth/login');
     dispatch({
       type: USER_LOADED,
-      payload: user,
+      payload: user
     });
   } catch (err) {
     console.log('🚀 ~ file: auth.js ~ line 14 ~ loadUser ~ err', err);
     dispatch({
-      type: AUTH_ERROR,
+      type: AUTH_ERROR
     });
   }
 };
@@ -24,14 +24,13 @@ export const login = (email, password) => async (dispatch) => {
   // no token logic yet
   try {
     const token = await authService.login(email, password);
-
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: token,
+      payload: token
     });
-    // dispatch(loadUser(token));
+    dispatch(loadUser(token));
   } catch (error) {
-    console.log('🚀 ~ file: auth.js ~ line 50 ~ login ~ error', error);
+    console.log('🚀 ~ file: store/actions/auth.js ~ line 34 ~ login ~ error', error);
   }
 };
 
