@@ -23,7 +23,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:client": "npm --prefix ./client run build:prod",
+    "build:client": "npm --prefix ./client install && npm --prefix ./client run build:prod",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "testEnv": "nodemon server.js",
