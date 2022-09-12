@@ -27,7 +27,7 @@ const login = async(loggingUser) => {
     }
     return user.generateBearerAuthToken();
   } catch (err) {
-    logger.error(`error while trying to login user ${loggingUser.username}`, err);
+    logger.error(`error while trying to login user ${loggingUser.email}`, err);
     throw err;
   }
 };

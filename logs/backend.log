@@ -176,3 +176,13 @@
 8/22/2022, 8:35:36 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
 8/30/2022, 8:58:29 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
 8/30/2022, 8:58:31 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+9/12/2022, 3:05:13 AM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+9/12/2022, 3:05:15 AM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+9/12/2022, 3:05:27 AM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+9/12/2022, 3:05:39 AM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+9/12/2022, 3:26:29 AM - ERROR - failed to fetch volunteersTypeError: Cannot read properties of undefined (reading 'map') 
+9/12/2022, 3:26:31 AM - ERROR - failed to fetch volunteersTypeError: Cannot read properties of undefined (reading 'map') 
+9/12/2022, 3:27:33 AM - ERROR - failed to fetch volunteersTypeError: Cannot read properties of undefined (reading 'map') 
+9/12/2022, 3:28:01 AM - ERROR - failed to fetch volunteersTypeError: Cannot read properties of undefined (reading 'map') 
+9/12/2022, 3:29:05 AM - ERROR - failed to fetch volunteersMongoServerError: $in needs an array 
+9/12/2022, 3:29:29 AM - ERROR - failed to fetch volunteersMongoServerError: $in needs an array 
