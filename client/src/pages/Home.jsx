@@ -126,26 +126,26 @@ const Home = () => {
         valueGetter: (params) => params.row.taz || '-'
       },
       {
-        field: 'volunteerType',
+        field: 'volunteeringProgram.name',
         headerName: 'מסגרת התנדבות',
         description: 'מסגרת התנדבות',
         renderHeader: () => (
-          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת התנדבות')} />
+          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת התנדבות')} />
         ),
-        valueGetter: (params) => params.row.volunteerType || ''
+        valueGetter: (params) => params.row.volunteeringProgram.name || ''
       },
       {
-        field: 'volunteeringProgram',
+        field: 'volunteerType',
         headerName: 'מסגרת מפנה',
         description: 'מסגרת מפנה',
         renderHeader: () => (
-          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת מפנה')} />
+          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת מפנה')} />
         ),
         valueGetter: (params) => {
           if (params.row.scholarship) {
             return `מלגה, ${params.row.scholarship}`;
           }
-          return params.row.volunteeringProgram || '';
+          return params.row.volunteerType || '';
         }
       },
       {

@@ -61,11 +61,12 @@ async function update(volunteer) {
 
 const _buildVolunteerQueryFilter = (query) => {
   const filter = {};
+  console.log('query: ', query)
   Object.keys(query).forEach((currQueryKey) => {
     switch (currQueryKey) {
       case 'volunteeringPrograms':
-        filter.volunteeringProgram = {
-          $in: query[currQueryKey]
+        filter['volunteeringProgram._id'] = {
+          $in: query.volunteeringPrograms?.map((vp) => vp._id)
         };
         break;
       default:
