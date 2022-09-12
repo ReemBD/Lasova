@@ -7,10 +7,12 @@ const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
 async function getVolunteers(req, res) {
   try {
     const queryOptions = req.query;
+    console.log('req.user: ', req.user);
     if (req.user.userType === UserTypes.ProgramManager) {
-      queryOptions.volunteeringPrograms = managerProgramsObjectMap[req.user.email];
+      queryOptions.volunteeringPrograms = req.user.associatedPrograms;
     }
     const volunteers = await query(queryOptions);
+    console.log('volunteers: ', volunteers)
     res.send(volunteers);
   } catch (err) {
     res.status(500).send({ err: 'Failed to fetch volunteers' });

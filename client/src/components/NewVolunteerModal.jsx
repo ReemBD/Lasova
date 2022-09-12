@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 // import { UploadVolunteerFilesButton } from './UploadButton';
 const VolunteerObj = {
   taz: '',
-  volunteeringProgram: '',
+  volunteeringProgram: null,
   firstName: '',
   lastName: '',
   cellphone: '',
@@ -31,6 +31,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
   const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
+  console.log({ newVolunteer });
   const handleChange = (e) => {
     let value = e.target.value;
     if (e.target.type === 'file') {
@@ -38,7 +39,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
       console.log('e.target.value', e.target.files);
     }
     setNewVolunteer((prev) => ({ ...prev, [e.target.name]: value }));
-    if (e.target.name === 'volunteeringProgram') {
+    if (e.target.name === 'volunteerType') {
       switch (e.target.value) {
         case 'עצמאי':
           setIsOption2(false);
@@ -64,8 +65,9 @@ const NewVolunteerModal = ({ open, setOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('..will submit:', newVolunteer);
+    newVolunteer['volunteeringProgram'] ||= user.associatedPrograms[0];
     setNewVolunteer(newVolunteer);
+
     console.log(newVolunteer);
     dispatch(saveVolunteer(newVolunteer));
     setOpen(false);
@@ -182,9 +184,9 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   <>
                     <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
                     <select name="volunteeringProgram" className="input" onChange={handleChange}>
-                      {associatedPrograms.map((assoc, idx) => (
-                        <option value={assoc} key={idx}>
-                          {assoc}
+                      {user.associatedPrograms.map((program, idx) => (
+                        <option value={program} key={idx}>
+                          {program.name}
                         </option>
                       ))}
                     </select>
