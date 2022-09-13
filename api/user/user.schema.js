@@ -1,25 +1,21 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const { validateEmail } = require('../../helpers/auth.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const { UserTypes, UserTypePermissionsMap } = require('../../lib/consts/UserType.enum');
-const { Schema, model } = mongoose;
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
+const { UserStatuses } = require('../../lib/consts/user-status');
 
-const required = true;
 
 const UserSchema = new Schema({
-  firstname: { type: String, required },
-  lastname: { type: String, required: false },
-  email: {
-    type: String,
-    // validate: [validateEmail, ErrorMessages.InvalidEmail],
-    required: false
-  },
-  associatedPrograms: [{ type: { _id: String, name: String, email: String } }],
-  hash: { type: String, required },
-  userType: { type: Number, enum: Object.values(UserTypes), required }
+  firstname:           { type: String, required: true                                            },
+  lastname:           { type: String, required: false                                           },
+  email:              { type: String, validate: [validateEmail, ErrorMessages.InvalidEmail], required: false },
+  hash:               { type: String, required: true                                            },
+  userType:           { type: Number, enum: Object.values(UserTypes), required: true            },
+  status:             { type: Number, enum: Object.values(UserStatuses), required: false         },
+  associatedPrograms: [{ type: { _id: String, name: String, email: String }}                    ],
 });
 
 UserSchema.methods.checkPassword = function (password) {
@@ -37,13 +33,6 @@ UserSchema.virtual('fullname').get(function () {
 UserSchema.virtual('permissions').get(function () {
   return UserTypePermissionsMap.get(this.userType);
 });
-
-// UserSchema.virtual('associatedPrograms').get(function () {
-//   if (this.userType === UserTypes.ProgramManager) {
-//     return managerProgramsObjectMap[this.email];
-//   }
-//   return null;
-// });
 
 UserSchema.set('toObject', {
   transform: function (doc, ret, options) {

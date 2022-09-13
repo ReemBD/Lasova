@@ -2,11 +2,17 @@ const logger = require('../../services/logger.service');
 const User = require('./user.schema');
 const { prettified } = require('../../helpers/prettified.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
+const { UserStatuses } = require('../../lib/consts/user-status');
 
-const saveUser = async(user) => {
+const saveUser = async (user) => {
   try {
-    const userAlreadyExists = await getUser(_buildUserCriteria(user));
-    if (userAlreadyExists) throw new Error(ErrorMessages.UserAlreadyExists);
+    const { email } = user;
+    const existingUserWithSameEmail = await getUser({ email });
+
+    if (existingUserWithSameEmail && existingUserWithSameEmail.status === UserStatuses.Approved) {
+      throw new Error(ErrorMessages.UserAlreadyExists);
+    }
+    
     user = new User(user);
     await user.save();
     return user;
@@ -19,7 +25,7 @@ const saveUser = async(user) => {
 /**
  * @param {{email?: string, firstname?: string, lastname?: string, _id?:string, userType?: userTypeEnum}} query user query object
  * */
-const getManyUsers = async(query = {}) => {
+const getManyUsers = async (query = {}) => {
   try {
     const criteria = _buildUserCriteria(query);
     const users = await User.find(criteria);
@@ -33,7 +39,7 @@ const getManyUsers = async(query = {}) => {
 /**
  * @param {{email?: string, firstname?: string, lastname?: string, _id?:string, userType?: userTypeEnum}} query user query object
  * */
-const getUser = async(query = {}) => {
+const getUser = async (query = {}) => {
   try {
     const criteria = _buildUserCriteria(query);
     const user = await User.findOne(criteria);
@@ -58,7 +64,8 @@ const getUserPermissions = (user) => {
  * @param {{email?: string, firstname?: string, lastname?: string, _id?:string, userType?: userTypeEnum}} query user query object
  * */
 const _buildUserCriteria = (query) => {
-  const { email = '' } = query;
+  const { email } = query;
+
   const retval = {
     email
   };
