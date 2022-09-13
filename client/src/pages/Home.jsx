@@ -132,7 +132,7 @@ const Home = () => {
         renderHeader: () => (
           <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת התנדבות')} />
         ),
-        valueGetter: (params) => params.row.volunteeringProgram.name || ''
+        valueGetter: (params) => params.row.volunteeringProgram?.name || ''
       },
       {
         field: 'volunteerType',
