@@ -1,15 +1,11 @@
+import junex from '../assets/imgs/junex.svg';
 const Footer = () => {
-  console.log(`MEET THE TEAM:
-    Amitay.. Junex..
-    Guy..
-    Amit Weiner, Fullstack developer https://linkedin.com/in/amiteew
-    Shir..
-    Sahar..
-    Noam..
-    Bar..
-    Omri..?
-    `);
-  return <></>;
+  return (
+    <footer className="footer">
+      <p className="footer__span">Powered by</p>
+      <img src={junex} alt="logo" className="footer__image" />
+    </footer>
+  );
 };
 
 export default Footer;

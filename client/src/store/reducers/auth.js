@@ -9,7 +9,6 @@ const initialState = {
   loading: null,
   user: storageService.getItem('LOGGED_IN_USER')
 };
-console.log(initialState);
 export function authReducer(state = initialState, action) {
   const { type, payload } = action;
 

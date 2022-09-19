@@ -7,6 +7,7 @@ import GroupsPage from './pages/GroupsPage';
 import Login from './pages/Login';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadUser } from './store/actions/auth';
+import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
             </Routes>
           </main>
         </div>
+        <Footer />
       </div>
     </Router>
   );

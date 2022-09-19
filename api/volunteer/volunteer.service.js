@@ -61,7 +61,7 @@ async function update(volunteer) {
 
 const _buildVolunteerQueryFilter = (query) => {
   const filter = {};
-  console.log('query: ', query)
+  console.log('query: ', query);
   Object.keys(query).forEach((currQueryKey) => {
     switch (currQueryKey) {
       case 'volunteeringPrograms':

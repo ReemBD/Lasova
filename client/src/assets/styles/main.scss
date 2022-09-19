@@ -5,6 +5,7 @@
 @import './setup/base';
 @import './setup/helpers';
 @import './setup/layout';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 // Components
 @import './components/Header';
@@ -14,6 +15,7 @@
 @import './components/ProfileVolunteerModal.scss';
 @import './components/UserMsg';
 @import './components/_NewGroup.scss';
+@import './components/footer';
 
 // Pages
 @import './pages/Home';

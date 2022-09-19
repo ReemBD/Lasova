@@ -1,0 +1,25 @@
+.footer {
+  margin: auto;
+  margin-top: 33px;
+  gap: 4px;
+  display: flex;
+  flex-direction: row-reverse;
+  padding-bottom: 26px;
+}
+.footer__span {
+  width: 67px;
+  height: 18px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #2a526f;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.footer__image {
+  width: 62px;
+  height: 18px;
+}

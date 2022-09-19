@@ -12,7 +12,7 @@ async function getVolunteers(req, res) {
       queryOptions.volunteeringPrograms = req.user.associatedPrograms;
     }
     const volunteers = await query(queryOptions);
-    console.log('volunteers: ', volunteers)
+    console.log('volunteers: ', volunteers);
     res.send(volunteers);
   } catch (err) {
     res.status(500).send({ err: 'Failed to fetch volunteers' });
