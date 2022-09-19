@@ -104,17 +104,8 @@ const Home = () => {
         field: 'firstName',
         headerName: 'שם פרטי',
         description: 'שם פרטי',
-        valueGetter: (params) => params.row.firstName || ''
+        valueGetter: (params) => `${params.row.firstName}` || ''
       },
-      {
-        field: 'status',
-        description: 'סטטוס',
-        headerName: 'סטטוס',
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('status', 'סטטוס')} />,
-        valueFormatter: ({ value }) => statuses.find((status) => status.type === value)?.label || statuses[2].type,
-        renderCell: (params) => statuses.find((status) => status.type === params.row.status)?.icon || <Standby />
-      },
-
       {
         field: 'lastName',
         headerName: 'שם משפחה',

@@ -68,7 +68,6 @@ const BaseTable = ({
             NoRowsOverlay: () => <CustomNoRowsOverlay />
           }}
           loading={!rows}
-          // disableColumnMenu
           checkboxSelection
           disableSelectionOnClick
           onRowDoubleClick={(ev) => {

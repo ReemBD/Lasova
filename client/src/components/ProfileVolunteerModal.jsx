@@ -19,6 +19,7 @@ import moment from 'moment';
 const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
+
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState({
