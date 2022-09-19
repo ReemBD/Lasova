@@ -18,7 +18,7 @@ const BaseTable = ({
   dropdownPosition,
   filterOptions,
   onSetFilter,
-  filter,
+  filter
 }) => {
   const [rows, setRows] = useState(entities || []);
 
@@ -47,7 +47,7 @@ const BaseTable = ({
         <div
           className="filter-menu"
           style={{
-            ...dropdownPosition,
+            ...dropdownPosition
           }}
         >
           {filterOptions[activeFilter].map((o) => (
@@ -65,16 +65,17 @@ const BaseTable = ({
           components={{
             Toolbar: () => <ExportCsvBtn name={exportFileName} csvBtnRef={csvBtnRef} />,
             LoadingOverlay: () => <TableLoader />,
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+            NoRowsOverlay: () => <CustomNoRowsOverlay />
           }}
           loading={!rows}
-          hideFooter
+          // disableColumnMenu
           checkboxSelection
-          disableColumnMenu
           disableSelectionOnClick
           onRowDoubleClick={(ev) => {
             onEntityClick(ev.row);
           }}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
         />
       </section>
     </>

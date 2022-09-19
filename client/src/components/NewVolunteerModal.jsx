@@ -26,12 +26,11 @@ const associatedPrograms = ['מסעדת לשובע ת״א', 'הסרטן הפרי
 
 const NewVolunteerModal = ({ open, setOpen }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.authReducer);
+
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [enable, setEnable] = useState(true);
   const [newVolunteer, setNewVolunteer] = useState(VolunteerObj);
-  console.log({ newVolunteer });
   const handleChange = (e) => {
     let value = e.target.value;
     if (e.target.type === 'file') {
@@ -65,9 +64,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    newVolunteer['volunteeringProgram'] ||= user.associatedPrograms[0];
     setNewVolunteer(newVolunteer);
-
     console.log(newVolunteer);
     dispatch(saveVolunteer(newVolunteer));
     setOpen(false);
@@ -184,7 +181,7 @@ const NewVolunteerModal = ({ open, setOpen }) => {
                   <>
                     <label className="new_vol_modal_label">בחר מסגרת התנדבות</label>
                     <select name="volunteeringProgram" className="input" onChange={handleChange}>
-                      {user.associatedPrograms.map((program, idx) => (
+                      {associatedPrograms.map((program, idx) => (
                         <option value={program} key={idx}>
                           {program.name}
                         </option>

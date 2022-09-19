@@ -64,9 +64,9 @@
     .MuiDataGrid-row {
       width: 100%;
       cursor: pointer;
+      color: #386c92;
       &:hover {
-        background-color: rgba(4, 83, 173, 0.795);
-        color: #ffff;
+        background-color: #edf7fd;
       }
 
       * {
@@ -102,9 +102,6 @@
       }
     }
   }
-  .MuiDataGrid-row:nth-child(2n) {
-    background-color: rgba(0, 0, 0, 0.144);
-  }
 }
 .filter-menu {
   position: absolute;
@@ -115,6 +112,16 @@
   .filter-option.selected {
     background-color: red;
   }
+}
+.MuiToolbar-root {
+  color: #386c92;
+}
+.MuiTablePagination-displayedRows {
+  direction: ltr;
+}
+.MuiTablePagination-actions {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 // .base-table {

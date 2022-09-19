@@ -101,6 +101,12 @@ const Home = () => {
   const columns = useMemo(
     () => [
       {
+        field: 'firstName',
+        headerName: 'שם פרטי',
+        description: 'שם פרטי',
+        valueGetter: (params) => params.row.firstName || ''
+      },
+      {
         field: 'status',
         description: 'סטטוס',
         headerName: 'סטטוס',
@@ -108,12 +114,7 @@ const Home = () => {
         valueFormatter: ({ value }) => statuses.find((status) => status.type === value)?.label || statuses[2].type,
         renderCell: (params) => statuses.find((status) => status.type === params.row.status)?.icon || <Standby />
       },
-      {
-        field: 'firstName',
-        headerName: 'שם פרטי',
-        description: 'שם פרטי',
-        valueGetter: (params) => params.row.firstName || ''
-      },
+
       {
         field: 'lastName',
         headerName: 'שם משפחה',
@@ -138,9 +139,7 @@ const Home = () => {
         field: 'volunteerType',
         headerName: 'מסגרת מפנה',
         description: 'מסגרת מפנה',
-        renderHeader: () => (
-          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת מפנה')} />
-        ),
+        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת מפנה')} />,
         valueGetter: (params) => {
           if (params.row.scholarship) {
             return `מלגה, ${params.row.scholarship}`;
@@ -198,12 +197,6 @@ const Home = () => {
         filter={filter}
         onEntityClick={openProfileModal}
       />
-      {/* <VolunteersTable // Probably need to be deleted
-        volunteers={volunteersToShow}
-        onExport={onExport}
-        openProfileModal={openProfileModal}
-      /> */}
-      {/* <Footer /> */}
       {isNewVolModalOpen && <NewVolunteerModal open={isNewVolModalOpen} setOpen={setNewVolModalOpen} />}
       {isProfileModalOpen && (
         <ProfileVolunteerModal
