@@ -93,7 +93,6 @@ const Home = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const statuses = [
     { type: 'active', label: 'פעיל', icon: <Active /> },
-    { type: 'new', label: 'חדש', icon: <NewLead /> },
     { type: 'standby', label: 'מושהה', icon: <Standby /> },
     { type: 'inactive', label: 'לא פעיל', icon: <Inactive /> }
   ];
@@ -104,7 +103,14 @@ const Home = () => {
         field: 'firstName',
         headerName: 'שם פרטי',
         description: 'שם פרטי',
-        valueGetter: (params) => `${params.row.firstName}` || ''
+        valueGetter: (params) => `${params.row.firstName}` || '',
+        renderCell: (params) => (
+          <>
+            {statuses.find((status) => status.type === params.row.status)?.icon || <Standby />}
+            <p> </p>
+            {params.row.firstName}
+          </>
+        )
       },
       {
         field: 'lastName',
@@ -114,23 +120,21 @@ const Home = () => {
       },
       {
         field: 'taz',
-        headerName: 'תעודת זהות',
+        headerName: 'ת.ז',
         valueGetter: (params) => params.row.taz || '-'
       },
       {
         field: 'volunteeringProgram.name',
-        headerName: 'מסגרת התנדבות',
-        description: 'מסגרת התנדבות',
-        renderHeader: () => (
-          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת התנדבות')} />
-        ),
+        headerName: 'מסגרת',
+        description: 'מסגרת',
+        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת')} />,
         valueGetter: (params) => params.row.volunteeringProgram?.name || ''
       },
       {
         field: 'volunteerType',
         headerName: 'מסגרת מפנה',
         description: 'מסגרת מפנה',
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת מפנה')} />,
+        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'תכנית')} />,
         valueGetter: (params) => {
           if (params.row.scholarship) {
             return `מלגה, ${params.row.scholarship}`;
