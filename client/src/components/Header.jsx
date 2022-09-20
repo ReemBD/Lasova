@@ -8,11 +8,13 @@ import Avatar from '@mui/material/Avatar';
 import { pink } from '@mui/material/colors';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import logoutSvg from '../assets/imgs/logout.svg';
 
 const Header = () => {
   const dispatch = useDispatch();
   const { userMsg } = useSelector((state) => state.systemReducer);
   const { isAuthenticated, user } = useSelector((state) => state.authReducer);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex justify-end align-center">
+    <header className="sidebar__profile">
       {userMsg.txt && <UserMsg msg={userMsg} />}
       <button className="messages">
         {/* <EnvelopeIcon /> */}
@@ -36,17 +38,24 @@ const Header = () => {
                 {notificationCount}
             </span>} */}
       </button>
-      <p>{user?.name}</p>
-      <Avatar
-        alt={user?.name}
-        // src="/static/images/avatar/1.jpg"
-        sx={{ width: 48, height: 48, bgcolor: pink[500] }}
-        id="avatar"
-        aria-controls={open ? 'menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      ></Avatar>
+
+      <img onClick={handelLogout} src={logoutSvg} alt="logout" className="sidebar__logout" />
+      <div className="sidebar__avatar">
+        <span>
+          <p>{`${user.firstname} ${user.lastname}`}</p>
+        </span>
+
+        <Avatar
+          alt={user.firstName}
+          // src="/static/images/avatar/1.jpg"
+          sx={{ width: 48, height: 48, bgcolor: pink[500] }}
+          id="avatar"
+          aria-controls={open ? 'menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        ></Avatar>
+      </div>
       <Menu
         id="menu"
         aria-labelledby="avatar"
@@ -61,9 +70,7 @@ const Header = () => {
           vertical: 'top',
           horizontal: 'left'
         }}
-      >
-        <MenuItem onClick={handelLogout}>{isAuthenticated ? 'Logout' : 'Login'}</MenuItem>
-      </Menu>
+      ></Menu>
     </header>
   );
 };

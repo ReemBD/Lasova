@@ -1,10 +1,8 @@
 import { authService } from '../../services/auth-service';
 import { LOGIN_SUCCESS, USER_LOADED, AUTH_ERROR, LOGOUT } from './types';
 
-// Load User
 export const loadUser = (user) => async (dispatch) => {
   try {
-    // const res = await api.get('/auth/login');
     dispatch({
       type: USER_LOADED,
       payload: user
@@ -17,11 +15,7 @@ export const loadUser = (user) => async (dispatch) => {
   }
 };
 
-// Login User
 export const login = (email, password) => async (dispatch) => {
-  //   const body = { email, password };
-  // Check if it is yulia with mongoDB
-  // no token logic yet
   try {
     const token = await authService.login(email, password);
     dispatch({
@@ -34,5 +28,4 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-// Logout
 export const logout = () => ({ type: LOGOUT });

@@ -186,3 +186,11 @@
 9/12/2022, 3:28:01 AM - ERROR - failed to fetch volunteersTypeError: Cannot read properties of undefined (reading 'map') 
 9/12/2022, 3:29:05 AM - ERROR - failed to fetch volunteersMongoServerError: $in needs an array 
 9/12/2022, 3:29:29 AM - ERROR - failed to fetch volunteersMongoServerError: $in needs an array 
+9/19/2022, 4:56:15 PM - ERROR - error while trying to login user amit217@yandex.com | Error: Invalid username / email 
+9/19/2022, 5:23:51 PM - ERROR - error while trying to login user dev.master@gmail.com | Error: Invalid username / email 
+9/19/2022, 5:23:54 PM - ERROR - error while trying to login user dev.master@gmail.com | Error: Invalid username / email 
+9/19/2022, 5:23:55 PM - ERROR - error while trying to login user dev.master@gmail.com | Error: Invalid username / email 
+9/19/2022, 5:23:55 PM - ERROR - error while trying to login user dev.master@gmail.com | Error: Invalid username / email 
+9/20/2022, 10:24:19 AM - ERROR - error while trying to login user gfdfd | Error: Invalid username / email 
+9/20/2022, 10:24:26 AM - ERROR - error while trying to login user gfdfd@asdas.com | Error: Invalid username / email 
+9/20/2022, 10:24:27 AM - ERROR - error while trying to login user gfdfd@asdas.com | Error: Invalid username / email 

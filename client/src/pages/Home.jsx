@@ -18,20 +18,20 @@ import { ReactComponent as Inactive } from '../assets/imgs/icons/status/inactive
 import BasePage from '../pages/BasePage';
 import BaseTable from '../components/BaseTable';
 import FilterableHeaderCell from '../components/FilterableHeaderCell';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // import { ReactComponent as ClearIcon } from '../assets/imgs/icons/close-icon.svg';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { volunteers, volunteersToShow } = useSelector((state) => state.volunteerReducer);
+  const { user } = useSelector((state) => state.authReducer);
   const exportRef = useRef(null);
   const csvBtnRef = useRef(null);
-
   const [isNewVolModalOpen, setNewVolModalOpen] = useState(false);
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
-
   const [volunteerProfileToShow, setVolunteerProfileToShow] = useState({});
-
   const [dropdownPosition, setDropdownPosition] = useState(null);
   const [activeFilter, setActiveFilter] = useState('');
   const [filter, setFilter] = useState({
@@ -93,7 +93,6 @@ const Home = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const statuses = [
     { type: 'active', label: 'פעיל', icon: <Active /> },
-    { type: 'new', label: 'חדש', icon: <NewLead /> },
     { type: 'standby', label: 'מושהה', icon: <Standby /> },
     { type: 'inactive', label: 'לא פעיל', icon: <Inactive /> }
   ];
@@ -101,18 +100,16 @@ const Home = () => {
   const columns = useMemo(
     () => [
       {
-        field: 'status',
-        description: 'סטטוס',
-        headerName: 'סטטוס',
-        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('status', 'סטטוס')} />,
-        valueFormatter: ({ value }) => statuses.find((status) => status.type === value)?.label || statuses[2].type,
-        renderCell: (params) => statuses.find((status) => status.type === params.row.status)?.icon || <Standby />
-      },
-      {
         field: 'firstName',
         headerName: 'שם פרטי',
         description: 'שם פרטי',
-        valueGetter: (params) => params.row.firstName || ''
+        valueGetter: (params) => `${params.row.firstName}` || '',
+        renderCell: (params) => (
+          <div className="name-status">
+            {statuses.find((status) => status.type === params.row.status)?.icon || <Standby />}
+            {params.row.firstName}
+          </div>
+        )
       },
       {
         field: 'lastName',
@@ -122,25 +119,21 @@ const Home = () => {
       },
       {
         field: 'taz',
-        headerName: 'תעודת זהות',
+        headerName: 'ת.ז',
         valueGetter: (params) => params.row.taz || '-'
       },
       {
         field: 'volunteeringProgram.name',
-        headerName: 'מסגרת התנדבות',
-        description: 'מסגרת התנדבות',
-        renderHeader: () => (
-          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת התנדבות')} />
-        ),
+        headerName: 'מסגרת',
+        description: 'מסגרת',
+        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteeringProgram', 'מסגרת')} />,
         valueGetter: (params) => params.row.volunteeringProgram?.name || ''
       },
       {
         field: 'volunteerType',
         headerName: 'מסגרת מפנה',
         description: 'מסגרת מפנה',
-        renderHeader: () => (
-          <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'מסגרת מפנה')} />
-        ),
+        renderHeader: () => <FilterableHeaderCell {...getFilterableHeaderCellProps('volunteerType', 'תכנית')} />,
         valueGetter: (params) => {
           if (params.row.scholarship) {
             return `מלגה, ${params.row.scholarship}`;
@@ -175,7 +168,9 @@ const Home = () => {
     ],
     [getFilterableHeaderCellProps, statuses, volunteers]
   );
-
+  if (!user) {
+    navigate('/login');
+  }
   return (
     <BasePage
       title="טבלת מתנדבים"
@@ -198,12 +193,6 @@ const Home = () => {
         filter={filter}
         onEntityClick={openProfileModal}
       />
-      {/* <VolunteersTable // Probably need to be deleted
-        volunteers={volunteersToShow}
-        onExport={onExport}
-        openProfileModal={openProfileModal}
-      /> */}
-      {/* <Footer /> */}
       {isNewVolModalOpen && <NewVolunteerModal open={isNewVolModalOpen} setOpen={setNewVolModalOpen} />}
       {isProfileModalOpen && (
         <ProfileVolunteerModal

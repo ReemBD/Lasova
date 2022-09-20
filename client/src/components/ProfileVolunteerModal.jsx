@@ -15,10 +15,12 @@ import { ReactComponent as Active } from '../assets/imgs/icons/status/active.svg
 import { ReactComponent as Inactive } from '../assets/imgs/icons/status/inactive.svg';
 import { DatePickerComponent } from '@syncfusion/ej2-react-calendars';
 import moment from 'moment';
+import jwt_decode from 'jwt-decode';
 
 const ProfileVolunteerModal = ({ volunteer, open, setOpen }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer);
+
   const [isOption2, setIsOption2] = useState(false);
   const [isOption3, setIsOption3] = useState(false);
   const [editVolunteer, setVolunteer] = useState({

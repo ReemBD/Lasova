@@ -1,15 +1,20 @@
 aside {
   font-size: vh(24px);
-  background-color: $navBg;
+  margin-left: 120px;
+  background: #edf7fd;
+  height: 100vh;
+  color: #386c92;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   .logo {
     width: vh(157px);
     height: vh(166px);
-    margin-top: vh(36px);
     margin-inline-start: vh(36px);
-    margin-bottom: vh(92px);
   }
 
   .settings {
+    margin-bottom: auto;
     font-size: vh(20px);
     gap: vh(9px);
     padding-inline-start: vh(72px);
@@ -18,24 +23,48 @@ aside {
       width: vh(19.46px);
     }
     &:hover {
-      font-family: Assistant-Bold;
+      background-color: #386d92a9;
     }
   }
 }
 
 nav {
-  margin-bottom: vh(160px);
   a {
     display: flex;
     align-items: center;
     padding-inline-start: vh(65px);
     height: vh(70px);
+    transition: 0.2s;
     &.active {
       background: #fff;
       font-family: Assistant-Extrabold;
+      color: #d77804;
     }
     &:hover:not(.active) {
-      font-family: Assistant-Bold;
+      background-color: #386d923f;
     }
   }
+}
+.sidebar__profile {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  background-color: #d7e5f4;
+  justify-content: space-between;
+  padding: 5% 0;
+}
+.sidebar__logout {
+  height: 18.21px;
+  width: 22px;
+  margin-right: auto;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.sidebar__avatar {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 15px;
+  justify-self: flex-start;
+  margin-right: 20px;
 }

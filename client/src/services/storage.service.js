@@ -1,7 +1,7 @@
 export const storageService = {
   setItem,
   getItem,
-  removeItem,
+  removeItem
 };
 
 const LASOVA_STORAGE_PREFIX = `LASOVA`;
@@ -22,5 +22,5 @@ function getItem(key, isSession = false) {
 
 function removeItem(key) {
   key = `${LASOVA_STORAGE_PREFIX}_${key}`;
-  localStorage.removeItem(key);
+  return localStorage.removeItem(key);
 }

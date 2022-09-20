@@ -15,11 +15,11 @@ const Login = () => {
   const handelSubmit = async (e) => {
     e.preventDefault();
     if (email === '' || password === '') {
-      // setError("Fields are required");
       return;
     }
     dispatch(login(email, password));
   };
+
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
