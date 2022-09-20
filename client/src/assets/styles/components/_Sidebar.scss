@@ -3,12 +3,14 @@ aside {
   background: #edf7fd;
   height: 100vh;
   color: #386c92;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   .logo {
+    justify-self: flex-start;
     width: vh(157px);
     height: vh(166px);
-    margin-top: vh(36px);
     margin-inline-start: vh(36px);
-    margin-bottom: vh(92px);
   }
 
   .settings {
@@ -26,7 +28,6 @@ aside {
 }
 
 nav {
-  margin-bottom: vh(160px);
   a {
     display: flex;
     align-items: center;
@@ -42,4 +43,7 @@ nav {
       background-color: #386d923f;
     }
   }
+}
+.sidebar__profile {
+  margin-right: 5%;
 }

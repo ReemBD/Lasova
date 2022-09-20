@@ -22,13 +22,12 @@ const Header = () => {
     setAnchorEl(null);
   };
   const handelLogout = () => {
-    // setAnchorEl(null);
+    setAnchorEl(null);
     dispatch(logout());
-    console.log(isAuthenticated);
   };
 
   return (
-    <header className="flex justify-end align-center">
+    <header className="sidebar__profile">
       {userMsg.txt && <UserMsg msg={userMsg} />}
       <button className="messages">
         {/* <EnvelopeIcon /> */}

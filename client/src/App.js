@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.authReducer);
+  const { isAuthenticated, user } = useSelector((state) => state.authReducer);
 
   useEffect(() => {
     if (localStorage.token) {
@@ -22,9 +22,9 @@ function App() {
   return (
     <div className="top-container flex column">
       <div id="dropdown-root"></div>
-      <Header />
+      {/* <Header /> */}
       <div className="content-wrapper flex">
-        <Sidebar />
+        {isAuthenticated && user ? <Sidebar /> : null}
         <main>
           <Routes>
             <Route path="/login" element={<Login />} />
