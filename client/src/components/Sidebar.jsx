@@ -35,9 +35,7 @@ const Sidebar = () => {
         <SettingsIcon />
         <span>הגדרות</span>
       </Link> */}
-      <div className="sidebar__profile">
-        <Header />
-      </div>
+      <Header /> {/*This is not a header. */}
     </aside>
   );
 };

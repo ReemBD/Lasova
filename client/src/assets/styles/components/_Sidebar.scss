@@ -8,13 +8,13 @@ aside {
   flex-direction: column;
   justify-content: space-around;
   .logo {
-    justify-self: flex-start;
     width: vh(157px);
     height: vh(166px);
     margin-inline-start: vh(36px);
   }
 
   .settings {
+    margin-bottom: auto;
     font-size: vh(20px);
     gap: vh(9px);
     padding-inline-start: vh(72px);
@@ -46,5 +46,25 @@ nav {
   }
 }
 .sidebar__profile {
-  margin-right: 5%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  background-color: #d7e5f4;
+  justify-content: space-between;
+  padding: 5% 0;
+}
+.sidebar__logout {
+  height: 18.21px;
+  width: 22px;
+  margin-right: auto;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.sidebar__avatar {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 15px;
+  justify-self: flex-start;
+  margin-right: 20px;
 }
