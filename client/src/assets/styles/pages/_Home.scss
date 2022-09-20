@@ -16,22 +16,27 @@
 
     .search {
       margin-inline-start: vh(28px);
-      height: vh(40px);
-      width: vh(180px);
+      width: 172px;
+      height: 40px;
       padding: vh(10px) vh(13px) vh(10px) vh(8px);
-      background-color: $lightBg;
-      border-radius: 2rem;
+      cursor: pointer;
       position: relative;
-      &:hover {
-        background-color: $hoverBg;
+      display: flex;
+      align-self: center;
+      background: #edf7fd;
+      border-radius: 4px;
+      transition: 0.4s;
+      &:hover,
+      &:active {
+        border: #33b1ff 0.5px solid;
       }
       label {
         height: vh(20px);
+        cursor: pointer;
+
         svg {
           height: vh(20px);
           width: vh(20.43px);
-          position: relative;
-          top: vh(-5px);
         }
       }
       input {
@@ -43,6 +48,7 @@
         font-size: vh(20px);
         background-color: transparent;
         border: none;
+        cursor: pointer;
         &:focus {
           outline: none;
         }
@@ -98,5 +104,5 @@
 }
 .actions {
   display: flex;
-  width: 95%;
+  width: 97%;
 }
