@@ -5,10 +5,13 @@
     margin-inline-end: rem(45px);
     margin-bottom: vh(20px);
     h1 {
-      margin: vh(26px) vh(28px);
-      line-height: vh(47px);
-      font-size: vh(36px);
-      font-family: Assistant-Bold;
+      margin-top: 36px;
+      font-family: 'Assistant';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 36px;
+      text-align: right;
+      color: #d77804;
     }
 
     .search {
@@ -92,4 +95,8 @@
   display: flex;
   flex-direction: column;
   height: calc(100vh - 80px);
+}
+.actions {
+  display: flex;
+  width: 95%;
 }
