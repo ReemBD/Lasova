@@ -4,23 +4,25 @@ import decode from 'jwt-decode';
 import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED, AUTH_ERROR, LOGOUT } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('user') || null,
-  isAuthenticated: true,
+  token: accessTokenService.getToken(),
+  isAuthenticated: false,
   loading: null,
   user: storageService.getItem('LOGGED_IN_USER')
 };
 export function authReducer(state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
     case USER_LOADED:
-      localStorage.setItem('user', JSON.stringify(payload));
-      return {
-        ...state,
-        isAuthenticated: true,
-        loading: false,
-        user: payload
-      };
+      const userData = localStorage.getItem('user');
+      if (userData) {
+        return {
+          ...state,
+          isAuthenticated: true,
+          loading: false,
+          user: JSON.parse(userData)
+        };
+      }
+
     case LOGIN_SUCCESS:
       const user = decode(payload);
       accessTokenService.setToken(payload);
@@ -36,6 +38,7 @@ export function authReducer(state = initialState, action) {
     case AUTH_ERROR:
     case LOGOUT:
       localStorage.removeItem('user');
+      accessTokenService.removeToken();
       return {
         ...state,
         token: null,

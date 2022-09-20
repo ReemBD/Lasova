@@ -20,24 +20,22 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="top-container flex column">
-        <div id="dropdown-root"></div>
-        <Header />
-        <div className="content-wrapper flex">
-          <Sidebar />
-          <main>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/groups" element={isAuthenticated ? <GroupsPage /> : <Navigate replace to="/login" />} />
-              <Route path="/" element={isAuthenticated ? <Home /> : <Navigate replace to="/login" />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </main>
-        </div>
-        <Footer />
+    <div className="top-container flex column">
+      <div id="dropdown-root"></div>
+      <Header />
+      <div className="content-wrapper flex">
+        <Sidebar />
+        <main>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/groups" element={isAuthenticated ? <GroupsPage /> : <Navigate replace to="/login" />} />
+            <Route path="/" element={isAuthenticated ? <Home /> : <Navigate replace to="/login" />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
       </div>
-    </Router>
+      <Footer />
+    </div>
   );
 }
 

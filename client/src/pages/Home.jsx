@@ -18,20 +18,20 @@ import { ReactComponent as Inactive } from '../assets/imgs/icons/status/inactive
 import BasePage from '../pages/BasePage';
 import BaseTable from '../components/BaseTable';
 import FilterableHeaderCell from '../components/FilterableHeaderCell';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // import { ReactComponent as ClearIcon } from '../assets/imgs/icons/close-icon.svg';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { volunteers, volunteersToShow } = useSelector((state) => state.volunteerReducer);
+  const { user } = useSelector((state) => state.authReducer);
   const exportRef = useRef(null);
   const csvBtnRef = useRef(null);
-
   const [isNewVolModalOpen, setNewVolModalOpen] = useState(false);
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
-
   const [volunteerProfileToShow, setVolunteerProfileToShow] = useState({});
-
   const [dropdownPosition, setDropdownPosition] = useState(null);
   const [activeFilter, setActiveFilter] = useState('');
   const [filter, setFilter] = useState({
@@ -169,7 +169,9 @@ const Home = () => {
     ],
     [getFilterableHeaderCellProps, statuses, volunteers]
   );
-
+  if (!user) {
+    navigate('/login');
+  }
   return (
     <BasePage
       title="טבלת מתנדבים"

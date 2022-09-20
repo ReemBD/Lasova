@@ -22,8 +22,9 @@ const Header = () => {
     setAnchorEl(null);
   };
   const handelLogout = () => {
-    setAnchorEl(null);
+    // setAnchorEl(null);
     dispatch(logout());
+    console.log(isAuthenticated);
   };
 
   return (
