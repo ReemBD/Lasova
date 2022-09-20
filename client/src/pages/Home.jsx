@@ -105,11 +105,10 @@ const Home = () => {
         description: 'שם פרטי',
         valueGetter: (params) => `${params.row.firstName}` || '',
         renderCell: (params) => (
-          <>
+          <div className="name-status">
             {statuses.find((status) => status.type === params.row.status)?.icon || <Standby />}
-            <p> </p>
             {params.row.firstName}
-          </>
+          </div>
         )
       },
       {
