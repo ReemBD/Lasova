@@ -186,3 +186,77 @@
 9/12/2022, 3:28:01 AM - ERROR - failed to fetch volunteersTypeError: Cannot read properties of undefined (reading 'map') 
 9/12/2022, 3:29:05 AM - ERROR - failed to fetch volunteersMongoServerError: $in needs an array 
 9/12/2022, 3:29:29 AM - ERROR - failed to fetch volunteersMongoServerError: $in needs an array 
+10/6/2022, 1:30:14 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | ReferenceError: password is not defined 
+10/6/2022, 1:30:29 AM - ERROR - Error trying to save user {
+  "firstname": "Reemos",
+  "lastname": "Babo",
+  "email": "testSignupRequest@gmail.com",
+  "_id": "633e0585cf965aa32f864c69",
+  "associatedPrograms": []
+} | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError", userType: Path `userType` is required., hash: Path `hash` is required. 
+10/6/2022, 1:30:29 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError", userType: Path `userType` is required., hash: Path `hash` is required. 
+10/6/2022, 1:31:22 AM - ERROR - Error trying to save user {
+  "firstname": "Reemos",
+  "lastname": "Babo",
+  "email": "testSignupRequest@gmail.com",
+  "_id": "633e05ba6eaf31a3b1b29b9c",
+  "associatedPrograms": []
+} | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError", userType: Path `userType` is required., hash: Path `hash` is required. 
+10/6/2022, 1:31:22 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError", userType: Path `userType` is required., hash: Path `hash` is required. 
+10/6/2022, 1:32:36 AM - ERROR - Error trying to save user {
+  "firstname": "Reemos",
+  "lastname": "Babo",
+  "email": "testSignupRequest@gmail.com",
+  "hash": "$2b$10$2POQI1Pd9148mm9pZGHLy.NYfWILC/Yc0WwAcJ.bCG84iJwWpsf0m",
+  "userType": 0,
+  "status": 1,
+  "_id": "633e0604be421a9ca63a21fe",
+  "associatedPrograms": []
+} | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError" 
+10/6/2022, 1:32:36 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError" 
+10/6/2022, 1:35:58 AM - ERROR - Error trying to save user {
+  "firstname": "Reemos",
+  "lastname": "Babo",
+  "email": "testSignupRequest@gmail.com",
+  "hash": "$2b$10$0JZSGhLGQ1w4TV5hBSPB9eomrRm4ULf4.GLzsPlJsPWmTZ8Fq2yCO",
+  "userType": 0,
+  "status": 1,
+  "_id": "633e06ceda2fbc532198af7f",
+  "associatedPrograms": []
+} | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError" 
+10/6/2022, 1:35:58 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | ValidationError: associatedPrograms: Cast to embedded failed for value "blahblah" (type string) at path "associatedPrograms" because of "ObjectParameterError" 
+10/6/2022, 1:41:42 AM - ERROR - err while trying to add signupRequest | ValidationError: volunteeringProgram: Path `volunteeringProgram` is required. 
+10/6/2022, 1:45:59 AM - ERROR - Error trying to save user {
+  "firstname": "Reemos",
+  "lastname": "Babo",
+  "email": "testSignupRequest@gmail.com",
+  "associatedPrograms": [
+    {
+      "_id": "631b261411800c29ac1a94fe",
+      "name": "קדימה, סאסא - צפת",
+      "email": "ramla@kadimanoar.org"
+    }
+  ],
+  "password": "1234",
+  "userType": 0,
+  "status": 1,
+  "hash": "$2b$10$488hXvPgPMRrc2lvazg8OejDwHtSyhuJsD2SdDzqLzWUB7tP/PSoS"
+} | Error: Unable to add user. User already exists 
+10/6/2022, 1:45:59 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | Error: Unable to add user. User already exists 
+10/6/2022, 1:47:00 AM - ERROR - Error trying to save user {
+  "firstname": "Reemos",
+  "lastname": "Babo",
+  "email": "testSignupRequest@gmail.com",
+  "associatedPrograms": [
+    {
+      "_id": "631b261411800c29ac1a94fe",
+      "name": "קדימה, סאסא - צפת",
+      "email": "ramla@kadimanoar.org"
+    }
+  ],
+  "password": "1234",
+  "userType": 0,
+  "status": 1,
+  "hash": "$2b$10$a8clOSHSVvOdAiHU4cYTo.X.N9DWOiBJf8XUiTVozrvheLWHRZThW"
+} | Error: Unable to add user. User already exists 
+10/6/2022, 1:47:00 AM - ERROR - err while trying to signup user testSignupRequest@gmail.com | Error: Unable to add user. User already exists 

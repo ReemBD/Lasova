@@ -6,7 +6,13 @@ const { validateEmail } = require('../../helpers/auth.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const { UserTypes, UserTypePermissionsMap } = require('../../lib/consts/UserType.enum');
 const { UserStatuses } = require('../../lib/consts/user-status');
+const SignupRequest = require('../signup-request/signup-request.schema');
 
+const AssociatedProgram = { type: { _id: String, name: String, email: String }};
+const Notification = {
+  type: String,
+  payload: Object
+};
 
 const UserSchema = new Schema({
   firstname:           { type: String, required: true                                            },
@@ -14,8 +20,9 @@ const UserSchema = new Schema({
   email:              { type: String, validate: [validateEmail, ErrorMessages.InvalidEmail], required: false },
   hash:               { type: String, required: true                                            },
   userType:           { type: Number, enum: Object.values(UserTypes), required: true            },
-  status:             { type: Number, enum: Object.values(UserStatuses), required: false         },
-  associatedPrograms: [{ type: { _id: String, name: String, email: String }}                    ],
+  status:             { type: Number, enum: Object.values(UserStatuses), required: false        },
+  associatedPrograms: { type: [ AssociatedProgram ], required: true                             },
+  notifications:       { type: [ Notification ], default: []                                      },
 });
 
 UserSchema.methods.checkPassword = function (password) {

@@ -2,19 +2,18 @@ const logger = require('../../services/logger.service');
 const User = require('./user.schema');
 const { prettified } = require('../../helpers/prettified.helper');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
-const { UserStatuses } = require('../../lib/consts/user-status');
 
 const saveUser = async (user) => {
   try {
     const { email } = user;
     const existingUserWithSameEmail = await getUser({ email });
 
-    if (existingUserWithSameEmail && existingUserWithSameEmail.status === UserStatuses.Approved) {
+    if (existingUserWithSameEmail) {
       throw new Error(ErrorMessages.UserAlreadyExists);
     }
     
     user = new User(user);
-    await user.save();
+    user = await user.save();
     return user;
   } catch (err) {
     logger.error(`Error trying to save user ${prettified(user)}`, err);

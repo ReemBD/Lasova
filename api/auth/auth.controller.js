@@ -3,14 +3,14 @@ const { UserTypes } = require('../../lib/consts/UserType.enum');
 const authService = require('./auth.service');
 
 /**
- * @param { {body: { firstname: string, lastname: string, email: string, password: string } }} request signup request
+ * @param { {body: { firstname: string, lastname: string, email: string, associatedPrograms: string[], password: string } }} request signup request
  */
 const signup = async (req, res) => {
   try {
     const signupForm = req.body;
+    console.log('signupForm: ', JSON.stringify(signupForm, null, 2));
     const user = await authService.signup(signupForm);
-    // const signupReq = new SignupRequest({})
-    // pendingRequestsService.add(new Pending)
+    res.send('Signup successful');
   } catch (err) {
     res.status(500).send(err.message);
   }

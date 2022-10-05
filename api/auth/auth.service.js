@@ -3,19 +3,28 @@ const userService = require('../user/user.service');
 const bcrypt = require('bcrypt');
 const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const { UserStatuses } = require('../../lib/consts/user-status');
+const signupRequestService = require('../signup-request/signup-request.service');
+const { UserTypes } = require('../../lib/consts/UserType.enum');
 
 const signup = async (signupForm) => {
   try {
     const SALT_ROUNDS = 10;
-    const hash = await bcrypt.hash(password, SALT_ROUNDS);
+    const hash = await bcrypt.hash(signupForm.password, SALT_ROUNDS);
 
-    signupForm.status = UserStatuses.Pending;
-    signupForm.hash = hash;
-    const user = await userService.saveUser(signupForm);
-    
-    // return user.generateBearerAuthToken();
+    let user = { ...signupForm };
+    if (!Array.isArray(user.associatedPrograms)) {
+      user.associatedPrograms = [user.associatedPrograms];
+    }
+    user.userType = UserTypes.Volunteer;
+    user.status = UserStatuses.Pending;
+    user.hash = hash;
+    user = await userService.saveUser(user);
+
+    const { associatedPrograms, _id } = user;
+    signupRequestService.add({ requestingUserId: _id, associatedPrograms: associatedPrograms });
+    return user;
   } catch (err) {
-    logger.error(`err while trying to signup user ${restOfUser.email}`, err);
+    logger.error(`err while trying to signup user ${signupForm.email}`, err);
     throw err;
   }
 };

@@ -1,8 +1,10 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
+
+const AssociatedProgram = { type: { _id: String, name: String, email: String } };
 
 const SignupRequestSchema = new Schema({
   requestingUserId: { type: String, required: true },
-  volunteeringProgram: { type: String, required: true },
+  associatedPrograms: [AssociatedProgram],
   createdAt: { type: Date, default: Date.now }
 });
 
