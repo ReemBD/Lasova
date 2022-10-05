@@ -2,10 +2,15 @@ const { ErrorMessages } = require('../../lib/consts/ErrorMessages');
 const { UserTypes } = require('../../lib/consts/UserType.enum');
 const authService = require('./auth.service');
 
+/**
+ * @param { {body: { firstname: string, lastname: string, email: string, password: string } }} request signup request
+ */
 const signup = async (req, res) => {
   try {
     const signupForm = req.body;
-    authService.signup(signupForm);
+    const user = await authService.signup(signupForm);
+    // const signupReq = new SignupRequest({})
+    // pendingRequestsService.add(new Pending)
   } catch (err) {
     res.status(500).send(err.message);
   }
