@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "rotem-central-app",
+      "package_name": "com.trioair.app",
       "sha256_cert_fingerprints": [
         "85:D2:C6:A9:F3:1D:A7:11:0A:1C:32:67:EE:2D:D2:7B:53:72:EA:76:08:4E:37:00:D7:3C:EE:E9:85:7B:95:77"
       ]
