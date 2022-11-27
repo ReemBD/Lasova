@@ -19,8 +19,7 @@ const Volunteer = new Schema({
   yearJoined: { type: Number, default: new Date().getFullYear() },
   weekdayAvailability: [{ type: String, default: '' }],
   status: { type: String, trim: true, default: '' },
-  reportedHours: { type: Number, default: 0 },
-  approvedHours: { type: Number, default: 0 }
+  hours: [{ type: Array, default: [] }] // will be array of object like : [{date:'12.03.2022',start:'13:00',end:'16:00',verified:'false'}]
 });
 
 module.exports = model('Volunteer', Volunteer);

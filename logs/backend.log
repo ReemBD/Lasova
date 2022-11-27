@@ -176,3 +176,94 @@
 8/22/2022, 8:35:36 PM - ERROR - err while trying to login user undefined | TypeError: Cannot read properties of null (reading 'checkPassword') 
 8/30/2022, 8:58:29 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
 8/30/2022, 8:58:31 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/21/2022, 6:12:06 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/21/2022, 6:12:09 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/28/2022, 4:33:53 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/28/2022, 4:33:54 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/28/2022, 4:36:33 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 3:56:27 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 3:56:54 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:02 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:03 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:05 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:05 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:31 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:33 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:45 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:57:48 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+10/30/2022, 3:59:14 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 3:59:59 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:01:32 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:04:16 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:07:54 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:13:31 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:14:27 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:21:00 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading '0') 
+10/30/2022, 4:21:39 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:23:37 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:26:53 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 4:28:41 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:02:19 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:07:34 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:10:28 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:10:54 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:13:11 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:13:34 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 5:21:04 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 5:29:37 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 5:31:14 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 5:39:13 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 5:52:36 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 5:57:57 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 6:01:39 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 6:02:04 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 6:06:32 PM - ERROR - error updating volunteer undefined | ReferenceError: hours is not defined 
+10/30/2022, 6:14:17 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:14:51 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:20:55 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:42:15 PM - ERROR - error updating volunteer undefined | TypeError: key.map is not a function 
+10/30/2022, 6:44:21 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:44:43 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:45:53 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:49:27 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 6:49:33 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 6:50:42 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 6:51:23 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 6:52:11 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 6:56:33 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 6:58:06 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:05:31 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:06:33 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:07:41 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:08:41 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:14:05 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:15:02 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:33:24 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'verified') 
+10/30/2022, 7:40:56 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 7:41:30 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'date') 
+10/30/2022, 7:46:08 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 7:47:28 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+10/30/2022, 7:48:08 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+11/10/2022, 6:01:11 PM - ERROR - error updating volunteer undefined | ReferenceError: currentUser is not defined 
+11/10/2022, 6:09:30 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+11/10/2022, 6:09:32 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+11/10/2022, 6:11:37 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+11/10/2022, 6:12:49 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+11/10/2022, 6:17:56 PM - ERROR - error while trying to login user undefined | Error: Invalid username / email 
+11/10/2022, 7:02:02 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'userType') 
+11/10/2022, 7:09:44 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'email') 
+11/10/2022, 7:11:01 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'userType') 
+11/10/2022, 7:26:58 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+11/10/2022, 7:53:03 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'forEach') 
+11/10/2022, 7:54:22 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'map') 
+11/10/2022, 8:01:54 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'map') 
+11/10/2022, 8:13:35 PM - ERROR - error updating volunteer undefined | TypeError: Cannot convert undefined or null to object 
+11/10/2022, 8:14:48 PM - ERROR - error updating volunteer undefined | TypeError: Cannot read properties of undefined (reading 'forEach') 
+11/10/2022, 8:16:02 PM - ERROR - error updating volunteer undefined | TypeError: Cannot convert undefined or null to object 
+11/10/2022, 8:19:51 PM - ERROR - error updating volunteer undefined | ReferenceError: volunteerInHisProgram is not defined 
+11/13/2022, 4:19:17 PM - ERROR - error updating volunteer undefined | ReferenceError: volunteerInHisProgram is not defined 
+11/13/2022, 4:23:33 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+11/13/2022, 4:41:06 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+11/13/2022, 4:41:39 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+11/13/2022, 4:42:28 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 
+11/13/2022, 5:00:17 PM - ERROR - error updating volunteer undefined | Error: User dont have permission for this action 

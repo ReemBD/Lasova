@@ -5,7 +5,8 @@ const router = express.Router();
 const {
   getVolunteers,
   removeVolunteers,
-  updateVolunteer,
+  adminUpdateVolunteer,
+  volunteerUpdateVolunteer,
   getVolunteerById,
   addVolunteer
 } = require('./volunteer.controller');
@@ -16,7 +17,8 @@ router.get('/', requirePermissions(UserPermissions.Read.Volunteer), getVolunteer
 
 router.delete('/', requirePermissions(UserPermissions.Edit.Volunteer), removeVolunteers);
 
-router.put('/:volunteerId', requirePermissions(UserPermissions.Edit.Volunteer), updateVolunteer);
+router.put('/admin/:volunteerId', requirePermissions(UserPermissions.Edit.Volunteer), adminUpdateVolunteer);
+router.put('/volunteer/:volunteerId', requirePermissions(UserPermissions.Edit.VolunteerHours), volunteerUpdateVolunteer);
 
 router.post('/', requirePermissions(UserPermissions.Write.Volunteer), addVolunteer);
 
