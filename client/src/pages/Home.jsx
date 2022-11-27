@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { DebounceInput } from "react-debounce-input";
-import { loadVolunteers, searchVolunteers } from '../store/actions/volunteerActions';
+import { loadVolunteers, searchVolunteers, filterVolunteersByStatus } from '../store/actions/volunteerActions';
 import NewVolunteerModal from '../components/NewVolunteerModal';
 import ProfileVolunteerModal from '../components/ProfileVolunteerModal';
 
@@ -18,6 +18,7 @@ import { ReactComponent as Inactive } from '../assets/imgs/icons/status/inactive
 import BasePage from '../pages/BasePage';
 import BaseTable from '../components/BaseTable';
 import FilterableHeaderCell from '../components/FilterableHeaderCell';
+import StatusTabs from '../components/StatusTabs';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 // import { ReactComponent as ClearIcon } from '../assets/imgs/icons/close-icon.svg';
@@ -63,6 +64,7 @@ const Home = () => {
   }
 
   const openProfileModal = (volunteer) => {
+    console.log(volunteer)
     setProfileModalOpen(true);
     setVolunteerProfileToShow(volunteer);
   };
@@ -171,15 +173,22 @@ const Home = () => {
   if (!user) {
     navigate('/login');
   }
+  function setStatusFilter(status) {
+    alert(`status has changed to: ${status}`)
+  }
   return (
     <BasePage
       title="טבלת מתנדבים"
       doSearch={(searchWord) => {
-        dispatch(searchVolunteers(searchWord));
+        dispatch(searchVolunteers(searchWord,undefined));
       }}
       doExport={() => exportRef.current()}
       onAdd={() => setNewVolModalOpen(true)}
     >
+      <StatusTabs 
+      setStatusFilter={(status) => {
+          dispatch(searchVolunteers(undefined, status));
+        }}/>
       <BaseTable
         entities={volunteersToShow}
         columns={columns}

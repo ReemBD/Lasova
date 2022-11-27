@@ -12,7 +12,7 @@ const Sidebar = () => {
   const links = [
     // { title: "דשבורד", destination: "/dashboard" },
     { title: 'מתנדבים', destination: '/' },
-    { title: 'קבוצות וארגונים', destination: '/groups' }
+    { title: 'קבוצות וארגונים', destination: '/groups' },
     // { title: "מנהלי מסגרות", destination: "/managers" },
     // { title: "מסגרות התנדבות", destination: "/misgarot" },
   ];

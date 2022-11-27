@@ -194,3 +194,16 @@
 9/20/2022, 10:24:19 AM - ERROR - error while trying to login user gfdfd | Error: Invalid username / email 
 9/20/2022, 10:24:26 AM - ERROR - error while trying to login user gfdfd@asdas.com | Error: Invalid username / email 
 9/20/2022, 10:24:27 AM - ERROR - error while trying to login user gfdfd@asdas.com | Error: Invalid username / email 
+22.9.2022, 11:11:30 - ERROR - error while trying to login user Lasova.dev@gmail.com | Error: Invalid username / email 
+22.9.2022, 11:11:37 - ERROR - error while trying to login user Lasova.dev@gmail.com | Error: Invalid username / email 
+22.9.2022, 11:11:57 - ERROR - error while trying to login user Lasova.dev@gmail.com | Error: Invalid username / email 
+22.9.2022, 11:12:01 - ERROR - error while trying to login user Lasova.dev@gmail.com | Error: Invalid username / email 
+22.9.2022, 11:12:03 - ERROR - error while trying to login user Lasova.dev@gmail.com | Error: Invalid username / email 
+7.11.2022, 12:50:35 - ERROR - Error while trying to find user by criteria {
+  "email": "community@lasova.org.il"
+} | MongooseError: Operation `users.findOne()` buffering timed out after 10000ms 
+7.11.2022, 12:50:35 - ERROR - error while trying to login user community@lasova.org.il | MongooseError: Operation `users.findOne()` buffering timed out after 10000ms 
+7.11.2022, 12:50:51 - ERROR - Error while trying to find user by criteria {
+  "email": "community@lasova.org.il"
+} | MongooseError: Operation `users.findOne()` buffering timed out after 10000ms 
+7.11.2022, 12:50:51 - ERROR - error while trying to login user community@lasova.org.il | MongooseError: Operation `users.findOne()` buffering timed out after 10000ms 

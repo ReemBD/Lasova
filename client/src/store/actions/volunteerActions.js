@@ -15,11 +15,15 @@ const STORAGE_KEY = 'volunteers';
 
 /*******************************************************************************************/
 
-export function loadVolunteers() {
+export function loadVolunteers(email=null) { //naama-added email to try to get volunteer by user details
   return async (dispatch) => {
     try {
       const volunteers = await volunteerService.query();
       dispatch({ type: 'LOAD_VOLUNTEERS', volunteers });
+      if (email) {
+      const volunteerData = volunteers.find((volunteer)=> volunteer.email=email) //naama
+      dispatch({type: 'LOAD_VOLUNTEER', volunteerData })  //naama
+      }
     } catch (err) {
       console.log('Error loading volunteers:');
       console.error(err);
@@ -27,18 +31,54 @@ export function loadVolunteers() {
   };
 }
 
-export function searchVolunteers(searchText) {
+
+//naama
+export function loadVolunteerById(userId) {
+  return async (dispatch) => {
+    try {
+      const volunteerData = await volunteerService.getVolunteerById(userId);
+      dispatch({ type: 'LOAD_VOLUNTEER', volunteerData });
+      
+    } catch (err) {
+      console.log('Error loading volunteer:');
+      console.error(err);
+    }
+  };
+}
+
+//Naama- tried to filter status with current search, i need to create 'filterBy' that will include both and send them together.
+export function searchVolunteers(searchText,status) {
   return (dispatch, getState) => {
     const { volunteers } = getState().volunteerReducer;
-    let filteredVolunteers = volunteers.filter((volunteer) => {
+    if (!searchText) {
+     let filteredVolunteers = filterVolunteersByStatus(status,volunteers)
+     dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });
+    }
+    else {
+     let filteredVolunteers = volunteers.filter((volunteer) => {
       return (
         volunteer.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
         volunteer.lastName.toLowerCase().includes(searchText.toLowerCase()) ||
         volunteer.taz.includes(searchText.toLowerCase())
       );
     });
+    if (status) filteredVolunteers = filterVolunteersByStatus(status,filteredVolunteers);
     dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });
   };
+};
+}
+
+//Naama
+function filterVolunteersByStatus(status, volunteers) {
+  //return (dispatch) => {
+    if (!status) return volunteers;
+    let filteredVolunteers = volunteers.filter((volunteer)=>{
+      if (status==='standby') return (volunteer.status.toLowerCase()===status.toLowerCase() || volunteer.status.toLowerCase()==="");
+      return volunteer.status.toLowerCase()===status.toLowerCase();
+    });
+    //dispatch({ type: 'SEARCH_VOLUNTEERS', filteredVolunteers });
+ // };
+ return filteredVolunteers;
 }
 
 /**

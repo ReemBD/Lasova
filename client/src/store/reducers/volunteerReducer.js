@@ -1,6 +1,7 @@
 const initialState = {
   volunteers: null,
   volunteersToShow: null,
+  volunteer: null,
   // filters: {
   /*
       search: '',
@@ -48,6 +49,13 @@ export function volunteerReducer(state = initialState, action) {
         ...state,
         volunteersToShow: action.filteredVolunteers,
       };
+    
+      //naama
+    case 'LOAD_VOLUNTEER':
+        return {
+          volunteer: action.volunteerData
+        };
+
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import { httpService } from './http-service';
 export const volunteerService = {
   saveVolunteer,
   query,
+  getVolunteerById,
 };
 
 const BASE_URL = 'volunteer';
@@ -17,6 +18,11 @@ function saveVolunteer(volunteer) {
 
 function _updateVolunteer(volunteer) {
   return httpService.put(`${BASE_URL}/${volunteer._id}`, volunteer);
+}
+
+//naama
+function getVolunteerById(volunteerId) {
+  return httpService.get(`${BASE_URL}/${volunteerId}`,volunteerId);
 }
 
 async function _addVolunteer(volunteer) {
