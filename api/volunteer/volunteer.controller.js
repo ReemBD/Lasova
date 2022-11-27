@@ -1,8 +1,10 @@
 const logger = require('../../services/logger.service');
-const { query, remove, update, getById, add } = require('./volunteer.service');
+const { query, remove, adminUpdate, volunteerUpdate, getById, add } = require('./volunteer.service');
 const googleDriveService = require('../../services/google-drive.service');
 const { UserTypes } = require('../../lib/consts/UserType.enum');
 const { managerProgramsObjectMap } = require('../../lib/manager-program-map');
+const jwt = require('jsonwebtoken');
+const authenticate = require('../../middlewares/authentication.middleware');
 
 async function getVolunteers(req, res) {
   try {
@@ -29,15 +31,28 @@ async function removeVolunteers(req, res) {
   }
 }
 
-async function updateVolunteer(req, res) {
+async function volunteerUpdateVolunteer(req, res) {
   try {
     const volunteer = req.body;
-    const updatedVolunteer = await update(volunteer);
+    authenticate.authenticateToken(req,res,()=>console.log('right user'))
+    const updatedVolunteer = await volunteerUpdate(volunteer,req.user);
     res.send(updatedVolunteer);
   } catch (err) {
     res.status(500).send(err);
   }
 }
+
+async function adminUpdateVolunteer(req, res) {
+  try {
+    const volunteer = req.body;
+    authenticate.authenticateToken(req,res,()=>console.log('right user'))
+    const updatedVolunteer = await adminUpdate(volunteer,req.user);
+    res.send(updatedVolunteer);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
+
 
 async function addVolunteer(req, res) {
   try {
@@ -76,7 +91,8 @@ async function getVolunteerById(req, res) {
 module.exports = {
   getVolunteers,
   removeVolunteers,
-  updateVolunteer,
+  adminUpdateVolunteer,
+  volunteerUpdateVolunteer,
   addVolunteer,
   getVolunteerById
 };

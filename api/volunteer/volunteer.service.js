@@ -1,5 +1,6 @@
 const logger = require('../../services/logger.service');
 const Volunteer = require('./volunteer.schema');
+const {ErrorMessages} = require('../../lib/consts/ErrorMessages')
 /**
  * Currently acceps isDefault and doReset as params,
  * doReset - flag that indicates whether should restore data to initial value
@@ -49,10 +50,68 @@ async function remove(volunteerIds) {
   }
 }
 
-async function update(volunteer) {
+async function adminUpdate(volunteer, currentUser) {
   try {
+    const originalVolunteer = await Volunteer.findById(volunteer._id)
+    // check if the same user who posting
+    var volunteerInHisProgram = false
+    if (currentUser.userType === 1) {
+      Object.values(currentUser.associatedPrograms).forEach(program => {
+        if (originalVolunteer.volunteeringProgram === program["name"]) {
+          volunteerInHisProgram = true
+        }
+        })
+      };
+    if (!volunteerInHisProgram) {
+        throw Error(ErrorMessages.DontHavePermission);
+      }
+    
     const res = await Volunteer.findByIdAndUpdate(volunteer._id, volunteer);
     return res;
+  } catch (err) {
+    logger.error(`error updating volunteer ${volunteer.id}`, err);
+    throw err;
+  }
+}
+
+async function volunteerUpdate(volunteer, currentUser) {
+  try {
+    
+    const originalVolunteer = await Volunteer.findById(volunteer._id)
+    // check if the same user who posting
+    checkIfSameUser = query({ email: currentUser.email }).then((response)=>{
+      if (response[0].email !== originalVolunteer.email) {
+        throw Error(ErrorMessages.DontHavePermission);
+      }
+    })
+
+    // check if volunteer only changed what he have permission to
+    for (const [key,value] of Object.entries(volunteer)) {
+      if (key === 'hours'){
+        value.map((entry, index) => { 
+        if (originalVolunteer.hours.includes(originalVolunteer.hours[index]) === false && entry['verified'] !== 'false') {
+          throw Error(ErrorMessages.DontHavePermission);
+        } 
+        if (originalVolunteer.hours.includes(originalVolunteer.hours[index]) && entry['verified'] ==! originalVolunteer.hours[index]['verified'] ) {
+          throw Error(ErrorMessages.DontHavePermission);
+        } 
+        if(originalVolunteer.hours.includes(originalVolunteer.hours[index]) && [entry.date,entry.starthour,entry.endhour] !== [
+          originalVolunteer.hours[index]['date'],
+          originalVolunteer.hours[index]['starthour'],
+          originalVolunteer.hours[index]['endhour']] && entry['verified'] !== 'false') {
+            throw Error(ErrorMessages.DontHavePermission);
+          }
+       })
+      } else if (value ==! originalVolunteer[key]) {
+        throw Error(ErrorMessages.DontHavePermission);
+      }
+    }
+
+    const res = await Volunteer.findByIdAndUpdate(volunteer._id, volunteer);
+    return res;
+    
+  
+  
   } catch (err) {
     logger.error(`error updating volunteer ${volunteer.id}`, err);
     throw err;
@@ -80,7 +139,8 @@ const _buildVolunteerQueryFilter = (query) => {
 module.exports = {
   query,
   remove,
-  update,
+  adminUpdate,
+  volunteerUpdate,
   getById,
   add
 };

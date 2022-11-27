@@ -4,7 +4,8 @@ const { requirePermissions, authenticateToken } = require('../../middlewares/aut
 const {
   getVolunteers,
   removeVolunteers,
-  updateVolunteer,
+  adminUpdateVolunteer,
+  volunteerUpdateVolunteer,
   getVolunteerById,
   addVolunteer
 } = require('./volunteer.controller');
@@ -18,9 +19,10 @@ router.get('/:volunteerId', requirePermissions(UserPermissions.Read.Volunteer), 
 router.get('/', requirePermissions(UserPermissions.Read.Volunteer), getVolunteers);
 /*  Delete Volunteers */
 router.delete('/', requirePermissions(UserPermissions.Edit.Volunteer), removeVolunteers);
-/*  Update Volunteer */
-router.put('/:volunteerId', requirePermissions(UserPermissions.Edit.Volunteer), updateVolunteer);
-/* Add Volunteer */
+
+router.put('/admin/:volunteerId', requirePermissions(UserPermissions.Edit.Volunteer), adminUpdateVolunteer);
+router.put('/volunteer/:volunteerId', requirePermissions(UserPermissions.Edit.VolunteerHours), volunteerUpdateVolunteer);
+
 router.post('/', requirePermissions(UserPermissions.Write.Volunteer), addVolunteer);
 
 module.exports = router;
